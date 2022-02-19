@@ -9,3 +9,9 @@
     min-height: 100vh;
   }
 }
+
+@layer utilities {
+  .writing-vertical {
+    writing-mode: vertical-lr;
+  }
+}
