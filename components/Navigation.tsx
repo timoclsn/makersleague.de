@@ -1,8 +1,8 @@
 import { FunctionComponent, SVGProps } from 'react';
-import ICMakersLeague from '../assets/ic-makersLeague.svg';
-import ICDate from '../assets/ic-date.svg';
-import ICHeartPlus from '../assets/ic-heartPlus.svg';
-import ICBook from '../assets/ic-book.svg';
+import MakersLeague from '../assets/ic-makersLeague.svg';
+import Date from '../assets/ic-date.svg';
+import HeartPlus from '../assets/ic-heartPlus.svg';
+import Book from '../assets/ic-book.svg';
 
 interface Props {
   expanded?: boolean;
@@ -19,28 +19,28 @@ export function Navigation({ expanded }: Props) {
         <NavItem
           title="Über Uns"
           subtitle="Alles über die Makers League und unsere Mitglieder"
-          Icon={ICMakersLeague}
+          Icon={MakersLeague}
           color="blue"
           expanded={expanded}
         />
         <NavItem
           title="Terminen & Stammtisch"
           subtitle="Termine und Anmeldung zum nächsten Stammtisch"
-          Icon={ICDate}
+          Icon={Date}
           color="pink"
           expanded={expanded}
         />
         <NavItem
           title="Mitglied werden"
           subtitle="Hier geht es direkt zum Anmeldeformular"
-          Icon={ICHeartPlus}
+          Icon={HeartPlus}
           color="green"
           expanded={expanded}
         />
         <NavItem
           title="Blog"
           subtitle="Geschichten und Neuigkeiten rund um die Makers League"
-          Icon={ICBook}
+          Icon={Book}
           color="sand"
           expanded={expanded}
         />
@@ -91,7 +91,7 @@ function NavItem({
         colorMap[color].text
       } p-6 lg:h-1/2`}
     >
-      <Icon className={colorMap[color].text} />
+      <Icon className={`${colorMap[color].text} text-[24px]`} />
       <div className="flex flex-col-reverse">
         <p className="text-2lg font-bold">{title}</p>
         {expanded && <span className="mb-4 opacity-80">{subtitle}</span>}

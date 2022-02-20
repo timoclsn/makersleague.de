@@ -11,9 +11,9 @@ interface Props {
 export function Page({ children, expandedNav }: Props) {
   return (
     <>
-      <div className="blog flex-1 flex-row-reverse lg:flex">
+      <div className="flex flex-1 flex-col-reverse lg:flex-row-reverse">
         <Navigation expanded={expandedNav} />
-        <main className="bg-yellow-900 p-10">{children}</main>
+        <main className="bg-yellow-900 w-full">{children}</main>
       </div>
       <Footer />
     </>

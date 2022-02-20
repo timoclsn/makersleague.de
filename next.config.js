@@ -9,6 +9,7 @@ const nextConfig = {
         {
           loader: '@svgr/webpack',
           options: {
+            icon: true,
             typescript: true,
             svgo: true,
             prettier: true,
