@@ -8,7 +8,7 @@ import Profile from '../assets/ic-profile.svg';
 const Home: NextPage = () => {
   return (
     <Page expandedNav>
-      <div className="flex h-full flex-col">
+      <div className="flex h-full flex-1 flex-col">
         <div className="space-y-32 px-10 pt-10">
           <header className="flex items-start justify-between">
             <MakersLeague className="text-[45px]" />
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
             </h2>
           </div>
         </div>
-        <div className="relative h-96 overflow-hidden lg:flex-1">
+        <div className="relative min-h-[360px] flex-1 overflow-hidden">
           <div className="absolute left-0 bottom-0">
             <Image
               src="/assets/doodle-selfie.svg"
