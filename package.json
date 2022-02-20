@@ -13,10 +13,10 @@
     "@fontsource/space-grotesk": "^4.5.3",
     "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-feather": "^2.0.9"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.2.1",
     "@types/node": "17.0.18",
     "@types/react": "17.0.39",
     "autoprefixer": "^10.4.2",

@@ -1,4 +1,8 @@
-import { Circle } from 'react-feather';
+import { FunctionComponent, SVGProps } from 'react';
+import ICMakersLeague from '../assets/ic-makersLeague.svg';
+import ICDate from '../assets/ic-date.svg';
+import ICHeartPlus from '../assets/ic-heartPlus.svg';
+import ICBook from '../assets/ic-book.svg';
 
 interface Props {
   expanded?: boolean;
@@ -15,24 +19,28 @@ export function Navigation({ expanded }: Props) {
         <NavItem
           title="Über Uns"
           subtitle="Alles über die Makers League und unsere Mitglieder"
+          Icon={ICMakersLeague}
           color="blue"
           expanded={expanded}
         />
         <NavItem
           title="Terminen & Stammtisch"
           subtitle="Termine und Anmeldung zum nächsten Stammtisch"
+          Icon={ICDate}
           color="pink"
           expanded={expanded}
         />
         <NavItem
           title="Mitglied werden"
           subtitle="Hier geht es direkt zum Anmeldeformular"
+          Icon={ICHeartPlus}
           color="green"
           expanded={expanded}
         />
         <NavItem
           title="Blog"
           subtitle="Geschichten und Neuigkeiten rund um die Makers League"
+          Icon={ICBook}
           color="sand"
           expanded={expanded}
         />
@@ -64,10 +72,17 @@ interface NavItemProps {
   title: string;
   subtitle: string;
   color?: keyof typeof colorMap;
+  Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   expanded?: boolean;
 }
 
-function NavItem({ title, subtitle, color = 'blue', expanded }: NavItemProps) {
+function NavItem({
+  title,
+  subtitle,
+  color = 'blue',
+  Icon,
+  expanded,
+}: NavItemProps) {
   return (
     <li
       className={`${
@@ -76,7 +91,7 @@ function NavItem({ title, subtitle, color = 'blue', expanded }: NavItemProps) {
         colorMap[color].text
       } p-6 lg:h-1/2`}
     >
-      <Circle size={22} />
+      <Icon className={colorMap[color].text} />
       <div className="flex flex-col-reverse">
         <p className="text-2lg font-bold">{title}</p>
         {expanded && <span className="mb-4 opacity-80">{subtitle}</span>}
