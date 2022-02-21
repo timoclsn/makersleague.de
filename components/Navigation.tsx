@@ -13,8 +13,8 @@ export function Navigation({ expanded }: Props) {
     <nav className="bg-red-900">
       <ul
         className={`${
-          expanded ? 'lg:w-[640px]' : 'lg:w-[160px]'
-        } bg-green-900 sticky top-0 flex w-full flex-wrap lg:h-screen`}
+          expanded ? 'xl:w-[640px]' : 'xl:w-[160px]'
+        } bg-green-900 sticky top-0 flex w-full flex-wrap xl:h-screen`}
       >
         <NavItem
           title="Über Uns"
@@ -86,10 +86,10 @@ function NavItem({
   return (
     <li
       className={`${
-        !expanded && 'lg:writing-vertical flex-col lg:flex-row lg:items-center'
+        !expanded && 'xl:writing-vertical flex-col xl:flex-row xl:items-center'
       } flex w-1/2 flex-col justify-between space-y-12 ${colorMap[color].bg} ${
         colorMap[color].text
-      } p-6 lg:h-1/2`}
+      } p-6 xl:h-1/2`}
     >
       <Icon className={`${colorMap[color].text} text-[24px]`} />
       <div className="flex flex-col-reverse">

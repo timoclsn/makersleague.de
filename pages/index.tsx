@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className="relative -mx-4 -mb-4 min-h-[240px] flex-1 overflow-hidden md:-mx-10 md:-mb-10">
+        <div className="relative -mx-4 -mb-4 min-h-[200px] flex-1 overflow-hidden md:-mx-10 md:-mb-10 md:min-h-[500px]">
           <div className="absolute left-0 bottom-0 w-[100px] md:w-[200px]">
             <Image
               src="/assets/doodle-selfie.svg"
@@ -39,7 +39,7 @@ const Home: NextPage = () => {
               height={336}
             />
           </div>
-          <div className="absolute left-1/2 bottom-0 -ml-16 -mb-12 w-[160px] md:-mb-24 md:w-[300px]">
+          <div className="absolute left-1/2 bottom-0 -ml-16 -mb-12 w-[160px] md:-ml-32 md:-mb-24 md:w-[300px]">
             <Image
               src="/assets/doodle-loving.svg"
               alt="Doodle Loving"
