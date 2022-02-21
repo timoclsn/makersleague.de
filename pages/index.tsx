@@ -11,7 +11,7 @@ const Home: NextPage = () => {
           <h1 className="text-base opacity-80 md:text-2xl">
             Makers League e. V.
           </h1>
-          <h2 className="text-xl font-bold leading-tight md:text-5xl">
+          <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
             Die Gemeinschaft für Macher*innen in Esslingen, die zusammen Ideen
             voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte
             frei!
