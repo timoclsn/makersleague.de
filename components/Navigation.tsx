@@ -94,7 +94,11 @@ function NavItem({
       <Icon className={`${colorMap[color].text} text-[24px]`} />
       <div className="flex flex-col-reverse">
         <p className="text-2lg font-bold">{title}</p>
-        {expanded && <span className="mb-4 opacity-80">{subtitle}</span>}
+        {expanded && (
+          <span className="mb-4 text-sm opacity-80 md:text-base">
+            {subtitle}
+          </span>
+        )}
       </div>
     </li>
   );
