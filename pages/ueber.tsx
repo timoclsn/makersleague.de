@@ -66,7 +66,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
-        <section className="spaxe-x-0 md-space-y-0 flex flex-col items-start space-y-6 md:flex-row md:space-x-9">
+        <section className="spaxe-x-0 flex flex-col items-start space-y-6 md:flex-row md:items-center md:space-y-0 md:space-x-9">
           <Button>
             <HeartPlus className="text-2xl" />
             Mitglied werden
