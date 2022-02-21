@@ -5,6 +5,7 @@ import HeartPlus from '../assets/ic-heartPlus.svg';
 import Book from '../assets/ic-book.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { colorMap } from './utils';
 
 interface Props {
   expanded?: boolean;
@@ -54,25 +55,6 @@ export function Navigation({ expanded }: Props) {
     </nav>
   );
 }
-
-const colorMap = {
-  blue: {
-    text: 'text-dark',
-    bg: 'bg-blue',
-  },
-  pink: {
-    text: 'text-light',
-    bg: 'bg-pink',
-  },
-  green: {
-    text: 'text-light',
-    bg: 'bg-green',
-  },
-  sand: {
-    text: 'text-dark',
-    bg: 'bg-sand',
-  },
-} as const;
 
 interface NavItemProps {
   title: string;
