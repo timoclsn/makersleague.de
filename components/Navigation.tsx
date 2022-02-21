@@ -75,7 +75,9 @@ function NavItem({
 }: NavItemProps) {
   const router = useRouter();
   return (
-    <li className={`h-1/2 w-1/2 ${colorMap[color].bg} ${colorMap[color].text}`}>
+    <li
+      className={`w-1/2 xl:h-1/2 ${colorMap[color].bg} ${colorMap[color].text}`}
+    >
       <Link href={href}>
         <a
           className={`${
