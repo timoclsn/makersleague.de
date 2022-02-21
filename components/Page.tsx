@@ -1,5 +1,8 @@
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
+import MakersLeague from '../assets/ic-makersLeague.svg';
+import Profile from '../assets/ic-profile.svg';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
 
@@ -18,6 +21,17 @@ export function Page({ children, expandedNav }: Props) {
             expandedNav ? 'order-first' : 'order-last'
           }`}
         >
+          <header className="mb-16 flex items-start justify-between md:mb-32">
+            <Link href="/">
+              <a>
+                <MakersLeague className="text-[45px]" />
+              </a>
+            </Link>
+            <a className="flex items-center justify-center space-x-2">
+              <Profile />
+              <span>Mitgliederbereich</span>
+            </a>
+          </header>
           {children}
         </main>
       </div>

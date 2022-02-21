@@ -2,31 +2,20 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import { Page } from '../components/Page';
-import MakersLeague from '../assets/ic-makersLeague.svg';
-import Profile from '../assets/ic-profile.svg';
 
 const Home: NextPage = () => {
   return (
     <Page expandedNav>
       <div className="flex h-full flex-1 flex-col">
-        <div className="space-y-16  md:space-y-32">
-          <header className="flex items-start justify-between">
-            <MakersLeague className="text-[45px]" />
-            <a className="flex items-center justify-center space-x-2">
-              <Profile />
-              <span>Mitgliederbereich</span>
-            </a>
-          </header>
-          <div className="space-y-4">
-            <h1 className="text-base opacity-80 md:text-2xl">
-              Makers League e. V.
-            </h1>
-            <h2 className="text-xl font-bold leading-tight md:text-5xl">
-              Die Gemeinschaft für Macher*innen in Esslingen, die zusammen Ideen
-              voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte
-              frei!
-            </h2>
-          </div>
+        <div className="space-y-4">
+          <h1 className="text-base opacity-80 md:text-2xl">
+            Makers League e. V.
+          </h1>
+          <h2 className="text-xl font-bold leading-tight md:text-5xl">
+            Die Gemeinschaft für Macher*innen in Esslingen, die zusammen Ideen
+            voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte
+            frei!
+          </h2>
         </div>
 
         <div className="relative -mx-4 -mb-4 min-h-[200px] flex-1 overflow-hidden md:-mx-10 md:-mb-10 md:min-h-[500px]">
