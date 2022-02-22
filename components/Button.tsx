@@ -11,6 +11,7 @@ const button = cva(
     'cursor-pointer',
     'disabled:opacity-50',
     'font-bold',
+    'text-sm md:text-base',
   ],
   {
     variants: {
