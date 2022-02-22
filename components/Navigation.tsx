@@ -17,7 +17,7 @@ export function Navigation({ expanded }: Props) {
       <ul
         className={`${
           expanded ? 'xl:w-[640px]' : 'xl:w-[160px]'
-        } sticky top-0 flex w-full flex-wrap xl:h-[calc(100vh-88px)]`}
+        } sticky top-0 flex w-full flex-wrap xl:h-screen`}
       >
         <NavItem
           title="Über Uns"
