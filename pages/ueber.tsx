@@ -14,7 +14,7 @@ import mitmachen from '../public/assets/mitmachen.png';
 import Heart from '../assets/ic-heart.svg';
 import Storm from '../assets/ic-storm.svg';
 
-const Home: NextPage = () => {
+const Ueber: NextPage = () => {
   return (
     <Page>
       <div className="space-y-20 md:space-y-32">
@@ -330,4 +330,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Ueber;

@@ -49,7 +49,7 @@ export function Navigation({ expanded }: Props) {
           Icon={Book}
           color="sand"
           expanded={expanded}
-          href="/test"
+          href="/blog"
         />
       </ul>
     </nav>
