@@ -28,12 +28,12 @@ export function Navigation({ expanded }: Props) {
           href="/ueber"
         />
         <NavItem
-          title="Terminen & Stammtisch"
+          title="Stammtisch"
           subtitle="Termine und Anmeldung zum nächsten Stammtisch"
           Icon={Date}
           color="pink"
           expanded={expanded}
-          href="/test"
+          href="/stammtisch"
         />
         <NavItem
           title="Mitglied werden"

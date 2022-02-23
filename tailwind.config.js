@@ -18,6 +18,7 @@ module.exports = {
       blue: 'hsla(191, 34%, 92%, 1)',
       'blue-accent': 'hsla(189, 56%, 50%, 1)',
       pink: 'hsla(281, 78%, 74%, 1)',
+      'pink-light': 'hsla(279, 81%, 96%, 1)',
       green: 'hsla(151, 32%, 30%, 1)',
       sand: 'hsla(43, 53%, 82%, 1)',
     },
