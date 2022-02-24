@@ -4,15 +4,17 @@ import Image from 'next/image';
 
 import { Page } from '../components/Page';
 import { Button } from '../components/Button';
-import HeartPlus from '../assets/ic-heartPlus.svg';
-import Question from '../assets/ic-question.svg';
-import Check from '../assets/ic-check.svg';
-import Clipboard from '../assets/ic-clipboard.svg';
-import DocumentInfo from '../assets/ic-documentInfo.svg';
 import alex from '../public/assets/alex.png';
 import mitmachen from '../public/assets/mitmachen.png';
-import Heart from '../assets/ic-heart.svg';
-import Storm from '../assets/ic-storm.svg';
+import {
+  HeartPlus,
+  Question,
+  Check,
+  DocumentInfo,
+  Heart,
+  Storm,
+  Clipboard,
+} from 'icons';
 
 const Ueber: NextPage = () => {
   return (

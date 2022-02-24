@@ -1,17 +1,15 @@
 import type { GetStaticProps } from 'next';
-import { Page } from '../../components/Page';
-import Profile from '../../assets/ic-profile.svg';
-import Watch from '../../assets/ic-watch.svg';
-import Date from '../../assets/ic-date.svg';
-import { allBlogPosts } from 'contentlayer/generated';
-import type { BlogPost } from 'contentlayer/generated';
+import { allBlogPosts, BlogPost } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+
+import { Page } from '../../components/Page';
+import { Calendar, Profile, Watch } from 'icons';
 
 interface Props {
   post: BlogPost;
 }
 
-export default function BlogPost({ post }: Props) {
+export default function BlogPostPage({ post }: Props) {
   const Component = useMDXComponent(post.body.code);
   return (
     <Page>
@@ -31,7 +29,7 @@ export default function BlogPost({ post }: Props) {
               <span>{post.readingTime}</span>
             </li>
             <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
-              <Date className="text-xl" />
+              <Calendar className="text-xl" />
               <span>{post.publishedAtFormatted}</span>
             </li>
           </ul>

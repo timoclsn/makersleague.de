@@ -1,13 +1,12 @@
+import { GetStaticProps } from 'next';
+import Link from 'next/link';
+import { pick } from 'contentlayer/client';
+import { allBlogPosts, BlogPost } from 'contentlayer/generated';
+
 import { Button } from '../components/Button';
 import { Page } from '../components/Page';
-import Profile from '../assets/ic-profile.svg';
-import Watch from '../assets/ic-watch.svg';
-import Date from '../assets/ic-date.svg';
-import { GetStaticProps } from 'next';
 
-import { allBlogPosts, BlogPost } from 'contentlayer/generated';
-import { pick } from 'contentlayer/client';
-import Link from 'next/link';
+import { Profile, Watch, Calendar } from 'icons';
 
 interface Props {
   posts: BlogPost[];
@@ -36,7 +35,7 @@ export default function Blogpage({ posts }: Props) {
                 <span>{post.readingTime}</span>
               </li>
               <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
-                <Date className="text-xl" />
+                <Calendar className="text-xl" />
                 <span>{post.publishedAtFormatted}</span>
               </li>
             </ul>

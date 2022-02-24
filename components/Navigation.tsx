@@ -1,11 +1,9 @@
 import { FunctionComponent, SVGProps } from 'react';
-import MakersLeague from '../assets/ic-makersLeague.svg';
-import Date from '../assets/ic-date.svg';
-import HeartPlus from '../assets/ic-heartPlus.svg';
-import Book from '../assets/ic-book.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import { colorMap } from './utils';
+import { Book, Calendar, HeartPlus, MakersLeague } from 'icons';
 
 interface Props {
   expanded?: boolean;
@@ -30,7 +28,7 @@ export function Navigation({ expanded }: Props) {
         <NavItem
           title="Stammtisch"
           subtitle="Termine und Anmeldung zum nächsten Stammtisch"
-          Icon={Date}
+          Icon={Calendar}
           color="pink"
           expanded={expanded}
           href="/stammtisch"

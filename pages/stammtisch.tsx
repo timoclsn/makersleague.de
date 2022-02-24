@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
+
 import { Button } from '../components/Button';
 import { Page } from '../components/Page';
-import Profile from '../assets/ic-profile.svg';
-import Watch from '../assets/ic-watch.svg';
-import Date from '../assets/ic-date.svg';
+import { Profile, Calendar, Watch } from 'icons';
 
 const Events: NextPage = () => {
   return (
@@ -21,7 +20,7 @@ const Events: NextPage = () => {
               <span>Online / Digital</span>
             </li>
             <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
-              <Date className="text-xl" />
+              <Calendar className="text-xl" />
               <span>2. und 4. Dienstag im Monat</span>
             </li>
             <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">

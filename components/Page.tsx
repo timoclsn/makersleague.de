@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-import MakersLeague from '../assets/ic-makersLeague.svg';
-import Profile from '../assets/ic-profile.svg';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
+import { MakersLeague, Profile } from 'icons';
 
 interface Props {
   children: ReactNode;
