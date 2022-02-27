@@ -12,48 +12,102 @@ interface CustomField {
 }
 
 type MemberWithCustomFields = Member & { customFields: CustomField[] | null };
+
+type SuperPowers = [string, string, string];
 export interface WebsiteMember {
   id: number;
-  show: boolean;
   name: string;
   profilePicture: string;
   slogan: string;
-  superPowers: [string, string, string];
-  about: string;
+  superPowers: SuperPowers;
+  about?: string;
 }
 
-export async function getMemberInfos() {
+const customFieldNames = {
+  show: 'Auf Website anzeigen',
+  slogan: 'Profil-Slogan',
+  superPower1: 'Meine Superkraft 1',
+  superPower2: 'Meine Superkraft 2',
+  superPower3: 'Meine Superkraft 3',
+  about: 'Über mich',
+} as const;
+
+export async function getMemberInfos(): Promise<WebsiteMember[]> {
   const apiMembers = (await getMembers(
     '{id,_profilePicture,contactDetails{name},customFields{value,customField{name}}}'
   )) as unknown as MemberWithCustomFields[];
 
-  const websiteMembers = apiMembers.map((apiMember) => {
-    if (!apiMember.customFields) {
-      return {
-        show: false,
-      };
-    }
+  const websiteMembers = apiMembers
+    .filter((apiMember) => {
+      const name = apiMember.contactDetails.name;
+      const customFields = apiMember.customFields;
 
-    return {
-      id: apiMember.id,
-      show:
-        customField(apiMember.customFields, 'Auf Website anzeigen')?.value ===
-        'True'
+      if (!customFields) {
+        console.log(
+          `Not showing ${name} because they don't have any custom fields`
+        );
+        return false;
+      }
+
+      const show =
+        customField(customFields, customFieldNames.show)?.value === 'True'
           ? true
-          : false,
-      name: apiMember.contactDetails.name,
-      profilePicture: apiMember._profilePicture || '',
-      slogan: customField(apiMember.customFields, 'Slogan')?.value || '',
-      superPowers: [
-        customField(apiMember.customFields, 'Meine Superkraft 1')?.value || '',
-        customField(apiMember.customFields, 'Meine Superkraft 2')?.value || '',
-        customField(apiMember.customFields, 'Meine Superkraft 3')?.value || '',
-      ],
-      about: customField(apiMember.customFields, 'Über mich')?.value || '',
-    };
-  });
+          : false;
 
-  return websiteMembers.filter((field) => field.show);
+      if (!show) {
+        console.log(`Not showing ${name} because they don't want to be shown`);
+        return false;
+      }
+
+      const profilePicture = apiMember._profilePicture;
+
+      if (!profilePicture) {
+        console.log(
+          `Not showing ${name} because they don't have a profile picture`
+        );
+        return false;
+      }
+
+      const slogan = customField(customFields, customFieldNames.slogan)?.value;
+      const superPowers = [
+        customField(customFields, customFieldNames.superPower1)?.value,
+        customField(customFields, customFieldNames.superPower2)?.value,
+        customField(customFields, customFieldNames.superPower3)?.value,
+      ];
+
+      if (!slogan || !superPowers[0] || !superPowers[1] || !superPowers[2]) {
+        console.log(
+          `Not showing ${name} because they don't have a slogan or super powers`
+        );
+        return false;
+      }
+
+      return true;
+    })
+    .map((apiMember) => {
+      const id = apiMember.id;
+      const name = apiMember.contactDetails.name;
+      const profilePicture = apiMember._profilePicture!;
+      const customFields = apiMember.customFields!;
+      const slogan = customField(customFields, customFieldNames.slogan)?.value!;
+      const superPowers: SuperPowers = [
+        customField(customFields, customFieldNames.superPower1)?.value!,
+        customField(customFields, customFieldNames.superPower2)?.value!,
+        customField(customFields, customFieldNames.superPower3)?.value!,
+      ];
+      const about = customField(customFields, customFieldNames.about)?.value;
+
+      return {
+        id,
+        name,
+        profilePicture,
+        slogan,
+        superPowers,
+        about,
+      };
+    });
+
+  return websiteMembers;
 }
 
 const customField = (customFields: CustomField[], name: string) =>
