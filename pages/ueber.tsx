@@ -1,10 +1,9 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import { Page } from '../components/Page';
 import { Button } from '../components/Button';
-import alex from '../public/assets/alex.png';
 import mitmachen from '../public/assets/mitmachen.png';
 import {
   HeartPlus,
@@ -15,8 +14,13 @@ import {
   Storm,
   Clipboard,
 } from 'icons';
+import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
 
-const Ueber: NextPage = () => {
+interface Props {
+  members: WebsiteMember[];
+}
+
+export default function Ueber({ members }: Props) {
   return (
     <Page>
       <div className="space-y-20 md:space-y-32">
@@ -102,15 +106,26 @@ const Ueber: NextPage = () => {
             Die Superhelden der Makers League
           </p>
           <ul className="mb-14 flex flex-wrap gap-4 md:gap-8">
-            <li className="w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]">
-              <div className="mb-1">
-                <Image src={alex} alt="Alex" placeholder="blur" />
-              </div>
-              <h3 className="text-base font-bold opacity-80 md:text-2xl">
-                Alex Schulz
-              </h3>
-              <p className="pb-14">Social Media Marketing</p>
-            </li>
+            {members.map((member) => (
+              <li
+                className="w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]"
+                key={member.id}
+              >
+                <div className="mb-1">
+                  <Image
+                    src={member.profilePicture}
+                    alt={member.name}
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h3 className="text-base font-bold opacity-80 md:text-2xl">
+                  {member.name}
+                </h3>
+                <p className="pb-14">{member.slogan}</p>
+              </li>
+            ))}
+
             <li className="w-[calc(50%-8px)] border-4 border-dashed p-4  text-pink md:w-[calc(33.33%-22px)]">
               <div className="mb-1">
                 <Image src={mitmachen} alt="Mitmachen" placeholder="blur" />
@@ -119,42 +134,6 @@ const Ueber: NextPage = () => {
                 Du?
               </h3>
               <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
-            </li>
-            <li className="w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]">
-              <div className="mb-1">
-                <Image src={alex} alt="Alex" placeholder="blur" />
-              </div>
-              <h3 className="text-base font-bold opacity-80 md:text-2xl">
-                Alex Schulz
-              </h3>
-              <p className="pb-14">Social Media Marketing</p>
-            </li>
-            <li className="w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]">
-              <div className="mb-1">
-                <Image src={alex} alt="Alex" placeholder="blur" />
-              </div>
-              <h3 className="text-base font-bold opacity-80 md:text-2xl">
-                Alex Schulz
-              </h3>
-              <p className="pb-14">Social Media Marketing</p>
-            </li>
-            <li className="w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]">
-              <div className="mb-1">
-                <Image src={alex} alt="Alex" placeholder="blur" />
-              </div>
-              <h3 className="text-base font-bold opacity-80 md:text-2xl">
-                Alex Schulz
-              </h3>
-              <p className="pb-14">Social Media Marketing</p>
-            </li>
-            <li className="w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]">
-              <div className="mb-1">
-                <Image src={alex} alt="Alex" placeholder="blur" />
-              </div>
-              <h3 className="text-base font-bold opacity-80 md:text-2xl">
-                Alex Schulz
-              </h3>
-              <p className="pb-14">Social Media Marketing</p>
             </li>
           </ul>
           <Button>Alle Mitglieder</Button>
@@ -330,6 +309,9 @@ const Ueber: NextPage = () => {
       </div>
     </Page>
   );
-};
+}
 
-export default Ueber;
+export const getStaticProps: GetStaticProps = async () => {
+  const members = await getMemberInfos();
+  return { props: { members } };
+};

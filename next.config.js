@@ -4,6 +4,10 @@ const { withContentlayer } = require('next-contentlayer');
 
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    domains: ['easyverein.com'],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

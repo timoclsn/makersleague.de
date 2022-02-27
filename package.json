@@ -14,6 +14,7 @@
     "class-variance-authority": "^0.1.0",
     "contentlayer": "^0.1.1",
     "date-fn": "^0.0.2",
+    "easyverein": "^0.3.0",
     "next": "12.1.0",
     "next-contentlayer": "^0.1.1",
     "react": "17.0.2",
