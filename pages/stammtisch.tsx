@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 
 import { Button } from '../components/Button';
 import { Page } from '../components/Page';
-import { Profile, Calendar, Watch } from 'icons';
+import { Profile, Calendar, Watch, Arrow } from 'icons';
 
 const Events: NextPage = () => {
   return (
@@ -58,7 +58,10 @@ const Events: NextPage = () => {
             <br />
             Wir freuen uns auf dich!
           </p>
-          <Button color="pink">Anmelden</Button>
+          <Button color="pink">
+            <Arrow className="text-2xl" />
+            Anmelden
+          </Button>
         </article>
       </div>
     </Page>

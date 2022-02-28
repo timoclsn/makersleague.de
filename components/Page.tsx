@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
-import { MakersLeague, Profile } from 'icons';
+import { Logo, Profile } from 'icons';
 
 interface Props {
   children: ReactNode;
@@ -23,7 +23,7 @@ export function Page({ children, expandedNav }: Props) {
           <header className="mb-16 flex items-start justify-between md:mb-32">
             <Link href="/">
               <a>
-                <MakersLeague className="text-[45px]" />
+                <Logo className="text-[45px]" />
               </a>
             </Link>
             <a className="flex items-center justify-center space-x-2">

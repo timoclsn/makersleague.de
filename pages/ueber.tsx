@@ -13,6 +13,7 @@ import {
   Heart,
   Storm,
   Clipboard,
+  Arrow,
 } from 'icons';
 import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
 
@@ -59,9 +60,12 @@ export default function Ueber({ members }: Props) {
                 God“, sondern für Offenheit, Machen & Gemeinschaft. Mehr Infos
                 zu unseren Werten findest du hier.
               </p>
-              <div className="mt-20 flex flex-1 flex-col-reverse">
+              <div className="mt-20 flex flex-1 flex-col-reverse items-start">
                 <Link href="/ueber#werte">
-                  <a className="font-bold text-blue-accent">mehr</a>
+                  <a className="flex items-center justify-center gap-1 font-bold text-blue-accent">
+                    <Arrow className="text-2xl" />
+                    mehr
+                  </a>
                 </Link>
               </div>
               <div className="absolute right-0 bottom-0 -mb-10 -mr-6 w-[150px]">
@@ -108,7 +112,7 @@ export default function Ueber({ members }: Props) {
           <ul className="mb-14 flex flex-wrap gap-4 md:gap-8">
             {members.map((member) => (
               <li
-                className="w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]"
+                className="flex w-[calc(50%-8px)] flex-col items-start border-4 p-4 md:w-[calc(33.33%-22px)]"
                 key={member.id}
               >
                 <div className="mb-1">
@@ -123,6 +127,12 @@ export default function Ueber({ members }: Props) {
                   {member.name}
                 </h3>
                 <p className="pb-14">{member.slogan}</p>
+                <Link href="/members">
+                  <a className="flex flex-1 items-center justify-center gap-1 self-end font-bold text-pink">
+                    <Arrow className="text-2xl" />
+                    mehr
+                  </a>
+                </Link>
               </li>
             ))}
 
@@ -136,7 +146,10 @@ export default function Ueber({ members }: Props) {
               <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
             </li>
           </ul>
-          <Button>Alle Mitglieder</Button>
+          <Button>
+            <Arrow className="text-2xl" />
+            Alle Mitglieder
+          </Button>
         </section>
         <section className="relative bg-blue p-8">
           <h2 className="mb-2 text-base font-bold md:text-2xl">Unsere Werte</h2>
@@ -247,7 +260,10 @@ export default function Ueber({ members }: Props) {
               </p>
             </div>
           </div>
-          <Button>Alle FAQs</Button>
+          <Button>
+            <Arrow className="text-2xl" />
+            Alle FAQs
+          </Button>
         </section>
         <section className="relative bg-sand p-8">
           <h2 className="mb-2 text-base font-bold md:text-2xl">

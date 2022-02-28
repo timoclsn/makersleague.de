@@ -6,7 +6,7 @@ import { allBlogPosts, BlogPost } from 'contentlayer/generated';
 import { Button } from '../components/Button';
 import { Page } from '../components/Page';
 
-import { Profile, Watch, Calendar } from 'icons';
+import { Profile, Watch, Calendar, Arrow } from 'icons';
 
 interface Props {
   posts: BlogPost[];
@@ -41,6 +41,7 @@ export default function Blogpage({ posts }: Props) {
             </ul>
             <Link href={`/blog/${post.slug}`} passHref>
               <Button as="a" color="sand">
+                <Arrow className="text-2xl" />
                 Weiterlesen...
               </Button>
             </Link>

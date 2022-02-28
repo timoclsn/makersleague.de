@@ -22,6 +22,7 @@ const nextConfig = {
             prettier: true,
             replaceAttrValues: {
               '#000': 'currentColor',
+              '#101F18': 'currentColor',
             },
           },
         },
