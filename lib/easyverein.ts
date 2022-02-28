@@ -1,4 +1,5 @@
 import { getMembers, Member, setApiToken } from 'easyverein';
+import gravatar from 'gravatar';
 
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
 
@@ -34,7 +35,7 @@ const customFieldNames = {
 
 export async function getMemberInfos(): Promise<WebsiteMember[]> {
   const apiMembers = (await getMembers(
-    '{id,_profilePicture,contactDetails{name},customFields{value,customField{name}}}'
+    '{id,_profilePicture,email,contactDetails{name},customFields{value,customField{name}}}'
   )) as unknown as MemberWithCustomFields[];
 
   const websiteMembers = apiMembers
@@ -59,14 +60,14 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
         return false;
       }
 
-      const profilePicture = apiMember._profilePicture;
+      // const profilePicture = apiMember._profilePicture;
 
-      if (!profilePicture) {
-        console.log(
-          `Not showing ${name} because they don't have a profile picture`
-        );
-        return false;
-      }
+      // if (!profilePicture) {
+      //   console.log(
+      //     `Not showing ${name} because they don't have a profile picture`
+      //   );
+      //   return false;
+      // }
 
       const slogan = customField(customFields, customFieldNames.slogan)?.value;
       const superPowers = [
@@ -87,7 +88,8 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
     .map((apiMember) => {
       const id = apiMember.id;
       const name = apiMember.contactDetails.name;
-      const profilePicture = apiMember._profilePicture!;
+      const email = apiMember.email;
+      const profilePicture = gravatar.url(email, { size: '700' }, true);
       const customFields = apiMember.customFields!;
       const slogan = customField(customFields, customFieldNames.slogan)?.value!;
       const superPowers: SuperPowers = [

@@ -6,7 +6,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['easyverein.com'],
+    domains: ['easyverein.com', 's.gravatar.com'],
   },
   webpack(config) {
     config.module.rules.push({
