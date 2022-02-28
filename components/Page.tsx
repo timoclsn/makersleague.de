@@ -16,8 +16,8 @@ export function Page({ children, expandedNav }: Props) {
       <div className="flex flex-1 flex-col xl:flex-row">
         <Navigation expanded={expandedNav} />
         <main
-          className={`bg-yellow-900 flex w-full flex-1 flex-col p-4 md:p-10 xl:order-first ${
-            expandedNav ? 'order-first' : 'order-last'
+          className={`bg-yellow-900 mx-auto flex w-full flex-1 flex-col p-4 md:p-10 xl:order-first ${
+            expandedNav ? 'order-first' : 'order-last max-w-screen-xl'
           }`}
         >
           <header className="mb-16 flex items-start justify-between md:mb-32">

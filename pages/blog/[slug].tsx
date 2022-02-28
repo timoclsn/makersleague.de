@@ -14,7 +14,7 @@ export default function BlogPostPage({ post }: Props) {
   return (
     <Page>
       <div className="space-y-20 md:space-y-32">
-        <article>
+        <article className="mx-auto max-w-prose">
           <h1 className="mb-2 text-base font-bold md:text-2xl">{post.title}</h1>
           <p className="mb-4 text-base opacity-60 md:text-2xl">
             {post.summary}
