@@ -1,3 +1,4 @@
+import { toKebabCase } from 'components/utils';
 import { getMembers, Member, setApiToken } from 'easyverein';
 import gravatar from 'gravatar';
 
@@ -18,10 +19,13 @@ type SuperPowers = [string, string, string];
 export interface WebsiteMember {
   id: number;
   name: string;
+  firstName: string;
+  familyName: string;
   profilePicture: string;
   slogan: string;
   superPowers: SuperPowers;
   about?: string;
+  slug: string;
 }
 
 const customFieldNames = {
@@ -35,7 +39,7 @@ const customFieldNames = {
 
 export async function getMemberInfos(): Promise<WebsiteMember[]> {
   const apiMembers = (await getMembers(
-    '{id,_profilePicture,email,contactDetails{name},customFields{value,customField{name}}}'
+    '{id,_profilePicture,email,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}'
   )) as unknown as MemberWithCustomFields[];
 
   const websiteMembers = apiMembers
@@ -88,6 +92,8 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
     .map((apiMember) => {
       const id = apiMember.id;
       const name = apiMember.contactDetails.name;
+      const firstName = apiMember.contactDetails.firstName;
+      const familyName = apiMember.contactDetails.familyName;
       const email = apiMember.email;
       const profilePicture = gravatar.url(email, { size: '700' }, true);
       const customFields = apiMember.customFields!;
@@ -98,14 +104,18 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
         customField(customFields, customFieldNames.superPower3)?.value!,
       ];
       const about = customField(customFields, customFieldNames.about)?.value;
+      const slug = toKebabCase(name);
 
       return {
         id,
         name,
+        firstName,
+        familyName,
         profilePicture,
         slogan,
         superPowers,
         about,
+        slug,
       };
     });
 

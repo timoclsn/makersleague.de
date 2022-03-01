@@ -22,6 +22,10 @@ const button = cva(
       },
       color: {
         blue: [colorMap.blue.bg, colorMap.blue.text],
+        'blue-accent': [
+          colorMap['blue-accent'].bg,
+          colorMap['blue-accent'].text,
+        ],
         pink: [colorMap.pink.bg, colorMap.pink.text],
         green: [colorMap.green.bg, colorMap.green.text],
         sand: [colorMap.sand.bg, colorMap.sand.text],
