@@ -47,13 +47,23 @@ export default function BlogPostPage({ members, slug }: Props) {
               </>
             )}
           </div>
-          <div>
-            <Image
-              src={member.profilePicture}
-              alt={member.name}
-              width={300}
-              height={300}
-            />
+          <div className="relative mx-auto">
+            <div className="absolute top-0 left-0">
+              <Image
+                src="/assets/frame.svg"
+                alt="Image Frame"
+                width={352}
+                height={542}
+              />
+            </div>
+            <div className="mx-auto mt-[75px] h-[400px] w-4/5">
+              <Image
+                src={member.profilePicture}
+                alt={member.name}
+                width={300}
+                height={300}
+              />
+            </div>
           </div>
         </section>
         <section className="bg-blue px-10 py-14">
