@@ -10,13 +10,13 @@ export function ButtonGroup() {
         <HeartPlus className="text-2xl" />
         Mitglied werden
       </Button>
-      <Link href="/#faqs" passHref>
+      <Link href="#faqs" passHref>
         <Button as="a" variant="link">
           <Question className="text-2xl" />
           FAQs
         </Button>
       </Link>
-      <Link href="/#fit" passHref>
+      <Link href="#fit" passHref>
         <Button as="a" variant="link">
           <Check className="text-2xl" />
           Passe ich zur ML?

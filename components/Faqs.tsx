@@ -5,7 +5,7 @@ import { Button } from './Button';
 
 export function Faqs() {
   return (
-    <section>
+    <section id="faqs">
       <h2 className="mb-2 text-base font-bold md:text-2xl">FAQs</h2>
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         Häufige Fragen und deren Antworten
