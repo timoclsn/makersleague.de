@@ -39,7 +39,7 @@ export function Navigation({ expanded }: Props) {
           Icon={HeartPlus}
           color="green"
           expanded={expanded}
-          href="/test"
+          href="/mitglied-werden"
         />
         <NavItem
           title="Blog"
