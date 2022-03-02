@@ -43,3 +43,6 @@ export const Arrow: Icon = ArrowIcon;
 
 import LogoIcon from './logo.svg';
 export const Logo: Icon = LogoIcon;
+
+import InstagramIcon from './instagram.svg';
+export const Instagram: Icon = InstagramIcon;
