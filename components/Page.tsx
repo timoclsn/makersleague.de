@@ -26,7 +26,10 @@ export function Page({ children, expandedNav }: Props) {
                 <Logo className="text-[45px]" />
               </a>
             </Link>
-            <a className="flex items-center justify-center space-x-2">
+            <a
+              className="flex items-center justify-center space-x-2"
+              href="https://easyverein.com/public/ML/"
+            >
               <Profile />
               <span>Mitgliederbereich</span>
             </a>
