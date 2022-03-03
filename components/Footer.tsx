@@ -17,17 +17,17 @@ export function Footer() {
           </Link>
         </li>
         <li>
-          <Link href="/datenschutzerklärung">
+          <Link href="/datenschutzerklaerung">
             <a>Datenschutzerklärung</a>
           </Link>
         </li>
         <li>
-          <Link href="/satzung">
+          <Link href="/docs/Makers_League_eV_Satzung.pdf">
             <a>Satzung</a>
           </Link>
         </li>
         <li>
-          <Link href="/beitragsordnung">
+          <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf">
             <a>Beitragsordnung</a>
           </Link>
         </li>
