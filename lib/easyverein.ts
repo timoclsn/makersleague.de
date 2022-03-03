@@ -1,6 +1,5 @@
 import { toKebabCase } from 'components/utils';
 import { getMembers, Member, setApiToken } from 'easyverein';
-import gravatar from 'gravatar';
 
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
 
@@ -64,14 +63,14 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
         return false;
       }
 
-      // const profilePicture = apiMember._profilePicture;
+      const profilePicture = apiMember._profilePicture;
 
-      // if (!profilePicture) {
-      //   console.log(
-      //     `Not showing ${name} because they don't have a profile picture`
-      //   );
-      //   return false;
-      // }
+      if (!profilePicture) {
+        console.log(
+          `Not showing ${name} because they don't have a profile picture`
+        );
+        return false;
+      }
 
       const slogan = customField(customFields, customFieldNames.slogan)?.value;
       const superPowers = [
@@ -94,8 +93,7 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
       const name = apiMember.contactDetails.name;
       const firstName = apiMember.contactDetails.firstName;
       const familyName = apiMember.contactDetails.familyName;
-      const email = apiMember.email;
-      const profilePicture = gravatar.url(email, { size: '700' }, true);
+      const profilePicture = apiMember._profilePicture!;
       const customFields = apiMember.customFields!;
       const slogan = customField(customFields, customFieldNames.slogan)?.value!;
       const superPowers: SuperPowers = [

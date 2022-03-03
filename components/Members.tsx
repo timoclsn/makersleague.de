@@ -24,10 +24,13 @@ export function Members({ members, showJoin = true, limit, excludeId }: Props) {
         >
           <div className="mb-1">
             <Image
-              src={member.profilePicture}
+              src={`/api/easyverein?url=${encodeURIComponent(
+                member.profilePicture
+              )}`}
               alt={member.name}
               width={700}
               height={700}
+              quality={100}
             />
           </div>
           <h3 className="text-base font-bold opacity-80 md:text-2xl">

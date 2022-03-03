@@ -58,7 +58,9 @@ export default function BlogPostPage({ members, slug }: Props) {
             </div>
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
               <Image
-                src={member.profilePicture}
+                src={`/api/easyverein?url=${encodeURIComponent(
+                  member.profilePicture
+                )}`}
                 alt={member.name}
                 width={300}
                 height={300}
