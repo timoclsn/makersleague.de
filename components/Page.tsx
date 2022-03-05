@@ -52,7 +52,11 @@ export function Page({
               <span>Mitgliederbereich</span>
             </a>
           </header>
-          <div className="space-y-20 md:space-y-32">{children}</div>
+          {expandedNav ? (
+            children
+          ) : (
+            <div className="space-y-20 md:space-y-32">{children}</div>
+          )}
         </main>
       </div>
       <Footer />
