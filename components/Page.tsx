@@ -5,6 +5,7 @@ import { Footer } from './Footer';
 import { Navigation } from './Navigation';
 import { Logo, Profile } from 'icons';
 import { Seo } from './Seo';
+import { Favicons } from './Favicons';
 
 interface Props {
   children: ReactNode;
@@ -29,6 +30,7 @@ export function Page({
   return (
     <>
       <Seo title={pageTitle} description={description} slug={slug} />
+      <Favicons />
       <div className="flex flex-1 flex-col xl:flex-row">
         <Navigation expanded={expandedNav} />
         <main
