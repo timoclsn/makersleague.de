@@ -6,13 +6,9 @@ import { Arrow } from 'icons';
 
 interface Props {
   members: WebsiteMember[];
-  showJoin?: boolean;
-  limit?: number;
-  excludeId?: number;
 }
 
-export function Members({ members, showJoin = true, limit, excludeId }: Props) {
-  members = members.slice(0, limit).filter((member) => member.id !== excludeId);
+export function Members({ members }: Props) {
   return (
     <ul className="flex flex-wrap gap-4 md:gap-8">
       {members.map((member, idx) => (
@@ -45,20 +41,18 @@ export function Members({ members, showJoin = true, limit, excludeId }: Props) {
           </Link>
         </li>
       ))}
-      {showJoin && (
-        <li className="order-2 w-[calc(50%-8px)] border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
-          <div className="mb-1">
-            <Image
-              src="/assets/doodle-new-member-placeholder.svg"
-              alt="Mitmachen"
-              width={700}
-              height={700}
-            />
-          </div>
-          <h3 className="text-base font-bold opacity-80 md:text-2xl">Du?</h3>
-          <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
-        </li>
-      )}
+      <li className="order-2 w-[calc(50%-8px)] border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
+        <div className="mb-1">
+          <Image
+            src="/assets/doodle-new-member-placeholder.svg"
+            alt="Mitmachen"
+            width={700}
+            height={700}
+          />
+        </div>
+        <h3 className="text-base font-bold opacity-80 md:text-2xl">Du?</h3>
+        <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
+      </li>
     </ul>
   );
 }

@@ -19,7 +19,7 @@ export function MembersSection({ members }: Props) {
         <p className="mb-10 text-base opacity-60 md:text-2xl">
           Die Superhelden der Makers League
         </p>
-        <Members members={members} limit={5} />
+        <Members members={members} />
       </div>
       <Link href="/mitglieder" passHref>
         <Button as="a">

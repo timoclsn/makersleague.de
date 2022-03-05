@@ -9,12 +9,12 @@ import { Arrow, HeartPlus } from 'icons';
 import { Members } from 'components/Members';
 
 interface Props {
-  members: WebsiteMember[];
+  member: WebsiteMember;
+  otherMembers: WebsiteMember[];
   slug: string;
 }
 
-export default function BlogPostPage({ members, slug }: Props) {
-  const member = members.find((member) => member.slug === slug)!;
+export default function MemberPage({ member, otherMembers, slug }: Props) {
   return (
     <Page
       title={member.name}
@@ -90,12 +90,7 @@ export default function BlogPostPage({ members, slug }: Props) {
         <p className="mb-10 text-2xl opacity-60">
           Finde weitere Superhelden der Makers League
         </p>
-        <Members
-          members={members}
-          showJoin={false}
-          excludeId={member.id}
-          limit={6}
-        />
+        <Members members={otherMembers} />
         <Link href="/mitglieder" passHref>
           <Button as="a" className="mt-14">
             <Arrow className="text-2xl" />
@@ -118,6 +113,16 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const members = await getMemberInfos();
-  return { props: { members, slug: params?.slug } };
+  const allMembers = await getMemberInfos();
+  const member = allMembers.find((member) => member.slug === params?.slug)!;
+  const otherMembers = allMembers
+    .filter((member) => member.slug !== params?.slug)
+    .slice(0, 5);
+  return {
+    props: {
+      member,
+      otherMembers,
+      slug: params?.slug,
+    },
+  };
 };

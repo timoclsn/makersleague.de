@@ -23,7 +23,7 @@ export interface WebsiteMember {
   profilePicture: string;
   slogan: string;
   superPowers: SuperPowers;
-  about?: string;
+  about: string | null;
   slug: string;
 }
 
@@ -101,7 +101,8 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
         customField(customFields, customFieldNames.superPower2)?.value!,
         customField(customFields, customFieldNames.superPower3)?.value!,
       ];
-      const about = customField(customFields, customFieldNames.about)?.value;
+      const about =
+        customField(customFields, customFieldNames.about)?.value || null;
       const slug = toKebabCase(name);
 
       return {
@@ -117,7 +118,9 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
       };
     });
 
-  return websiteMembers;
+  return websiteMembers.sort((a, b) =>
+    a.familyName.localeCompare(b.familyName)
+  );
 }
 
 const customField = (customFields: CustomField[], name: string) =>
