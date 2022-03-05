@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { Heart, Storm } from 'icons';
 
-export function Fit() {
+export function FitSection() {
   return (
     <section className="relative bg-sand p-8" id="fit">
       <h2 className="mb-2 text-base font-bold md:text-2xl">

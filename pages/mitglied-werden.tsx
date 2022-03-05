@@ -1,12 +1,19 @@
-import { Button } from 'components/Button';
-import { ButtonGroup } from 'components/ButtonGroup';
-import { Faqs } from 'components/Faqs';
-import { Fit } from 'components/Fit';
-import { Page } from 'components/Page';
-import { Values } from 'components/Values';
-import { HeartPlus } from 'icons';
+import { GetStaticProps } from 'next';
 
-export default function Signup() {
+import { Button } from 'components/Button';
+import { ButtonSection } from 'components/ButtonSection';
+import { FitSection } from 'components/FitSection';
+import { Page } from 'components/Page';
+import { ValuesSection } from 'components/ValuesSection';
+import { allFaqs, Faq } from 'contentlayer/generated';
+import { HeartPlus } from 'icons';
+import { FaqsSection } from 'components/FaqsSection';
+
+interface Props {
+  faqs: Faq[];
+}
+
+export default function Signup({ faqs }: Props) {
   return (
     <Page>
       <div className="space-y-20 md:space-y-32">
@@ -17,10 +24,10 @@ export default function Signup() {
             du hier alle wichtigen Infos und den Link zur Anmedung!
           </h2>
         </section>
-        <ButtonGroup />
-        <Fit />
-        <Faqs />
-        <Values />
+        <ButtonSection />
+        <FitSection />
+        <FaqsSection faqs={faqs} />
+        <ValuesSection />
         <section className="space-y-12">
           <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
             Du möchtest Teil unseres Netzwerks werden um mit spannenden
@@ -39,3 +46,8 @@ export default function Signup() {
     </Page>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const faqs = allFaqs;
+  return { props: { faqs } };
+};

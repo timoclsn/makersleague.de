@@ -14,7 +14,7 @@ interface Props {
 export function Members({ members, showJoin = true, limit, excludeId }: Props) {
   members = members.slice(0, limit).filter((member) => member.id !== excludeId);
   return (
-    <ul className="mb-14 flex flex-wrap gap-4 md:gap-8">
+    <ul className="flex flex-wrap gap-4 md:gap-8">
       {members.map((member, idx) => (
         <li
           className={`${

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export function Values() {
+export function ValuesSection() {
   return (
     <section className="relative bg-blue p-8">
       <h2 className="mb-2 text-base font-bold md:text-2xl">Unsere Werte</h2>

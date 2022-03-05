@@ -42,7 +42,16 @@ const ContentPage = defineDocumentType(() => ({
   },
 }));
 
+const Faq = defineDocumentType(() => ({
+  name: 'Faq',
+  filePathPattern: 'faqs/*.md',
+  contentType: 'markdown',
+  fields: {
+    question: { type: 'string', required: true },
+  },
+}));
+
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [BlogPost, ContentPage],
+  documentTypes: [BlogPost, ContentPage, Faq],
 });

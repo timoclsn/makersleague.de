@@ -3,20 +3,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Page } from '../components/Page';
-import { Button } from '../components/Button';
 import { Arrow } from 'icons';
 import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
-import { Members } from 'components/Members';
-import { ButtonGroup } from 'components/ButtonGroup';
-import { Fit } from 'components/Fit';
-import { Faqs } from 'components/Faqs';
-import { Values } from 'components/Values';
+import { ButtonSection } from 'components/ButtonSection';
+import { FitSection } from 'components/FitSection';
+import { ValuesSection } from 'components/ValuesSection';
+import { allFaqs, Faq } from 'contentlayer/generated';
+import { FaqsSection } from 'components/FaqsSection';
+import { MembersSection } from 'components/MembersSection';
 
 interface Props {
   members: WebsiteMember[];
+  faqs: Faq[];
 }
 
-export default function Ueber({ members }: Props) {
+export default function Ueber({ members, faqs }: Props) {
   return (
     <Page>
       <div className="space-y-20 md:space-y-32">
@@ -75,25 +76,11 @@ export default function Ueber({ members }: Props) {
             </div>
           </div>
         </section>
-        <ButtonGroup />
-        <section>
-          <h2 className="mb-2 text-base font-bold md:text-2xl">
-            Unsere Mitglieder
-          </h2>
-          <p className="mb-10 text-base opacity-60 md:text-2xl">
-            Die Superhelden der Makers League
-          </p>
-          <Members members={members} />
-          <Link href="/mitglieder" passHref>
-            <Button as="a">
-              <Arrow className="text-2xl" />
-              Alle Mitglieder
-            </Button>
-          </Link>
-        </section>
-        <Values />
-        <Faqs />
-        <Fit />
+        <ButtonSection />
+        <MembersSection members={members} />
+        <ValuesSection />
+        <FaqsSection faqs={faqs} />
+        <FitSection />
       </div>
     </Page>
   );
@@ -102,5 +89,6 @@ export default function Ueber({ members }: Props) {
 export const getStaticProps: GetStaticProps = async () => {
   const allMembers = await getMemberInfos();
   const members = allMembers.slice(0, 4);
-  return { props: { members } };
+  const faqs = allFaqs;
+  return { props: { members, faqs } };
 };
