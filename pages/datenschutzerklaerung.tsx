@@ -11,7 +11,11 @@ interface Props {
 export default function Datenschutzerklaerung({ content }: Props) {
   const Component = useMDXComponent(content.body.code);
   return (
-    <Page>
+    <Page
+      title={content.title}
+      description={content.title}
+      slug="datenschutzerklaerung"
+    >
       <section className="prose mb-8">
         <h1>{content.title}</h1>
         <Component />

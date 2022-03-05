@@ -11,7 +11,11 @@ interface Props {
 export default function Impressum({ content }: Props) {
   const Component = useMDXComponent(content.body.code);
   return (
-    <Page>
+    <Page
+      title="Impressum"
+      description="Das Impressum der Makers League"
+      slug="impressum"
+    >
       <section className="prose mb-8">
         <h1>{content.title}</h1>
         <Component />

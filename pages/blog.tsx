@@ -14,7 +14,7 @@ interface Props {
 
 export default function Blogpage({ posts }: Props) {
   return (
-    <Page>
+    <Page title="Blog" description="Der Makers League Blog" slug="blog">
       <section>
         <h1 className="mb-16 text-xl font-bold md:text-5xl">Blog</h1>
         <div className="space-y-24">

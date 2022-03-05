@@ -10,7 +10,11 @@ interface Props {
 
 export default function FaqsPage({ faqs }: Props) {
   return (
-    <Page>
+    <Page
+      title="FAQs"
+      description="Häufig gestellte Fragen und deren Antworten"
+      slug="faqs"
+    >
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">FAQs</h1>
         <p className="mb-16 text-base opacity-60 md:text-2xl">

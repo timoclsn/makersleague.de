@@ -19,7 +19,11 @@ interface Props {
 
 export default function Ueber({ members, faqs }: Props) {
   return (
-    <Page>
+    <Page
+      title="Über uns"
+      description="Über den Verein Makers League"
+      slug="ueber"
+    >
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
         <div className="flex flex-col space-y-12 space-x-0 md:flex-row md:space-x-12 md:space-y-0">

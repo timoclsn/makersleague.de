@@ -15,7 +15,11 @@ interface Props {
 
 export default function Signup({ faqs }: Props) {
   return (
-    <Page>
+    <Page
+      title="Mitglied werden"
+      description="Erfahre wie man Makers League Mitglied wird"
+      slug="mitglied-werden"
+    >
       <section className="space-y-4">
         <h1 className="text-base opacity-80 md:text-2xl">Mitglied werden</h1>
         <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">

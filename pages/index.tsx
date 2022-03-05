@@ -5,7 +5,11 @@ import { Page } from '../components/Page';
 
 const Home: NextPage = () => {
   return (
-    <Page expandedNav>
+    <Page
+      expandedNav
+      title="Makers League"
+      description="Makers League – Die Gemeinschaft für Macher:innen, die zusammen Ideen voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte frei!"
+    >
       <div className="flex h-full flex-1 flex-col">
         <div className="space-y-4">
           <h1 className="text-base opacity-80 md:text-2xl">

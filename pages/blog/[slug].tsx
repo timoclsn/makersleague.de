@@ -12,7 +12,11 @@ interface Props {
 export default function BlogPostPage({ post }: Props) {
   const Component = useMDXComponent(post.body.code);
   return (
-    <Page>
+    <Page
+      title={post.title}
+      description={post.summary}
+      slug={`blog/${post.slug}`}
+    >
       <article className="max-w-prose">
         <h1 className="mb-2 text-base font-bold md:text-2xl">{post.title}</h1>
         <p className="mb-4 text-base opacity-60 md:text-2xl">{post.summary}</p>

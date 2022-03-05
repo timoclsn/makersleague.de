@@ -4,15 +4,31 @@ import { ReactNode } from 'react';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
 import { Logo, Profile } from 'icons';
+import { Seo } from './Seo';
 
 interface Props {
   children: ReactNode;
   expandedNav?: boolean;
+  title: string;
+  description: string;
+  slug?: string;
 }
 
-export function Page({ children, expandedNav }: Props) {
+export function Page({
+  children,
+  expandedNav,
+  title,
+  description,
+  slug,
+}: Props) {
+  const pageName = 'Makers League';
+  const pageTitle = title.includes(pageName)
+    ? title
+    : `${title}  •  ${pageName}`;
+  slug = slug ? `/${slug}` : '';
   return (
     <>
+      <Seo title={pageTitle} description={description} slug={slug} />
       <div className="flex flex-1 flex-col xl:flex-row">
         <Navigation expanded={expandedNav} />
         <main

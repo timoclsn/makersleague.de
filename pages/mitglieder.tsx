@@ -10,7 +10,11 @@ interface Props {
 
 export default function MembersPage({ members }: Props) {
   return (
-    <Page>
+    <Page
+      title="Unsere Mitglieder"
+      description="Übersicht über alle Makers League Mitglieder"
+      slug="mitglieder"
+    >
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">
           Unsere Mitglieder

@@ -6,7 +6,11 @@ import { Profile, Calendar, Watch, Arrow } from 'icons';
 
 const Events: NextPage = () => {
   return (
-    <Page>
+    <Page
+      title="Stammtisch"
+      description="Der nächste Termin des Makers League Stammtisch"
+      slug="stammtisch"
+    >
       <section>
         <h1 className="mb-16 text-xl font-bold md:text-5xl">Stammtisch</h1>
         <article>

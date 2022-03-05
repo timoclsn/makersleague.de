@@ -16,7 +16,11 @@ interface Props {
 export default function BlogPostPage({ members, slug }: Props) {
   const member = members.find((member) => member.slug === slug)!;
   return (
-    <Page>
+    <Page
+      title={member.name}
+      description={`Der Steckbrief von ${member.name}`}
+      slug={`/mitglieder/${member.slug}`}
+    >
       <section>
         <div className="mb-16">
           <Link href="/mitglieder" passHref>
