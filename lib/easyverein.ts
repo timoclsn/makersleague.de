@@ -1,7 +1,11 @@
+import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
+
 import { toKebabCase } from 'components/utils';
 import { getMembers, Member, setApiToken } from 'easyverein';
 
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
+const MEMBERS_CACHE_PATH = join(__dirname, '.members');
 
 setApiToken(easyvereinToken);
 
@@ -37,6 +41,18 @@ const customFieldNames = {
 } as const;
 
 export async function getMemberInfos(): Promise<WebsiteMember[]> {
+  let cachedData: WebsiteMember[] = [];
+
+  try {
+    cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, 'utf8'));
+  } catch (error) {
+    console.log('Member cache not initialized');
+  }
+
+  if (cachedData.length > 0) {
+    return cachedData;
+  }
+
   const apiMembers = (await getMembers(
     '{id,_profilePicture,email,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}'
   )) as unknown as MemberWithCustomFields[];
@@ -116,11 +132,17 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
         about,
         slug,
       };
-    });
+    })
+    .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
-  return websiteMembers.sort((a, b) =>
-    a.familyName.localeCompare(b.familyName)
-  );
+  try {
+    writeFileSync(MEMBERS_CACHE_PATH, JSON.stringify(websiteMembers), 'utf8');
+  } catch (error) {
+    console.log('ERROR WRITING MEMBERS CACHE TO FILE');
+    console.log(error);
+  }
+
+  return websiteMembers;
 }
 
 const customField = (customFields: CustomField[], name: string) =>
