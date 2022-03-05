@@ -22,13 +22,13 @@ export function ButtonGroup() {
           Passe ich zur ML?
         </Button>
       </Link>
-      <Link href="/satzung" passHref>
+      <Link href="/docs/Makers_League_eV_Satzung.pdf" passHref>
         <Button as="a" variant="link">
           <Clipboard className="text-2xl" />
           Satzung
         </Button>
       </Link>
-      <Link href="/beitragsordnung" passHref>
+      <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf" passHref>
         <Button as="a" variant="link">
           <DocumentInfo className="text-2xl" />
           Beitragsordnung
