@@ -17,7 +17,7 @@ export function FaqsSection({ faqs }: Props) {
         <p className="mb-10 text-base opacity-60 md:text-2xl">
           Häufige Fragen und deren Antworten
         </p>
-        <Faqs faqs={faqs} limit={4} />
+        <Faqs faqs={faqs} />
       </div>
       <Link href="/faqs" passHref>
         <Button as="a">

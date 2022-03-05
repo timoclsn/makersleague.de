@@ -50,6 +50,6 @@ export default function Signup({ faqs }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const faqs = allFaqs;
+  const faqs = allFaqs.slice(0, 4);
   return { props: { faqs } };
 };

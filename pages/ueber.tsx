@@ -91,6 +91,6 @@ export default function Ueber({ members, faqs }: Props) {
 export const getStaticProps: GetStaticProps = async () => {
   const allMembers = await getMemberInfos();
   const members = allMembers.slice(0, 5);
-  const faqs = allFaqs;
+  const faqs = allFaqs.slice(0, 4);
   return { props: { members, faqs } };
 };
