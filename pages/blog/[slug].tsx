@@ -13,31 +13,27 @@ export default function BlogPostPage({ post }: Props) {
   const Component = useMDXComponent(post.body.code);
   return (
     <Page>
-      <div className="space-y-20 md:space-y-32">
-        <article className="mx-auto max-w-prose">
-          <h1 className="mb-2 text-base font-bold md:text-2xl">{post.title}</h1>
-          <p className="mb-4 text-base opacity-60 md:text-2xl">
-            {post.summary}
-          </p>
-          <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
-            <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
-              <Profile className="text-xl" />
-              <span>{post.author}</span>
-            </li>
-            <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
-              <Watch className="text-xl" />
-              <span>{post.readingTime}</span>
-            </li>
-            <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
-              <Calendar className="text-xl" />
-              <span>{post.publishedAtFormatted}</span>
-            </li>
-          </ul>
-          <div className="prose mb-8">
-            <Component />
-          </div>
-        </article>
-      </div>
+      <article className="max-w-prose">
+        <h1 className="mb-2 text-base font-bold md:text-2xl">{post.title}</h1>
+        <p className="mb-4 text-base opacity-60 md:text-2xl">{post.summary}</p>
+        <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
+          <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
+            <Profile className="text-xl" />
+            <span>{post.author}</span>
+          </li>
+          <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
+            <Watch className="text-xl" />
+            <span>{post.readingTime}</span>
+          </li>
+          <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
+            <Calendar className="text-xl" />
+            <span>{post.publishedAtFormatted}</span>
+          </li>
+        </ul>
+        <div className="prose mb-8">
+          <Component />
+        </div>
+      </article>
     </Page>
   );
 }

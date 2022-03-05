@@ -7,8 +7,8 @@ import { Profile, Calendar, Watch, Arrow } from 'icons';
 const Events: NextPage = () => {
   return (
     <Page>
-      <div className="space-y-20 md:space-y-32">
-        <h1 className="mb-6 text-xl font-bold md:text-5xl">Stammtisch</h1>
+      <section>
+        <h1 className="mb-16 text-xl font-bold md:text-5xl">Stammtisch</h1>
         <article>
           <h2 className="mb-2 text-base font-bold md:text-2xl">Stammtisch</h2>
           <p className="mb-4 text-base opacity-60 md:text-2xl">
@@ -63,7 +63,7 @@ const Events: NextPage = () => {
             Anmelden
           </Button>
         </article>
-      </div>
+      </section>
     </Page>
   );
 };

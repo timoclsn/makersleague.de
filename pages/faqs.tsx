@@ -11,15 +11,13 @@ interface Props {
 export default function FaqsPage({ faqs }: Props) {
   return (
     <Page>
-      <div className="space-y-20 md:space-y-32">
-        <section>
-          <h1 className="mb-6 text-xl font-bold md:text-5xl">FAQs</h1>
-          <p className="mb-16 text-base opacity-60 md:text-2xl">
-            Häufig gestellte Fragen und deren Antworten
-          </p>
-          <Faqs faqs={faqs} />
-        </section>
-      </div>
+      <section>
+        <h1 className="mb-6 text-xl font-bold md:text-5xl">FAQs</h1>
+        <p className="mb-16 text-base opacity-60 md:text-2xl">
+          Häufig gestellte Fragen und deren Antworten
+        </p>
+        <Faqs faqs={faqs} />
+      </section>
     </Page>
   );
 }

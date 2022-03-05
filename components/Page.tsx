@@ -34,7 +34,7 @@ export function Page({ children, expandedNav }: Props) {
               <span>Mitgliederbereich</span>
             </a>
           </header>
-          {children}
+          <div className="space-y-20 md:space-y-32">{children}</div>
         </main>
       </div>
       <Footer />
