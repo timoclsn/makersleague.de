@@ -26,6 +26,7 @@ const Home: NextPage = () => {
               layout="responsive"
               width={200}
               height={336}
+              priority
             />
           </div>
           <div className="absolute left-1/2 bottom-0 -ml-16 -mb-12 w-[160px] md:-ml-32 md:-mb-24 md:w-[300px]">
@@ -35,6 +36,7 @@ const Home: NextPage = () => {
               layout="responsive"
               width={300}
               height={336}
+              priority
             />
           </div>
           <div className="absolute bottom-8 right-0 -mr-24 w-[260px] md:-mr-64 md:w-[600px]">
@@ -44,6 +46,7 @@ const Home: NextPage = () => {
               layout="responsive"
               width={500}
               height={336}
+              priority
             />
           </div>
         </div>
