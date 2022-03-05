@@ -58,7 +58,11 @@ const Events: NextPage = () => {
             <br />
             Wir freuen uns auf dich!
           </p>
-          <Button color="pink">
+          <Button
+            as="a"
+            color="pink"
+            href="https://easyverein.com/public/ML/calendar"
+          >
             <Arrow className="text-2xl" />
             Anmelden
           </Button>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export function ValuesSection() {
   return (
-    <section className="relative bg-blue p-8">
+    <section id="values" className="relative bg-blue p-8">
       <h2 className="mb-2 text-base font-bold md:text-2xl">Unsere Werte</h2>
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         OMG – Offenheit, Machen & Gemeinschaft
