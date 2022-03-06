@@ -39,9 +39,11 @@ yarn-error.log*
 # VSCode
 .vscode
 
-
 # Contentlayer
 .contentlayer
 
 # Secrets
 .env
+
+# Generated Files
+public/sitemap.xml

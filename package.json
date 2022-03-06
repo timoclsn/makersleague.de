@@ -4,10 +4,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "npm run generate-sitemap",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,css,md,json}'",
-    "format": "npm run prettier -- --write"
+    "format": "npm run prettier -- --write",
+    "generate-sitemap": "NODE_OPTIONS='--experimental-json-modules' node ./scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "@fontsource/space-grotesk": "^4.5.3",
@@ -29,6 +31,7 @@
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "^8.4.0",
+    "globby": "^13.1.1",
     "postcss": "^8.4.7",
     "prettier": "2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.8",
