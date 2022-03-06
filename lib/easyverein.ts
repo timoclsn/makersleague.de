@@ -1,8 +1,8 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-import { toKebabCase } from 'components/utils';
 import { getMembers, Member, setApiToken } from 'easyverein';
+import kebabCase from 'lodash/kebabCase';
 
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
 const MEMBERS_CACHE_PATH = join(__dirname, '.members');
@@ -119,7 +119,7 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
       ];
       const about =
         customField(customFields, customFieldNames.about)?.value || null;
-      const slug = toKebabCase(name);
+      const slug = kebabCase(name);
 
       return {
         id,

@@ -18,6 +18,7 @@
     "contentlayer": "^0.1.2",
     "date-fn": "^0.0.2",
     "easyverein": "^0.3.0",
+    "lodash": "^4.17.21",
     "next": "12.1.0",
     "next-contentlayer": "^0.1.2",
     "react": "17.0.2",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@svgr/webpack": "^6.2.1",
     "@tailwindcss/typography": "^0.5.2",
+    "@types/lodash": "^4.14.179",
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "autoprefixer": "^10.4.2",
