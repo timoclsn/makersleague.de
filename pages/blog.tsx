@@ -18,8 +18,8 @@ export default function Blogpage({ posts }: Props) {
       <section>
         <h1 className="mb-16 text-xl font-bold md:text-5xl">Blog</h1>
         <div className="space-y-24">
-          {posts.map((post, idx) => (
-            <article key={idx}>
+          {posts.map((post) => (
+            <article key={post._id}>
               <h2 className="mb-2 text-base font-bold md:text-2xl">
                 {post.title}
               </h2>

@@ -1,4 +1,8 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from 'contentlayer/source-files';
 import readingTime from 'reading-time';
 import { format, parseISO } from 'date-fns';
 // @ts-ignore
@@ -51,7 +55,47 @@ const Faq = defineDocumentType(() => ({
   },
 }));
 
+const Cta = defineNestedType(() => ({
+  name: 'CTA',
+  fields: {
+    text: { type: 'string', required: true },
+    link: { type: 'string', required: true },
+  },
+}));
+
+const Event = defineDocumentType(() => ({
+  name: 'Event',
+  filePathPattern: 'events/*.md',
+  contentType: 'markdown',
+  fields: {
+    title: { type: 'string', required: true },
+    subtitle: { type: 'string', required: true },
+    location: { type: 'string', required: true },
+    date: { type: 'string', required: true },
+    time: { type: 'string', required: true },
+    scale: { type: 'string', required: true },
+    cta: {
+      type: 'nested',
+      of: Cta,
+    },
+  },
+  computedFields: {
+    dateFormatted: {
+      type: 'string',
+      resolve: (doc) => {
+        try {
+          return format(parseISO(doc.date), 'dd. MMM yyyy', {
+            locale: de,
+          });
+        } catch (e) {
+          return doc.date;
+        }
+      },
+    },
+  },
+}));
+
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [BlogPost, ContentPage, Faq],
+  documentTypes: [BlogPost, ContentPage, Faq, Event],
 });
