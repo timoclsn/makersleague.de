@@ -58,6 +58,7 @@ export const getStaticProps: GetStaticProps = () => {
   const posts = allBlogPosts
     .map((post) =>
       pick(post, [
+        '_id',
         'slug',
         'title',
         'summary',
