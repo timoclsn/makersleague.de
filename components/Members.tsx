@@ -41,7 +41,7 @@ export function Members({ members }: Props) {
           </Link>
         </li>
       ))}
-      <li className="order-2 w-[calc(50%-8px)] border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
+      <li className="order-2 flex w-[calc(50%-8px)] flex-col border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
         <div className="mb-1">
           <Image
             src="/assets/doodle-new-member-placeholder.svg"
@@ -52,6 +52,12 @@ export function Members({ members }: Props) {
         </div>
         <h3 className="text-base font-bold opacity-80 md:text-2xl">Du?</h3>
         <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
+        <Link href="mitglied-werden">
+          <a className="flex flex-1 items-center justify-center gap-1 self-end font-bold text-pink">
+            <Arrow className="text-2xl" />
+            mehr
+          </a>
+        </Link>
       </li>
     </ul>
   );
