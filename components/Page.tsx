@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import Script from 'next/script';
 
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
@@ -31,6 +32,7 @@ export function Page({
     <>
       <Seo title={pageTitle} description={description} slug={slug} />
       <Favicons />
+      <Script data-no-cookie data-api="/_hive" src="/bee.js" />
       <div className="flex flex-1 flex-col xl:flex-row">
         <Navigation expanded={expandedNav} />
         <main
