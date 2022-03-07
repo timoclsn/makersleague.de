@@ -26,7 +26,7 @@ export default function Ueber({ members, faqs }: Props) {
     >
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
-        <div className="flex flex-col space-y-12 space-x-0 md:flex-row md:space-x-12 md:space-y-0">
+        <div className="mb-11 flex flex-col space-y-12 space-x-0 md:flex-row md:space-x-12 md:space-y-0">
           <p>
             Wir sind Veränderer, Voranbringerinnen, Erfinder, Umkremplerinnen –
             wir sind Macher. Die Makers League ist ein Verein, in dem sich
@@ -78,8 +78,8 @@ export default function Ueber({ members, faqs }: Props) {
             </div>
           </div>
         </div>
+        <ButtonSection />
       </section>
-      <ButtonSection />
       <MembersSection members={members} />
       <ValuesSection />
       <FaqsSection faqs={faqs} />

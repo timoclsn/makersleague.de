@@ -20,14 +20,16 @@ export default function Signup({ faqs }: Props) {
       description="Erfahre wie man Makers League Mitglied wird"
       slug="mitglied-werden"
     >
-      <section className="space-y-4">
-        <h1 className="text-base opacity-80 md:text-2xl">Mitglied werden</h1>
-        <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
+      <section>
+        <h1 className="mb-4 text-base opacity-80 md:text-2xl">
+          Mitglied werden
+        </h1>
+        <h2 className="mb-11 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
           Du möchtest Teil unseres Macher*innen Netzwerks werden? Dann findest
           du hier alle wichtigen Infos und den Link zur Anmedung!
         </h2>
+        <ButtonSection />
       </section>
-      <ButtonSection />
       <FitSection />
       <FaqsSection faqs={faqs} />
       <ValuesSection />
