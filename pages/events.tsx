@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next';
 
 import { Button } from '../components/Button';
 import { Page } from '../components/Page';
-import { Profile, Calendar, Watch, Arrow } from 'icons';
+import { Profile, Calendar, Watch, Arrow, Location } from 'icons';
 import { allEvents, Event } from 'contentlayer/generated';
 
 interface Props {
@@ -31,7 +31,7 @@ export default function Events({ events }: Props) {
               </p>
               <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
                 <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
-                  <Profile className="text-xl" />
+                  <Location className="text-xl" />
                   <span>{event.location}</span>
                 </li>
                 <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">

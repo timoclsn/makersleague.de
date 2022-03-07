@@ -46,3 +46,6 @@ export const Logo: Icon = LogoIcon;
 
 import InstagramIcon from './instagram.svg';
 export const Instagram: Icon = InstagramIcon;
+
+import LocationIcon from './location.svg';
+export const Location: Icon = LocationIcon;
