@@ -55,7 +55,7 @@ export function Page({
           {expandedNav ? (
             children
           ) : (
-            <div className="space-y-20 md:space-y-32">{children}</div>
+            <div className="flex flex-col gap-y-20 md:gap-y-32">{children}</div>
           )}
         </main>
       </div>

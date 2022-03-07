@@ -4,7 +4,7 @@ import { Heart, Storm } from 'icons';
 
 export function FitSection() {
   return (
-    <section className="relative bg-sand p-8" id="fit">
+    <section className="relative bg-sand p-8 last:mb-16" id="fit">
       <h2 className="mb-2 text-base font-bold md:text-2xl">
         Passe ich zur Makers League?
       </h2>
