@@ -69,10 +69,10 @@ export const getStaticProps: GetStaticProps = () => {
   const events = allEvents.sort((a, b) => {
     const aInNumber = Number(new Date(a.date));
 
-    if (isNaN(aInNumber)) return -1; // Non formatted date comes first
+    if (isNaN(aInNumber)) return -1; // Non formatted date comes first (e.g. Stammtisch)
 
     const bInNumber = Number(new Date(b.date));
-    return bInNumber - aInNumber;
+    return aInNumber - bInNumber;
   });
   return { props: { events } };
 };
