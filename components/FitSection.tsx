@@ -17,7 +17,7 @@ export function FitSection() {
             <Heart className="text-2xl" />
             <h3 className="font-bold">Wir sind ein perfect match, wenn:</h3>
           </div>
-          <ul className="list-disc">
+          <ul className="ml-5 list-disc">
             <li>
               du eine Idee hast, für die du brennst oder auf der Suche nach
               einer Idee bist
@@ -38,7 +38,7 @@ export function FitSection() {
             <Storm className="text-2xl" />
             <h3 className="font-bold">Wir passen nicht zusammen, wenn:</h3>
           </div>
-          <ul className="list-disc">
+          <ul className="ml-5 list-disc">
             <li>du nichts mit der Community zu tun haben möchtest</li>
             <li>du nur einen Raum zum Arbeiten oder für Meetings suchst</li>
             <li>
