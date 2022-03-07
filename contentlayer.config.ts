@@ -52,6 +52,7 @@ const Faq = defineDocumentType(() => ({
   contentType: 'markdown',
   fields: {
     question: { type: 'string', required: true },
+    preview: { type: 'boolean', required: true },
   },
 }));
 
