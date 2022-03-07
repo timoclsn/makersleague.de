@@ -13,6 +13,7 @@ const button = cva(
     'disabled:opacity-50',
     'font-bold',
     'text-sm md:text-base',
+    'hover:opacity-80',
   ],
   {
     variants: {

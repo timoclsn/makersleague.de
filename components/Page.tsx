@@ -42,12 +42,12 @@ export function Page({
         >
           <header className="mb-16 flex items-start justify-between md:mb-32">
             <Link href="/">
-              <a>
+              <a className="hover:opacity-80">
                 <Logo className="text-[45px]" />
               </a>
             </Link>
             <a
-              className="flex items-center justify-center space-x-2"
+              className="flex items-center justify-center space-x-2 hover:opacity-80"
               href="https://easyverein.com/public/ML/"
             >
               <Profile />

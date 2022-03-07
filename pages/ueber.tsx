@@ -61,7 +61,7 @@ export default function Ueber({ members, faqs }: Props) {
             </p>
             <div className="mt-20 flex flex-1 flex-col-reverse items-start">
               <Link href="#values">
-                <a className="flex items-center justify-center gap-1 font-bold text-blue-accent">
+                <a className="flex items-center justify-center gap-1 font-bold text-blue-accent hover:opacity-80">
                   <Arrow className="text-2xl" />
                   mehr
                 </a>

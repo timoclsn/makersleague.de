@@ -34,7 +34,7 @@ export function Members({ members }: Props) {
           </h3>
           <p className="w-full break-words pb-14">{member.slogan}</p>
           <Link href={`/mitglieder/${member.slug}`}>
-            <a className="flex flex-1 items-center justify-center gap-1 self-end font-bold text-pink">
+            <a className="flex flex-1 items-center justify-center gap-1 self-end font-bold text-pink hover:opacity-80">
               <Arrow className="text-2xl" />
               mehr
             </a>
@@ -53,7 +53,7 @@ export function Members({ members }: Props) {
         <h3 className="text-base font-bold opacity-80 md:text-2xl">Du?</h3>
         <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
         <Link href="mitglied-werden">
-          <a className="flex flex-1 items-center justify-center gap-1 self-end font-bold text-pink">
+          <a className="flex flex-1 items-center justify-center gap-1 self-end font-bold text-pink hover:opacity-80">
             <Arrow className="text-2xl" />
             mehr
           </a>

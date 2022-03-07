@@ -74,7 +74,7 @@ function NavItem({
   const router = useRouter();
   return (
     <li
-      className={`w-1/2 xl:h-1/2 ${colorMap[color].bg} ${colorMap[color].text}`}
+      className={`w-1/2 xl:h-1/2 ${colorMap[color].bg} ${colorMap[color].text} group`}
     >
       <Link href={href}>
         <a
@@ -84,7 +84,7 @@ function NavItem({
           } flex h-full w-full flex-col justify-between space-y-12 p-6`}
         >
           <Icon className={`${colorMap[color].text} text-[24px]`} />
-          <div className="flex flex-col-reverse">
+          <div className="flex flex-col-reverse group-hover:opacity-80">
             <p
               className={`text-2lg font-bold ${
                 router.pathname.includes(href) && 'underline'
