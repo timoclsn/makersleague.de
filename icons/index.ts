@@ -1,6 +1,6 @@
 import { FunctionComponent, SVGProps } from 'react';
 
-type Icon = FunctionComponent<SVGProps<SVGSVGElement>>;
+export type Icon = FunctionComponent<SVGProps<SVGSVGElement>>;
 
 import BookIcon from './book.svg';
 export const Book: Icon = BookIcon;

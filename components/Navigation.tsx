@@ -1,9 +1,8 @@
-import { FunctionComponent, SVGProps } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { colorMap } from './utils';
-import { Book, Calendar, HeartPlus, MakersLeague } from 'icons';
+import { Book, Calendar, HeartPlus, Icon, MakersLeague } from 'icons';
 
 interface Props {
   expanded?: boolean;
@@ -58,7 +57,7 @@ interface NavItemProps {
   title: string;
   subtitle: string;
   color?: keyof typeof colorMap;
-  Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+  Icon: Icon;
   expanded?: boolean;
   href: string;
 }
