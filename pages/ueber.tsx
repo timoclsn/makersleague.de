@@ -90,9 +90,13 @@ export default function Ueber({ members, faqs }: Props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const allMembers = await getMemberInfos();
-  const members = allMembers.slice(0, 5);
-  const faqs = allFaqs
-    .filter((faq) => faq.preview)
-    .sort((a, b) => a.question.localeCompare(b.question));
-  return { props: { members, faqs } };
+  const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
+  const faqs = allFaqs.filter((faq) => faq.preview);
+  return {
+    props: {
+      members,
+      faqs,
+    },
+    revalidate: 300,
+  };
 };

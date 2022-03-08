@@ -117,6 +117,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const member = allMembers.find((member) => member.slug === params?.slug)!;
   const otherMembers = allMembers
     .filter((member) => member.slug !== params?.slug)
+    .sort(() => Math.random() - 0.5)
     .slice(0, 5);
   return {
     props: {
@@ -124,5 +125,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       otherMembers,
       slug: params?.slug,
     },
+    revalidate: 300,
   };
 };
