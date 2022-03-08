@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       description="Makers League – Die Gemeinschaft für Macher:innen, die zusammen Ideen voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte frei!"
     >
       <div className="flex h-full flex-1 flex-col">
-        <div className="space-y-4">
+        <div className="mx-auto max-w-screen-xl space-y-4">
           <h1 className="text-base opacity-80 md:text-2xl">
             Makers League e. V.
           </h1>

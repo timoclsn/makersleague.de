@@ -37,7 +37,7 @@ export function Page({
         <Navigation expanded={expandedNav} />
         <main
           className={`bg-yellow-900 mx-auto flex w-full flex-1 flex-col p-4 md:p-10 xl:order-first ${
-            expandedNav ? 'order-first' : 'order-last max-w-screen-xl'
+            expandedNav ? 'order-first' : 'order-last'
           }`}
         >
           <header className="mb-16 flex items-start justify-between md:mb-32">
@@ -57,7 +57,9 @@ export function Page({
           {expandedNav ? (
             children
           ) : (
-            <div className="flex flex-col gap-y-20 md:gap-y-32">{children}</div>
+            <div className="mx-auto flex max-w-screen-xl flex-col gap-y-20 md:gap-y-32">
+              {children}
+            </div>
           )}
         </main>
       </div>
