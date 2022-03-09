@@ -47,3 +47,4 @@ yarn-error.log*
 
 # Generated Files
 public/sitemap.xml
+.members-cache
