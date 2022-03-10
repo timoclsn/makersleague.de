@@ -3,7 +3,7 @@ title: 'Esslinger Frühling: Tag der offenen Tür'
 subtitle: 'Lerne die Makers League kennen + Lovely Lots Kaffee'
 location: 'Makers Inn, Küferstraße 46'
 date: '2022-04-02'
-time: '10 - 16 Uhr'
+time: '12 - 16 Uhr'
 scale: 'Jeder ist willkommen!'
 cta:
   text: 'Infos zum Esslinger Frühling'
