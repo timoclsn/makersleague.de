@@ -76,7 +76,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
       <section className="bg-blue px-10 py-14">
         <h2 className="mb-12 text-4xl font-bold leading-snug">
           {`Du möchtest Teil unseres Netzwerks werden um mit spannenden
-            Superhelden wie ${member.firstName} Ideen voranbringen zu können?`}
+            Superheld*innen wie ${member.firstName} Ideen voranbringen zu können?`}
         </h2>
         <Link href="/mitgliedwerden" passHref>
           <Button as="a" color="blue-accent">

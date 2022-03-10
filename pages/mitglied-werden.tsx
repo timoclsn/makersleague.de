@@ -35,8 +35,8 @@ export default function Signup({ faqs }: Props) {
       <ValuesSection />
       <section className="space-y-12">
         <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
-          Du möchtest Teil unseres Netzwerks werden um mit spannenden
-          Superhelden wie Alex Ideen voranbringen zu können?
+          Klingt gut? Dann fülle unseren Mitgliedsantrag aus! Anschließend
+          bekommst du weitere Informationen zum Aufnahmeprozess per E-Mail.
         </h2>
         <Button
           as="a"
@@ -44,7 +44,7 @@ export default function Signup({ faqs }: Props) {
           href="https://easyverein.com/public/ML/applicationform/"
         >
           <HeartPlus className="text-2xl" />
-          Mitglied werden
+          Zum Mietgliedsantrag
         </Button>
       </section>
     </Page>
