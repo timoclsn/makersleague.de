@@ -45,7 +45,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
               <>
                 <h3 className="mb-2 font-bold">Über mich</h3>
                 <div
-                  className="opacity-80"
+                  className="prose opacity-80"
                   dangerouslySetInnerHTML={{ __html: member.about }}
                 ></div>
               </>
