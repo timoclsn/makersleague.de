@@ -15,7 +15,7 @@ export function Members({ members }: Props) {
         <li
           className={`${
             idx === 0 ? 'oder-1' : 'order-last'
-          } w-[calc(50%-8px)] border-4 p-4 md:w-[calc(33.33%-22px)]`}
+          } w-[calc(50%-8px)] overflow-hidden border-4 p-4 md:w-[calc(33.33%-22px)]`}
           key={member.id}
         >
           <Link href={`/mitglieder/${member.slug}`}>
