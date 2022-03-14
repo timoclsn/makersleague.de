@@ -3,6 +3,7 @@ import { join } from 'path';
 
 import { getMembers, Member, setApiToken } from 'easyverein';
 import kebabCase from 'lodash/kebabCase';
+import trim from 'lodash/trim';
 
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
 const MEMBERS_CACHE_PATH = join(__dirname, '.members');
@@ -106,9 +107,9 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
     })
     .map((apiMember) => {
       const id = apiMember.id;
-      const name = apiMember.contactDetails.name;
-      const firstName = apiMember.contactDetails.firstName;
-      const familyName = apiMember.contactDetails.familyName;
+      const name = trim(apiMember.contactDetails.name);
+      const firstName = trim(apiMember.contactDetails.firstName);
+      const familyName = trim(apiMember.contactDetails.familyName);
       const profilePicture = apiMember._profilePicture!;
       const customFields = apiMember.customFields!;
       const slogan = customField(customFields, customFieldNames.slogan)?.value!;
