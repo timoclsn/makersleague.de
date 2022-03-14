@@ -88,13 +88,13 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
       <section>
         <h2 className="mb-2 text-2xl font-bold">Weitere Mitglieder</h2>
         <p className="mb-10 text-2xl opacity-60">
-          Finde weitere Superhelden der Makers League
+          Finde weitere Superheld*innen der Makers League
         </p>
         <Members members={otherMembers} />
         <Link href="/mitglieder" passHref>
           <Button as="a" className="mt-14">
             <Arrow className="text-2xl" />
-            Alle Mitglieder
+            Mehr Mitglieder
           </Button>
         </Link>
       </section>

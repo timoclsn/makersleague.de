@@ -17,14 +17,14 @@ export function MembersSection({ members }: Props) {
           Unsere Mitglieder
         </h2>
         <p className="mb-10 text-base opacity-60 md:text-2xl">
-          Die Superhelden der Makers League
+          Die Superheld*innen der Makers League
         </p>
         <Members members={members} />
       </div>
       <Link href="/mitglieder" passHref>
         <Button as="a">
           <Arrow className="text-2xl" />
-          Alle Mitglieder
+          Mehr Mitglieder
         </Button>
       </Link>
     </section>

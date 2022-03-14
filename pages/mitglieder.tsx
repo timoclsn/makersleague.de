@@ -20,7 +20,7 @@ export default function MembersPage({ members }: Props) {
           Unsere Mitglieder
         </h1>
         <p className="mb-16 text-base opacity-60 md:text-2xl">
-          Die Superhelden der Makers League
+          Einige Superheld*innen der Makers League
         </p>
         <Members members={members} />
       </section>
