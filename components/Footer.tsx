@@ -4,7 +4,7 @@ import Link from 'next/link';
 export function Footer() {
   return (
     <footer className="bg-dark px-4 py-8 text-light md:px-10 md:py-8">
-      <ul className="flex flex-col items-center space-x-0 space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0">
+      <ul className="flex flex-col items-center space-x-0 space-y-6 overflow-hidden sm:flex-row sm:space-x-6 sm:space-y-0">
         <li className="hover:opacity-80">
           <a href="https://www.instagram.com/makersleague.ev">
             <span className="sr-only">Instagram</span>
@@ -30,6 +30,9 @@ export function Footer() {
           <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf">
             <a>Beitragsordnung</a>
           </Link>
+        </li>
+        <li className="hover:opacity-80">
+          <a href="https://github.com/timoclsn/makersleague.de">GitHub</a>
         </li>
       </ul>
     </footer>
