@@ -20,6 +20,7 @@ interface CustomField {
 type MemberWithCustomFields = Member & { customFields: CustomField[] | null };
 
 type SuperPowers = [string, string, string];
+
 export interface WebsiteMember {
   id: number;
   name: string;
