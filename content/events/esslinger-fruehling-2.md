@@ -10,4 +10,4 @@ cta:
   link: 'https://city-esslingen.de/esslinger-fruehling/'
 ---
 
-Am Samstag des Esslinger Frühlings öffnen wir unsere Türen, damit Esslinger\*innen die Makers League und unsere Mitglieder kennenlernen können. Komm doch auch vorbei, schau dir unsere Räumlichkeiten an und lasse dich von den Projekten und Geschichten spannender Makers Leagea Mitglieder inspirieren.
+Am Samstag des Esslinger Frühlings öffnen wir unsere Türen, damit Esslinger\*innen die Makers League und unsere Mitglieder kennenlernen können. Komm doch auch vorbei, schau dir unsere Räumlichkeiten an und lasse dich von den Projekten und Geschichten spannender Makers League Mitglieder inspirieren.
