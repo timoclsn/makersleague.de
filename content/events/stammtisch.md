@@ -1,7 +1,7 @@
 ---
 title: 'Stammtisch'
 subtitle: 'Jeden 2. und 4. Dienstag im Monat'
-location: 'Online / Digital'
+location: 'Makers Inn, Küferstraße 46'
 date: '2. und 4. Dienstag im Monat'
 time: '18 Uhr'
 scale: 'Jeder ist willkommen!'
@@ -10,7 +10,7 @@ cta:
   link: 'https://easyverein.com/public/ML/calendar'
 ---
 
-Jeden zweiten und vierten Dienstag im Monat treffen wir uns um 18 Uhr virtuell in einem wonder.me Space zum Stammisch. Sofern es keine Updates aus dem Vorstandsteam gibt, ist das einfach ein ungezwungenes und Agenda-loses Zusammentreffen von Vereinsmitgliedern und Interessierten.
+Jeden zweiten und vierten Dienstag im Monat treffen wir uns um 18 Uhr im Makers Inn zum Stammisch. Sofern es keine Updates aus dem Vorstandsteam gibt, ist das einfach ein ungezwungenes und Agenda-loses Zusammentreffen von Vereinsmitgliedern und Interessierten.
 
 Solltest du also an der Makers League interessiert sein und möchtest uns gerne mal kennenlernen, dann ist der Stammtisch der ideale Ort dafür!
 
