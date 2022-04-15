@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { globby } from 'globby';
 import prettier from 'prettier';
 
-import { allBlogPosts } from '../.contentlayer/generated/allBlogPosts.mjs';
+import { allBlogPosts } from '../.contentlayer/generated/index.mjs';
 
 (async () => {
   const prettierConfig = await prettier.resolveConfig('./.prettierrc');
