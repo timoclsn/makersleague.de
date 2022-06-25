@@ -8,6 +8,9 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     domains: ['easyverein.com'],
   },
+  experimental: {
+    scrollRestoration: true,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
