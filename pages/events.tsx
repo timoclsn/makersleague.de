@@ -33,7 +33,7 @@ export default function Events({ events }: Props) {
           addressCountry: 'DE',
         },
       },
-      description: event.body.raw,
+      description: event.body.html.replace(/<[^>]*>/g, ''),
       organizer: {
         '@type': 'Organization',
         name: 'Makers League e.V.',
