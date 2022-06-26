@@ -2,8 +2,9 @@
 title: 'Stammtisch'
 subtitle: 'Jeden 2. und 4. Dienstag im Monat'
 location: 'Makers Inn, Küferstraße 46'
-date: '2. und 4. Dienstag im Monat'
-time: '18 Uhr'
+customDate: '2. und 4. Dienstag im Monat'
+startTime: '18:00'
+endTime: '21:00'
 scale: 'Jeder ist willkommen!'
 cta:
   text: 'Anmelden'
