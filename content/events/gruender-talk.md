@@ -2,8 +2,8 @@
 title: 'Gründertalk'
 subtitle: 'Special Stammtisch'
 location: 'Makers Inn, Küferstraße 46'
-date: '2022-06-28'
-time: '18 - 21 Uhr'
+startTime: '06/28/2022, 06:00 PM'
+endTime: '06/28/2022, 09:00 PM'
 scale: 'Jeder ist willkommen!'
 cta:
   text: 'Anmelden'

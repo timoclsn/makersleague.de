@@ -4,7 +4,7 @@ import {
   makeSource,
 } from 'contentlayer/source-files';
 import readingTime from 'reading-time';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, parse, formatISO } from 'date-fns';
 // @ts-ignore
 import { de } from 'date-fns/locale/index.js'; // ESM import not working in node
 
@@ -72,8 +72,9 @@ const Event = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     subtitle: { type: 'string', required: true },
     location: { type: 'string', required: true },
-    date: { type: 'string', required: true },
-    time: { type: 'string', required: true },
+    startTime: { type: 'string', required: true },
+    endTime: { type: 'string', required: true },
+    customDate: { type: 'string', required: false },
     scale: { type: 'string', required: true },
     cta: {
       type: 'nested',
@@ -84,12 +85,43 @@ const Event = defineDocumentType(() => ({
     dateFormatted: {
       type: 'string',
       resolve: (doc) => {
+        if (doc.customDate) {
+          return doc.customDate;
+        }
+        return format(parse(doc.startTime, 'Pp', new Date()), 'dd. MMM yyyy', {
+          locale: de,
+        });
+      },
+    },
+    timeFormatted: {
+      type: 'string',
+      resolve: (doc) => {
+        const timeFormat = doc.customDate ? 'HH:mm' : 'Pp';
+        const start = format(
+          parse(doc.startTime, timeFormat, new Date()),
+          'HH'
+        );
+        const end = format(parse(doc.endTime, timeFormat, new Date()), 'HH');
+        return `${start} – ${end} Uhr`;
+      },
+    },
+    startIso: {
+      type: 'string',
+      resolve: (doc) => {
         try {
-          return format(parseISO(doc.date), 'dd. MMM yyyy', {
-            locale: de,
-          });
+          return formatISO(parse(doc.startTime, 'Pp', new Date()));
         } catch (e) {
-          return doc.date;
+          return '';
+        }
+      },
+    },
+    endIso: {
+      type: 'string',
+      resolve: (doc) => {
+        try {
+          return formatISO(parse(doc.endTime, 'Pp', new Date()));
+        } catch (e) {
+          return '';
         }
       },
     },
