@@ -20,17 +20,16 @@ export function Members({ members }: Props) {
         >
           <Link href={`/mitglieder/${member.slug}`}>
             <div className="group flex h-full flex-col items-start">
-              <div className="mb-1">
-                <Image
-                  src={`/api/get-easyverein-image?url=${encodeURIComponent(
-                    member.profilePicture
-                  )}`}
-                  alt={member.name}
-                  width={700}
-                  height={700}
-                  quality={100}
-                />
-              </div>
+              <Image
+                src={`/api/get-easyverein-image?url=${encodeURIComponent(
+                  member.profilePicture
+                )}`}
+                alt={member.name}
+                width={700}
+                height={700}
+                quality={100}
+                className="mb-5 block"
+              />
               <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
                 {member.name}
               </h3>
@@ -48,14 +47,13 @@ export function Members({ members }: Props) {
       <li className="order-2 w-[calc(50%-8px)] border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
         <Link href="/mitglied-werden">
           <div className="group flex h-full flex-col items-start">
-            <div className="mb-1">
-              <Image
-                src="/assets/doodle-new-member-placeholder.svg"
-                alt="Mitmachen"
-                width={700}
-                height={700}
-              />
-            </div>
+            <Image
+              src="/assets/doodle-new-member-placeholder.svg"
+              alt="Mitmachen"
+              width={700}
+              height={700}
+              className="mb-5 block"
+            />
             <h3 className="text-base font-bold opacity-80 md:text-2xl">Du?</h3>
             <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
             <div className="flex w-full flex-1 flex-col items-end justify-end">
