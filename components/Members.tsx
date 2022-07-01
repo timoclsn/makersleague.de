@@ -1,8 +1,8 @@
+import Image from 'next/future/image';
 import Link from 'next/link';
-import Image from 'next/image';
 
-import { WebsiteMember } from 'lib/easyverein';
 import { Arrow } from 'icons';
+import { WebsiteMember } from 'lib/easyverein';
 
 interface Props {
   members: WebsiteMember[];
@@ -22,7 +22,7 @@ export function Members({ members }: Props) {
             <a className="group flex h-full flex-col items-start">
               <div className="mb-1">
                 <Image
-                  src={`/api/easyverein?url=${encodeURIComponent(
+                  src={`/api/get-easyverein-image?url=${encodeURIComponent(
                     member.profilePicture
                   )}`}
                   alt={member.name}

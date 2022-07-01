@@ -1,12 +1,12 @@
 import type { GetStaticProps } from 'next';
+import Image from 'next/future/image';
 import Link from 'next/link';
-import Image from 'next/image';
 
-import { Page } from '../../components/Page';
-import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
 import { Button } from 'components/Button';
-import { Arrow, HeartPlus } from 'icons';
 import { Members } from 'components/Members';
+import { Arrow, HeartPlus } from 'icons';
+import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
+import { Page } from '../../components/Page';
 
 interface Props {
   member: WebsiteMember;
@@ -62,7 +62,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
             </div>
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
               <Image
-                src={`/api/easyverein?url=${encodeURIComponent(
+                src={`/api/get-easyverein-image?url=${encodeURIComponent(
                   member.profilePicture
                 )}`}
                 alt={member.name}

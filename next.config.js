@@ -1,7 +1,6 @@
 const { withContentlayer } = require('next-contentlayer');
 
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -10,6 +9,9 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    images: {
+      allowFutureImage: true,
+    },
   },
   webpack(config) {
     config.module.rules.push({

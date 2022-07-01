@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 export function ValuesSection() {
   return (
@@ -52,7 +52,6 @@ export function ValuesSection() {
         <Image
           src="/assets/doodle-loving-blue.svg"
           alt="Doodle Loving"
-          layout="responsive"
           width={150}
           height={100}
         />

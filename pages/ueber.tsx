@@ -1,16 +1,16 @@
 import { GetStaticProps } from 'next';
+import Image from 'next/future/image';
 import Link from 'next/link';
-import Image from 'next/image';
 
-import { Page } from '../components/Page';
-import { Arrow } from 'icons';
-import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
 import { ButtonSection } from 'components/ButtonSection';
+import { FaqsSection } from 'components/FaqsSection';
 import { FitSection } from 'components/FitSection';
+import { MembersSection } from 'components/MembersSection';
 import { ValuesSection } from 'components/ValuesSection';
 import { allFaqs, Faq } from 'contentlayer/generated';
-import { FaqsSection } from 'components/FaqsSection';
-import { MembersSection } from 'components/MembersSection';
+import { Arrow } from 'icons';
+import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
+import { Page } from '../components/Page';
 
 interface Props {
   members: WebsiteMember[];
@@ -71,7 +71,6 @@ export default function Ueber({ members, faqs }: Props) {
               <Image
                 src="/assets/doodle-loving-blue.svg"
                 alt="Doodle Loving"
-                layout="responsive"
                 width={300}
                 height={336}
               />
