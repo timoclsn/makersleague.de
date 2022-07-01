@@ -13,6 +13,8 @@ const nextConfig = {
       allowFutureImage: true,
     },
     newNextLinkBehavior: true,
+    browsersListForSwc: true,
+    legacyBrowsers: false,
   },
   webpack(config) {
     config.module.rules.push({
