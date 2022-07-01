@@ -19,7 +19,7 @@ export function FaqsSection({ faqs }: Props) {
         </p>
         <Faqs faqs={faqs} />
       </div>
-      <Link href="/faqs" passHref>
+      <Link href="/faqs" passHref legacyBehavior>
         <Button as="a">
           <Arrow className="text-2xl" />
           Alle FAQs

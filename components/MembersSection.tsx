@@ -21,7 +21,7 @@ export function MembersSection({ members }: Props) {
         </p>
         <Members members={members} />
       </div>
-      <Link href="/mitglieder" passHref>
+      <Link href="/mitglieder" passHref legacyBehavior>
         <Button as="a">
           <Arrow className="text-2xl" />
           Mehr Mitglieder

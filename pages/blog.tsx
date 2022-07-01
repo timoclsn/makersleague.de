@@ -40,7 +40,7 @@ export default function Blogpage({ posts }: Props) {
                   <span>{post.publishedAtFormatted}</span>
                 </li>
               </ul>
-              <Link href={`/blog/${post.slug}`} passHref>
+              <Link href={`/blog/${post.slug}`} passHref legacyBehavior>
                 <Button as="a" color="sand">
                   <Arrow className="text-2xl" />
                   Weiterlesen...

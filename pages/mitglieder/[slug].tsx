@@ -23,7 +23,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
     >
       <section>
         <div className="mb-16">
-          <Link href="/mitglieder" passHref>
+          <Link href="/mitglieder" passHref legacyBehavior>
             <Button as="a">
               <Arrow className="rotate-180 text-2xl" />
               Zurück zu allen Mitgliedern
@@ -78,7 +78,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
           {`Du möchtest Teil unseres Netzwerks werden um mit spannenden
             Superheld*innen wie ${member.firstName} Ideen voranbringen zu können?`}
         </h2>
-        <Link href="/mitgliedwerden" passHref>
+        <Link href="/mitgliedwerden" passHref legacyBehavior>
           <Button as="a" color="blue-accent">
             <HeartPlus className="text-2xl" />
             Mitglied werden
@@ -91,7 +91,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
           Finde weitere Superheld*innen der Makers League
         </p>
         <Members members={otherMembers} />
-        <Link href="/mitglieder" passHref>
+        <Link href="/mitglieder" passHref legacyBehavior>
           <Button as="a" className="mt-14">
             <Arrow className="text-2xl" />
             Mehr Mitglieder

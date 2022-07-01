@@ -12,6 +12,7 @@ const nextConfig = {
     images: {
       allowFutureImage: true,
     },
+    newNextLinkBehavior: true,
   },
   webpack(config) {
     config.module.rules.push({

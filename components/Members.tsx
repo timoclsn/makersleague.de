@@ -19,7 +19,7 @@ export function Members({ members }: Props) {
           key={member.id}
         >
           <Link href={`/mitglieder/${member.slug}`}>
-            <a className="group flex h-full flex-col items-start">
+            <div className="group flex h-full flex-col items-start">
               <div className="mb-1">
                 <Image
                   src={`/api/get-easyverein-image?url=${encodeURIComponent(
@@ -41,13 +41,13 @@ export function Members({ members }: Props) {
                   mehr
                 </span>
               </div>
-            </a>
+            </div>
           </Link>
         </li>
       ))}
       <li className="order-2 w-[calc(50%-8px)] border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
         <Link href="/mitglied-werden">
-          <a className="group flex h-full flex-col items-start">
+          <div className="group flex h-full flex-col items-start">
             <div className="mb-1">
               <Image
                 src="/assets/doodle-new-member-placeholder.svg"
@@ -64,7 +64,7 @@ export function Members({ members }: Props) {
                 mehr
               </span>
             </div>
-          </a>
+          </div>
         </Link>
       </li>
     </ul>

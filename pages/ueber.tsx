@@ -60,11 +60,14 @@ export default function Ueber({ members, faqs }: Props) {
               unseren Werten findest du hier.
             </p>
             <div className="mt-20 flex flex-1 flex-col-reverse items-start">
-              <Link href="#values">
-                <a className="flex items-center justify-center gap-1 font-bold text-blue-accent hover:opacity-80">
+              <Link
+                href="#values"
+                className="flex items-center justify-center gap-1 font-bold text-blue-accent hover:opacity-80"
+              >
+                <span>
                   <Arrow className="text-2xl" />
                   mehr
-                </a>
+                </span>
               </Link>
             </div>
             <div className="absolute right-0 bottom-0 -mb-10 -mr-6 w-[150px]">

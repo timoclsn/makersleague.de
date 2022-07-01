@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { colorMap } from './utils';
 import { Book, Calendar, HeartPlus, Icon, MakersLeague } from 'icons';
+import { colorMap } from './utils';
 
 interface Props {
   expanded?: boolean;
@@ -76,7 +76,7 @@ function NavItem({
       className={`w-1/2 xl:h-1/2 ${colorMap[color].bg} ${colorMap[color].text} group`}
     >
       <Link href={href}>
-        <a
+        <div
           className={`${
             !expanded &&
             'xl:writing-vertical flex-col xl:flex-row xl:items-center'
@@ -97,7 +97,7 @@ function NavItem({
               </span>
             )}
           </div>
-        </a>
+        </div>
       </Link>
     </li>
   );
