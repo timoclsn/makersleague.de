@@ -19,10 +19,11 @@
     "date-fn": "0.0.2",
     "easyverein": "0.3.0",
     "lodash": "4.17.21",
-    "next": "12.1.6",
+    "next": "12.2.0",
     "next-contentlayer": "0.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sharp": "^0.30.7"
   },
   "devDependencies": {
     "@svgr/webpack": "6.2.1",
@@ -32,7 +33,7 @@
     "@types/react": "18.0.14",
     "autoprefixer": "10.4.7",
     "eslint": "8.18.0",
-    "eslint-config-next": "12.1.6",
+    "eslint-config-next": "12.2.0",
     "eslint-config-prettier": "8.5.0",
     "globby": "13.1.2",
     "postcss": "8.4.14",

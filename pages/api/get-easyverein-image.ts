@@ -1,8 +1,12 @@
 import type { NextRequest } from 'next/server';
 
+export const config = {
+  runtime: 'experimental-edge',
+};
+
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
 
-export async function middleware(request: NextRequest) {
+export default async function handler(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const url = searchParams.get('url');
 

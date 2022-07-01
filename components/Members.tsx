@@ -1,8 +1,8 @@
+import Image from 'next/future/image';
 import Link from 'next/link';
-import Image from 'next/image';
 
-import { WebsiteMember } from 'lib/easyverein';
 import { Arrow } from 'icons';
+import { WebsiteMember } from 'lib/easyverein';
 
 interface Props {
   members: WebsiteMember[];
@@ -19,18 +19,17 @@ export function Members({ members }: Props) {
           key={member.id}
         >
           <Link href={`/mitglieder/${member.slug}`}>
-            <a className="group flex h-full flex-col items-start">
-              <div className="mb-1">
-                <Image
-                  src={`/api/easyverein?url=${encodeURIComponent(
-                    member.profilePicture
-                  )}`}
-                  alt={member.name}
-                  width={700}
-                  height={700}
-                  quality={100}
-                />
-              </div>
+            <div className="group flex h-full flex-col items-start">
+              <Image
+                src={`/api/get-easyverein-image?url=${encodeURIComponent(
+                  member.profilePicture
+                )}`}
+                alt={member.name}
+                width={700}
+                height={700}
+                quality={100}
+                className="mb-5 block"
+              />
               <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
                 {member.name}
               </h3>
@@ -41,21 +40,20 @@ export function Members({ members }: Props) {
                   mehr
                 </span>
               </div>
-            </a>
+            </div>
           </Link>
         </li>
       ))}
       <li className="order-2 w-[calc(50%-8px)] border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
         <Link href="/mitglied-werden">
-          <a className="group flex h-full flex-col items-start">
-            <div className="mb-1">
-              <Image
-                src="/assets/doodle-new-member-placeholder.svg"
-                alt="Mitmachen"
-                width={700}
-                height={700}
-              />
-            </div>
+          <div className="group flex h-full flex-col items-start">
+            <Image
+              src="/assets/doodle-new-member-placeholder.svg"
+              alt="Mitmachen"
+              width={700}
+              height={700}
+              className="mb-5 block"
+            />
             <h3 className="text-base font-bold opacity-80 md:text-2xl">Du?</h3>
             <p className="pb-14">Macher*in mit Bock etwas zu bewegen!</p>
             <div className="flex w-full flex-1 flex-col items-end justify-end">
@@ -64,7 +62,7 @@ export function Members({ members }: Props) {
                 mehr
               </span>
             </div>
-          </a>
+          </div>
         </Link>
       </li>
     </ul>

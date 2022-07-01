@@ -1,16 +1,16 @@
 import { GetStaticProps } from 'next';
+import Image from 'next/future/image';
 import Link from 'next/link';
-import Image from 'next/image';
 
-import { Page } from '../components/Page';
-import { Arrow } from 'icons';
-import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
 import { ButtonSection } from 'components/ButtonSection';
+import { FaqsSection } from 'components/FaqsSection';
 import { FitSection } from 'components/FitSection';
+import { MembersSection } from 'components/MembersSection';
 import { ValuesSection } from 'components/ValuesSection';
 import { allFaqs, Faq } from 'contentlayer/generated';
-import { FaqsSection } from 'components/FaqsSection';
-import { MembersSection } from 'components/MembersSection';
+import { Arrow } from 'icons';
+import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
+import { Page } from '../components/Page';
 
 interface Props {
   members: WebsiteMember[];
@@ -60,18 +60,20 @@ export default function Ueber({ members, faqs }: Props) {
               unseren Werten findest du hier.
             </p>
             <div className="mt-20 flex flex-1 flex-col-reverse items-start">
-              <Link href="#values">
-                <a className="flex items-center justify-center gap-1 font-bold text-blue-accent hover:opacity-80">
+              <Link
+                href="#values"
+                className="flex items-center justify-center gap-1 font-bold text-blue-accent hover:opacity-80"
+              >
+                <span>
                   <Arrow className="text-2xl" />
                   mehr
-                </a>
+                </span>
               </Link>
             </div>
             <div className="absolute right-0 bottom-0 -mb-10 -mr-6 w-[150px]">
               <Image
                 src="/assets/doodle-loving-blue.svg"
                 alt="Doodle Loving"
-                layout="responsive"
                 width={300}
                 height={336}
               />

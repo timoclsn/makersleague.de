@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 import { Heart, Storm } from 'icons';
 
@@ -55,7 +55,6 @@ export function FitSection() {
         <Image
           src="/assets/doodle-pointing.svg"
           alt="Doodle Pointing"
-          layout="responsive"
           width={600}
           height={200}
         />

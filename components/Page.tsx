@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { ReactNode, Suspense } from 'react';
 import Script from 'next/script';
+import { ReactNode, Suspense } from 'react';
 
+import { Logo, Profile } from 'icons';
+import { Favicons } from './Favicons';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
-import { Logo, Profile } from 'icons';
 import { Seo } from './Seo';
-import { Favicons } from './Favicons';
 
 interface Props {
   children: ReactNode;
@@ -42,10 +42,8 @@ export function Page({
             }`}
           >
             <header className="mb-16 flex items-start justify-between md:mb-32">
-              <Link href="/">
-                <a className="hover:opacity-80">
-                  <Logo className="text-[45px]" />
-                </a>
+              <Link href="/" className="hover:opacity-80">
+                <Logo className="text-[45px]" />
               </Link>
               <a
                 className="flex items-center justify-center space-x-2 hover:opacity-80"

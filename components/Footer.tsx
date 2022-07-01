@@ -13,22 +13,22 @@ export function Footer() {
         </li>
         <li className="hover:opacity-80">
           <Link href="/impressum">
-            <a>Impressum</a>
+            Impressum
           </Link>
         </li>
         <li className="hover:opacity-80">
           <Link href="/datenschutzerklaerung">
-            <a>Datenschutzerklärung</a>
+            Datenschutzerklärung
           </Link>
         </li>
         <li className="hover:opacity-80">
           <Link href="/docs/Makers_League_eV_Satzung.pdf">
-            <a>Satzung</a>
+            Satzung
           </Link>
         </li>
         <li className="hover:opacity-80">
           <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf">
-            <a>Beitragsordnung</a>
+            Beitragsordnung
           </Link>
         </li>
         <li className="hover:opacity-80">

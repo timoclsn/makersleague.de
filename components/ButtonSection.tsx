@@ -10,25 +10,25 @@ export function ButtonSection() {
         <HeartPlus className="text-2xl" />
         Mitglied werden
       </Button>
-      <Link href="#faqs" passHref>
+      <Link href="#faqs" passHref legacyBehavior>
         <Button as="a" variant="link">
           <Question className="text-2xl" />
           FAQs
         </Button>
       </Link>
-      <Link href="#fit" passHref>
+      <Link href="#fit" passHref legacyBehavior>
         <Button as="a" variant="link">
           <Check className="text-2xl" />
           Passe ich zur ML?
         </Button>
       </Link>
-      <Link href="/docs/Makers_League_eV_Satzung.pdf" passHref>
+      <Link href="/docs/Makers_League_eV_Satzung.pdf" passHref legacyBehavior>
         <Button as="a" variant="link">
           <Clipboard className="text-2xl" />
           Satzung
         </Button>
       </Link>
-      <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf" passHref>
+      <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf" passHref legacyBehavior>
         <Button as="a" variant="link">
           <DocumentInfo className="text-2xl" />
           Beitragsordnung

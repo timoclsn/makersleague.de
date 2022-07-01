@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 import { Page } from '../components/Page';
 
@@ -27,7 +27,6 @@ const Home: NextPage = () => {
             <Image
               src="/assets/doodle-selfie.svg"
               alt="Doodle Selfie"
-              layout="responsive"
               width={200}
               height={336}
               priority
@@ -37,7 +36,6 @@ const Home: NextPage = () => {
             <Image
               src="/assets/doodle-loving.svg"
               alt="Doodle Loving"
-              layout="responsive"
               width={300}
               height={336}
               priority
@@ -47,7 +45,6 @@ const Home: NextPage = () => {
             <Image
               src="/assets/doodle-coffee.svg"
               alt="Doodle Coffee"
-              layout="responsive"
               width={500}
               height={336}
               priority
