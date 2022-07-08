@@ -78,7 +78,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
           {`Du möchtest Teil unseres Netzwerks werden um mit spannenden
             Superheld*innen wie ${member.firstName} Ideen voranbringen zu können?`}
         </h2>
-        <Link href="/mitgliedwerden" passHref legacyBehavior>
+        <Link href="/mitglied-werden" passHref legacyBehavior>
           <Button as="a" color="blue-accent">
             <HeartPlus className="text-2xl" />
             Mitglied werden
