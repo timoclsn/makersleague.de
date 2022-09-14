@@ -9,9 +9,6 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
-    images: {
-      allowFutureImage: true,
-    },
     newNextLinkBehavior: true,
     browsersListForSwc: true,
     legacyBrowsers: false,
