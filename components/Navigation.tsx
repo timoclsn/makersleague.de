@@ -73,20 +73,19 @@ function NavItem({
   const router = useRouter();
   return (
     <li
-      className={`w-1/2 xl:h-1/2 ${colorMap[color].bg} ${colorMap[color].text} group`}
+      className={`w-1/2 xl:h-1/2 group ${colorMap[color].bg} ${colorMap[color].text}`}
     >
       <Link href={href}>
-        <div
-          className={`${
-            !expanded &&
-            'xl:writing-vertical flex-col xl:flex-row xl:items-center'
-          } flex h-full w-full flex-col justify-between space-y-12 p-6`}
-        >
+        <div className="h-full w-full gap-12 p-6 flex flex-col justify-between">
           <Icon className={`${colorMap[color].text} text-[24px]`} />
-          <div className="flex flex-col-reverse group-hover:opacity-80">
+          <div
+            className={`flex group-hover:opacity-80 ${
+              expanded ? 'flex-col-reverse' : 'xl:writing-vertical flex-col'
+            }`}
+          >
             <p
-              className={`text-2lg font-bold ${
-                router.pathname.includes(href) && 'underline'
+              className={`text-2lg font-bold${
+                router.pathname.includes(href) && ' underline'
               }`}
             >
               {title}
