@@ -64,10 +64,8 @@ export default function Ueber({ members, faqs }: Props) {
                 href="#values"
                 className="flex items-center justify-center gap-1 font-bold text-blue-accent hover:opacity-80"
               >
-                <span>
-                  <Arrow className="text-2xl" />
-                  mehr
-                </span>
+                <Arrow className="text-2xl" />
+                mehr
               </Link>
             </div>
             <div className="absolute right-0 bottom-0 -mb-10 -mr-6 w-[150px]">
