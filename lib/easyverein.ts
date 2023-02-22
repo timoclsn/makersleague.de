@@ -72,9 +72,7 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
       }
 
       const show =
-        customField(customFields, customFieldNames.show)?.value === 'True'
-          ? true
-          : false;
+        customField(customFields, customFieldNames.show)?.value === 'True';
 
       if (!show) {
         console.log(`Not showing ${name} because they don't want to be shown`);
