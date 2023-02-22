@@ -125,5 +125,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       otherMembers,
       slug: params?.slug,
     },
+    revalidate: 60,
   };
 };

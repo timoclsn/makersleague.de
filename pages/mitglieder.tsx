@@ -30,5 +30,10 @@ export default function MembersPage({ members }: Props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const members = await getMemberInfos();
-  return { props: { members } };
+  return {
+    props: {
+      members,
+    },
+    revalidate: 60,
+  };
 };
