@@ -108,7 +108,7 @@ export async function getStaticPaths() {
     paths: members.map((member) => ({
       params: { slug: member.slug },
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 
