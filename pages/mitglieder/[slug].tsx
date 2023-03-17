@@ -35,7 +35,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
             <h1 className="mb-2 text-2xl font-bold">{member.name}</h1>
             <h2 className="mb-10 text-2xl opacity-60">{member.slogan}</h2>
 
-            <h3 className="mb-2 font-bold">Meinen Superkräfte:</h3>
+            <h3 className="mb-2 font-bold">Meine Superkräfte:</h3>
             <ul className="mb-8 ml-5 list-disc opacity-80">
               {member.superPowers.map((superPower, idx) => (
                 <li key={idx}>{superPower}</li>
