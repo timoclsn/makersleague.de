@@ -1,37 +1,50 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-import { getMembers, Member, setApiToken } from 'easyverein';
+import { getMembers, setApiToken } from 'easyverein';
 import kebabCase from 'lodash/kebabCase';
 import trim from 'lodash/trim';
+import z from 'zod';
 
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
 const MEMBERS_CACHE_PATH = join(__dirname, '.members');
 
 setApiToken(easyvereinToken);
 
-interface CustomField {
-  value: string;
-  customField: {
-    name: string;
-  };
-}
+type SuperPowers = z.infer<typeof superPowersSchema>;
+const superPowersSchema = z.tuple([z.string(), z.string(), z.string()]);
 
-type MemberWithCustomFields = Member & { customFields: CustomField[] | null };
+export type WebsiteMember = z.infer<typeof websiteMemberSchema>;
+const websiteMemberSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  firstName: z.string(),
+  familyName: z.string(),
+  profilePicture: z.string(),
+  slogan: z.string(),
+  superPowers: superPowersSchema,
+  about: z.string().nullable(),
+  slug: z.string(),
+});
 
-type SuperPowers = [string, string, string];
+type CustomField = z.infer<typeof customFieldSchema>;
+const customFieldSchema = z.object({
+  value: z.string(),
+    customField: z.object({
+      name: z.string(),
+    }),
+});
 
-export interface WebsiteMember {
-  id: number;
-  name: string;
-  firstName: string;
-  familyName: string;
-  profilePicture: string;
-  slogan: string;
-  superPowers: SuperPowers;
-  about: string | null;
-  slug: string;
-}
+export const memberSchema = z.object({
+   id: z.number(),
+   _profilePicture: z.string().optional(),
+   contactDetails: z.object({
+    name: z.string(),
+    firstName: z.string(),
+    familyName: z.string(),
+   }),
+   customFields: z.array(customFieldSchema).nullable()
+});
 
 const customFieldNames = {
   show: 'Auf Website anzeigen',
@@ -43,23 +56,18 @@ const customFieldNames = {
 } as const;
 
 export async function getMemberInfos(): Promise<WebsiteMember[]> {
-  let cachedData: WebsiteMember[] = [];
-
+  // Cache handling
   try {
-    cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, 'utf8'));
+    const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, 'utf8'));
+    return z.array(websiteMemberSchema).nonempty().parse(cachedData);
   } catch (error) {
     console.log('Member cache not initialized');
   }
 
-  if (cachedData.length > 0) {
-    return cachedData;
-  }
-
-  const apiMembers = (await getMembers(
-    '{id,_profilePicture,emailOrUserName,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}'
-  )) as unknown as MemberWithCustomFields[];
-
-  console.log(apiMembers);
+  const result = (await getMembers(
+    '{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}'
+  ));
+  const apiMembers = z.array(memberSchema).parse(result);
 
   const websiteMembers = apiMembers
     .filter((apiMember) => {
