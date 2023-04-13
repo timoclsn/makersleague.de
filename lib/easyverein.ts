@@ -6,7 +6,7 @@ import kebabCase from 'lodash/kebabCase';
 import trim from 'lodash/trim';
 import z from 'zod';
 
-const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
+const easyvereinToken = z.string().parse(process.env.EASYVEREIN_TOKEN);
 const MEMBERS_CACHE_PATH = join(__dirname, '.members');
 
 setApiToken(easyvereinToken);
