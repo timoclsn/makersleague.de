@@ -56,8 +56,10 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
   }
 
   const apiMembers = (await getMembers(
-    '{id,_profilePicture,email,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}'
+    '{id,_profilePicture,emailOrUserName,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}'
   )) as unknown as MemberWithCustomFields[];
+
+  console.log(apiMembers);
 
   const websiteMembers = apiMembers
     .filter((apiMember) => {
