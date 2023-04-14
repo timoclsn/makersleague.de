@@ -30,6 +30,7 @@ const button = cva(
         pink: [colorMap.pink.bg, colorMap.pink.text],
         green: [colorMap.green.bg, colorMap.green.text],
         sand: [colorMap.sand.bg, colorMap.sand.text],
+        dark: [colorMap.dark.bg, colorMap.dark.text],
       },
     },
     compoundVariants: [{ variant: 'link', class: '!bg-[transparent]' }],

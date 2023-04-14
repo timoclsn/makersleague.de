@@ -19,4 +19,8 @@ export const colorMap = {
     text: 'text-dark',
     bg: 'bg-sand',
   },
+  dark: {
+    text: 'text-light',
+    bg: 'bg-dark',
+  },
 } as const;
