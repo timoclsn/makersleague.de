@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
-import { Heart, Storm } from 'icons';
+import { Arrow, Heart, Storm } from 'icons';
+import { Button } from './Button';
 
 export function FitSection() {
   return (
@@ -11,7 +12,7 @@ export function FitSection() {
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         Finde heraus, ob wir zusammen passen!
       </p>
-      <div className="mb-32 flex flex-col gap-14 md:flex-row">
+      <div className="mb-10 flex flex-col gap-14 md:flex-row">
         <div>
           <div className="mb-2 flex items-center gap-2 ">
             <Heart className="text-2xl" />
@@ -50,6 +51,19 @@ export function FitSection() {
             <li>du forderst, aber nichts beitragen möchtest</li>
           </ul>
         </div>
+      </div>
+      <div className="mb-40 flex justify-center">
+        <Button
+          as="a"
+          color="dark"
+          href="https://form.typeform.com/to/wg4UO6p8"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-center"
+        >
+          <Arrow className="text-2xl" />
+          Zum Test
+        </Button>
       </div>
       <div className="absolute left-[calc(50%-150px)] bottom-0 -mb-8 w-[300px] md:left-[calc(50%-300px)] md:-mb-16 md:w-[600px]">
         <Image
