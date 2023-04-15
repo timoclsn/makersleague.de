@@ -62,7 +62,7 @@ export function FitSection() {
           className="text-center"
         >
           <Arrow className="text-2xl" />
-          Zum Test
+          Jetzt bewerben
         </Button>
       </div>
       <div className="absolute left-[calc(50%-150px)] bottom-0 -mb-8 w-[300px] md:left-[calc(50%-300px)] md:-mb-16 md:w-[600px]">
