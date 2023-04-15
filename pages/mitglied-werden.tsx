@@ -26,7 +26,7 @@ export default function Signup({ faqs }: Props) {
         </h1>
         <h2 className="mb-11 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
           Du möchtest Teil unseres Macher*innen Netzwerks werden? Dann findest
-          du hier alle wichtigen Infos und den Link zur Anmedung!
+          du hier alle wichtigen Infos und den Link zur Bewerbung!
         </h2>
         <ButtonSection />
       </section>
@@ -35,16 +35,18 @@ export default function Signup({ faqs }: Props) {
       <ValuesSection />
       <section className="space-y-12">
         <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
-          Klingt gut? Dann fülle unseren Mitgliedsantrag aus! Anschließend
-          bekommst du weitere Informationen zum Aufnahmeprozess per E-Mail.
+          Klingt gut? Dann fülle unsere Bewerbung aus! Anschließend bekommst du
+          weitere Informationen zum Aufnahmeprozess per E-Mail.
         </h2>
         <Button
           as="a"
           color="pink"
-          href="https://easyverein.com/public/ML/applicationform/"
+          href="https://form.typeform.com/to/wg4UO6p8"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <HeartPlus className="text-2xl" />
-          Zum Mietgliedsantrag
+          Jetzt bewerben
         </Button>
       </section>
     </Page>

@@ -6,9 +6,14 @@ import { Button } from './Button';
 export function ButtonSection() {
   return (
     <section className="spaxe-x-0 flex flex-col items-start space-y-6 md:flex-row md:items-center md:space-y-0 md:space-x-9">
-      <Button as="a" href="https://easyverein.com/public/ML/applicationform/">
+      <Button
+        as="a"
+        href="https://form.typeform.com/to/wg4UO6p8"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <HeartPlus className="text-2xl" />
-        Mitglied werden
+        Jetzt bewerben
       </Button>
       <Link href="#faqs" passHref legacyBehavior>
         <Button as="a" variant="link">
@@ -28,7 +33,11 @@ export function ButtonSection() {
           Satzung
         </Button>
       </Link>
-      <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf" passHref legacyBehavior>
+      <Link
+        href="/docs/Makers_League_eV_Beitragsordnung.pdf"
+        passHref
+        legacyBehavior
+      >
         <Button as="a" variant="link">
           <DocumentInfo className="text-2xl" />
           Beitragsordnung

@@ -34,7 +34,7 @@ export function Navigation({ expanded }: Props) {
         />
         <NavItem
           title="Mitglied werden"
-          subtitle="Hier geht es direkt zum Anmeldeformular"
+          subtitle="Hier geht es direkt zur Bewerbung"
           Icon={HeartPlus}
           color="green"
           expanded={expanded}

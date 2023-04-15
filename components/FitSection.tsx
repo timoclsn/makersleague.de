@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { Arrow, Heart, Storm } from 'icons';
+import { Heart, HeartPlus, Storm } from 'icons';
 import { Button } from './Button';
 
 export function FitSection() {
@@ -61,7 +61,7 @@ export function FitSection() {
           rel="noopener noreferrer"
           className="text-center"
         >
-          <Arrow className="text-2xl" />
+          <HeartPlus className="text-2xl" />
           Jetzt bewerben
         </Button>
       </div>
