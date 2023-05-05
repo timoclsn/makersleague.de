@@ -2,6 +2,7 @@
   "name": "makersleague-de",
   "private": true,
   "scripts": {
+    "postinstall": "contentlayer build",
     "dev": "next dev",
     "build": "next build",
     "postbuild": "npm run generate-sitemap",
