@@ -1,5 +1,4 @@
 import type { GetStaticProps } from 'next';
-
 import { Page } from '../components/Page';
 import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
 import { Members } from 'components/Members';

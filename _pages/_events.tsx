@@ -1,6 +1,5 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-
 import { Button } from '../components/Button';
 import { Page } from '../components/Page';
 import { Profile, Calendar, Watch, Arrow, Location } from 'icons';

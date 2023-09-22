@@ -8,25 +8,39 @@ const nextConfig = {
     domains: ['easyverein.com'],
   },
   webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            icon: true,
-            typescript: true,
-            svgo: true,
-            prettier: true,
-            replaceAttrValues: {
-              '#000': 'currentColor',
-              '#101F18': 'currentColor',
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.('.svg'),
+    );
+
+    config.module.rules.push(
+      // Reapply the existing rule, but only for svg imports ending in ?url
+      {
+        ...fileLoaderRule,
+        test: /\.svg$/i,
+        resourceQuery: /url/, // *.svg?url
+      },
+      // Convert all other *.svg imports to React components
+      {
+        test: /\.svg$/i,
+        issuer: fileLoaderRule.issuer,
+        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              icon: true,
+              typescript: true,
+              svgo: true,
+              prettier: true,
+              replaceAttrValues: {
+                '#000': 'currentColor',
+                '#101F18': 'currentColor',
+              },
             },
           },
-        },
-      ],
-    });
+        ],
+      },
+    );
 
     return config;
   },

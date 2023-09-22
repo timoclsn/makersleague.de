@@ -1,8 +1,5 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-
-import { Book, Calendar, HeartPlus, Icon, MakersLeague } from 'icons';
-import { colorMap } from './utils';
+import { Book, Calendar, HeartPlus, MakersLeague } from 'icons';
+import { NavItem } from './NavItem';
 
 interface Props {
   expanded?: boolean;
@@ -50,54 +47,5 @@ export function Navigation({ expanded }: Props) {
         />
       </ul>
     </nav>
-  );
-}
-
-interface NavItemProps {
-  title: string;
-  subtitle: string;
-  color?: keyof typeof colorMap;
-  Icon: Icon;
-  expanded?: boolean;
-  href: string;
-}
-
-function NavItem({
-  title,
-  subtitle,
-  color = 'blue',
-  Icon,
-  expanded,
-  href,
-}: NavItemProps) {
-  const router = useRouter();
-  return (
-    <li
-      className={`w-1/2 xl:h-1/2 group ${colorMap[color].bg} ${colorMap[color].text}`}
-    >
-      <Link href={href}>
-        <div className="h-full w-full gap-12 p-6 flex flex-col justify-between">
-          <Icon className={`${colorMap[color].text} text-[24px]`} />
-          <div
-            className={`flex group-hover:opacity-80 ${
-              expanded ? 'flex-col-reverse' : 'xl:writing-vertical flex-col'
-            }`}
-          >
-            <p
-              className={`text-2lg font-bold${
-                router.pathname.includes(href) && ' underline'
-              }`}
-            >
-              {title}
-            </p>
-            {expanded && (
-              <span className="mb-4 text-sm opacity-80 md:text-base">
-                {subtitle}
-              </span>
-            )}
-          </div>
-        </div>
-      </Link>
-    </li>
   );
 }

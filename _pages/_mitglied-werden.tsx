@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-
 import { Button } from 'components/Button';
 import { ButtonSection } from 'components/ButtonSection';
 import { FitSection } from 'components/FitSection';

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { Check, DocumentInfo, HeartPlus, Question, Clipboard } from 'icons';
 import { Button } from './Button';
 

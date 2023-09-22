@@ -1,6 +1,5 @@
 import { allContentPages, ContentPage } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-
 import { GetStaticProps } from 'next';
 import { Page } from 'components/Page';
 
@@ -26,7 +25,7 @@ export default function Datenschutzerklaerung({ content }: Props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const content = allContentPages.find(
-    (page) => page.title === 'Datenschutzerklärung'
+    (page) => page.title === 'Datenschutzerklärung',
   );
   return { props: { content } };
 };

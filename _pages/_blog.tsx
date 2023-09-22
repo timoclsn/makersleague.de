@@ -2,10 +2,8 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { pick } from 'contentlayer/client';
 import { allBlogPosts, BlogPost } from 'contentlayer/generated';
-
 import { Button } from '../components/Button';
 import { Page } from '../components/Page';
-
 import { Profile, Watch, Calendar, Arrow } from 'icons';
 
 interface Props {
@@ -66,11 +64,11 @@ export const getStaticProps: GetStaticProps = () => {
         'readingTime',
         'author',
         'publishedAtFormatted',
-      ])
+      ]),
     )
     .sort(
       (a, b) =>
-        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
     );
 
   return { props: { posts } };

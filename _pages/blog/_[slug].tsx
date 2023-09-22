@@ -1,7 +1,6 @@
 import type { GetStaticProps } from 'next';
 import { allBlogPosts, BlogPost } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-
 import { Page } from '../../components/Page';
 import { Calendar, Profile, Watch } from 'icons';
 
