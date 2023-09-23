@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? "";
 
 export async function GET(request: Request) {
