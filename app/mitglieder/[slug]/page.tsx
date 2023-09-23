@@ -1,12 +1,12 @@
 import { Button } from 'components/Button';
 import { Members } from 'components/Members';
 import { Arrow, HeartPlus } from 'icons';
-import { getMemberInfos } from 'lib/easyverein';
+import { getMemberInfosCached } from 'lib/easyverein';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export const generateStaticParams = async () => {
-  const members = await getMemberInfos();
+  const members = await getMemberInfosCached();
 
   return members.map((member) => ({
     slug: member.slug,
@@ -21,7 +21,7 @@ interface Props {
 
 const MemberPage = async ({ params }: Props) => {
   const { slug } = params;
-  const allMembers = await getMemberInfos();
+  const allMembers = await getMemberInfosCached();
   const member = allMembers.find((member) => member.slug === slug)!;
   const otherMembers = allMembers
     .filter((member) => member.slug !== slug)

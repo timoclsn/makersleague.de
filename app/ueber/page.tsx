@@ -5,12 +5,12 @@ import { MembersSection } from 'components/MembersSection';
 import { ValuesSection } from 'components/ValuesSection';
 import { allFaqs } from 'contentlayer/generated';
 import { Arrow } from 'icons';
-import { getMemberInfos } from 'lib/easyverein';
+import { getMemberInfosCached } from 'lib/easyverein';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const UeberPage = async () => {
-  const allMembers = await getMemberInfos();
+  const allMembers = await getMemberInfosCached();
   const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
   const faqs = allFaqs.filter((faq) => faq.preview);
   return (

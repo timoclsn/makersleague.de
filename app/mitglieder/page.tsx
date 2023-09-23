@@ -1,8 +1,8 @@
 import { Members } from 'components/Members';
-import { getMemberInfos } from 'lib/easyverein';
+import { getMemberInfosCached } from 'lib/easyverein';
 
 const MembersPage = async () => {
-  const members = await getMemberInfos();
+  const members = await getMemberInfosCached();
   return (
     <section>
       <h1 className="mb-6 text-xl font-bold md:text-5xl">Unsere Mitglieder</h1>
