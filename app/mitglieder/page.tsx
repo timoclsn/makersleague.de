@@ -1,10 +1,10 @@
-import { Members } from 'components/Members';
-import { getMemberInfosCached } from 'lib/easyverein';
-import { Metadata } from 'next';
+import { Members } from "components/Members";
+import { getMemberInfosCached } from "lib/easyverein";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Mitglieder',
-  description: 'Makers League Mitglieder',
+  title: "Mitglieder",
+  description: "Makers League Mitglieder",
 };
 
 const MembersPage = async () => {

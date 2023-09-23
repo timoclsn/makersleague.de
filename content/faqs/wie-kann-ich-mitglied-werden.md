@@ -1,5 +1,5 @@
 ---
-question: 'Wie kann ich Mitglied werden?'
+question: "Wie kann ich Mitglied werden?"
 preview: false
 ---
 

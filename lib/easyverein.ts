@@ -1,9 +1,9 @@
-import { getMembers, setApiToken } from 'easyverein';
-import kebabCase from 'lodash/kebabCase';
-import trim from 'lodash/trim';
-import { unstable_cache as nextCache } from 'next/cache';
-import { cache as reactCache } from 'react';
-import z from 'zod';
+import { getMembers, setApiToken } from "easyverein";
+import kebabCase from "lodash/kebabCase";
+import trim from "lodash/trim";
+import { unstable_cache as nextCache } from "next/cache";
+import { cache as reactCache } from "react";
+import z from "zod";
 
 const easyvereinToken = z.string().parse(process.env.EASYVEREIN_TOKEN);
 const environment = z.string().parse(process.env.NODE_ENV);
@@ -46,17 +46,17 @@ export const memberSchema = z.object({
 });
 
 const customFieldNames = {
-  show: 'Auf Website anzeigen',
-  slogan: 'Profil-Slogan',
-  superPower1: 'Meine Superkraft 1',
-  superPower2: 'Meine Superkraft 2',
-  superPower3: 'Meine Superkraft 3',
-  about: 'Über mich',
+  show: "Auf Website anzeigen",
+  slogan: "Profil-Slogan",
+  superPower1: "Meine Superkraft 1",
+  superPower2: "Meine Superkraft 2",
+  superPower3: "Meine Superkraft 3",
+  about: "Über mich",
 } as const;
 
 const getMemberInfos = async (): Promise<WebsiteMember[]> => {
   const result = await getMembers(
-    '{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}',
+    "{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}",
   );
   const apiMembers = z.array(memberSchema).parse(result);
 
@@ -66,7 +66,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       const customFields = apiMember.customFields;
 
       if (!customFields) {
-        if (environment === 'development') {
+        if (environment === "development") {
           console.log(
             `Not showing ${name} because they don't have any custom fields`,
           );
@@ -75,10 +75,10 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       }
 
       const show =
-        customField(customFields, customFieldNames.show)?.value === 'True';
+        customField(customFields, customFieldNames.show)?.value === "True";
 
       if (!show) {
-        if (environment === 'development') {
+        if (environment === "development") {
           console.log(
             `Not showing ${name} because they don't want to be shown`,
           );
@@ -89,7 +89,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       const profilePicture = apiMember._profilePicture;
 
       if (!profilePicture) {
-        if (environment === 'development') {
+        if (environment === "development") {
           console.log(
             `Not showing ${name} because they don't have a profile picture`,
           );
@@ -105,7 +105,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       ];
 
       if (!slogan || !superPowers[0] || !superPowers[1] || !superPowers[2]) {
-        if (environment === 'development') {
+        if (environment === "development") {
           console.log(
             `Not showing ${name} because they don't have a slogan or super powers`,
           );
@@ -153,7 +153,7 @@ const customField = (customFields: CustomField[], name: string) =>
   customFields?.find((customField) => customField.customField.name === name);
 
 export const getMemberInfosCached = reactCache(async () => {
-  const tag = 'members';
+  const tag = "members";
   return await nextCache(getMemberInfos, [tag], {
     revalidate: 60,
     tags: [tag],

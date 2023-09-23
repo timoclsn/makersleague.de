@@ -1,8 +1,8 @@
-import { allBlogPosts } from 'contentlayer/generated';
-import { Calendar, Profile, Watch } from 'icons';
-import { createGenerateMetadata } from 'lib/metadata';
-import { useMDXComponent } from 'next-contentlayer/hooks';
-import { notFound } from 'next/navigation';
+import { allBlogPosts } from "contentlayer/generated";
+import { Calendar, Profile, Watch } from "icons";
+import { createGenerateMetadata } from "lib/metadata";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
   const { slug } = params;

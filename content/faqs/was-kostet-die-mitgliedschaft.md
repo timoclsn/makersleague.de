@@ -1,5 +1,5 @@
 ---
-question: 'Was kostet die Mitgliedschaft?'
+question: "Was kostet die Mitgliedschaft?"
 preview: true
 ---
 

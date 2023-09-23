@@ -1,5 +1,5 @@
 ---
-question: 'Was ist die Makers League?'
+question: "Was ist die Makers League?"
 preview: true
 ---
 

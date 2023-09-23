@@ -1,9 +1,9 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Faq } from 'contentlayer/generated';
-import { Arrow } from 'icons';
-import { Button } from './Button';
-import { Faqs } from './Faqs';
+import { Faq } from "contentlayer/generated";
+import { Arrow } from "icons";
+import { Button } from "./Button";
+import { Faqs } from "./Faqs";
 
 interface Props {
   faqs: Faq[];

@@ -1,5 +1,5 @@
 ---
-question: 'Was ist das Makers Inn?'
+question: "Was ist das Makers Inn?"
 preview: false
 ---
 

@@ -1,4 +1,4 @@
-import { Faq } from 'contentlayer/generated';
+import { Faq } from "contentlayer/generated";
 
 interface Props {
   faqs: Faq[];

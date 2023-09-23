@@ -1,5 +1,5 @@
-import { Instagram } from 'icons';
-import Link from 'next/link';
+import { Instagram } from "icons";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -12,19 +12,13 @@ export function Footer() {
           </a>
         </li>
         <li className="hover:opacity-80">
-          <Link href="/impressum">
-            Impressum
-          </Link>
+          <Link href="/impressum">Impressum</Link>
         </li>
         <li className="hover:opacity-80">
-          <Link href="/datenschutzerklaerung">
-            Datenschutzerklärung
-          </Link>
+          <Link href="/datenschutzerklaerung">Datenschutzerklärung</Link>
         </li>
         <li className="hover:opacity-80">
-          <Link href="/docs/Makers_League_eV_Satzung.pdf">
-            Satzung
-          </Link>
+          <Link href="/docs/Makers_League_eV_Satzung.pdf">Satzung</Link>
         </li>
         <li className="hover:opacity-80">
           <Link href="/docs/Makers_League_eV_Beitragsordnung.pdf">

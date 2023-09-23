@@ -1,11 +1,11 @@
-import { Button } from 'components/Button';
-import { Members } from 'components/Members';
-import { Arrow, HeartPlus } from 'icons';
-import { getMemberInfosCached } from 'lib/easyverein';
-import { createGenerateMetadata } from 'lib/metadata';
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { Button } from "components/Button";
+import { Members } from "components/Members";
+import { Arrow, HeartPlus } from "icons";
+import { getMemberInfosCached } from "lib/easyverein";
+import { createGenerateMetadata } from "lib/metadata";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
   const { slug } = params;

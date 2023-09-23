@@ -1,5 +1,5 @@
 ---
-question: 'Warum muss ich ein Team im Anmeldeformular auswählen?'
+question: "Warum muss ich ein Team im Anmeldeformular auswählen?"
 preview: false
 ---
 

@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
-const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? '';
+const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? "";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const url = searchParams.get('url');
+  const url = searchParams.get("url");
 
   if (!url) {
     return new Response(null, {
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
   const arraybuffer = await response.arrayBuffer();
   const byteArrays = new Array(arraybuffer);
-  const blob = new Blob(byteArrays, { type: 'image/png' });
+  const blob = new Blob(byteArrays, { type: "image/png" });
 
   return new Response(blob);
 }

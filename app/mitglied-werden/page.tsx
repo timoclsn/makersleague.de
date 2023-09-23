@@ -1,15 +1,15 @@
-import { Button } from 'components/Button';
-import { ButtonSection } from 'components/ButtonSection';
-import { FaqsSection } from 'components/FaqsSection';
-import { FitSection } from 'components/FitSection';
-import { ValuesSection } from 'components/ValuesSection';
-import { allFaqs } from 'contentlayer/generated';
-import { HeartPlus } from 'icons';
-import { Metadata } from 'next';
+import { Button } from "components/Button";
+import { ButtonSection } from "components/ButtonSection";
+import { FaqsSection } from "components/FaqsSection";
+import { FitSection } from "components/FitSection";
+import { ValuesSection } from "components/ValuesSection";
+import { allFaqs } from "contentlayer/generated";
+import { HeartPlus } from "icons";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Mitglied werden',
-  description: 'Makers League Mitglied werden',
+  title: "Mitglied werden",
+  description: "Makers League Mitglied werden",
 };
 
 const BecomeMemberPage = () => {

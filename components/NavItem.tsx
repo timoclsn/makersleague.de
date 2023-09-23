@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Icon } from 'icons';
-import { usePathname } from 'next/navigation';
-import { colorMap } from './utils';
+import { Icon } from "icons";
+import { usePathname } from "next/navigation";
+import { colorMap } from "./utils";
 
 interface NavItemProps {
   title: string;
@@ -18,7 +18,7 @@ interface NavItemProps {
 export const NavItem = ({
   title,
   subtitle,
-  color = 'blue',
+  color = "blue",
   Icon,
   expanded,
   href,
@@ -33,12 +33,12 @@ export const NavItem = ({
           <Icon className={`${colorMap[color].text} text-[24px]`} />
           <div
             className={`flex group-hover:opacity-80 ${
-              expanded ? 'flex-col-reverse' : 'xl:writing-vertical flex-col'
+              expanded ? "flex-col-reverse" : "xl:writing-vertical flex-col"
             }`}
           >
             <p
               className={`text-2lg font-bold${
-                pathname?.includes(href) && ' underline'
+                pathname?.includes(href) && " underline"
               }`}
             >
               {title}

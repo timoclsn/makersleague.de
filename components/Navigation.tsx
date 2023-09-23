@@ -1,5 +1,5 @@
-import { Book, Calendar, HeartPlus, MakersLeague } from 'icons';
-import { NavItem } from './NavItem';
+import { Book, Calendar, HeartPlus, MakersLeague } from "icons";
+import { NavItem } from "./NavItem";
 
 interface Props {
   expanded?: boolean;
@@ -10,7 +10,7 @@ export function Navigation({ expanded }: Props) {
     <nav className="bg-dark">
       <ul
         className={`${
-          expanded ? 'xl:w-[640px]' : 'xl:w-[160px]'
+          expanded ? "xl:w-[640px]" : "xl:w-[160px]"
         } sticky top-0 flex w-full flex-wrap xl:h-screen`}
       >
         <NavItem

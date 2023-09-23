@@ -1,18 +1,18 @@
-import { ButtonSection } from 'components/ButtonSection';
-import { FaqsSection } from 'components/FaqsSection';
-import { FitSection } from 'components/FitSection';
-import { MembersSection } from 'components/MembersSection';
-import { ValuesSection } from 'components/ValuesSection';
-import { allFaqs } from 'contentlayer/generated';
-import { Arrow } from 'icons';
-import { getMemberInfosCached } from 'lib/easyverein';
-import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
+import { ButtonSection } from "components/ButtonSection";
+import { FaqsSection } from "components/FaqsSection";
+import { FitSection } from "components/FitSection";
+import { MembersSection } from "components/MembersSection";
+import { ValuesSection } from "components/ValuesSection";
+import { allFaqs } from "contentlayer/generated";
+import { Arrow } from "icons";
+import { getMemberInfosCached } from "lib/easyverein";
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Über uns',
-  description: 'Makers League über uns',
+  title: "Über uns",
+  description: "Makers League über uns",
 };
 
 const UeberPage = async () => {

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Logo, Profile } from 'icons';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
-import { Navigation } from './Navigation';
+import { Logo, Profile } from "icons";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
+import { Navigation } from "./Navigation";
 
 interface Props {
   children: ReactNode;
@@ -12,13 +12,13 @@ interface Props {
 
 export const Layout = ({ children }: Props) => {
   const pathname = usePathname();
-  const expandedNav = pathname === '/';
+  const expandedNav = pathname === "/";
   return (
     <div className="flex flex-1 flex-col xl:flex-row">
       <Navigation expanded={expandedNav} />
       <main
         className={`bg-yellow-900 mx-auto flex w-full flex-1 flex-col p-4 md:p-10 xl:order-first ${
-          expandedNav ? 'order-first' : 'order-last'
+          expandedNav ? "order-first" : "order-last"
         }`}
       >
         <header className="mb-16 flex items-start justify-between md:mb-32">

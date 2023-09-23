@@ -1,5 +1,5 @@
 ---
-question: 'Gibt es eine Möglichkeit den Verein ideell oder finanziell zu unterstützen?'
+question: "Gibt es eine Möglichkeit den Verein ideell oder finanziell zu unterstützen?"
 preview: false
 ---
 

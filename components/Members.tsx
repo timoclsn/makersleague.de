@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import { Arrow } from 'icons';
-import { WebsiteMember } from 'lib/easyverein';
+import { Arrow } from "icons";
+import { WebsiteMember } from "lib/easyverein";
 
 interface Props {
   members: WebsiteMember[];
@@ -14,7 +14,7 @@ export function Members({ members }: Props) {
       {members.map((member, idx) => (
         <li
           className={`${
-            idx === 0 ? 'oder-1' : 'order-last'
+            idx === 0 ? "oder-1" : "order-last"
           } w-[calc(50%-8px)] overflow-hidden border-4 p-4 md:w-[calc(33.33%-22px)]`}
           key={member.id}
         >
@@ -22,7 +22,7 @@ export function Members({ members }: Props) {
             <div className="group flex h-full flex-col items-start">
               <Image
                 src={`/api/get-easyverein-image?url=${encodeURIComponent(
-                  member.profilePicture
+                  member.profilePicture,
                 )}`}
                 alt={member.name}
                 width={700}

@@ -1,19 +1,19 @@
-import { readFileSync, writeFileSync } from 'fs';
-import { globby } from 'globby';
-import prettier from 'prettier';
+import { readFileSync, writeFileSync } from "fs";
+import { globby } from "globby";
+import prettier from "prettier";
 
-import { allBlogPosts } from '../.contentlayer/generated/index.mjs';
+import { allBlogPosts } from "../.contentlayer/generated/index.mjs";
 
 (async () => {
-  const prettierConfig = await prettier.resolveConfig('./.prettierrc');
+  const prettierConfig = await prettier.resolveConfig("./.prettierrc");
 
   const pages = await globby([
-    'pages/**/*tsx',
-    '!pages/_*.tsx',
-    '!pages/404.tsx',
-    '!pages/blog/*.tsx',
-    '!pages/mitglieder/*.tsx',
-    '!pages/api',
+    "pages/**/*tsx",
+    "!pages/_*.tsx",
+    "!pages/404.tsx",
+    "!pages/blog/*.tsx",
+    "!pages/mitglieder/*.tsx",
+    "!pages/api",
   ]);
 
   allBlogPosts.forEach((blogPost) => {
@@ -21,7 +21,7 @@ import { allBlogPosts } from '../.contentlayer/generated/index.mjs';
   });
 
   const members = JSON.parse(
-    readFileSync('./.next/server/chunks/.members', 'utf8')
+    readFileSync("./.next/server/chunks/.members", "utf8"),
   );
   members.forEach((member) => {
     pages.push(`pages/mitglieder/${member.slug}.tsx`);
@@ -32,8 +32,8 @@ import { allBlogPosts } from '../.contentlayer/generated/index.mjs';
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
           ${pages
             .map((page) => {
-              const path = page.replace('pages', '').replace('.tsx', '');
-              const route = path === '/index' ? '' : path;
+              const path = page.replace("pages", "").replace(".tsx", "");
+              const route = path === "/index" ? "" : path;
 
               return `
                 <url>
@@ -41,14 +41,14 @@ import { allBlogPosts } from '../.contentlayer/generated/index.mjs';
                 </url>
               `;
             })
-            .join('')}
+            .join("")}
         </urlset>
     `;
 
   const formatted = prettier.format(sitemap, {
     ...prettierConfig,
-    parser: 'html',
+    parser: "html",
   });
 
-  writeFileSync('./public/sitemap.xml', formatted);
+  writeFileSync("./public/sitemap.xml", formatted);
 })();

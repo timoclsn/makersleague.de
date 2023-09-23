@@ -1,7 +1,7 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import { Heart, HeartPlus, Storm } from 'icons';
-import { Button } from './Button';
+import { Heart, HeartPlus, Storm } from "icons";
+import { Button } from "./Button";
 
 export function FitSection() {
   return (

@@ -1,12 +1,12 @@
-import { Button } from 'components/Button';
-import { Faqs } from 'components/Faqs';
-import { allFaqs } from 'contentlayer/generated';
-import { Arrow } from 'icons';
-import { Metadata } from 'next';
+import { Button } from "components/Button";
+import { Faqs } from "components/Faqs";
+import { allFaqs } from "contentlayer/generated";
+import { Arrow } from "icons";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'FAQs',
-  description: 'Makers League FAQs',
+  title: "FAQs",
+  description: "Makers League FAQs",
 };
 
 const FaqPage = () => {

@@ -1,16 +1,16 @@
-import { allContentPages } from 'contentlayer/generated';
-import { Metadata } from 'next';
-import { useMDXComponent } from 'next-contentlayer/hooks';
-import { notFound } from 'next/navigation';
+import { allContentPages } from "contentlayer/generated";
+import { Metadata } from "next";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: 'Datenschutzerklärung',
-  description: 'Makers League Datenschutzerklärung',
+  title: "Datenschutzerklärung",
+  description: "Makers League Datenschutzerklärung",
 };
 
 const PrivacyPage = () => {
   const content = allContentPages.find(
-    (page) => page.title === 'Datenschutzerklärung',
+    (page) => page.title === "Datenschutzerklärung",
   );
 
   if (!content) {

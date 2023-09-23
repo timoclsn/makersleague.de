@@ -1,5 +1,5 @@
 ---
-question: 'Wer ist bei euch schon Mitglied?'
+question: "Wer ist bei euch schon Mitglied?"
 preview: false
 ---
 
