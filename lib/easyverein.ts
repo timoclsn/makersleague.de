@@ -1,12 +1,15 @@
 import { getMembers, setApiToken } from "easyverein";
+import { readFileSync, writeFileSync } from "fs";
 import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
 import { unstable_cache as nextCache } from "next/cache";
+import { join } from "path";
 import { cache as reactCache } from "react";
 import z from "zod";
 
 const easyvereinToken = z.string().parse(process.env.EASYVEREIN_TOKEN);
 const environment = z.string().parse(process.env.NODE_ENV);
+const MEMBERS_CACHE_PATH = join(__dirname, ".members");
 
 setApiToken(easyvereinToken);
 
@@ -55,8 +58,16 @@ const customFieldNames = {
 } as const;
 
 const getMemberInfos = async (): Promise<WebsiteMember[]> => {
+  // Cache handling
+  try {
+    const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, "utf8"));
+    return z.array(websiteMemberSchema).nonempty().parse(cachedData);
+  } catch (error) {
+    console.log("Member cache not initialized");
+  }
+
   const result = await getMembers(
-    "{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}",
+    "{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}"
   );
   const apiMembers = z.array(memberSchema).parse(result);
 
@@ -68,7 +79,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!customFields) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't have any custom fields`,
+            `Not showing ${name} because they don't have any custom fields`
           );
         }
         return false;
@@ -80,7 +91,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!show) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't want to be shown`,
+            `Not showing ${name} because they don't want to be shown`
           );
         }
         return false;
@@ -91,7 +102,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!profilePicture) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't have a profile picture`,
+            `Not showing ${name} because they don't have a profile picture`
           );
         }
         return false;
@@ -107,7 +118,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!slogan || !superPowers[0] || !superPowers[1] || !superPowers[2]) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't have a slogan or super powers`,
+            `Not showing ${name} because they don't have a slogan or super powers`
           );
         }
         return false;
@@ -145,6 +156,13 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       };
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
+
+  try {
+    writeFileSync(MEMBERS_CACHE_PATH, JSON.stringify(websiteMembers), "utf8");
+  } catch (error) {
+    console.log("ERROR WRITING MEMBERS CACHE TO FILE");
+    console.log(error);
+  }
 
   return websiteMembers;
 };
