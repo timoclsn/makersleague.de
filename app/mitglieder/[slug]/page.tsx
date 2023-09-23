@@ -94,7 +94,6 @@ const MemberPage = async ({ params }: Props) => {
                 alt={member.name}
                 width={300}
                 height={300}
-                unoptimized
               />
             </div>
           </div>
