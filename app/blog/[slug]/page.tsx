@@ -1,7 +1,19 @@
 import { allBlogPosts } from 'contentlayer/generated';
 import { Calendar, Profile, Watch } from 'icons';
+import { createGenerateMetadata } from 'lib/metadata';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
+
+export const generateMetadata = createGenerateMetadata(async ({ params }) => {
+  const { slug } = params;
+  const post = allBlogPosts.find((post) => post.slug === slug);
+  if (!post) return {};
+
+  return {
+    title: post.title,
+    description: post.summary,
+  };
+});
 
 export const generateStaticParams = async () => {
   return allBlogPosts.map((post) => ({

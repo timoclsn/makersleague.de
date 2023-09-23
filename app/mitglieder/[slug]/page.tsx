@@ -2,8 +2,22 @@ import { Button } from 'components/Button';
 import { Members } from 'components/Members';
 import { Arrow, HeartPlus } from 'icons';
 import { getMemberInfosCached } from 'lib/easyverein';
+import { createGenerateMetadata } from 'lib/metadata';
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+export const generateMetadata = createGenerateMetadata(async ({ params }) => {
+  const { slug } = params;
+  const allMembers = await getMemberInfosCached();
+  const member = allMembers.find((member) => member.slug === slug);
+  if (!member) return {};
+
+  return {
+    title: member.name,
+    description: `Mehr Infos über unser Mitgied ${member.name}`,
+  };
+});
 
 export const generateStaticParams = async () => {
   const members = await getMemberInfosCached();
@@ -22,7 +36,10 @@ interface Props {
 const MemberPage = async ({ params }: Props) => {
   const { slug } = params;
   const allMembers = await getMemberInfosCached();
-  const member = allMembers.find((member) => member.slug === slug)!;
+  const member = allMembers.find((member) => member.slug === slug);
+  if (!member) {
+    notFound();
+  }
   const otherMembers = allMembers
     .filter((member) => member.slug !== slug)
     .sort(() => Math.random() - 0.5)

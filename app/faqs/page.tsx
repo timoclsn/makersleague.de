@@ -2,13 +2,15 @@ import { Button } from 'components/Button';
 import { Faqs } from 'components/Faqs';
 import { allFaqs } from 'contentlayer/generated';
 import { Arrow } from 'icons';
-import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'FAQs',
+  description: 'Makers League FAQs',
+};
 
 const FaqPage = () => {
   const faqs = allFaqs.sort((a, b) => a.question.localeCompare(b.question));
-  if (!faqs) {
-    notFound();
-  }
   return (
     <>
       <section>

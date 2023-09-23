@@ -5,8 +5,14 @@ import { FitSection } from 'components/FitSection';
 import { ValuesSection } from 'components/ValuesSection';
 import { allFaqs } from 'contentlayer/generated';
 import { HeartPlus } from 'icons';
+import { Metadata } from 'next';
 
-const MitgliedWerdenPage = () => {
+export const metadata: Metadata = {
+  title: 'Mitglied werden',
+  description: 'Makers League Mitglied werden',
+};
+
+const BecomeMemberPage = () => {
   const faqs = allFaqs.slice(0, 4);
 
   return (
@@ -44,4 +50,4 @@ const MitgliedWerdenPage = () => {
   );
 };
 
-export default MitgliedWerdenPage;
+export default BecomeMemberPage;

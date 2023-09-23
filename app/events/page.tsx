@@ -1,6 +1,12 @@
 import { allEvents } from 'contentlayer/generated';
 import { Arrow, Calendar, Location, Profile, Watch } from 'icons';
+import { Metadata } from 'next';
 import { Button } from '../../components/Button';
+
+export const metadata: Metadata = {
+  title: 'Events',
+  description: 'Makers League Events',
+};
 
 const EventsPage = () => {
   const events = allEvents.sort((a, b) => {

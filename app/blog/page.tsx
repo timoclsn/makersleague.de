@@ -1,8 +1,14 @@
 import { pick } from 'contentlayer/client';
 import { allBlogPosts } from 'contentlayer/generated';
 import { Arrow, Calendar, Profile, Watch } from 'icons';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '../../components/Button';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Makers League Blog',
+};
 
 const BlogPage = () => {
   const posts = allBlogPosts

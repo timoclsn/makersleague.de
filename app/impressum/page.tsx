@@ -1,6 +1,12 @@
 import { allContentPages } from 'contentlayer/generated';
+import { Metadata } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: 'Impressum',
+  description: 'Makers League Impressum',
+};
 
 const ImprintPage = () => {
   const content = allContentPages.find((page) => page.title === 'Impressum');
