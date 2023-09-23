@@ -9,7 +9,7 @@ interface Props {
   faqs: Faq[];
 }
 
-export function FaqsSection({ faqs }: Props) {
+export const FaqsSection = ({ faqs }: Props) => {
   return (
     <section id="faqs">
       <div className="mb-14">
@@ -27,4 +27,4 @@ export function FaqsSection({ faqs }: Props) {
       </Link>
     </section>
   );
-}
+};

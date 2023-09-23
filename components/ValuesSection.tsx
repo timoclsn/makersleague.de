@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export function ValuesSection() {
+export const ValuesSection = () => {
   return (
     <section id="values" className="relative bg-blue p-8">
       <h2 className="mb-2 text-base font-bold md:text-2xl">Unsere Werte</h2>
@@ -58,4 +58,4 @@ export function ValuesSection() {
       </div>
     </section>
   );
-}
+};

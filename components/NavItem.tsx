@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-
 import { Icon } from "icons";
 import { usePathname } from "next/navigation";
 import { colorMap } from "./utils";

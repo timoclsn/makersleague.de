@@ -4,7 +4,7 @@ interface Props {
   faqs: Faq[];
 }
 
-export function Faqs({ faqs }: Props) {
+export const Faqs = ({ faqs }: Props) => {
   return (
     <div className="flex flex-col flex-wrap gap-14 md:flex-row">
       {faqs.map((faq) => (
@@ -18,4 +18,4 @@ export function Faqs({ faqs }: Props) {
       ))}
     </div>
   );
-}
+};

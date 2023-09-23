@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Check, DocumentInfo, HeartPlus, Question, Clipboard } from "icons";
 import { Button } from "./Button";
 
-export function ButtonSection() {
+export const ButtonSection = () => {
   return (
     <section className="spaxe-x-0 flex flex-col items-start space-y-6 md:flex-row md:items-center md:space-y-0 md:space-x-9">
       <Button
@@ -44,4 +44,4 @@ export function ButtonSection() {
       </Link>
     </section>
   );
-}
+};

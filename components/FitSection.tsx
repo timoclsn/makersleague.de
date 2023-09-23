@@ -1,9 +1,8 @@
 import Image from "next/image";
-
 import { Heart, HeartPlus, Storm } from "icons";
 import { Button } from "./Button";
 
-export function FitSection() {
+export const FitSection = () => {
   return (
     <section className="relative bg-sand p-8 last:mb-16" id="fit">
       <h2 className="mb-2 text-base font-bold md:text-2xl">
@@ -75,4 +74,4 @@ export function FitSection() {
       </div>
     </section>
   );
-}
+};

@@ -5,7 +5,7 @@ interface Props {
   expanded?: boolean;
 }
 
-export function Navigation({ expanded }: Props) {
+export const Navigation = ({ expanded }: Props) => {
   return (
     <nav className="bg-dark">
       <ul
@@ -48,4 +48,4 @@ export function Navigation({ expanded }: Props) {
       </ul>
     </nav>
   );
-}
+};

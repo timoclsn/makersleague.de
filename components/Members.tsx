@@ -9,7 +9,7 @@ interface Props {
   members: WebsiteMember[];
 }
 
-export function Members({ members }: Props) {
+export const Members = ({ members }: Props) => {
   return (
     <ul className="flex flex-wrap gap-4 md:gap-8">
       {members.map((member, idx) => (
@@ -68,4 +68,4 @@ export function Members({ members }: Props) {
       </li>
     </ul>
   );
-}
+};
