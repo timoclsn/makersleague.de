@@ -5,7 +5,6 @@
     "postinstall": "contentlayer build",
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "npm run generate-sitemap",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,css,md,json}'",

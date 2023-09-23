@@ -8,16 +8,16 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
+        hostname: "localhost",
+        port: "3000",
+      },
+      {
         protocol: "https",
-        hostname: "easyverein.com",
+        hostname: "makersleague.de",
       },
       {
         protocol: "https",
         hostname: "**.vercel.app",
-      },
-      {
-        hostname: "localhost",
-        port: "3000",
       },
     ],
   },
