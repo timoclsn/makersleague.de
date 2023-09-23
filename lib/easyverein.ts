@@ -2,7 +2,6 @@ import { getMembers, setApiToken } from "easyverein";
 import { readFileSync, writeFileSync } from "fs";
 import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
-import { unstable_cache as nextCache } from "next/cache";
 import { join } from "path";
 import { cache as reactCache } from "react";
 import z from "zod";
@@ -170,10 +169,4 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
 const customField = (customFields: CustomField[], name: string) =>
   customFields?.find((customField) => customField.customField.name === name);
 
-export const getMemberInfosCached = reactCache(async () => {
-  const tag = "members";
-  return await nextCache(getMemberInfos, [tag], {
-    revalidate: 60,
-    tags: [tag],
-  })();
-});
+export const getMemberInfosCached = reactCache(async () => getMemberInfos());

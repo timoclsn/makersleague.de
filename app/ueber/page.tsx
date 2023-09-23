@@ -10,6 +10,8 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Über uns",
   description: "Makers League über uns",
