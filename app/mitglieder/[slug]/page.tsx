@@ -3,7 +3,6 @@ import { Members } from "components/Members";
 import { Arrow, HeartPlus } from "icons";
 import { getMemberInfosCached } from "lib/easyverein";
 import { createGenerateMetadata } from "lib/metadata";
-import { getBaseUrl } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -89,12 +88,13 @@ const MemberPage = async ({ params }: Props) => {
             </div>
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
               <Image
-                src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
+                src={`/api/get-easyverein-image?url=${encodeURIComponent(
                   member.profilePicture
                 )}`}
                 alt={member.name}
                 width={300}
                 height={300}
+                unoptimized
               />
             </div>
           </div>
