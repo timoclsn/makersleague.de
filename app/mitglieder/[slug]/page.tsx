@@ -18,7 +18,7 @@ export const generateMetadata = createGenerateMetadata(async ({ params }) => {
 
   return {
     title: member.name,
-    description: `Mehr Infos über unser Mitgied ${member.name}`,
+    description: `Mehr Infos über unser Mitglied ${member.name}`,
   };
 });
 
