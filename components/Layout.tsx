@@ -24,6 +24,7 @@ export const Layout = ({ children }: Props) => {
         <header className="mb-16 flex items-start justify-between md:mb-32">
           <Link href="/" className="hover:opacity-80">
             <Logo className="text-[45px]" />
+            <span className="sr-only">Home</span>
           </Link>
           <a
             className="flex items-center justify-center space-x-2 hover:opacity-80"
