@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 export const runtime = "edge";
 
 const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? "";
@@ -7,6 +5,8 @@ const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? "";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("url");
+
+  console.log({ url });
 
   if (!url) {
     return new Response(null, {
@@ -20,6 +20,8 @@ export async function GET(request: Request) {
     },
     next: { revalidate: 60 },
   });
+
+  console.log({ response });
 
   const arraybuffer = await response.arrayBuffer();
   const byteArrays = new Array(arraybuffer);
