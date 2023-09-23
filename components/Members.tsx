@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Arrow } from "icons";
 import { WebsiteMember } from "lib/easyverein";
+import { getBaseUrl } from "lib/utils";
 
 interface Props {
   members: WebsiteMember[];
@@ -21,7 +22,7 @@ export function Members({ members }: Props) {
           <Link href={`/mitglieder/${member.slug}`}>
             <div className="group flex h-full flex-col items-start">
               <Image
-                src={`/api/get-easyverein-image?url=${encodeURIComponent(
+                src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
                   member.profilePicture
                 )}`}
                 alt={member.name}

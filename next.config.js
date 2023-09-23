@@ -6,7 +6,7 @@ const nextConfig = {
   basePath: "",
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["easyverein.com", "localhost", "vercel.com"],
+    domains: ["easyverein.com", "localhost", "vercel.app"],
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) =>
