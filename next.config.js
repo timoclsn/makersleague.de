@@ -5,11 +5,11 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["easyverein.com"],
+    domains: ["easyverein.com", "localhost", "vercel.com"],
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg"),
+      rule.test?.test?.(".svg")
     );
 
     config.module.rules.push(
@@ -39,7 +39,7 @@ const nextConfig = {
             },
           },
         ],
-      },
+      }
     );
 
     return config;

@@ -6,8 +6,6 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("url");
 
-  console.log({ url });
-
   if (!url) {
     return new Response(null, {
       status: 400,
@@ -20,8 +18,6 @@ export async function GET(request: Request) {
     },
     next: { revalidate: 60 },
   });
-
-  console.log({ response });
 
   const arraybuffer = await response.arrayBuffer();
   const byteArrays = new Array(arraybuffer);
