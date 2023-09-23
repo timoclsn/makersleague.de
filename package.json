@@ -15,8 +15,6 @@
     "content": "contentlayer build"
   },
   "dependencies": {
-    "@fontsource-variable/space-grotesk": "^5.0.8",
-    "@fontsource/space-grotesk": "5.0.8",
     "class-variance-authority": "0.7.0",
     "contentlayer": "0.3.4",
     "date-fns": "2.30.0",

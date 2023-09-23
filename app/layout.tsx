@@ -1,7 +1,7 @@
-import "@fontsource-variable/space-grotesk";
 import { Footer } from "components/Footer";
 import { Layout } from "components/Layout";
 import { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { ReactNode } from "react";
 import "../styles/globals.css";
@@ -38,13 +38,18 @@ export const metadata: Metadata = {
   },
 };
 
+const fontSans = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
 interface Props {
   children: ReactNode;
 }
 
 const RootLayout = ({ children }: Props) => {
   return (
-    <html lang="de" className="min-h-screen">
+    <html lang="de" className={`min-h-screen ${fontSans.variable}`}>
       <body className="min-h-screen text-base text-dark">
         <Layout>{children}</Layout>
         <Footer />
