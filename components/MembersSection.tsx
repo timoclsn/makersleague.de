@@ -1,15 +1,14 @@
-import Link from 'next/link';
-
-import { Arrow } from 'icons';
-import { WebsiteMember } from 'lib/easyverein';
-import { Button } from './Button';
-import { Members } from './Members';
+import Link from "next/link";
+import { Arrow } from "icons";
+import { WebsiteMember } from "lib/easyverein";
+import { Button } from "./Button";
+import { Members } from "./Members";
 
 interface Props {
   members: WebsiteMember[];
 }
 
-export function MembersSection({ members }: Props) {
+export const MembersSection = ({ members }: Props) => {
   return (
     <section>
       <div className="mb-14">
@@ -29,4 +28,4 @@ export function MembersSection({ members }: Props) {
       </Link>
     </section>
   );
-}
+};

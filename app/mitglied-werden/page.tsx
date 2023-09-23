@@ -1,25 +1,22 @@
-import { GetStaticProps } from 'next';
+import { Button } from "components/Button";
+import { ButtonSection } from "components/ButtonSection";
+import { FaqsSection } from "components/FaqsSection";
+import { FitSection } from "components/FitSection";
+import { ValuesSection } from "components/ValuesSection";
+import { allFaqs } from "contentlayer/generated";
+import { HeartPlus } from "icons";
+import { Metadata } from "next";
 
-import { Button } from 'components/Button';
-import { ButtonSection } from 'components/ButtonSection';
-import { FitSection } from 'components/FitSection';
-import { Page } from 'components/Page';
-import { ValuesSection } from 'components/ValuesSection';
-import { allFaqs, Faq } from 'contentlayer/generated';
-import { HeartPlus } from 'icons';
-import { FaqsSection } from 'components/FaqsSection';
+export const metadata: Metadata = {
+  title: "Mitglied werden",
+  description: "Makers League Mitglied werden",
+};
 
-interface Props {
-  faqs: Faq[];
-}
+const BecomeMemberPage = () => {
+  const faqs = allFaqs.slice(0, 4);
 
-export default function Signup({ faqs }: Props) {
   return (
-    <Page
-      title="Mitglied werden"
-      description="Erfahre wie man Makers League Mitglied wird"
-      slug="mitglied-werden"
-    >
+    <>
       <section>
         <h1 className="mb-4 text-base opacity-80 md:text-2xl">
           Mitglied werden
@@ -49,11 +46,8 @@ export default function Signup({ faqs }: Props) {
           Jetzt bewerben
         </Button>
       </section>
-    </Page>
+    </>
   );
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const faqs = allFaqs.slice(0, 4);
-  return { props: { faqs } };
 };
+
+export default BecomeMemberPage;

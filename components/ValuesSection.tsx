@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-export function ValuesSection() {
+export const ValuesSection = () => {
   return (
     <section id="values" className="relative bg-blue p-8">
       <h2 className="mb-2 text-base font-bold md:text-2xl">Unsere Werte</h2>
@@ -36,9 +36,9 @@ export function ValuesSection() {
           <h3 className="mb-2 font-bold">Gemeinschaft</h3>
           <p className="opacity-80">
             <span className="font-bold underline">
-              {' '}
+              {" "}
               Wir sind eine Gemeinschaft.
-            </span>{' '}
+            </span>{" "}
             Wir vertrauen einander und nehmen Anteil an Fortschritt und
             Rückschlag gleichermaßen. So zeigen wir, dass Verlass aufeinander
             ist, wenn es Unterstützung braucht, und bieten diese ohne zu zögern
@@ -58,4 +58,4 @@ export function ValuesSection() {
       </div>
     </section>
   );
-}
+};

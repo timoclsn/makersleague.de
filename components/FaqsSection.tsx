@@ -1,15 +1,15 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Faq } from 'contentlayer/generated';
-import { Arrow } from 'icons';
-import { Button } from './Button';
-import { Faqs } from './Faqs';
+import { Faq } from "contentlayer/generated";
+import { Arrow } from "icons";
+import { Button } from "./Button";
+import { Faqs } from "./Faqs";
 
 interface Props {
   faqs: Faq[];
 }
 
-export function FaqsSection({ faqs }: Props) {
+export const FaqsSection = ({ faqs }: Props) => {
   return (
     <section id="faqs">
       <div className="mb-14">
@@ -27,4 +27,4 @@ export function FaqsSection({ faqs }: Props) {
       </Link>
     </section>
   );
-}
+};

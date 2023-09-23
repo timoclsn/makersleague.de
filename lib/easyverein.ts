@@ -1,13 +1,14 @@
-import { readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
-
-import { getMembers, setApiToken } from 'easyverein';
-import kebabCase from 'lodash/kebabCase';
-import trim from 'lodash/trim';
-import z from 'zod';
+import { getMembers, setApiToken } from "easyverein";
+import { readFileSync, writeFileSync } from "fs";
+import kebabCase from "lodash/kebabCase";
+import trim from "lodash/trim";
+import { join } from "path";
+import { cache as reactCache } from "react";
+import z from "zod";
 
 const easyvereinToken = z.string().parse(process.env.EASYVEREIN_TOKEN);
-const MEMBERS_CACHE_PATH = join(__dirname, '.members');
+const environment = z.string().parse(process.env.NODE_ENV);
+const MEMBERS_CACHE_PATH = join(__dirname, ".members");
 
 setApiToken(easyvereinToken);
 
@@ -30,43 +31,43 @@ const websiteMemberSchema = z.object({
 type CustomField = z.infer<typeof customFieldSchema>;
 const customFieldSchema = z.object({
   value: z.string(),
-    customField: z.object({
-      name: z.string(),
-    }),
+  customField: z.object({
+    name: z.string(),
+  }),
 });
 
 export const memberSchema = z.object({
-   id: z.number(),
-   _profilePicture: z.string().optional(),
-   contactDetails: z.object({
+  id: z.number(),
+  _profilePicture: z.string().optional(),
+  contactDetails: z.object({
     name: z.string(),
     firstName: z.string(),
     familyName: z.string(),
-   }),
-   customFields: z.array(customFieldSchema).nullable()
+  }),
+  customFields: z.array(customFieldSchema).nullable(),
 });
 
 const customFieldNames = {
-  show: 'Auf Website anzeigen',
-  slogan: 'Profil-Slogan',
-  superPower1: 'Meine Superkraft 1',
-  superPower2: 'Meine Superkraft 2',
-  superPower3: 'Meine Superkraft 3',
-  about: 'Über mich',
+  show: "Auf Website anzeigen",
+  slogan: "Profil-Slogan",
+  superPower1: "Meine Superkraft 1",
+  superPower2: "Meine Superkraft 2",
+  superPower3: "Meine Superkraft 3",
+  about: "Über mich",
 } as const;
 
-export async function getMemberInfos(): Promise<WebsiteMember[]> {
+const getMemberInfos = async (): Promise<WebsiteMember[]> => {
   // Cache handling
   try {
-    const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, 'utf8'));
+    const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, "utf8"));
     return z.array(websiteMemberSchema).nonempty().parse(cachedData);
   } catch (error) {
-    console.log('Member cache not initialized');
+    console.log("Member cache not initialized");
   }
 
-  const result = (await getMembers(
-    '{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}'
-  ));
+  const result = await getMembers(
+    "{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}"
+  );
   const apiMembers = z.array(memberSchema).parse(result);
 
   const websiteMembers = apiMembers
@@ -75,26 +76,34 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
       const customFields = apiMember.customFields;
 
       if (!customFields) {
-        console.log(
-          `Not showing ${name} because they don't have any custom fields`
-        );
+        if (environment === "development") {
+          console.log(
+            `Not showing ${name} because they don't have any custom fields`
+          );
+        }
         return false;
       }
 
       const show =
-        customField(customFields, customFieldNames.show)?.value === 'True';
+        customField(customFields, customFieldNames.show)?.value === "True";
 
       if (!show) {
-        console.log(`Not showing ${name} because they don't want to be shown`);
+        if (environment === "development") {
+          console.log(
+            `Not showing ${name} because they don't want to be shown`
+          );
+        }
         return false;
       }
 
       const profilePicture = apiMember._profilePicture;
 
       if (!profilePicture) {
-        console.log(
-          `Not showing ${name} because they don't have a profile picture`
-        );
+        if (environment === "development") {
+          console.log(
+            `Not showing ${name} because they don't have a profile picture`
+          );
+        }
         return false;
       }
 
@@ -106,9 +115,11 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
       ];
 
       if (!slogan || !superPowers[0] || !superPowers[1] || !superPowers[2]) {
-        console.log(
-          `Not showing ${name} because they don't have a slogan or super powers`
-        );
+        if (environment === "development") {
+          console.log(
+            `Not showing ${name} because they don't have a slogan or super powers`
+          );
+        }
         return false;
       }
 
@@ -146,14 +157,16 @@ export async function getMemberInfos(): Promise<WebsiteMember[]> {
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
   try {
-    writeFileSync(MEMBERS_CACHE_PATH, JSON.stringify(websiteMembers), 'utf8');
+    writeFileSync(MEMBERS_CACHE_PATH, JSON.stringify(websiteMembers), "utf8");
   } catch (error) {
-    console.log('ERROR WRITING MEMBERS CACHE TO FILE');
+    console.log("ERROR WRITING MEMBERS CACHE TO FILE");
     console.log(error);
   }
 
   return websiteMembers;
-}
+};
 
 const customField = (customFields: CustomField[], name: string) =>
   customFields?.find((customField) => customField.customField.name === name);
+
+export const getMemberInfosCached = reactCache(async () => getMemberInfos());

@@ -1,29 +1,28 @@
-import { GetStaticProps } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
+import { ButtonSection } from "components/ButtonSection";
+import { FaqsSection } from "components/FaqsSection";
+import { FitSection } from "components/FitSection";
+import { MembersSection } from "components/MembersSection";
+import { ValuesSection } from "components/ValuesSection";
+import { allFaqs } from "contentlayer/generated";
+import { Arrow } from "icons";
+import { getMemberInfosCached } from "lib/easyverein";
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
-import { ButtonSection } from 'components/ButtonSection';
-import { FaqsSection } from 'components/FaqsSection';
-import { FitSection } from 'components/FitSection';
-import { MembersSection } from 'components/MembersSection';
-import { ValuesSection } from 'components/ValuesSection';
-import { allFaqs, Faq } from 'contentlayer/generated';
-import { Arrow } from 'icons';
-import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
-import { Page } from '../components/Page';
+export const revalidate = 60;
 
-interface Props {
-  members: WebsiteMember[];
-  faqs: Faq[];
-}
+export const metadata: Metadata = {
+  title: "Über uns",
+  description: "Makers League über uns",
+};
 
-export default function Ueber({ members, faqs }: Props) {
+const UeberPage = async () => {
+  const allMembers = await getMemberInfosCached();
+  const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
+  const faqs = allFaqs.filter((faq) => faq.preview);
   return (
-    <Page
-      title="Über uns"
-      description="Über den Verein Makers League"
-      slug="ueber"
-    >
+    <>
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
         <div className="mb-11 flex flex-col space-y-12 space-x-0 md:flex-row md:space-x-12 md:space-y-0">
@@ -84,19 +83,8 @@ export default function Ueber({ members, faqs }: Props) {
       <ValuesSection />
       <FaqsSection faqs={faqs} />
       <FitSection />
-    </Page>
+    </>
   );
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allMembers = await getMemberInfos();
-  const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
-  const faqs = allFaqs.filter((faq) => faq.preview);
-  return {
-    props: {
-      members,
-      faqs,
-    },
-    revalidate: 60,
-  };
 };
+
+export default UeberPage;

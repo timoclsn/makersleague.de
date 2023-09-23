@@ -1,26 +1,55 @@
-import type { GetStaticProps } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Button } from "components/Button";
+import { Members } from "components/Members";
+import { Arrow, HeartPlus } from "icons";
+import { getMemberInfosCached } from "lib/easyverein";
+import { createGenerateMetadata } from "lib/metadata";
+import { getBaseUrl } from "lib/utils";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { Button } from 'components/Button';
-import { Members } from 'components/Members';
-import { Arrow, HeartPlus } from 'icons';
-import { getMemberInfos, WebsiteMember } from 'lib/easyverein';
-import { Page } from '../../components/Page';
+export const revalidate = 60;
+
+export const generateMetadata = createGenerateMetadata(async ({ params }) => {
+  const { slug } = params;
+  const allMembers = await getMemberInfosCached();
+  const member = allMembers.find((member) => member.slug === slug);
+  if (!member) return {};
+
+  return {
+    title: member.name,
+    description: `Mehr Infos über unser Mitglied ${member.name}`,
+  };
+});
+
+export const generateStaticParams = async () => {
+  const members = await getMemberInfosCached();
+
+  return members.map((member) => ({
+    slug: member.slug,
+  }));
+};
 
 interface Props {
-  member: WebsiteMember;
-  otherMembers: WebsiteMember[];
-  slug: string;
+  params: {
+    slug: string;
+  };
 }
 
-export default function MemberPage({ member, otherMembers, slug }: Props) {
+const MemberPage = async ({ params }: Props) => {
+  const { slug } = params;
+  const allMembers = await getMemberInfosCached();
+  const member = allMembers.find((member) => member.slug === slug);
+  if (!member) {
+    notFound();
+  }
+  const otherMembers = allMembers
+    .filter((member) => member.slug !== slug)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 5);
+
   return (
-    <Page
-      title={member.name}
-      description={`Der Steckbrief von ${member.name}`}
-      slug={`/mitglieder/${member.slug}`}
-    >
+    <>
       <section>
         <div className="mb-16">
           <Link href="/mitglieder" passHref legacyBehavior>
@@ -62,7 +91,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
             </div>
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
               <Image
-                src={`/api/get-easyverein-image?url=${encodeURIComponent(
+                src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
                   member.profilePicture
                 )}`}
                 alt={member.name}
@@ -76,7 +105,7 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
       <section className="bg-blue px-10 py-14">
         <h2 className="mb-12 text-4xl font-bold leading-snug">
           {`Du möchtest Teil unseres Netzwerks werden um mit spannenden
-            Superheld*innen wie ${member.firstName} Ideen voranbringen zu können?`}
+        Superheld*innen wie ${member.firstName} Ideen voranbringen zu können?`}
         </h2>
         <Link href="/mitglied-werden" passHref legacyBehavior>
           <Button as="a" color="blue-accent">
@@ -98,33 +127,8 @@ export default function MemberPage({ member, otherMembers, slug }: Props) {
           </Button>
         </Link>
       </section>
-    </Page>
+    </>
   );
-}
-
-export async function getStaticPaths() {
-  const members = await getMemberInfos();
-  return {
-    paths: members.map((member) => ({
-      params: { slug: member.slug },
-    })),
-    fallback: 'blocking',
-  };
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const allMembers = await getMemberInfos();
-  const member = allMembers.find((member) => member.slug === params?.slug)!;
-  const otherMembers = allMembers
-    .filter((member) => member.slug !== params?.slug)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 5);
-  return {
-    props: {
-      member,
-      otherMembers,
-      slug: params?.slug,
-    },
-    revalidate: 60,
-  };
 };
+
+export default MemberPage;

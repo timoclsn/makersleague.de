@@ -1,14 +1,14 @@
 ---
-title: 'Stammtisch'
-subtitle: 'Jeden 2. und 4. Dienstag im Monat'
-location: 'Makers Inn, Küferstraße 46'
-customDate: '2. und 4. Dienstag im Monat'
-startTime: '18:00'
-endTime: '21:00'
-scale: 'Jeder ist willkommen!'
+title: "Stammtisch"
+subtitle: "Jeden 2. und 4. Dienstag im Monat"
+location: "Makers Inn, Küferstraße 46"
+customDate: "2. und 4. Dienstag im Monat"
+startTime: "18:00"
+endTime: "21:00"
+scale: "Jeder ist willkommen!"
 cta:
-  text: 'Anmelden'
-  link: 'https://easyverein.com/public/ML/calendar'
+  text: "Anmelden"
+  link: "https://easyverein.com/public/ML/calendar"
 ---
 
 Jeden zweiten und vierten Dienstag im Monat treffen wir uns um 18 Uhr im Makers Inn zum Stammisch. Sofern es keine Updates aus dem Vorstandsteam gibt, ist das einfach ein ungezwungenes und Agenda-loses Zusammentreffen von Vereinsmitgliedern und Interessierten.

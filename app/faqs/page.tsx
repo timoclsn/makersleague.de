@@ -1,22 +1,18 @@
-import type { GetStaticProps } from 'next';
+import { Button } from "components/Button";
+import { Faqs } from "components/Faqs";
+import { allFaqs } from "contentlayer/generated";
+import { Arrow } from "icons";
+import { Metadata } from "next";
 
-import { Page } from '../components/Page';
-import { allFaqs, Faq } from 'contentlayer/generated';
-import { Faqs } from 'components/Faqs';
-import { Button } from 'components/Button';
-import { Arrow } from 'icons';
+export const metadata: Metadata = {
+  title: "FAQs",
+  description: "Makers League FAQs",
+};
 
-interface Props {
-  faqs: Faq[];
-}
-
-export default function FaqsPage({ faqs }: Props) {
+const FaqPage = () => {
+  const faqs = allFaqs.sort((a, b) => a.question.localeCompare(b.question));
   return (
-    <Page
-      title="FAQs"
-      description="Häufig gestellte Fragen und deren Antworten"
-      slug="faqs"
-    >
+    <>
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">FAQs</h1>
         <p className="mb-16 text-base opacity-60 md:text-2xl">
@@ -33,11 +29,8 @@ export default function FaqsPage({ faqs }: Props) {
           E-Mail schreiben
         </Button>
       </section>
-    </Page>
+    </>
   );
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const faqs = allFaqs.sort((a, b) => a.question.localeCompare(b.question));
-  return { props: { faqs } };
 };
+
+export default FaqPage;
