@@ -6,7 +6,20 @@ const nextConfig = {
   basePath: "",
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["easyverein.com", "localhost", "vercel.app"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "easyverein.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.vercel.app",
+      },
+      {
+        hostname: "localhost",
+        port: "3000",
+      },
+    ],
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) =>
