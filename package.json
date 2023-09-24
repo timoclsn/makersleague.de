@@ -17,6 +17,7 @@
     "contentlayer": "0.3.4",
     "date-fns": "2.30.0",
     "easyverein": "0.5.0",
+    "ical": "^0.8.0",
     "lodash": "4.17.21",
     "next": "13.5.2",
     "next-contentlayer": "0.3.4",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@svgr/webpack": "8.1.0",
     "@tailwindcss/typography": "0.5.10",
+    "@types/ical": "^0.8.0",
     "@types/lodash": "4.14.198",
     "@types/node": "20.6.3",
     "@types/react": "18.2.22",
@@ -40,6 +42,7 @@
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.4",
     "reading-time": "1.5.0",
+    "schema-dts": "^1.1.2",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
   }
