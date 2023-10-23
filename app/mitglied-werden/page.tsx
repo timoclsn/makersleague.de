@@ -1,10 +1,9 @@
-import { Button } from "components/Button";
+import { ApplyButton } from "components/ApplyButton";
 import { ButtonSection } from "components/ButtonSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { ValuesSection } from "components/ValuesSection";
 import { allFaqs } from "contentlayer/generated";
-import { HeartPlus } from "icons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -35,16 +34,7 @@ const BecomeMemberPage = () => {
           Klingt gut? Dann fülle unsere Bewerbung aus! Anschließend bekommst du
           weitere Informationen zum Aufnahmeprozess per E-Mail.
         </h2>
-        <Button
-          as="a"
-          color="pink"
-          href="https://form.typeform.com/to/wg4UO6p8"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <HeartPlus className="text-2xl" />
-          Jetzt bewerben
-        </Button>
+        <ApplyButton color="pink" />
       </section>
     </>
   );
