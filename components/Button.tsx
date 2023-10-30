@@ -34,10 +34,10 @@ const button = cva(
       },
     },
     compoundVariants: [{ variant: "link", class: "!bg-[transparent]" }],
-  },
+  }
 );
 
-type ButtonProps = VariantProps<typeof button>;
+type ButtonVariants = VariantProps<typeof button>;
 
 interface CommmonProps {
   children: ReactNode;
@@ -62,36 +62,37 @@ type ElementProps =
       target?: "_blank";
       rel?: "noopener noreferrer" | "noopener";
       type?: never;
-      onClick?: never;
+      onClick?: () => void;
       disabled?: never;
     };
 
-type Props = CommmonProps & ElementProps & ButtonProps;
+export type ButtonProps = CommmonProps & ElementProps & ButtonVariants;
 
-export const Button = forwardRef<HTMLButtonElement & HTMLAnchorElement, Props>(
-  function Button(
-    {
-      children,
-      as: Element = "button",
-      type = "button",
-      variant = "solid",
-      color = "blue",
-      className,
-      ...props
-    },
-    ref,
-  ) {
-    return (
-      <Element
-        type={Element === "button" ? type : undefined}
-        ref={ref}
-        className={button({ variant, color, class: className })}
-        {...props}
-      >
-        {Children.map(children, (child, index) => (
-          <span key={index}>{child}</span>
-        ))}
-      </Element>
-    );
+export const Button = forwardRef<
+  HTMLButtonElement & HTMLAnchorElement,
+  ButtonProps
+>(function Button(
+  {
+    children,
+    as: Element = "button",
+    type = "button",
+    variant = "solid",
+    color = "blue",
+    className,
+    ...props
   },
-);
+  ref
+) {
+  return (
+    <Element
+      type={Element === "button" ? type : undefined}
+      ref={ref}
+      className={button({ variant, color, class: className })}
+      {...props}
+    >
+      {Children.map(children, (child, index) => (
+        <span key={index}>{child}</span>
+      ))}
+    </Element>
+  );
+});

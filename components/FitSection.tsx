@@ -1,6 +1,6 @@
+import { Heart, Storm } from "icons";
 import Image from "next/image";
-import { Heart, HeartPlus, Storm } from "icons";
-import { Button } from "./Button";
+import { ApplyButton } from "./ApplyButton";
 
 export const FitSection = () => {
   return (
@@ -52,17 +52,7 @@ export const FitSection = () => {
         </div>
       </div>
       <div className="mb-40 flex justify-center">
-        <Button
-          as="a"
-          color="dark"
-          href="https://form.typeform.com/to/wg4UO6p8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-center"
-        >
-          <HeartPlus className="text-2xl" />
-          Jetzt bewerben
-        </Button>
+        <ApplyButton color="dark" className="text-center" />
       </div>
       <div className="absolute left-[calc(50%-150px)] bottom-0 -mb-8 w-[300px] md:left-[calc(50%-300px)] md:-mb-16 md:w-[600px]">
         <Image
