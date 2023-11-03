@@ -49,39 +49,45 @@ const EventsPage = async () => {
         <h1 className="mb-16 text-xl font-bold md:text-5xl">
           Stammtisch & Events
         </h1>
-        <div className="space-y-24">
-          {events.map((event) => (
-            <article key={event.id}>
-              <h2 className="mb-4 text-base font-bold md:text-2xl">
-                {event.title}
-              </h2>
-              <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
-                {event.location && (
+        {events.length > 0 ? (
+          <div className="space-y-24">
+            {events.map((event) => (
+              <article key={event.id}>
+                <h2 className="mb-4 text-base font-bold md:text-2xl">
+                  {event.title}
+                </h2>
+                <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
+                  {event.location && (
+                    <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
+                      <Location className="text-xl" />
+                      {event.location}
+                    </li>
+                  )}
                   <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
-                    <Location className="text-xl" />
-                    {event.location}
+                    <Calendar className="text-xl" />
+                    {`${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`}
                   </li>
+                  <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
+                    <Profile className="text-xl" />
+                    {event.membersOnly
+                      ? "Nur für Mitglieder"
+                      : "Jeder ist willkommen!"}
+                  </li>
+                </ul>
+                {event.description && (
+                  <div
+                    className="prose mb-8"
+                    dangerouslySetInnerHTML={{ __html: event.description }}
+                  />
                 )}
-                <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
-                  <Calendar className="text-xl" />
-                  {`${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`}
-                </li>
-                <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
-                  <Profile className="text-xl" />
-                  {event.membersOnly
-                    ? "Nur für Mitglieder"
-                    : "Jeder ist willkommen!"}
-                </li>
-              </ul>
-              {event.description && (
-                <div
-                  className="prose mb-8"
-                  dangerouslySetInnerHTML={{ __html: event.description }}
-                />
-              )}
-            </article>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <h2 className="mb-4 text-base font-bold md:text-2xl">
+            Keine anstehenden Events
+          </h2>
+        )}
       </section>
     </>
   );
