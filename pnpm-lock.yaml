@@ -14,9 +14,15 @@ dependencies:
   date-fns:
     specifier: 2.30.0
     version: 2.30.0
+  date-fns-tz:
+    specifier: ^2.0.0
+    version: 2.0.0(date-fns@2.30.0)
   easyverein:
     specifier: 0.5.0
     version: 0.5.0
+  ical:
+    specifier: ^0.8.0
+    version: 0.8.0
   lodash:
     specifier: 4.17.21
     version: 4.17.21
@@ -46,6 +52,9 @@ devDependencies:
   '@tailwindcss/typography':
     specifier: 0.5.10
     version: 0.5.10(tailwindcss@3.3.5)
+  '@types/ical':
+    specifier: ^0.8.0
+    version: 0.8.2
   '@types/lodash':
     specifier: 4.14.200
     version: 4.14.200
@@ -82,6 +91,9 @@ devDependencies:
   reading-time:
     specifier: 1.5.0
     version: 1.5.0
+  schema-dts:
+    specifier: ^1.1.2
+    version: 1.1.2(typescript@5.1.6)
   tailwindcss:
     specifier: 3.3.5
     version: 3.3.5
@@ -2483,6 +2495,12 @@ packages:
       '@types/unist': 2.0.6
     dev: false
 
+  /@types/ical@0.8.2:
+    resolution: {integrity: sha512-B6SrX9G1GNASjS9IE/ZndkLGuHaAYTy95+e1+xiQRkoc/T2MMAVm+Ex8ooSqWFp2cte4yzpTqLzEjfLLUNVvPg==}
+    dependencies:
+      rrule: 2.6.4
+    dev: true
+
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
@@ -3191,6 +3209,14 @@ packages:
   /data-uri-to-buffer@4.0.0:
     resolution: {integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==}
     engines: {node: '>= 12'}
+    dev: false
+
+  /date-fns-tz@2.0.0(date-fns@2.30.0):
+    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
+    peerDependencies:
+      date-fns: '>=2.0.0'
+    dependencies:
+      date-fns: 2.30.0
     dev: false
 
   /date-fns@2.30.0:
@@ -4280,6 +4306,12 @@ packages:
     resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==}
     dev: false
 
+  /ical@0.8.0:
+    resolution: {integrity: sha512-/viUSb/RGLLnlgm0lWRlPBtVeQguQRErSPYl3ugnUaKUnzQswKqOG3M8/P1v1AB5NJwlHTuvTq1cs4mpeG2rCg==}
+    dependencies:
+      rrule: 2.4.1
+    dev: false
+
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
     dev: false
@@ -4756,6 +4788,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /luxon@1.28.1:
+    resolution: {integrity: sha512-gYHAa180mKrNIUJCbwpmD0aTu9kV0dREDrwNnuyFAsO1Wt0EVYSZelPnJlbj9HplzXX/YWXHFTL45kvZ53M0pw==}
+    requiresBuild: true
+    optional: true
 
   /markdown-extensions@1.1.1:
     resolution: {integrity: sha512-WWC0ZuMzCyDHYCasEGs4IPvLyTGftYwh6wIEOULOF0HXcqZlhwRzrK0w2VUlxWA98xnvb/jszw4ZSkJ6ADpM6Q==}
@@ -6008,6 +6045,20 @@ packages:
       glob: 7.2.0
     dev: true
 
+  /rrule@2.4.1:
+    resolution: {integrity: sha512-+NcvhETefswZq13T8nkuEnnQ6YgUeZaqMqVbp+ZiFDPCbp3AVgQIwUvNVDdMNrP05bKZG9ddDULFp0qZZYDrxg==}
+    optionalDependencies:
+      luxon: 1.28.1
+    dev: false
+
+  /rrule@2.6.4:
+    resolution: {integrity: sha512-sLdnh4lmjUqq8liFiOUXD5kWp/FcnbDLPwq5YAc/RrN6120XOPb86Ae5zxF7ttBVq8O3LxjjORMEit1baluahA==}
+    dependencies:
+      tslib: 1.14.1
+    optionalDependencies:
+      luxon: 1.28.1
+    dev: true
+
   /run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
@@ -6050,6 +6101,14 @@ packages:
     dependencies:
       loose-envify: 1.4.0
     dev: false
+
+  /schema-dts@1.1.2(typescript@5.1.6):
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
+    dependencies:
+      typescript: 5.1.6
+    dev: true
 
   /section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
