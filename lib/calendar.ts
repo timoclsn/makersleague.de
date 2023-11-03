@@ -1,9 +1,11 @@
 import { parseISO } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 import ical from "ical";
 import { z } from "zod";
 
 const MEMBERS_ONLY_TAG = "[MEMBERS ONLY]";
 const WEBSITE_TAG = "[WEBSITE]";
+const TIMEZONE = "Europe/Berlin";
 
 const calendarUrl = z.string().parse(process.env.CALENDAR_URL);
 
@@ -48,7 +50,10 @@ export const getEvents = async () => {
         title: event.summary,
         description: cleanDescription,
         location: event.location,
-        start: parseISO(startString.replace("\r", "")),
+        start: utcToZonedTime(
+          parseISO(startString.replace("\r", "")),
+          TIMEZONE
+        ),
         membersOnly: description?.includes(MEMBERS_ONLY_TAG),
       };
     })
