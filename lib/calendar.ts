@@ -1,6 +1,8 @@
 import { parseISO } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
 import ical from "ical";
+import { unstable_cache as nextCache } from "next/cache";
+import { cache as reactCache } from "react";
 import { z } from "zod";
 
 const MEMBERS_ONLY_TAG = "[MEMBERS ONLY]";
@@ -18,7 +20,7 @@ const eventSchema = z.object({
   start: z.string().optional(),
 });
 
-export const getEvents = async () => {
+const getEvents = async () => {
   const response = await fetch(calendarUrl);
   const body = await response.text();
   const rawCalendarData = ical.parseICS(body);
@@ -61,3 +63,10 @@ export const getEvents = async () => {
 
   return events;
 };
+
+export const getEventsCached = reactCache(async () => {
+  return await nextCache(getEvents, ["events"], {
+    revalidate: 60,
+    tags: ["events"],
+  })();
+});

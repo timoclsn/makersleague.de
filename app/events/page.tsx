@@ -1,6 +1,6 @@
 import { StructuredData } from "components/StructuredData";
 import { Calendar, Location, Profile } from "icons";
-import { getEvents } from "lib/calendar";
+import { getEventsCached } from "lib/calendar";
 import { formatDate } from "lib/utils";
 import { Metadata } from "next";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const EventsPage = async () => {
-  const events = await getEvents();
+  const events = await getEventsCached();
 
   return (
     <>
