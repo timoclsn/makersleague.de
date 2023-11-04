@@ -1,4 +1,5 @@
 import { StructuredData } from "components/StructuredData";
+import { formatISO } from "date-fns";
 import { Calendar, Location, Profile } from "icons";
 import { getEventsCached } from "lib/calendar";
 import { formatDate } from "lib/utils";
@@ -20,7 +21,7 @@ const EventsPage = async () => {
             "@context": "https://schema.org",
             "@type": "Event",
             name: event.title,
-            startDate: event.start.toISOString(),
+            startDate: formatISO(event.start),
             eventAttendanceMode:
               "https://schema.org/OfflineEventAttendanceMode",
             eventStatus: "https://schema.org/EventScheduled",
