@@ -1,5 +1,4 @@
-import { Instagram } from "icons";
-import { Linkedin } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 export const Footer = () => {
@@ -9,7 +8,7 @@ export const Footer = () => {
         <li className="hover:opacity-80">
           <Link href="https://www.instagram.com/makersleague.ev">
             <span className="sr-only">Instagram</span>
-            <Instagram className="text-2xl" />
+            <Instagram />
           </Link>
         </li>
         <li className="hover:opacity-80">
