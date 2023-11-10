@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
-import { Children, forwardRef, ReactNode } from "react";
+import { Children, ElementType, forwardRef, ReactNode } from "react";
 
 import { colorMap } from "./utils";
 
@@ -34,39 +34,25 @@ const button = cva(
       },
     },
     compoundVariants: [{ variant: "link", class: "!bg-[transparent]" }],
-  }
+  },
 );
 
 type ButtonVariants = VariantProps<typeof button>;
 
 interface CommmonProps {
+  as?: ElementType;
   children: ReactNode;
   title?: string;
   color?: keyof typeof colorMap;
   className?: string;
+  href?: string;
+  target?: "_blank";
+  rel?: "noopener noreferrer" | "noopener";
+  type?: never;
+  onClick?: () => void;
 }
 
-type ElementProps =
-  | {
-      as?: "button";
-      type?: "button" | "submit" | "reset";
-      onClick?: () => void;
-      disabled?: boolean;
-      href?: never;
-      target?: never;
-      rel?: never;
-    }
-  | {
-      as?: "a";
-      href?: string;
-      target?: "_blank";
-      rel?: "noopener noreferrer" | "noopener";
-      type?: never;
-      onClick?: () => void;
-      disabled?: never;
-    };
-
-export type ButtonProps = CommmonProps & ElementProps & ButtonVariants;
+export type ButtonProps = CommmonProps & ButtonVariants;
 
 export const Button = forwardRef<
   HTMLButtonElement & HTMLAnchorElement,
@@ -81,7 +67,7 @@ export const Button = forwardRef<
     className,
     ...props
   },
-  ref
+  ref,
 ) {
   return (
     <Element

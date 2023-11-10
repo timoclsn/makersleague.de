@@ -4,6 +4,7 @@ import { HeartPlus } from "icons";
 import { track } from "lib/tracking";
 import { usePathname } from "next/navigation";
 import { Button, ButtonProps } from "./Button";
+import Link from "next/link";
 
 interface Props {
   className?: string;
@@ -14,11 +15,9 @@ export const ApplyButton = ({ className, color }: Props) => {
   const pathname = usePathname();
   return (
     <Button
-      as="a"
+      as={Link}
       color={color}
-      href="https://form.typeform.com/to/wg4UO6p8"
-      target="_blank"
-      rel="noopener noreferrer"
+      href="/mitglied-werden/antrag"
       className={className}
       onClick={() => {
         track("Apply clicked", {
