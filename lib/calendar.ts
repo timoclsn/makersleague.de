@@ -54,7 +54,7 @@ const getEvents = async () => {
         location: event.location,
         start: utcToZonedTime(
           parseISO(startString.replace("\r", "")),
-          TIMEZONE
+          TIMEZONE,
         ),
         membersOnly: description?.includes(MEMBERS_ONLY_TAG),
       };
