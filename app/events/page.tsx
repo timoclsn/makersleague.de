@@ -52,9 +52,20 @@ const EventsPage = async () => {
         );
       })}
       <section>
-        <h1 className="mb-16 text-xl font-bold md:text-5xl">
+        <h1 className="mb-8 text-xl font-bold md:text-5xl">
           Stammtisch & Events
         </h1>
+        <Button
+          as="a"
+          color="pink"
+          href="https://easyverein.com/public/ML/calendar"
+          target="_blank"
+          rel="noopener"
+          className="mb-24"
+        >
+          <Calendar className="text-2xl" />
+          Zum Kalender
+        </Button>
         {events.length > 0 ? (
           <div className="space-y-24">
             {events.map((event) => {
