@@ -1,6 +1,7 @@
 import { parseISO } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
 import ical from "ical";
+import { url } from "inspector";
 import { unstable_cache as nextCache } from "next/cache";
 import { cache as reactCache } from "react";
 import { z } from "zod";
@@ -18,6 +19,7 @@ const eventSchema = z.object({
   description: z.string().optional(),
   location: z.string().optional(),
   start: z.string().optional(),
+  url: z.string().url().optional(),
 });
 
 const getEvents = async () => {
@@ -54,9 +56,10 @@ const getEvents = async () => {
         location: event.location,
         start: utcToZonedTime(
           parseISO(startString.replace("\r", "")),
-          TIMEZONE
+          TIMEZONE,
         ),
         membersOnly: description?.includes(MEMBERS_ONLY_TAG),
+        url: event.url,
       };
     })
     .sort((a, b) => a.start.getTime() - b.start.getTime());

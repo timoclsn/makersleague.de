@@ -1,6 +1,7 @@
+import { Button } from "components/Button";
 import { StructuredData } from "components/StructuredData";
 import { formatISO, parseISO } from "date-fns";
-import { Calendar, Location, Profile } from "icons";
+import { Arrow, Calendar, Location, Profile } from "icons";
 import { getEventsCached } from "lib/calendar";
 import { formatDate } from "lib/utils";
 import { Metadata } from "next";
@@ -85,10 +86,19 @@ const EventsPage = async () => {
                     </li>
                   </ul>
                   {event.description && (
-                    <div
-                      className="prose mb-8"
-                      dangerouslySetInnerHTML={{ __html: event.description }}
-                    />
+                    <p className="mb-8">{event.description}</p>
+                  )}
+                  {event.url && (
+                    <Button
+                      as="a"
+                      color="pink"
+                      href={event.url}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <Arrow className="text-2xl" />
+                      Anmelden
+                    </Button>
                   )}
                 </article>
               );
