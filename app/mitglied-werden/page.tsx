@@ -4,7 +4,6 @@ import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
-import { allFaqs } from "contentlayer/generated";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,8 +12,6 @@ export const metadata: Metadata = {
 };
 
 const BecomeMemberPage = () => {
-  const faqs = allFaqs.slice(0, 4);
-
   return (
     <Page>
       <section>
@@ -28,7 +25,7 @@ const BecomeMemberPage = () => {
         <ButtonSection />
       </section>
       <FitSection />
-      <FaqsSection faqs={faqs} />
+      <FaqsSection />
       <ValuesSection />
       <section className="space-y-12">
         <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
