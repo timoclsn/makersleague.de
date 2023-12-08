@@ -3,7 +3,7 @@ import { cache as reactCache } from "react";
 import { unstable_cache as nextCache } from "next/cache";
 
 const userId = z.string().parse(process.env.INSTAGRAM_USER_ID);
-const userAccessToken = z.string().parse(process.env.INSTAGRAM_ACCESS_TOKEN);
+const accessToken = z.string().parse(process.env.INSTAGRAM_ACCESS_TOKEN);
 
 const imageIdSchema = z.object({
   id: z.string(),
@@ -17,7 +17,7 @@ const imageUrlsSchema = z.object({
 
 const getUserImageIds = async () => {
   const response = await fetch(
-    `https://graph.instagram.com/${userId}/media?access_token=${userAccessToken}`,
+    `https://graph.instagram.com/${userId}/media?access_token=${accessToken}`,
   );
   const json = await response.json();
   return z.array(imageIdSchema).parse(json.data);
@@ -29,7 +29,7 @@ const getImages = async () => {
   const imageUrls = await Promise.all(
     imageIds.map(async ({ id }) => {
       const response = await fetch(
-        `https://graph.instagram.com/${id}?fields=media_url,permalink&access_token=${userAccessToken}`,
+        `https://graph.instagram.com/${id}?fields=media_url,permalink&access_token=${accessToken}`,
       );
       const json = await response.json();
       return imageUrlsSchema.parse(json);
