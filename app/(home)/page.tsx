@@ -76,7 +76,7 @@ const HomePage = () => (
       <Image
         src={membersImg}
         alt="Makers League Mitglieder Gruppenbild"
-        className="border-4 border-dark p-4"
+        className="border-4 border-dashed border-dark p-4"
       />
       <MembersSection />
       <ValuesSection />
