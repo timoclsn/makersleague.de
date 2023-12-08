@@ -4,6 +4,7 @@ import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
 import Image from "next/image";
+import membersImg from "./mitglieder.png";
 
 const HomePage = () => (
   <>
@@ -72,6 +73,11 @@ const HomePage = () => (
           </p>
         </div>
       </section>
+      <Image
+        src={membersImg}
+        alt="Makers League Mitglieder Gruppenbild"
+        className="border-4 border-dark p-4"
+      />
       <MembersSection />
       <ValuesSection />
       <FitSection />
