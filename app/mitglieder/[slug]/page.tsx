@@ -1,5 +1,6 @@
 import { Button } from "components/Button";
 import { Members } from "components/Members";
+import { Page } from "components/Page";
 import { Arrow, HeartPlus } from "icons";
 import { getMemberInfosCached } from "lib/easyverein";
 import { createGenerateMetadata } from "lib/metadata";
@@ -47,7 +48,7 @@ const MemberPage = async ({ params }: Props) => {
     .slice(0, 5);
 
   return (
-    <>
+    <Page>
       <section>
         <div className="mb-16">
           <Link href="/mitglieder" passHref legacyBehavior>
@@ -79,7 +80,7 @@ const MemberPage = async ({ params }: Props) => {
             )}
           </div>
           <div className="relative mx-auto">
-            <div className="absolute top-0 left-0">
+            <div className="absolute left-0 top-0">
               <Image
                 src="/assets/frame.svg"
                 alt="Image Frame"
@@ -90,7 +91,7 @@ const MemberPage = async ({ params }: Props) => {
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
               <Image
                 src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
-                  member.profilePicture
+                  member.profilePicture,
                 )}`}
                 alt={member.name}
                 width={300}
@@ -125,7 +126,7 @@ const MemberPage = async ({ params }: Props) => {
           </Button>
         </Link>
       </section>
-    </>
+    </Page>
   );
 };
 

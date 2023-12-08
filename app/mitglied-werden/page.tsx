@@ -2,6 +2,7 @@ import { ApplyButton } from "components/ApplyButton";
 import { ButtonSection } from "components/ButtonSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
+import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
 import { allFaqs } from "contentlayer/generated";
 import { Metadata } from "next";
@@ -15,7 +16,7 @@ const BecomeMemberPage = () => {
   const faqs = allFaqs.slice(0, 4);
 
   return (
-    <>
+    <Page>
       <section>
         <h1 className="mb-4 text-base opacity-80 md:text-2xl">
           Mitglied werden
@@ -36,7 +37,7 @@ const BecomeMemberPage = () => {
         </h2>
         <ApplyButton color="pink" />
       </section>
-    </>
+    </Page>
   );
 };
 

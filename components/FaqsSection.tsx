@@ -1,15 +1,12 @@
-import Link from "next/link";
-
-import { Faq } from "contentlayer/generated";
+import { allFaqs } from "contentlayer/generated";
 import { Arrow } from "icons";
+import Link from "next/link";
 import { Button } from "./Button";
 import { Faqs } from "./Faqs";
 
-interface Props {
-  faqs: Faq[];
-}
+export const FaqsSection = () => {
+  const faqs = allFaqs.filter((faq) => faq.preview);
 
-export const FaqsSection = ({ faqs }: Props) => {
   return (
     <section id="faqs">
       <div className="mb-14">

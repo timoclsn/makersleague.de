@@ -1,14 +1,13 @@
-import Link from "next/link";
 import { Arrow } from "icons";
-import { WebsiteMember } from "lib/easyverein";
+import { getMemberInfosCached } from "lib/easyverein";
+import Link from "next/link";
 import { Button } from "./Button";
 import { Members } from "./Members";
 
-interface Props {
-  members: WebsiteMember[];
-}
+export const MembersSection = async () => {
+  const allMembers = await getMemberInfosCached();
+  const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
 
-export const MembersSection = ({ members }: Props) => {
   return (
     <section>
       <div className="mb-14">
