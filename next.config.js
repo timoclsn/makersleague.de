@@ -19,11 +19,15 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "scontent-muc2-1.cdninstagram.com",
+      },
     ],
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg")
+      rule.test?.test?.(".svg"),
     );
 
     config.module.rules.push(
@@ -53,7 +57,7 @@ const nextConfig = {
             },
           },
         ],
-      }
+      },
     );
 
     return config;
