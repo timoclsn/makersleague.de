@@ -1,6 +1,6 @@
 import { Members } from "components/Members";
 import { Page } from "components/Page";
-import { getMemberInfosCached } from "lib/easyverein";
+import { getMemberInfosCached, getMembersCountCached } from "lib/easyverein";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 const MembersPage = async () => {
   const members = await getMemberInfosCached();
+  const membersCount = await getMembersCountCached();
   return (
     <Page>
       <section>
@@ -17,7 +18,7 @@ const MembersPage = async () => {
           Unsere Mitglieder
         </h1>
         <p className="mb-16 text-base opacity-60 md:text-2xl">
-          Einige Superheld*innen der Makers League
+          Einige der {membersCount} Superheld*innen der Makers League
         </p>
         <Members members={members} />
       </section>
