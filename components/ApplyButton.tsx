@@ -14,7 +14,6 @@ export const ApplyButton = ({ className, color }: Props) => {
   const pathname = usePathname();
   return (
     <Button
-      as="a"
       color={color}
       href="https://form.typeform.com/to/wg4UO6p8"
       target="_blank"

@@ -1,6 +1,5 @@
 import { Arrow } from "icons";
 import { getMemberInfosCached, getMembersCountCached } from "lib/easyverein";
-import Link from "next/link";
 import { Button } from "./Button";
 import { Members } from "./Members";
 
@@ -20,12 +19,10 @@ export const MembersSection = async () => {
         </p>
         <Members members={members} />
       </div>
-      <Link href="/mitglieder" passHref legacyBehavior>
-        <Button as="a">
-          <Arrow className="text-2xl" />
-          Mehr Mitglieder
-        </Button>
-      </Link>
+      <Button href="/mitglieder">
+        <Arrow className="text-2xl" />
+        Mehr Mitglieder
+      </Button>
     </section>
   );
 };

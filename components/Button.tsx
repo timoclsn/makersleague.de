@@ -2,6 +2,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { Children, forwardRef, ReactNode } from "react";
 
 import { colorMap } from "./utils";
+import Link from "next/link";
 
 const button = cva(
   [
@@ -34,7 +35,7 @@ const button = cva(
       },
     },
     compoundVariants: [{ variant: "link", class: "!bg-[transparent]" }],
-  }
+  },
 );
 
 type ButtonVariants = VariantProps<typeof button>;
@@ -48,7 +49,6 @@ interface CommmonProps {
 
 type ElementProps =
   | {
-      as?: "button";
       type?: "button" | "submit" | "reset";
       onClick?: () => void;
       disabled?: boolean;
@@ -57,7 +57,6 @@ type ElementProps =
       rel?: never;
     }
   | {
-      as?: "a";
       href?: string;
       target?: "_blank";
       rel?: "noopener noreferrer" | "noopener";
@@ -74,20 +73,23 @@ export const Button = forwardRef<
 >(function Button(
   {
     children,
-    as: Element = "button",
     type = "button",
     variant = "solid",
     color = "blue",
     className,
+    href,
     ...props
   },
-  ref
+  ref,
 ) {
+  const Element = href ? Link : "button";
+
   return (
     <Element
       type={Element === "button" ? type : undefined}
       ref={ref}
       className={button({ variant, color, class: className })}
+      href={href ?? ""}
       {...props}
     >
       {Children.map(children, (child, index) => (

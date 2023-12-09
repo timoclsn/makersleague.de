@@ -25,7 +25,7 @@ const FaqPage = () => {
         <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
           Du hast weitere Fragen? Dann schreib uns gerne eine E-Mail.
         </h2>
-        <Button as="a" color="pink" href="mailto:hello@makersleague.de">
+        <Button color="pink" href="mailto:hello@makersleague.de">
           <Arrow className="text-2xl" />
           E-Mail schreiben
         </Button>

@@ -1,6 +1,5 @@
 import { allFaqs } from "contentlayer/generated";
 import { Arrow } from "icons";
-import Link from "next/link";
 import { Button } from "./Button";
 import { Faqs } from "./Faqs";
 
@@ -16,12 +15,10 @@ export const FaqsSection = () => {
         </p>
         <Faqs faqs={faqs} />
       </div>
-      <Link href="/faqs" passHref legacyBehavior>
-        <Button as="a">
-          <Arrow className="text-2xl" />
-          Alle FAQs
-        </Button>
-      </Link>
+      <Button href="/faqs">
+        <Arrow className="text-2xl" />
+        Alle FAQs
+      </Button>
     </section>
   );
 };

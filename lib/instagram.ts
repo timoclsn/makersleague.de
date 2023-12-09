@@ -20,7 +20,7 @@ const getUserImageIds = async () => {
     `https://graph.instagram.com/${userId}/media?access_token=${accessToken}`,
   );
   const json = await response.json();
-  return z.array(imageIdSchema).parse(json.data);
+  return z.array(imageIdSchema).parse(json.data).slice(0, 9);
 };
 
 const getImages = async () => {

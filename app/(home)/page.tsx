@@ -82,7 +82,7 @@ const HomePage = () => (
       <MembersSection />
       <ValuesSection />
       <FitSection />
-      {/* <InstagramSection /> */}
+      <InstagramSection />
       <FaqsSection />
     </Page>
   </>

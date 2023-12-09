@@ -3,7 +3,6 @@ import { pick } from "contentlayer/client";
 import { allBlogPosts } from "contentlayer/generated";
 import { Arrow, Calendar, Profile, Watch } from "icons";
 import { Metadata } from "next";
-import Link from "next/link";
 import { Button } from "../../components/Button";
 
 export const metadata: Metadata = {
@@ -57,12 +56,10 @@ const BlogPage = () => {
                   <span>{post.publishedAtFormatted}</span>
                 </li>
               </ul>
-              <Link href={`/blog/${post.slug}`} passHref legacyBehavior>
-                <Button as="a" color="sand">
-                  <Arrow className="text-2xl" />
-                  Weiterlesen...
-                </Button>
-              </Link>
+              <Button href={`/blog/${post.slug}`} color="sand">
+                <Arrow className="text-2xl" />
+                Weiterlesen...
+              </Button>
             </article>
           ))}
         </div>
