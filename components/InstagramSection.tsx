@@ -3,6 +3,7 @@ import { Instagram } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./Button";
 import Link from "next/link";
+import { Arrow } from "icons";
 
 export const InstagramSection = async () => {
   const images = await getImagesCached();
@@ -20,20 +21,14 @@ export const InstagramSection = async () => {
           {images.map((image) => {
             const isVideo = image.media_url.includes("mp4");
             return (
-              <li key={image.id} className="relative aspect-square border-4">
-                <Link
-                  href={image.permalink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80"
-                >
+              <li key={image.id} className="border-4 p-4">
+                <div className="relative mb-14 aspect-square">
                   {isVideo ? (
                     <video
                       controls
                       playsInline
-                      preload="metadata"
                       src={image.media_url}
-                      className="absolute inset-0 h-full w-full object-cover p-4"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   ) : (
                     <Image
@@ -41,10 +36,19 @@ export const InstagramSection = async () => {
                       alt="Instagram Image"
                       width={200}
                       height={200}
-                      className="absolute inset-0 h-full w-full object-cover p-4"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   )}
-                </Link>
+                </div>
+                <div className="flex w-full flex-1 flex-col items-end justify-end">
+                  <Link
+                    href={image.permalink}
+                    className="flex items-center justify-center gap-1 self-end font-bold text-pink hover:opacity-80"
+                  >
+                    <Arrow className="text-2xl" />
+                    Instagram
+                  </Link>
+                </div>
               </li>
             );
           })}
