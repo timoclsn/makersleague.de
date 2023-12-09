@@ -26,7 +26,7 @@ export const ContactSection = () => {
             <div className="flex w-full flex-1 flex-col items-end justify-end">
               <Link
                 href="/mitglieder/nina-kuch"
-                className="flex items-center justify-center gap-1 self-end font-bold text-pink group-hover:opacity-80"
+                className="flex items-center justify-center gap-1 self-end font-bold text-pink hover:opacity-80"
               >
                 <Arrow className="text-2xl" />
                 Steckbrief
