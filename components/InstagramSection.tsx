@@ -9,7 +9,9 @@ export const InstagramSection = async () => {
   return (
     <section id="instagram">
       <div className="mb-14">
-        <h2 className="mb-2 text-base font-bold md:text-2xl">Instagram</h2>
+        <h2 className="mb-2 text-base font-bold md:text-2xl">
+          Folge uns auf Instagram
+        </h2>
         <p className="mb-10 text-base opacity-60 md:text-2xl">
           Bilcke hinter die Kulissen der Makers League
         </p>

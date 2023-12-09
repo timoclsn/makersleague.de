@@ -6,6 +6,7 @@ import { ValuesSection } from "components/ValuesSection";
 import Image from "next/image";
 import membersImg from "./mitglieder.png";
 import { InstagramSection } from "components/InstagramSection";
+import { ContactSection } from "components/ContactSection/ContactSection";
 
 const HomePage = () => (
   <>
@@ -82,6 +83,7 @@ const HomePage = () => (
       <MembersSection />
       <ValuesSection />
       <FitSection />
+      <ContactSection />
       <InstagramSection />
       <FaqsSection />
     </Page>
