@@ -28,7 +28,7 @@ export const InstagramSection = async () => {
                       controls
                       playsInline
                       preload="metadata"
-                      src={image.media_url}
+                      src={`${image.media_url}#t=0.001`}
                       className="absolute inset-0 h-full w-full bg-pink object-cover"
                     />
                   ) : (
