@@ -46,8 +46,8 @@ export const InstagramSection = async () => {
                     href={image.permalink}
                     className="flex items-center justify-center gap-1 self-end font-bold text-pink hover:opacity-80"
                   >
-                    <Arrow className="text-2xl" />
-                    Instagram
+                    <Instagram className="text-2xl" />
+                    <span className="sr-only">Auf Instagram ansehen</span>
                   </Link>
                 </div>
               </li>
