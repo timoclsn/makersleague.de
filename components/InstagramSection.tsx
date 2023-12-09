@@ -1,12 +1,11 @@
-import { getImagesCached } from "lib/instagram";
+import { getMediaCached } from "lib/instagram";
 import { Instagram } from "lucide-react";
 import Image from "next/image";
-import { Button } from "./Button";
 import Link from "next/link";
-import { Arrow } from "icons";
+import { Button } from "./Button";
 
 export const InstagramSection = async () => {
-  const images = await getImagesCached();
+  const mediaArray = await getMediaCached();
   return (
     <section id="instagram">
       <div className="mb-14">
@@ -18,22 +17,22 @@ export const InstagramSection = async () => {
         </p>
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
-          {images.map((image) => {
-            const isVideo = image.media_url.includes("mp4");
+          {mediaArray.map((media) => {
+            const isVideo = media.media_url.includes("mp4");
             return (
-              <li key={image.id} className="border-4 p-4">
+              <li key={media.id} className="border-4 p-4">
                 <div className="relative mb-14 aspect-square">
                   {isVideo ? (
                     <video
                       controls
                       playsInline
                       preload="metadata"
-                      src={`${image.media_url}#t=0.001`}
+                      src={`${media.media_url}#t=0.001`}
                       className="absolute inset-0 h-full w-full bg-pink object-cover"
                     />
                   ) : (
                     <Image
-                      src={image.media_url}
+                      src={media.media_url}
                       alt="Instagram Image"
                       width={200}
                       height={200}
@@ -43,7 +42,7 @@ export const InstagramSection = async () => {
                 </div>
                 <div className="flex w-full flex-1 flex-col items-end justify-end">
                   <Link
-                    href={image.permalink}
+                    href={media.permalink}
                     className="flex items-center justify-center gap-1 self-end font-bold text-pink hover:opacity-80"
                   >
                     <Instagram className="text-2xl" />
