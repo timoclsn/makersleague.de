@@ -10,7 +10,7 @@ import { ContactSection } from "components/ContactSection/ContactSection";
 
 const HomePage = () => (
   <>
-    <div className="mb-20 flex min-h-[calc(100vh-116px)] flex-1  flex-col md:mb-32 lg:min-h-[calc(100vh-250px)]">
+    <div className="mb-20 flex min-h-[calc(100vh-120px)] flex-1 flex-col md:mb-32 md:min-h-[calc(100vh-232px)] lg:min-h-[calc(100vh-253px)]">
       <div className="mx-auto max-w-screen-xl space-y-4">
         <h1 className="text-base opacity-80 md:text-2xl">
           Makers League e. V.
