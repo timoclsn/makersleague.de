@@ -2,14 +2,30 @@
 
 import { Book, Calendar, HeartPlus, MakersLeague } from "icons";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavItem } from "./NavItem";
 
 export const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen((prev) => !prev);
-  const closeMenu = () => setIsOpen(false);
+  const toggleMenu = () => {
+    if (!isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    setIsOpen(!isOpen);
+  };
+  const closeMenu = () => {
+    setIsOpen(false);
+    document.body.style.overflow = "";
+  };
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
     <>
@@ -22,7 +38,7 @@ export const MobileNavigation = () => {
       {isOpen && (
         <nav className="fixed left-0 top-0 z-10 h-screen w-full bg-pink lg:hidden">
           <button
-            className="absolute right-0 top-0 p-6 text-light hover:opacity-80"
+            className="absolute right-0 top-0 m-4 rounded-full bg-light p-2 text-pink hover:opacity-80"
             onClick={closeMenu}
           >
             <span className="sr-only">Menü schließen</span>
