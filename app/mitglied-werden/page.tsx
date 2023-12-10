@@ -1,4 +1,5 @@
 import { ApplyButton } from "components/ApplyButton";
+import { ApplySection } from "components/ApplySection";
 import { ButtonSection } from "components/ButtonSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
@@ -27,6 +28,7 @@ const BecomeMemberPage = () => {
       <FitSection />
       <FaqsSection />
       <ValuesSection />
+      <ApplySection />
       <section className="space-y-12">
         <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
           Klingt gut? Dann fülle unsere Bewerbung aus! Anschließend bekommst du

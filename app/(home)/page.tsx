@@ -1,12 +1,13 @@
+import { ApplySection } from "components/ApplySection";
+import { ContactSection } from "components/ContactSection/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
+import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
 import Image from "next/image";
 import membersImg from "./mitglieder.png";
-import { InstagramSection } from "components/InstagramSection";
-import { ContactSection } from "components/ContactSection/ContactSection";
 
 const HomePage = () => (
   <>
@@ -83,6 +84,7 @@ const HomePage = () => (
       <MembersSection />
       <ValuesSection />
       <FitSection />
+      <ApplySection />
       <ContactSection />
       <InstagramSection />
       <FaqsSection />
