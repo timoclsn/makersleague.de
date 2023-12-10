@@ -10,7 +10,7 @@ export const ApplySection = () => {
         So kannst du Mitglied in der Makers League werden
       </p>
       <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark">
+        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
               <div className="flex items-center justify-center rounded-full bg-green p-6 text-light">
@@ -26,7 +26,7 @@ export const ApplySection = () => {
           </div>
           <ApplyButton color="green" />
         </li>
-        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark">
+        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
               <div className="flex items-center justify-center rounded-full bg-pink p-6 text-light">
@@ -45,7 +45,7 @@ export const ApplySection = () => {
             Events
           </Button>
         </li>
-        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark">
+        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
               <div className="flex items-center justify-center rounded-full bg-sand p-6 text-dark">
@@ -61,7 +61,7 @@ export const ApplySection = () => {
             </p>
           </div>
         </li>
-        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark">
+        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
               <div className="flex items-center justify-center rounded-full bg-blue p-6 text-dark">
