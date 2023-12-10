@@ -14,8 +14,8 @@ export const ContactSection = () => {
           Bei Fragen, melde dich bei Nina!
         </p>
         <div className="flex justify-center">
-          <div className="border-4 border-dashed border-dark p-4">
-            <Image src={contactImage} alt="Nina Kuch" className="mb-5" />
+          <div className="w-full border-4 border-dashed border-dark p-4 sm:w-auto">
+            <Image src={contactImage} alt="Nina Kuch" className="mb-5 w-full" />
             <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
               Nina Kuch
             </h3>
