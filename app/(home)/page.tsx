@@ -55,9 +55,9 @@ const HomePage = () => (
       </div>
     </div>
     <Page>
-      <section>
+      <section id="about-us">
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
-        <div className="mb-11 flex flex-col gap-12 md:flex-row">
+        <div className="mb-14 flex flex-col gap-12 md:flex-row">
           <p>
             Wir sind Veränderer, Voranbringerinnen, Erfinder, Umkremplerinnen –
             wir sind Macher. Die Makers League ist ein Verein, in dem sich
@@ -75,12 +75,12 @@ const HomePage = () => (
             Unternehmergeist entstehen und wachsen kann.
           </p>
         </div>
+        <Image
+          src={membersImg}
+          alt="Makers League Mitglieder Gruppenbild"
+          className="border-4 border-dashed border-dark p-4"
+        />
       </section>
-      <Image
-        src={membersImg}
-        alt="Makers League Mitglieder Gruppenbild"
-        className="border-4 border-dashed border-dark p-4"
-      />
       <MembersSection />
       <ValuesSection />
       <FitSection />

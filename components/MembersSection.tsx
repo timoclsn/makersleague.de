@@ -9,7 +9,7 @@ export const MembersSection = async () => {
   const membersCount = await getMembersCountCached();
 
   return (
-    <section>
+    <section id="members">
       <div className="mb-14">
         <h2 className="mb-2 text-base font-bold md:text-2xl">
           Unsere Mitglieder

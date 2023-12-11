@@ -4,7 +4,7 @@ import { ApplyButton } from "./ApplyButton";
 
 export const FitSection = () => {
   return (
-    <section className="relative bg-sand p-8 last:mb-16" id="fit">
+    <section id="fit" className="relative bg-sand p-8 last:mb-16">
       <h2 className="mb-2 text-base font-bold md:text-2xl">
         Passe ich zur Makers League?
       </h2>
@@ -54,7 +54,7 @@ export const FitSection = () => {
       <div className="mb-40 flex justify-center">
         <ApplyButton color="dark" className="text-center" />
       </div>
-      <div className="absolute left-[calc(50%-150px)] bottom-0 -mb-8 w-[300px] md:left-[calc(50%-300px)] md:-mb-16 md:w-[600px]">
+      <div className="absolute bottom-0 left-[calc(50%-150px)] -mb-8 w-[300px] md:left-[calc(50%-300px)] md:-mb-16 md:w-[600px]">
         <Image
           src="/assets/doodle-pointing.svg"
           alt="Doodle Pointing"
