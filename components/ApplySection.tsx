@@ -18,7 +18,7 @@ export const ApplySection = () => {
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schrit 1: Bewerbung
+              Schritt 1: Bewerbung
             </h3>
             <p className="mb-14">
               Fülle das Bewerbungsformular aus (ca. 5min).
@@ -34,7 +34,7 @@ export const ApplySection = () => {
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schrit 2: Event
+              Schritt 2: Event
             </h3>
             <p className="mb-14">
               Besuche ein Event oder Stammtisch im Makers Inn.
@@ -53,7 +53,7 @@ export const ApplySection = () => {
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schrit 3: Mitgliedsantrag
+              Schritt 3: Mitgliedsantrag
             </h3>
             <p className="mb-14">
               Wir passen zusammen! Dann bekommst du ein Mitgliedsantrag von uns
@@ -69,7 +69,7 @@ export const ApplySection = () => {
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schrit 4: Los geht&apos;s
+              Schritt 4: Los geht&apos;s
             </h3>
             <p className="mb-14">
               Du bekommst beim nächsten Event eine Einführung & einen Zugang
