@@ -19,7 +19,7 @@ const UeberPage = async () => {
     <Page>
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
-        <div className="mb-11 flex flex-col space-x-0 space-y-12 md:flex-row md:space-x-12 md:space-y-0">
+        <div className="mb-11 flex flex-col gap-12 md:flex-row">
           <p>
             Wir sind Veränderer, Voranbringerinnen, Erfinder, Umkremplerinnen –
             wir sind Macher. Die Makers League ist ein Verein, in dem sich

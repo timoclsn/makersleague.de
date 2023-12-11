@@ -4,7 +4,7 @@ import { Button } from "./Button";
 
 export const ButtonSection = () => {
   return (
-    <section className="spaxe-x-0 flex flex-col items-start space-y-6 md:flex-row md:items-center md:space-x-9 md:space-y-0">
+    <section className="flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-9">
       <ApplyButton />
       <Button href="#faqs" variant="link">
         <Question className="text-2xl" />
