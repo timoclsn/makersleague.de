@@ -1,4 +1,5 @@
 import { ApplySection } from "components/ApplySection";
+import { Button } from "components/Button";
 import { ContactSection } from "components/ContactSection/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
@@ -6,22 +7,26 @@ import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
+import { HeartPlus } from "icons";
+import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import membersImg from "./mitglieder.png";
+import { ApplyNowButton } from "./HeroButtons";
 
 const HomePage = () => (
   <>
     <div className="mb-20 flex min-h-[calc(100svh-120px)] flex-1 flex-col md:mb-32 md:min-h-[calc(100svh-232px)] lg:min-h-[calc(100svh-253px)]">
-      <div className="mx-auto max-w-screen-xl space-y-4">
-        <h1 className="text-base opacity-80 md:text-2xl">
+      <div className="mx-auto max-w-screen-xl">
+        <h1 className="mb-4 text-base opacity-80 md:text-2xl">
           Makers League e. V.
         </h1>
-        <h2 className="mb-8 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
+        <h2 className="mb-4 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
           Die Gemeinschaft für Macher*innen in Esslingen.
         </h2>
-        <p className="text-lg leading-tight opacity-80 md:text-3xl md:leading-tight">
+        <p className="mb-14 text-lg leading-tight opacity-80 md:text-3xl md:leading-tight">
           Hier bekommen Macher*innen Mut & bringen ihre Ideen gemeinsam voran.
         </p>
+        <ApplyNowButton />
       </div>
 
       <div className="relative -mx-4 -mb-4 min-h-[200px] flex-1 overflow-hidden md:-mx-10 md:-mb-10 md:min-h-[500px]">
@@ -55,7 +60,7 @@ const HomePage = () => (
       </div>
     </div>
     <Page>
-      <section id="about-us">
+      <section id="about-us" className="scroll-mt-10">
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
         <div className="mb-14 flex flex-col gap-12 md:flex-row">
           <p>

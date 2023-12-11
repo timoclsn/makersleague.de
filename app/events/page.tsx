@@ -61,6 +61,8 @@ const EventsPage = async () => {
           </h1>
           <Button
             color="pink"
+            variant="outline"
+            size="small"
             href="https://easyverein.com/public/ML/calendar"
             target="_blank"
             rel="noopener"
@@ -119,6 +121,8 @@ const EventsPage = async () => {
                     {event.url && (
                       <Button
                         color="pink"
+                        variant="outline"
+                        size="small"
                         href={event.url}
                         target="_blank"
                         rel="noopener"

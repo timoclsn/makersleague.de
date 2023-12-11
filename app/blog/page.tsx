@@ -56,7 +56,12 @@ const BlogPage = () => {
                   <span>{post.publishedAtFormatted}</span>
                 </li>
               </ul>
-              <Button href={`/blog/${post.slug}`} color="sand">
+              <Button
+                href={`/blog/${post.slug}`}
+                color="sand"
+                variant="outline"
+                size="small"
+              >
                 <Arrow className="text-2xl" />
                 Weiterlesen...
               </Button>

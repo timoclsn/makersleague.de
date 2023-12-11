@@ -4,7 +4,7 @@ import { ApplyButton } from "./ApplyButton";
 
 export const FitSection = () => {
   return (
-    <section id="fit" className="relative bg-sand p-8 last:mb-16">
+    <section id="fit" className="relative scroll-mt-12 bg-sand p-8 last:mb-16">
       <h2 className="mb-2 text-base font-bold md:text-2xl">
         Passe ich zur Makers League?
       </h2>
