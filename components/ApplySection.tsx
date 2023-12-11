@@ -72,8 +72,8 @@ export const ApplySection = () => {
               Schritt 4: Los geht&apos;s
             </h3>
             <p className="mb-14">
-              Du bekommst beim nächsten Event eine Einführung & einen Zugang
-              für&apos;s Makers Inn.
+              Du bekommst in deiner Welcome Mail alle wichtigen Infos für deinen
+              Start bei uns.
             </p>
           </div>
         </li>
