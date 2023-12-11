@@ -5,7 +5,9 @@ import { formatISO, parseISO } from "date-fns";
 import { Arrow, Calendar, Location, Profile } from "icons";
 import { getEventsCached } from "lib/calendar";
 import { formatDate } from "lib/utils";
+import { CalendarX } from "lucide-react";
 import { Metadata } from "next";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -74,28 +76,42 @@ const EventsPage = async () => {
                   typeof event.start === "string"
                     ? parseISO(event.start)
                     : event.start;
+                const isMakersInn = event.location?.includes("Makers Inn");
                 return (
                   <article key={event.id}>
                     <h2 className="mb-4 text-base font-bold md:text-2xl">
                       {event.title}
                     </h2>
                     <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
-                      {event.location && (
-                        <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
-                          <Location className="text-xl" />
-                          {event.location}
-                        </li>
-                      )}
-                      <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
+                      {event.location &&
+                        (isMakersInn ? (
+                          <a
+                            href="https://maps.app.goo.gl/bgpY6u8SerF1wMbZ8"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:opacity-80"
+                          >
+                            <Tag>
+                              <Location className="text-xl" />
+                              Makers Inn
+                            </Tag>
+                          </a>
+                        ) : (
+                          <Tag>
+                            <Location className="text-xl" />
+                            {event.location}
+                          </Tag>
+                        ))}
+                      <Tag>
                         <Calendar className="text-xl" />
                         {`${formatDate(startDate, "dd. MMM yyyy | HH")} Uhr`}
-                      </li>
-                      <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
+                      </Tag>
+                      <Tag>
                         <Profile className="text-xl" />
                         {event.membersOnly
                           ? "Nur für Mitglieder"
                           : "Jeder ist willkommen!"}
-                      </li>
+                      </Tag>
                     </ul>
                     {event.description && (
                       <p className="mb-8">{event.description}</p>
@@ -116,9 +132,12 @@ const EventsPage = async () => {
               })}
             </div>
           ) : (
-            <h2 className="mb-4 text-base font-bold md:text-2xl">
-              Keine anstehenden Events
-            </h2>
+            <div className="flex items-center justify-center">
+              <h2 className="mb-4 flex items-center justify-center gap-4 text-base font-bold md:text-2xl">
+                <CalendarX size={32} />
+                Keine anstehenden Events
+              </h2>
+            </div>
           )}
         </section>
       </Page>
@@ -127,3 +146,15 @@ const EventsPage = async () => {
 };
 
 export default EventsPage;
+
+interface TagProps {
+  children: ReactNode;
+}
+
+const Tag = ({ children }: TagProps) => {
+  return (
+    <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
+      {children}
+    </li>
+  );
+};
