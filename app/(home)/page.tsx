@@ -15,7 +15,7 @@ import { ApplyNowButton } from "./HeroButtons";
 
 const HomePage = () => (
   <>
-    <div className="mb-20 flex min-h-[calc(100svh-120px)] flex-1 flex-col md:mb-32 md:min-h-[calc(100svh-232px)] lg:min-h-[calc(100svh-253px)]">
+    <div className="mb-20 flex min-h-[calc(100svh-100px)] flex-1 flex-col md:mb-32 md:min-h-[calc(100svh-188px)] lg:min-h-[calc(100svh-209px)]">
       <div className="mx-auto max-w-screen-xl">
         <h1 className="mb-4 text-base opacity-80 md:text-2xl">
           Makers League e. V.
@@ -29,7 +29,7 @@ const HomePage = () => (
         <ApplyNowButton />
       </div>
 
-      <div className="relative -mx-4 -mb-4 min-h-[200px] flex-1 overflow-hidden md:-mx-10 md:-mb-10 md:min-h-[500px]">
+      <div className="relative -mx-4 min-h-[200px] flex-1 overflow-hidden border-b-4 md:-mx-10 md:min-h-[500px]">
         <div className="absolute bottom-0 left-0 w-[100px] md:w-[200px]">
           <Image
             src="/assets/doodle-selfie.svg"
