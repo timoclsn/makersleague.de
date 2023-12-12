@@ -1,9 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-
 import { Arrow } from "icons";
 import { WebsiteMember } from "lib/easyverein";
 import { getBaseUrl } from "lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   members: WebsiteMember[];
@@ -11,19 +10,19 @@ interface Props {
 
 export const Members = ({ members }: Props) => {
   return (
-    <ul className="flex flex-wrap gap-4 md:gap-8">
+    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
       {members.map((member, idx) => (
         <li
           className={`${
             idx === 0 ? "oder-1" : "order-last"
-          } w-[calc(50%-8px)] overflow-hidden border-4 p-4 md:w-[calc(33.33%-22px)]`}
+          } overflow-hidden border-4 p-4`}
           key={member.id}
         >
           <Link href={`/mitglieder/${member.slug}`}>
             <div className="group flex h-full flex-col items-start">
               <Image
                 src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
-                  member.profilePicture
+                  member.profilePicture,
                 )}`}
                 alt={member.name}
                 width={700}
@@ -45,7 +44,7 @@ export const Members = ({ members }: Props) => {
           </Link>
         </li>
       ))}
-      <li className="order-2 w-[calc(50%-8px)] border-4 border-dashed p-4 text-pink md:w-[calc(33.33%-22px)]">
+      <li className="order-2 border-4 border-dashed p-4 text-pink">
         <Link href="/mitglied-werden">
           <div className="group flex h-full flex-col items-start">
             <Image

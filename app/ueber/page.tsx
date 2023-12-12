@@ -2,10 +2,9 @@ import { ButtonSection } from "components/ButtonSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { MembersSection } from "components/MembersSection";
+import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
-import { allFaqs } from "contentlayer/generated";
 import { Arrow } from "icons";
-import { getMemberInfosCached } from "lib/easyverein";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,14 +15,11 @@ export const metadata: Metadata = {
 };
 
 const UeberPage = async () => {
-  const allMembers = await getMemberInfosCached();
-  const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
-  const faqs = allFaqs.filter((faq) => faq.preview);
   return (
-    <>
+    <Page>
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
-        <div className="mb-11 flex flex-col space-y-12 space-x-0 md:flex-row md:space-x-12 md:space-y-0">
+        <div className="mb-11 flex flex-col gap-12 md:flex-row">
           <p>
             Wir sind Veränderer, Voranbringerinnen, Erfinder, Umkremplerinnen –
             wir sind Macher. Die Makers League ist ein Verein, in dem sich
@@ -65,7 +61,7 @@ const UeberPage = async () => {
                 mehr
               </Link>
             </div>
-            <div className="absolute right-0 bottom-0 -mb-10 -mr-6 w-[150px]">
+            <div className="absolute bottom-0 right-0 -mb-10 -mr-6 w-[150px]">
               <Image
                 src="/assets/doodle-loving-blue.svg"
                 alt="Doodle Loving"
@@ -77,11 +73,11 @@ const UeberPage = async () => {
         </div>
         <ButtonSection />
       </section>
-      <MembersSection members={members} />
+      <MembersSection />
       <ValuesSection />
-      <FaqsSection faqs={faqs} />
+      <FaqsSection />
       <FitSection />
-    </>
+    </Page>
   );
 };
 

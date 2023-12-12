@@ -67,7 +67,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
   }
 
   const result = await getMembers(
-    "{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}"
+    "{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}",
   );
   const apiMembers = z.array(memberSchema).parse(result);
 
@@ -79,7 +79,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!customFields) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't have any custom fields`
+            `Not showing ${name} because they don't have any custom fields`,
           );
         }
         return false;
@@ -91,7 +91,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!show) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't want to be shown`
+            `Not showing ${name} because they don't want to be shown`,
           );
         }
         return false;
@@ -102,7 +102,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!profilePicture) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't have a profile picture`
+            `Not showing ${name} because they don't have a profile picture`,
           );
         }
         return false;
@@ -118,7 +118,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
       if (!slogan || !superPowers[0] || !superPowers[1] || !superPowers[2]) {
         if (environment === "development") {
           console.log(
-            `Not showing ${name} because they don't have a slogan or super powers`
+            `Not showing ${name} because they don't have a slogan or super powers`,
           );
         }
         return false;
@@ -174,5 +174,17 @@ export const getMemberInfosCached = reactCache(async () => {
   return await nextCache(getMemberInfos, ["members"], {
     revalidate: 60,
     tags: ["members"],
+  })();
+});
+
+const getMembersCount = async () => {
+  const result = await getMembers("{id}");
+  return result.length;
+};
+
+export const getMembersCountCached = reactCache(async () => {
+  return await nextCache(getMembersCount, ["members-count"], {
+    revalidate: 60,
+    tags: ["members-count"],
   })();
 });

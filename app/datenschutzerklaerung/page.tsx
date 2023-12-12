@@ -1,3 +1,4 @@
+import { Page } from "components/Page";
 import { allContentPages } from "contentlayer/generated";
 import { Metadata } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
@@ -19,10 +20,12 @@ const PrivacyPage = () => {
 
   const Component = useMDXComponent(content.body.code);
   return (
-    <section className="prose mb-8">
-      <h1>{content.title}</h1>
-      <Component />
-    </section>
+    <Page>
+      <section className="prose mb-8">
+        <h1>{content.title}</h1>
+        <Component />
+      </section>
+    </Page>
   );
 };
 

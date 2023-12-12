@@ -1,20 +1,36 @@
+import { ApplySection } from "components/ApplySection";
+import { Button } from "components/Button";
+import { ContactSection } from "components/ContactSection/ContactSection";
+import { FaqsSection } from "components/FaqsSection";
+import { FitSection } from "components/FitSection";
+import { InstagramSection } from "components/InstagramSection";
+import { MembersSection } from "components/MembersSection";
+import { Page } from "components/Page";
+import { ValuesSection } from "components/ValuesSection";
+import { HeartPlus } from "icons";
+import { ArrowDown } from "lucide-react";
 import Image from "next/image";
+import membersImg from "./mitglieder.png";
+import { ApplyNowButton } from "./HeroButtons";
 
-const HomePage = () => {
-  return (
-    <div className="flex h-full flex-1 flex-col">
-      <div className="mx-auto max-w-screen-xl space-y-4">
-        <h1 className="text-base opacity-80 md:text-2xl">
+const HomePage = () => (
+  <>
+    <div className="mb-20 flex min-h-[calc(100svh-100px)] flex-1 flex-col md:mb-32 md:min-h-[calc(100svh-188px)] lg:min-h-[calc(100svh-209px)]">
+      <div className="mx-auto max-w-screen-xl">
+        <h1 className="mb-4 text-base opacity-80 md:text-2xl">
           Makers League e. V.
         </h1>
-        <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
-          Die Gemeinschaft für Macher*innen in Esslingen, die zusammen Ideen
-          voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte frei!
+        <h2 className="mb-4 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
+          Die Gemeinschaft für Macher*innen in Esslingen.
         </h2>
+        <p className="mb-14 text-lg leading-tight opacity-80 md:text-3xl md:leading-tight">
+          Hier bekommen Macher*innen Mut & bringen ihre Ideen gemeinsam voran.
+        </p>
+        <ApplyNowButton />
       </div>
 
-      <div className="relative -mx-4 -mb-4 min-h-[200px] flex-1 overflow-hidden md:-mx-10 md:-mb-10 md:min-h-[500px]">
-        <div className="absolute left-0 bottom-0 w-[100px] md:w-[200px]">
+      <div className="relative -mx-4 min-h-[200px] flex-1 overflow-hidden border-b-4 md:-mx-10 md:min-h-[500px]">
+        <div className="absolute bottom-0 left-0 w-[100px] md:w-[200px]">
           <Image
             src="/assets/doodle-selfie.svg"
             alt="Doodle Selfie"
@@ -23,7 +39,7 @@ const HomePage = () => {
             priority
           />
         </div>
-        <div className="absolute left-1/2 bottom-0 -ml-16 -mb-12 w-[160px] md:-ml-32 md:-mb-24 md:w-[300px]">
+        <div className="absolute bottom-0 left-1/2 -mb-12 -ml-16 w-[160px] md:-mb-24 md:-ml-32 md:w-[300px]">
           <Image
             src="/assets/doodle-loving.svg"
             alt="Doodle Loving"
@@ -43,7 +59,42 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-  );
-};
+    <Page>
+      <section id="about-us" className="scroll-mt-10">
+        <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
+        <div className="mb-14 flex flex-col gap-12 md:flex-row">
+          <p>
+            Wir sind Veränderer, Voranbringerinnen, Erfinder, Umkremplerinnen –
+            wir sind Macher. Die Makers League ist ein Verein, in dem sich
+            Gründer*innen und Kleinstunternehmer, Firmen, Betriebe,
+            Tüftler*innen und Pioniere zusammentun. Uns alle verbindet, dass wir
+            in und um Esslingen am Neckar unternehmerisch tätig sind oder sein
+            möchten und dass wir uns dabei als Netzwerk gegenseitig
+            unterstützen.
+            <br />
+            <br />
+            Mit Know-How, Kontakten, Motivation, gemeinsamen Veranstaltungen und
+            vielem mehr. Dabeisein können alle, die selbst Macher sind oder die
+            Arbeit der Makers League fördern wollen. Wir setzen uns für ein
+            modernes, innovatives Esslingen ein, in dem kreativer
+            Unternehmergeist entstehen und wachsen kann.
+          </p>
+        </div>
+        <Image
+          src={membersImg}
+          alt="Makers League Mitglieder Gruppenbild"
+          className="border-4 border-dashed border-dark p-4"
+        />
+      </section>
+      <MembersSection />
+      <ValuesSection />
+      <FitSection />
+      <ApplySection />
+      <ContactSection />
+      <InstagramSection />
+      <FaqsSection />
+    </Page>
+  </>
+);
 
 export default HomePage;

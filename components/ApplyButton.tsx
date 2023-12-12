@@ -2,19 +2,17 @@
 
 import { HeartPlus } from "icons";
 import { track } from "lib/tracking";
-import { usePathname } from "next/navigation";
 import { Button, ButtonProps } from "./Button";
 
 interface Props {
   className?: string;
   color?: ButtonProps["color"];
+  trackingLocation: string;
 }
 
-export const ApplyButton = ({ className, color }: Props) => {
-  const pathname = usePathname();
+export const ApplyButton = ({ className, color, trackingLocation }: Props) => {
   return (
     <Button
-      as="a"
       color={color}
       href="https://form.typeform.com/to/wg4UO6p8"
       target="_blank"
@@ -22,7 +20,7 @@ export const ApplyButton = ({ className, color }: Props) => {
       className={className}
       onClick={() => {
         track("Apply clicked", {
-          path: pathname,
+          location: trackingLocation,
         });
       }}
     >

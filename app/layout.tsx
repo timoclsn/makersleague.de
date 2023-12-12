@@ -1,5 +1,6 @@
 import { Footer } from "components/Footer";
-import { Layout } from "components/Layout";
+import { Header } from "components/Header";
+import { Navigation } from "components/Navigation";
 import { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
@@ -50,8 +51,14 @@ interface Props {
 const RootLayout = ({ children }: Props) => {
   return (
     <html lang="de" className={`min-h-screen ${fontSans.variable}`}>
-      <body className="min-h-screen text-base text-dark">
-        <Layout>{children}</Layout>
+      <body className="flex min-h-screen flex-col text-base text-dark">
+        <div className="flex flex-1 flex-row">
+          <Navigation />
+          <main className="bg-yellow-900 mx-auto flex w-full flex-1 flex-col p-4 md:p-10">
+            <Header />
+            {children}
+          </main>
+        </div>
         <Footer />
         <Script data-no-cookie data-api="/_hive" src="/bee.js" />
       </body>

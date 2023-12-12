@@ -1,11 +1,11 @@
 import { Button } from "components/Button";
 import { Members } from "components/Members";
+import { Page } from "components/Page";
 import { Arrow, HeartPlus } from "icons";
 import { getMemberInfosCached } from "lib/easyverein";
 import { createGenerateMetadata } from "lib/metadata";
 import { getBaseUrl } from "lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
@@ -47,15 +47,13 @@ const MemberPage = async ({ params }: Props) => {
     .slice(0, 5);
 
   return (
-    <>
+    <Page>
       <section>
         <div className="mb-16">
-          <Link href="/mitglieder" passHref legacyBehavior>
-            <Button as="a">
-              <Arrow className="rotate-180 text-2xl" />
-              Zurück zu allen Mitgliedern
-            </Button>
-          </Link>
+          <Button href="/mitglieder">
+            <Arrow className="rotate-180 text-2xl" />
+            Zurück zu allen Mitgliedern
+          </Button>
         </div>
         <div className="flex flex-col gap-28 md:flex-row">
           <div className="flex-1">
@@ -79,7 +77,7 @@ const MemberPage = async ({ params }: Props) => {
             )}
           </div>
           <div className="relative mx-auto">
-            <div className="absolute top-0 left-0">
+            <div className="absolute left-0 top-0">
               <Image
                 src="/assets/frame.svg"
                 alt="Image Frame"
@@ -90,7 +88,7 @@ const MemberPage = async ({ params }: Props) => {
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
               <Image
                 src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
-                  member.profilePicture
+                  member.profilePicture,
                 )}`}
                 alt={member.name}
                 width={300}
@@ -105,12 +103,10 @@ const MemberPage = async ({ params }: Props) => {
           {`Du möchtest Teil unseres Netzwerks werden um mit spannenden
         Superheld*innen wie ${member.firstName} Ideen voranbringen zu können?`}
         </h2>
-        <Link href="/mitglied-werden" passHref legacyBehavior>
-          <Button as="a" color="blue-accent">
-            <HeartPlus className="text-2xl" />
-            Mitglied werden
-          </Button>
-        </Link>
+        <Button href="/mitglied-werden" color="blue-accent">
+          <HeartPlus className="text-2xl" />
+          Mitglied werden
+        </Button>
       </section>
       <section>
         <h2 className="mb-2 text-2xl font-bold">Weitere Mitglieder</h2>
@@ -118,14 +114,12 @@ const MemberPage = async ({ params }: Props) => {
           Finde weitere Superheld*innen der Makers League
         </p>
         <Members members={otherMembers} />
-        <Link href="/mitglieder" passHref legacyBehavior>
-          <Button as="a" className="mt-14">
-            <Arrow className="text-2xl" />
-            Mehr Mitglieder
-          </Button>
-        </Link>
+        <Button href="/mitglieder" className="mt-14">
+          <Arrow className="text-2xl" />
+          Mehr Mitglieder
+        </Button>
       </section>
-    </>
+    </Page>
   );
 };
 
