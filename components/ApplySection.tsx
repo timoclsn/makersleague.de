@@ -24,7 +24,7 @@ export const ApplySection = () => {
               Fülle das Bewerbungsformular aus (ca. 5min).
             </p>
           </div>
-          <ApplyButton color="green" />
+          <ApplyButton color="green" trackingLocation="Apply section" />
         </li>
         <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>

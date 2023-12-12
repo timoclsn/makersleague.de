@@ -52,7 +52,11 @@ export const FitSection = () => {
         </div>
       </div>
       <div className="mb-40 flex justify-center">
-        <ApplyButton color="dark" className="text-center" />
+        <ApplyButton
+          color="dark"
+          className="text-center"
+          trackingLocation="Fit ection"
+        />
       </div>
       <div className="absolute bottom-0 left-[calc(50%-150px)] -mb-8 w-[300px] md:left-[calc(50%-300px)] md:-mb-16 md:w-[600px]">
         <Image

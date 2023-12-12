@@ -1,9 +1,8 @@
 interface TrackingEvents {
   "Apply clicked": {
-    path: string;
+    location: string;
   };
-  "Home hero apply clicked": null;
-  "Home hero learn more clicked": null;
+  "Learn more clicked": null;
 }
 
 export const track = <TEventKey extends keyof TrackingEvents>(

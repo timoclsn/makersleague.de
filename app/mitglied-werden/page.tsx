@@ -34,7 +34,7 @@ const BecomeMemberPage = () => {
           Klingt gut? Dann fülle unsere Bewerbung aus! Anschließend bekommst du
           weitere Informationen zum Aufnahmeprozess per E-Mail.
         </h2>
-        <ApplyButton color="pink" />
+        <ApplyButton color="pink" trackingLocation="Become member page" />
       </section>
     </Page>
   );
