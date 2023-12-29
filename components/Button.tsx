@@ -7,17 +7,17 @@ const button = cva({
   base: "inline-flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 font-bold text-sm md:text-base hover:opacity-80",
   variants: {
     variant: {
-      solid: "",
+      solid: null,
       outline: "ring-2 ring-inset",
       link: "px-0 py-0",
     },
     color: {
-      blue: "",
-      "blue-accent": "",
-      pink: "",
-      green: "",
-      sand: "",
-      dark: "",
+      blue: null,
+      "blue-accent": null,
+      pink: null,
+      green: null,
+      sand: null,
+      dark: null,
     },
     size: {
       medium: "px-6 py-4",
@@ -127,7 +127,7 @@ interface CommmonProps {
   className?: string;
 }
 
-type ElementProps =
+type ConditionalProps =
   | {
       type?: "button" | "submit" | "reset";
       onClick?: () => void;
@@ -145,7 +145,7 @@ type ElementProps =
       disabled?: never;
     };
 
-export type ButtonProps = CommmonProps & ElementProps & ButtonVariants;
+export type ButtonProps = CommmonProps & ConditionalProps & ButtonVariants;
 
 export const Button = forwardRef<
   HTMLButtonElement & HTMLAnchorElement,
