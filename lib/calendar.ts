@@ -72,3 +72,11 @@ export const getEventsCached = reactCache(async () => {
     tags: ["events"],
   })();
 });
+
+export const getNextEvent = async (name: string) => {
+  const events = await getEventsCached();
+  return events.find((event) => {
+    if (!event.title) return false;
+    return event.title.toLowerCase().includes(name.toLowerCase());
+  });
+};
