@@ -3,6 +3,8 @@ interface TrackingEvents {
     location: string;
   };
   "Learn more clicked": null;
+  "Next Stammtisch clicked": null;
+  "Next Stammtisch closed": null;
 }
 
 export const track = <TEventKey extends keyof TrackingEvents>(
