@@ -64,7 +64,7 @@ export const NextStammtischClient = ({ id, date, url }: Props) => {
               Komm vorbei
             </Button>
           </div>
-          <Dialog.Close className="absolute right-0 top-0 p-4 text-pink-light">
+          <Dialog.Close className="absolute right-0 top-0 m-2 p-2 text-pink-light">
             <X size={18} />
           </Dialog.Close>
         </Dialog.Content>
