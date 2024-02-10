@@ -39,6 +39,8 @@ const customFieldSchema = z.object({
 
 export const memberSchema = z.object({
   id: z.number(),
+  resignationDate: z.string().nullable(),
+  _isApplication: z.boolean(),
   _profilePicture: z.string().optional(),
   contactDetails: z.object({
     name: z.string(),
@@ -47,6 +49,26 @@ export const memberSchema = z.object({
   }),
   customFields: z.array(customFieldSchema).nullable(),
 });
+
+const getActiveMembers = async () => {
+  const result = await getMembers(
+    "{id,resignationDate,_isApplication,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}",
+  );
+  const members = z.array(memberSchema).parse(result);
+
+  return members.filter((member) => {
+    // Filter out pending applications
+    if (member._isApplication) {
+      return false;
+    }
+    // Filter out past members
+    if (member.resignationDate) {
+      return new Date(member.resignationDate) > new Date();
+    }
+
+    return true;
+  });
+};
 
 const customFieldNames = {
   show: "Auf Website anzeigen",
@@ -66,10 +88,7 @@ const getMemberInfos = async (): Promise<WebsiteMember[]> => {
     console.log("Member cache not initialized");
   }
 
-  const result = await getMembers(
-    "{id,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}",
-  );
-  const apiMembers = z.array(memberSchema).parse(result);
+  const apiMembers = await getActiveMembers();
 
   const websiteMembers = apiMembers
     .filter((apiMember) => {
@@ -178,7 +197,7 @@ export const getMemberInfosCached = reactCache(async () => {
 });
 
 const getMembersCount = async () => {
-  const result = await getMembers("{id}");
+  const result = await getActiveMembers();
   return result.length;
 };
 
