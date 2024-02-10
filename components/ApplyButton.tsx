@@ -14,9 +14,7 @@ export const ApplyButton = ({ className, color, trackingLocation }: Props) => {
   return (
     <Button
       color={color}
-      href="https://form.typeform.com/to/wg4UO6p8"
-      target="_blank"
-      rel="noopener noreferrer"
+      href="/mitglied-werden/bewerbung"
       className={className}
       onClick={() => {
         track("Apply clicked", {

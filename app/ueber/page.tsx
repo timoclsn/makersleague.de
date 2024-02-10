@@ -1,6 +1,6 @@
-import { ButtonSection } from "components/ButtonSection";
+import { ContactSection } from "components/ContactSection/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
-import { FitSection } from "components/FitSection";
+import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
@@ -71,12 +71,12 @@ const UeberPage = async () => {
             </div>
           </div>
         </div>
-        <ButtonSection />
       </section>
       <MembersSection />
       <ValuesSection />
+      <InstagramSection />
       <FaqsSection />
-      <FitSection />
+      <ContactSection />
     </Page>
   );
 };

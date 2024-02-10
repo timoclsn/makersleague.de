@@ -5,7 +5,7 @@ import { HeartPlus } from "icons";
 import { track } from "lib/tracking";
 import { ArrowDown } from "lucide-react";
 
-export const ApplyNowButton = () => {
+export const HeroButtons = () => {
   const onMoreClick = () => {
     const aboutUsSection = document.getElementById("about-us");
     if (!aboutUsSection) return;
@@ -16,13 +16,7 @@ export const ApplyNowButton = () => {
     track("Learn more clicked");
   };
 
-  const onApplyNowClick = () => {
-    const fitSection = document.getElementById("fit");
-    if (!fitSection) return;
-    fitSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+  const onBecomeMemberClick = () => {
     track("Apply clicked", {
       location: "Home hero",
     });
@@ -34,9 +28,14 @@ export const ApplyNowButton = () => {
         <ArrowDown />
         Mehr erfahren
       </Button>
-      <Button variant="outline" color="dark" onClick={onApplyNowClick}>
+      <Button
+        variant="outline"
+        color="dark"
+        onClick={onBecomeMemberClick}
+        href="/mitglied-werden"
+      >
         <HeartPlus className="text-2xl" />
-        Jetzt bewerben
+        Mitglied werden
       </Button>
     </div>
   );

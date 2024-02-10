@@ -1,6 +1,5 @@
-import { ApplyButton } from "components/ApplyButton";
 import { ApplySection } from "components/ApplySection";
-import { ButtonSection } from "components/ButtonSection";
+import { ContactSection } from "components/ContactSection/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { Page } from "components/Page";
@@ -21,21 +20,14 @@ const BecomeMemberPage = () => {
         </h1>
         <h2 className="mb-11 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
           Du möchtest Teil unseres Macher*innen Netzwerks werden? Dann findest
-          du hier alle wichtigen Infos und den Link zur Bewerbung!
+          du hier alle wichtigen Infos!
         </h2>
-        <ButtonSection />
       </section>
-      <FitSection />
-      <FaqsSection />
-      <ValuesSection />
       <ApplySection />
-      <section className="space-y-12">
-        <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
-          Klingt gut? Dann fülle unsere Bewerbung aus! Anschließend bekommst du
-          weitere Informationen zum Aufnahmeprozess per E-Mail.
-        </h2>
-        <ApplyButton color="pink" trackingLocation="Become member page" />
-      </section>
+      <FitSection />
+      <ValuesSection />
+      <FaqsSection />
+      <ContactSection />
     </Page>
   );
 };
