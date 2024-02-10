@@ -37,10 +37,10 @@ export const ApplySection = () => {
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schritt 2: Mitgliedsantrag
+              Schritt 2: Bewerbung
             </h3>
             <p className="mb-14">
-              Wir passen zusammen! Fülle den Mitgliedsantrag aus.
+              Es hat KLICK gemacht? Fülle jetzt die Bewerbung aus.
             </p>
             <ApplyButton color="green" trackingLocation="Apply section" />
           </div>
