@@ -1,15 +1,11 @@
-import Link from "next/link";
-
-import { Faq } from "contentlayer/generated";
+import { allFaqs } from "contentlayer/generated";
 import { Arrow } from "icons";
 import { Button } from "./Button";
 import { Faqs } from "./Faqs";
 
-interface Props {
-  faqs: Faq[];
-}
+export const FaqsSection = () => {
+  const faqs = allFaqs.filter((faq) => faq.preview);
 
-export const FaqsSection = ({ faqs }: Props) => {
   return (
     <section id="faqs">
       <div className="mb-14">
@@ -19,12 +15,10 @@ export const FaqsSection = ({ faqs }: Props) => {
         </p>
         <Faqs faqs={faqs} />
       </div>
-      <Link href="/faqs" passHref legacyBehavior>
-        <Button as="a">
-          <Arrow className="text-2xl" />
-          Alle FAQs
-        </Button>
-      </Link>
+      <Button href="/faqs">
+        <Arrow className="text-2xl" />
+        Alle FAQs
+      </Button>
     </section>
   );
 };

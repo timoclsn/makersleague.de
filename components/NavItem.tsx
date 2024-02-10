@@ -7,11 +7,11 @@ import { colorMap } from "./utils";
 
 interface NavItemProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   color?: keyof typeof colorMap;
   Icon: Icon;
-  expanded?: boolean;
   href: string;
+  onclick?: () => void;
 }
 
 export const NavItem = ({
@@ -19,22 +19,18 @@ export const NavItem = ({
   subtitle,
   color = "blue",
   Icon,
-  expanded,
   href,
+  onclick,
 }: NavItemProps) => {
   const pathname = usePathname();
   return (
     <li
-      className={`w-1/2 xl:h-1/2 group ${colorMap[color].bg} ${colorMap[color].text}`}
+      className={`group w-1/2 lg:h-1/2 ${colorMap[color].bg} ${colorMap[color].text}`}
     >
-      <Link href={href}>
-        <div className="h-full w-full gap-12 p-6 flex flex-col justify-between">
+      <Link href={href} onClick={onclick}>
+        <div className="flex h-full w-full flex-col justify-between gap-12 p-6">
           <Icon className={`${colorMap[color].text} text-[24px]`} />
-          <div
-            className={`flex group-hover:opacity-80 ${
-              expanded ? "flex-col-reverse" : "xl:writing-vertical flex-col"
-            }`}
-          >
+          <div className="lg:writing-vertical flex flex-col group-hover:opacity-80">
             <p
               className={`text-2lg font-bold${
                 pathname?.includes(href) && " underline"
@@ -42,7 +38,7 @@ export const NavItem = ({
             >
               {title}
             </p>
-            {expanded && (
+            {subtitle && (
               <span className="mb-4 text-sm opacity-80 md:text-base">
                 {subtitle}
               </span>

@@ -1,5 +1,6 @@
 import { Button } from "components/Button";
 import { Faqs } from "components/Faqs";
+import { Page } from "components/Page";
 import { allFaqs } from "contentlayer/generated";
 import { Arrow } from "icons";
 import { Metadata } from "next";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 const FaqPage = () => {
   const faqs = allFaqs.sort((a, b) => a.question.localeCompare(b.question));
   return (
-    <>
+    <Page>
       <section>
         <h1 className="mb-6 text-xl font-bold md:text-5xl">FAQs</h1>
         <p className="mb-16 text-base opacity-60 md:text-2xl">
@@ -24,12 +25,12 @@ const FaqPage = () => {
         <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
           Du hast weitere Fragen? Dann schreib uns gerne eine E-Mail.
         </h2>
-        <Button as="a" color="pink" href="mailto:hello@makersleague.de">
+        <Button color="pink" href="mailto:hello@makersleague.de">
           <Arrow className="text-2xl" />
           E-Mail schreiben
         </Button>
       </section>
-    </>
+    </Page>
   );
 };
 

@@ -18,6 +18,7 @@ const eventSchema = z.object({
   description: z.string().optional(),
   location: z.string().optional(),
   start: z.string().optional(),
+  url: z.string().url().optional(),
 });
 
 const getEvents = async () => {
@@ -57,6 +58,7 @@ const getEvents = async () => {
           TIMEZONE,
         ),
         membersOnly: description?.includes(MEMBERS_ONLY_TAG),
+        url: event.url,
       };
     })
     .sort((a, b) => a.start.getTime() - b.start.getTime());
@@ -70,3 +72,11 @@ export const getEventsCached = reactCache(async () => {
     tags: ["events"],
   })();
 });
+
+export const getNextEvent = async (name: string) => {
+  const events = await getEventsCached();
+  return events.find((event) => {
+    if (!event.title) return false;
+    return event.title.toLowerCase().includes(name.toLowerCase());
+  });
+};
