@@ -1,4 +1,3 @@
-import { ApplySection } from "components/ApplySection";
 import { Members } from "components/Members";
 import { Page } from "components/Page";
 import { getMemberInfosCached, getMembersCountCached } from "lib/easyverein";
@@ -23,7 +22,6 @@ const MembersPage = async () => {
         </p>
         <Members members={members} />
       </section>
-      <ApplySection />
     </Page>
   );
 };
