@@ -1,8 +1,7 @@
 interface TrackingEvents {
-  "Apply clicked": {
-    location: string;
-  };
-  "Learn more clicked": null;
+  "Home hero primary clicked": null;
+  "Home hero secondary clicked": null;
+  "Apply clicked": null;
   "Next Stammtisch clicked": null;
   "Next Stammtisch closed": null;
 }

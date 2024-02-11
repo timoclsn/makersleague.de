@@ -2,24 +2,20 @@
 
 import { HeartPlus } from "icons";
 import { track } from "lib/tracking";
-import { Button, ButtonProps } from "./Button";
+import { Button } from "./Button";
 
 interface Props {
   className?: string;
-  color?: ButtonProps["color"];
-  trackingLocation: string;
 }
 
-export const ApplyButton = ({ className, color, trackingLocation }: Props) => {
+export const ApplyButton = ({ className }: Props) => {
   return (
     <Button
-      color={color}
+      color="green"
       href="/mitglied-werden/bewerbung"
       className={className}
       onClick={() => {
-        track("Apply clicked", {
-          location: trackingLocation,
-        });
+        track("Apply clicked");
       }}
     >
       <HeartPlus className="text-2xl" />
