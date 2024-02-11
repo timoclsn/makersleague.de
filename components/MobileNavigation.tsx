@@ -36,7 +36,7 @@ export const MobileNavigation = () => {
         <Menu size={16} />
       </button>
       {isOpen && (
-        <nav className="fixed left-0 top-0 z-10 h-[100dvh] w-full bg-pink lg:hidden">
+        <nav className="fixed left-0 top-0 z-10 h-[100dvh] w-full bg-pink duration-150 ease-in-out animate-in fade-in-75 zoom-in-110 lg:hidden">
           <button
             className="absolute right-0 top-0 m-4 rounded-full bg-light p-2 text-pink hover:opacity-80"
             onClick={closeMenu}
