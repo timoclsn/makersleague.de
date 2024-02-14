@@ -1,5 +1,5 @@
 import { parseISO } from "date-fns";
-import { getNextEvent } from "lib/calendar";
+import { getNextEvent } from "lib/events";
 import { formatDate } from "lib/utils";
 import { NextStammtischClient } from "./NextStammtischClient";
 

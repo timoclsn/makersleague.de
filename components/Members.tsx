@@ -1,5 +1,5 @@
 import { Arrow } from "icons";
-import { WebsiteMember } from "lib/easyverein";
+import { WebsiteMember } from "lib/members";
 import { getBaseUrl } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
