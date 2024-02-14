@@ -2,7 +2,7 @@ import { Button } from "components/Button";
 import { Members } from "components/Members";
 import { Page } from "components/Page";
 import { Arrow, HeartPlus } from "icons";
-import { getMemberInfosCached } from "lib/easyverein";
+import { getMemberInfos } from "lib/members";
 import { createGenerateMetadata } from "lib/metadata";
 import { getBaseUrl } from "lib/utils";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import { notFound } from "next/navigation";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
   const { slug } = params;
-  const allMembers = await getMemberInfosCached();
+  const allMembers = await getMemberInfos();
   const member = allMembers.find((member) => member.slug === slug);
   if (!member) return {};
 
@@ -21,7 +21,7 @@ export const generateMetadata = createGenerateMetadata(async ({ params }) => {
 });
 
 export const generateStaticParams = async () => {
-  const members = await getMemberInfosCached();
+  const members = await getMemberInfos();
 
   return members.map((member) => ({
     slug: member.slug,
@@ -36,7 +36,7 @@ interface Props {
 
 const MemberPage = async ({ params }: Props) => {
   const { slug } = params;
-  const allMembers = await getMemberInfosCached();
+  const allMembers = await getMemberInfos();
   const member = allMembers.find((member) => member.slug === slug);
   if (!member) {
     notFound();

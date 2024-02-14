@@ -3,7 +3,7 @@ import { Page } from "components/Page";
 import { StructuredData } from "components/StructuredData";
 import { formatISO, parseISO } from "date-fns";
 import { Arrow, Calendar, Location, Profile } from "icons";
-import { getEventsCached } from "lib/calendar";
+import { getWebsiteEvents } from "lib/events";
 import { formatDate } from "lib/utils";
 import { CalendarX } from "lucide-react";
 import { Metadata } from "next";
@@ -15,20 +15,18 @@ export const metadata: Metadata = {
 };
 
 const EventsPage = async () => {
-  const events = await getEventsCached();
+  const events = await getWebsiteEvents();
 
   return (
     <>
       {events.map((event) => {
-        const startDate =
-          typeof event.start === "string" ? parseISO(event.start) : event.start;
         return (
           <StructuredData key={event.id} type="Event">
             {{
               "@context": "https://schema.org",
               "@type": "Event",
-              name: event.title,
-              startDate: formatISO(startDate),
+              name: event.name,
+              startDate: formatISO(event.start),
               eventAttendanceMode:
                 "https://schema.org/OfflineEventAttendanceMode",
               eventStatus: "https://schema.org/EventScheduled",
@@ -74,15 +72,11 @@ const EventsPage = async () => {
           {events.length > 0 ? (
             <div className="space-y-24">
               {events.map((event) => {
-                const startDate =
-                  typeof event.start === "string"
-                    ? parseISO(event.start)
-                    : event.start;
                 const isMakersInn = event.location?.includes("Makers Inn");
                 return (
                   <article key={event.id}>
                     <h2 className="mb-4 text-base font-bold md:text-2xl">
-                      {event.title}
+                      {event.name}
                     </h2>
                     <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
                       {event.location &&
@@ -106,7 +100,7 @@ const EventsPage = async () => {
                         ))}
                       <Tag>
                         <Calendar className="text-xl" />
-                        {`${formatDate(startDate, "dd. MMM yyyy | HH")} Uhr`}
+                        {`${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`}
                       </Tag>
                       <Tag>
                         <Profile className="text-xl" />
@@ -116,7 +110,10 @@ const EventsPage = async () => {
                       </Tag>
                     </ul>
                     {event.description && (
-                      <p className="mb-8">{event.description}</p>
+                      <div
+                        className="prose mb-8"
+                        dangerouslySetInnerHTML={{ __html: event.description }}
+                      />
                     )}
                     {event.url && (
                       <Button

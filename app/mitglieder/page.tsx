@@ -1,6 +1,6 @@
 import { Members } from "components/Members";
 import { Page } from "components/Page";
-import { getMemberInfosCached, getMembersCountCached } from "lib/easyverein";
+import { getMemberInfos, getMembersCount } from "lib/members";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 const MembersPage = async () => {
-  const members = await getMemberInfosCached();
-  const membersCount = await getMembersCountCached();
+  const members = await getMemberInfos();
+  const membersCount = await getMembersCount();
   return (
     <Page>
       <section>

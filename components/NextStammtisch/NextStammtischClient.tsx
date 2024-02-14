@@ -7,7 +7,7 @@ import { Calendar, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Props {
-  id: string;
+  id: number;
   date: string;
   url: string;
 }
@@ -17,7 +17,7 @@ export const NextStammtischClient = ({ id, date, url }: Props) => {
   const storageKey = "shown-stammtisch";
 
   useEffect(() => {
-    const shownStammtisch = localStorage.getItem(storageKey);
+    const shownStammtisch = Number(localStorage.getItem(storageKey));
     if (shownStammtisch === id) return;
 
     const timeoutId = setTimeout(() => {
@@ -30,7 +30,7 @@ export const NextStammtischClient = ({ id, date, url }: Props) => {
   const onOpenChange = (open: boolean) => {
     setIsOpen(open);
     if (!open) {
-      localStorage.setItem(storageKey, id);
+      localStorage.setItem(storageKey, String(id));
       track("Next Stammtisch closed");
     }
   };
