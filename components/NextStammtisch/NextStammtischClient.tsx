@@ -39,7 +39,7 @@ export const NextStammtischClient = ({ id, date, url }: Props) => {
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange} modal={false}>
       <Dialog.Portal>
         <Dialog.Content
-          className="animate-in slide-in-from-bottom-1/2 fade-in-50 sm:slide-in-from-left-1/2 sm:slide-in-from-bottom-0 zoom-in-95 fixed bottom-0 left-0 right-0 m-4 bg-pink p-4 text-pink-light duration-200 ease-out sm:right-auto sm:w-auto sm:min-w-[420px]"
+          className="fixed bottom-0 left-0 right-0 m-4 bg-pink p-4 text-pink-light duration-200 ease-out animate-in fade-in-50 zoom-in-95 slide-in-from-bottom-1/2 sm:right-auto sm:w-auto sm:min-w-[420px] sm:slide-in-from-bottom-0 sm:slide-in-from-left-1/2"
           onPointerDownOutside={(e) => e.preventDefault()}
           onInteractOutside={(e) => e.preventDefault()}
           onEscapeKeyDown={(e) => e.preventDefault()}
@@ -59,7 +59,7 @@ export const NextStammtischClient = ({ id, date, url }: Props) => {
               Makers Inn
             </a>
             .<br />
-            Jeder ist willkommen!
+            Jede*r ist willkommen!
           </Dialog.Description>
           <div className="flex justify-end">
             <Button
