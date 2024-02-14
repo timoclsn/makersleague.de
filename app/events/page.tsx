@@ -112,7 +112,7 @@ const EventsPage = async () => {
                         <Profile className="text-xl" />
                         {event.membersOnly
                           ? "Nur für Mitglieder"
-                          : "Jeder ist willkommen!"}
+                          : "Jede*r ist willkommen!"}
                       </Tag>
                     </ul>
                     {event.description && (
