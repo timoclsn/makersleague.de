@@ -50,7 +50,7 @@ const customFieldNames = {
   about: "Über mich",
 } as const;
 
-export const getMemberInfos = async (): Promise<WebsiteMember[]> => {
+export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
   // Cache handling
   try {
     const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, "utf8"));

@@ -1,6 +1,6 @@
 import { Members } from "components/Members";
 import { Page } from "components/Page";
-import { getMemberInfos, getMembersCount } from "lib/members";
+import { getWebsiteMembers, getMembersCount } from "lib/members";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const MembersPage = async () => {
-  const members = await getMemberInfos();
+  const members = await getWebsiteMembers();
   const membersCount = await getMembersCount();
   return (
     <Page>

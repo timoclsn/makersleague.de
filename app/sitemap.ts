@@ -1,5 +1,5 @@
 import { allBlogPosts } from "contentlayer/generated";
-import { getMemberInfos } from "lib/members";
+import { getWebsiteMembers } from "lib/members";
 
 const sitemap = async () => {
   const origin = "https://makersleague.de";
@@ -21,7 +21,7 @@ const sitemap = async () => {
     pages.push(`/blog/${blogPost.slug}`);
   });
 
-  const allMembers = await getMemberInfos();
+  const allMembers = await getWebsiteMembers();
 
   allMembers.forEach((member) => {
     pages.push(`/mitglieder/${member.slug}`);
