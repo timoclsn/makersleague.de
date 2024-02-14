@@ -1,12 +1,12 @@
 import { Arrow } from "icons";
-import { getMemberInfosCached, getMembersCountCached } from "lib/easyverein";
+import { getWebsiteMembers, getMembersCount } from "lib/members";
 import { Button } from "./Button";
 import { Members } from "./Members";
 
 export const MembersSection = async () => {
-  const allMembers = await getMemberInfosCached();
+  const allMembers = await getWebsiteMembers();
   const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
-  const membersCount = await getMembersCountCached();
+  const membersCount = await getMembersCount();
 
   return (
     <section id="members">

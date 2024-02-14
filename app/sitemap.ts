@@ -1,5 +1,5 @@
 import { allBlogPosts } from "contentlayer/generated";
-import { getMemberInfosCached } from "lib/easyverein";
+import { getWebsiteMembers } from "lib/members";
 
 const sitemap = async () => {
   const origin = "https://makersleague.de";
@@ -21,7 +21,7 @@ const sitemap = async () => {
     pages.push(`/blog/${blogPost.slug}`);
   });
 
-  const allMembers = await getMemberInfosCached();
+  const allMembers = await getWebsiteMembers();
 
   allMembers.forEach((member) => {
     pages.push(`/mitglieder/${member.slug}`);
