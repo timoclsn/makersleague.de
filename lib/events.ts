@@ -38,7 +38,6 @@ export const getWebsiteEvents = async () => {
 export const getNextEvent = async (name: string) => {
   const events = await getWebsiteEvents();
   return events.find((event) => {
-    if (!event.name) return false;
     return event.name.toLowerCase().includes(name.toLowerCase());
   });
 };
