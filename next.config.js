@@ -93,27 +93,67 @@ const nextConfig = {
       },
       {
         source: "/2021/04/30/1-aller-anfang-ist-leer",
-        destination: "/blog/aller-anfang-ist-leer",
+        destination: "/einblicke/aller-anfang-ist-leer",
         permanent: true,
       },
       {
         source: "/2021/05/18/2-vom-trauen-und-trauern",
-        destination: "/blog/vom-trauen-und-trauern",
+        destination: "/einblicke/vom-trauen-und-trauern",
         permanent: true,
       },
       {
         source: "/2021/06/07/3-aufbruchsstimmung/",
-        destination: "/blog/aufbruchsstimmung",
+        destination: "/einblicke/aufbruchsstimmung",
         permanent: true,
       },
       {
         source: "/2021/07/29/4-home-sweet-home",
-        destination: "/blog/home-sweet-home",
+        destination: "/einblicke/home-sweet-home",
         permanent: true,
       },
       {
         source: "/2021/12/23/5-noch-einmal-mit-gefuehl/",
-        destination: "/blog/noch-einmal-mit-gefuehl",
+        destination: "/einblicke/noch-einmal-mit-gefuehl",
+        permanent: true,
+      },
+      {
+        source: "/blog",
+        destination: "/einblicke",
+        permanent: true,
+      },
+      {
+        source: "/blog/aller-anfang-ist-leer",
+        destination: "/einblicke/aller-anfang-ist-leer",
+        permanent: true,
+      },
+      {
+        source: "/blog/vom-trauen-und-trauern",
+        destination: "/einblicke/vom-trauen-und-trauern",
+        permanent: true,
+      },
+      {
+        source: "/blog/aller-anfang-ist-leer",
+        destination: "/einblicke/aller-anfang-ist-leer",
+        permanent: true,
+      },
+      {
+        source: "/blog/aufbruchsstimmung",
+        destination: "/einblicke/aller-anfang-ist-leer",
+        permanent: true,
+      },
+      {
+        source: "/blog/home-sweet-home",
+        destination: "/einblicke/home-sweet-home",
+        permanent: true,
+      },
+      {
+        source: "/blog/noch-einmal-mit-gefuehl",
+        destination: "/einblicke/noch-einmal-mit-gefuehl",
+        permanent: true,
+      },
+      {
+        source: "/blog/endlich-wieder-leben-in-der-bude",
+        destination: "/einblicke/endlich-wieder-leben-in-der-bude",
         permanent: true,
       },
     ];

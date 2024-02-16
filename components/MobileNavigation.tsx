@@ -1,7 +1,7 @@
 "use client";
 
 import { Book, Calendar, HeartPlus, MakersLeague } from "icons";
-import { Menu, X } from "lucide-react";
+import { Eye, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavItem } from "./NavItem";
 
@@ -70,11 +70,11 @@ export const MobileNavigation = () => {
               onclick={closeMenu}
             />
             <NavItem
-              title="Blog"
+              title="Einblicke"
               subtitle="Geschichten und Neuigkeiten rund um die Makers League"
-              Icon={Book}
+              Icon={Eye}
               color="sand"
-              href="/blog"
+              href="/einblicke"
               onclick={closeMenu}
             />
           </ul>

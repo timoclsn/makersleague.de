@@ -4,12 +4,13 @@ import Link from "next/link";
 import { Icon } from "icons";
 import { usePathname } from "next/navigation";
 import { colorMap } from "./utils";
+import { LucideIcon } from "lucide-react";
 
 interface NavItemProps {
   title: string;
   subtitle?: string;
   color?: keyof typeof colorMap;
-  Icon: Icon;
+  Icon: Icon | LucideIcon;
   href: string;
   onclick?: () => void;
 }

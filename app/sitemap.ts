@@ -10,7 +10,7 @@ const sitemap = async () => {
     "/ueber",
     "/events",
     "/mitglied-werden",
-    "/blog",
+    "/einblicke",
     "/mitglieder",
     "/faqs",
     "/impressum",
@@ -18,7 +18,7 @@ const sitemap = async () => {
   ];
 
   allBlogPosts.forEach((blogPost) => {
-    pages.push(`/blog/${blogPost.slug}`);
+    pages.push(`/einblicke/${blogPost.slug}`);
   });
 
   const allMembers = await getWebsiteMembers();
