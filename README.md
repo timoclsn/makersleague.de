@@ -8,7 +8,6 @@
 - [Tailwind CSS](https://tailwindcss.com)
 - [Contentlayer](https://www.contentlayer.dev)
 - [SVGR](https://react-svgr.com)
-- [Easyverein](https://easyverein.com)
 
 ## How to run locally
 

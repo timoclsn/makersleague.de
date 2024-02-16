@@ -1,11 +1,15 @@
-import { getMediaCached } from "lib/instagram";
 import { Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./Button";
+import { getMedia } from "lib/instagram";
 
-export const InstagramSection = async () => {
-  const mediaArray = await getMediaCached();
+interface Props {
+  count?: number;
+}
+
+export const InstagramSection = async ({ count = 6 }: Props) => {
+  const mediaArray = await getMedia(count);
   return (
     <section id="instagram">
       <div className="mb-14">
