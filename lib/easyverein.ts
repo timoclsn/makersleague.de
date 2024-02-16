@@ -31,7 +31,7 @@ export const get = async <TSchema extends z.ZodTypeAny>(
   if (options.query) searchParams.set("query", options.query);
   if (options.limit) searchParams.set("limit", String(options.limit));
   if (options.page) searchParams.set("page", String(options.page));
-  if (options.params) searchParams.set(options.params, options.params);
+  if (options.params) searchParams.set("params", options.params);
   const searchParamsString = searchParams.toString();
 
   const fetchUrl = `${URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
