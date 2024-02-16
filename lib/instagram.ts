@@ -15,31 +15,34 @@ const mediaUrlsSchema = z.object({
   permalink: z.string().url(),
 });
 
-const getUserMediaIds = async () => {
+const getUserMediaIds = async (count: number) => {
   const response = await fetch(
     `https://graph.instagram.com/${userId}/media?access_token=${accessToken}`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    },
   );
   const json = await response.json();
-  return z.array(mediaIdSchema).parse(json.data).slice(0, 9);
+  return z.array(mediaIdSchema).parse(json.data).slice(0, count);
 };
 
-const getMedia = async () => {
-  const mediaIds = await getUserMediaIds();
+export const getMedia = async (count: number) => {
+  const mediaIds = await getUserMediaIds(count);
 
   return await Promise.all(
     mediaIds.map(async ({ id }) => {
       const response = await fetch(
         `https://graph.instagram.com/${id}?fields=media_url,permalink&access_token=${accessToken}`,
+        {
+          next: {
+            revalidate: 60,
+          },
+        },
       );
       const json = await response.json();
       return mediaUrlsSchema.parse(json);
     }),
   );
 };
-
-export const getMediaCached = reactCache(async () => {
-  return await nextCache(getMedia, ["instagram-media"], {
-    revalidate: 60,
-    tags: ["instagram-media"],
-  })();
-});

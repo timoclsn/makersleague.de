@@ -2,6 +2,7 @@
 
 import { Book, Calendar, HeartPlus, MakersLeague } from "icons";
 import { NavItem } from "./NavItem";
+import { Eye } from "lucide-react";
 
 export const Navigation = () => {
   return (
@@ -25,7 +26,7 @@ export const Navigation = () => {
           color="green"
           href="/mitglied-werden"
         />
-        <NavItem title="Blog" Icon={Book} color="sand" href="/blog" />
+        <NavItem title="Einblicke" Icon={Eye} color="sand" href="/einblicke" />
       </ul>
     </nav>
   );
