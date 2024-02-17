@@ -10,6 +10,7 @@ const sitemap = async () => {
     "/ueber",
     "/events",
     "/mitglied-werden",
+    "/mitglied-werden/bewerbung",
     "/einblicke",
     "/mitglieder",
     "/faqs",

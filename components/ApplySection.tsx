@@ -9,23 +9,7 @@ export const ApplySection = () => {
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         So kannst du Mitglied in der Makers League werden
       </p>
-      <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
-          <div>
-            <div className="mb-8 flex justify-center">
-              <div className="flex items-center justify-center rounded-full bg-green p-6 text-light">
-                <ScrollText size={56} />
-              </div>
-            </div>
-            <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schritt 1: Bewerbung
-            </h3>
-            <p className="mb-14">
-              Fülle das Bewerbungsformular aus (ca. 5min).
-            </p>
-          </div>
-          <ApplyButton color="green" trackingLocation="Apply section" />
-        </li>
+      <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
@@ -34,7 +18,7 @@ export const ApplySection = () => {
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schritt 2: Event
+              Schritt 1: Event
             </h3>
             <p className="mb-14">
               Besuche ein Event oder Stammtisch im Makers Inn.
@@ -48,17 +32,17 @@ export const ApplySection = () => {
         <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
-              <div className="flex items-center justify-center rounded-full bg-sand p-6 text-dark">
+              <div className="flex items-center justify-center rounded-full bg-green p-6 text-light">
                 <FormInput size={56} />
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schritt 3: Mitgliedsantrag
+              Schritt 2: Bewerbung
             </h3>
             <p className="mb-14">
-              Wir passen zusammen! Dann bekommst du ein Mitgliedsantrag von uns
-              zugesendet.
+              Es hat KLICK gemacht? Fülle jetzt die Bewerbung aus.
             </p>
+            <ApplyButton />
           </div>
         </li>
         <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
@@ -69,7 +53,7 @@ export const ApplySection = () => {
               </div>
             </div>
             <h3 className="mb-2 text-base font-bold opacity-80 md:text-2xl">
-              Schritt 4: Los geht&apos;s
+              Schritt 3: Los geht&apos;s
             </h3>
             <p className="mb-14">
               Du bekommst in deiner Welcome Mail alle wichtigen Infos für deinen

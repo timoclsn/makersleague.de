@@ -1,3 +1,4 @@
+import { ApplySection } from "components/ApplySection";
 import { Page } from "components/Page";
 import { allBlogPosts } from "contentlayer/generated";
 import { Calendar, Profile, Watch } from "icons";
@@ -61,6 +62,7 @@ const BlogPostPage = ({ params }: Props) => {
           <Component />
         </div>
       </article>
+      <ApplySection />
     </Page>
   );
 };

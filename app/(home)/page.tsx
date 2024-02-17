@@ -1,5 +1,4 @@
 import { ApplySection } from "components/ApplySection";
-import { Button } from "components/Button";
 import { ContactSection } from "components/ContactSection/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
@@ -7,11 +6,9 @@ import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
-import { HeartPlus } from "icons";
-import { ArrowDown } from "lucide-react";
 import Image from "next/image";
+import { HeroButtons } from "./HeroButtons";
 import membersImg from "./mitglieder.png";
-import { ApplyNowButton } from "./HeroButtons";
 
 const HomePage = () => (
   <>
@@ -26,7 +23,7 @@ const HomePage = () => (
         <p className="mb-14 text-lg leading-tight opacity-80 md:text-3xl md:leading-tight">
           Hier bekommen Macher*innen Mut & bringen ihre Ideen gemeinsam voran.
         </p>
-        <ApplyNowButton />
+        <HeroButtons />
       </div>
 
       <div className="relative -mx-4 min-h-[200px] flex-1 overflow-hidden border-b-4 md:-mx-10 md:min-h-[500px]">

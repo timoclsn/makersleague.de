@@ -1,6 +1,5 @@
 import { Heart, Storm } from "icons";
 import Image from "next/image";
-import { ApplyButton } from "./ApplyButton";
 
 export const FitSection = () => {
   return (
@@ -11,7 +10,7 @@ export const FitSection = () => {
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         Finde heraus, ob wir zusammen passen!
       </p>
-      <div className="mb-10 flex flex-col gap-14 md:flex-row">
+      <div className="mb-40 flex flex-col gap-14 md:flex-row">
         <div>
           <div className="mb-2 flex items-center gap-2 ">
             <Heart className="text-2xl" />
@@ -50,13 +49,6 @@ export const FitSection = () => {
             <li>du forderst, aber nichts beitragen möchtest</li>
           </ul>
         </div>
-      </div>
-      <div className="mb-40 flex justify-center">
-        <ApplyButton
-          color="dark"
-          className="text-center"
-          trackingLocation="Fit ection"
-        />
       </div>
       <div className="absolute bottom-0 left-[calc(50%-150px)] -mb-8 w-[300px] md:left-[calc(50%-300px)] md:-mb-16 md:w-[600px]">
         <Image

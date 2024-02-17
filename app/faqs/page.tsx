@@ -1,8 +1,7 @@
-import { Button } from "components/Button";
+import { ContactSection } from "components/ContactSection/ContactSection";
 import { Faqs } from "components/Faqs";
 import { Page } from "components/Page";
 import { allFaqs } from "contentlayer/generated";
-import { Arrow } from "icons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -21,15 +20,7 @@ const FaqPage = () => {
         </p>
         <Faqs faqs={faqs} />
       </section>
-      <section className="space-y-12">
-        <h2 className="text-xl font-bold leading-tight md:text-5xl md:leading-tight">
-          Du hast weitere Fragen? Dann schreib uns gerne eine E-Mail.
-        </h2>
-        <Button color="pink" href="mailto:hello@makersleague.de">
-          <Arrow className="text-2xl" />
-          E-Mail schreiben
-        </Button>
-      </section>
+      <ContactSection />
     </Page>
   );
 };
