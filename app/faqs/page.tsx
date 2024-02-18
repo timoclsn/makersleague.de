@@ -1,7 +1,7 @@
 import { ContactSection } from "components/ContactSection/ContactSection";
 import { Faqs } from "components/Faqs";
 import { Page } from "components/Page";
-import { allFaqs } from "contentlayer/generated";
+import { getAllFaqs } from "lib/content";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description: "Makers League FAQs",
 };
 
-const FaqPage = () => {
-  const faqs = allFaqs.sort((a, b) => a.question.localeCompare(b.question));
+const FaqPage = async () => {
+  const faqs = await getAllFaqs();
   return (
     <Page>
       <section>

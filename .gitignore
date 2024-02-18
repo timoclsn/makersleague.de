@@ -39,9 +39,6 @@ yarn-error.log*
 # VSCode
 .vscode
 
-# Contentlayer
-.contentlayer
-
 # Secrets
 .env
 

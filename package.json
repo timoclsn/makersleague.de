@@ -2,26 +2,23 @@
   "name": "makersleague-de",
   "private": true,
   "scripts": {
-    "postinstall": "contentlayer build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,css,md,json}'",
     "format": "pnpm prettier -- --write",
-    "typecheck": "tsc",
-    "content": "contentlayer build"
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
-    "contentlayer": "0.3.4",
     "cva": "1.0.0-beta.1",
     "date-fns": "2.30.0",
     "date-fns-tz": "^2.0.0",
     "lodash": "4.17.21",
     "lucide-react": "^0.321.0",
     "next": "14.1.0",
-    "next-contentlayer": "0.3.4",
+    "next-mdx-remote": "^4.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sharp": "0.33.2",
