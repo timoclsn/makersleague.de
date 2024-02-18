@@ -49,8 +49,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Create content types
-        run: pnpm content
-
       - name: Type check
         run: pnpm typecheck

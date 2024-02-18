@@ -1,4 +1,4 @@
-import { allBlogPosts } from "contentlayer/generated";
+import { getAllBlogPosts } from "lib/content";
 import { getWebsiteMembers } from "lib/members";
 
 const sitemap = async () => {
@@ -18,8 +18,10 @@ const sitemap = async () => {
     "/datenschutzerklaerung",
   ];
 
+  const allBlogPosts = await getAllBlogPosts();
+
   allBlogPosts.forEach((blogPost) => {
-    pages.push(`/einblicke/${blogPost.slug}`);
+    pages.push(`/einblicke/${blogPost.name}`);
   });
 
   const allMembers = await getWebsiteMembers();

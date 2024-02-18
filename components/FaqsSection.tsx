@@ -1,10 +1,10 @@
-import { allFaqs } from "contentlayer/generated";
 import { Arrow } from "icons";
+import { getPreviewFaqs } from "lib/content";
 import { Button } from "./Button";
 import { Faqs } from "./Faqs";
 
-export const FaqsSection = () => {
-  const faqs = allFaqs.filter((faq) => faq.preview);
+export const FaqsSection = async () => {
+  const faqs = await getPreviewFaqs();
 
   return (
     <section id="faqs">
