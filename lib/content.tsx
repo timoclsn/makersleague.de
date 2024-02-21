@@ -8,7 +8,7 @@ import { cache } from "react";
 import readingTime from "reading-time";
 import { z } from "zod";
 
-const CONTENT_PATH = ["public", "content"] as const;
+const CONTENT_PATH = ["content"] as const;
 const FILE_EXTENSIONS = [".md", ".mdx"] as const;
 
 const frontmatterSchemas = {
@@ -44,7 +44,7 @@ const getContent = async <Type extends ContentType>(
   const dirName = name;
 
   // Get file name for content file
-  const dirPath = path.join(process.cwd(), "public", "content", type, dirName);
+  const dirPath = path.join(process.cwd(), ...CONTENT_PATH, type, dirName);
   const fileNames = await readdir(dirPath);
   const fileName = fileNames.find((name) =>
     FILE_EXTENSIONS.some((extention) => path.extname(name) === extention),
