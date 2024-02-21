@@ -1,7 +1,8 @@
 import { Button } from "components/Button";
+import { CopyCalendarUrlButton } from "components/CopyCalendarUrlButton";
 import { Page } from "components/Page";
 import { StructuredData } from "components/StructuredData";
-import { formatISO, parseISO } from "date-fns";
+import { formatISO } from "date-fns";
 import { Arrow, Calendar, Location, Profile } from "icons";
 import { getWebsiteEvents } from "lib/events";
 import { formatDate } from "lib/utils";
@@ -57,18 +58,20 @@ const EventsPage = async () => {
           <h1 className="mb-8 text-xl font-bold md:text-5xl">
             Stammtisch & Events
           </h1>
-          <Button
-            color="pink"
-            variant="outline"
-            size="small"
-            href="https://easyverein.com/public/ML/calendar"
-            target="_blank"
-            rel="noopener"
-            className="mb-24"
-          >
-            <Calendar className="text-2xl" />
-            Zum Kalender
-          </Button>
+          <div className="mb-24 flex flex-col gap-4 sm:flex-row">
+            <Button
+              color="pink"
+              variant="outline"
+              size="small"
+              href="https://easyverein.com/public/ML/calendar"
+              target="_blank"
+              rel="noopener"
+            >
+              <Calendar className="text-2xl" />
+              Zum Kalender
+            </Button>
+            <CopyCalendarUrlButton />
+          </div>
           {events.length > 0 ? (
             <div className="space-y-24">
               {events.map((event) => {

@@ -4,6 +4,7 @@ interface TrackingEvents {
   "Apply clicked": null;
   "Next Stammtisch clicked": null;
   "Next Stammtisch closed": null;
+  "Copy calendar subscription url": null;
 }
 
 export const track = <TEventKey extends keyof TrackingEvents>(
