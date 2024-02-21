@@ -13,12 +13,12 @@ Der Sonntag ist wettertechnisch nicht mehr ganz so garstig, doch die beim Esslin
 
 Unterm Strich haben wir ordentlich Pluspunkte in der Öffentlichkeit gesammelt, voraussichtlich einige neue Macher:innen für unsere Community gewonnen, ziemlich viel Spaß gehabt und endlich wieder gemeinsam Machen können. Wenn's auch in Esslingen eher Winter war: unsere Macher:innen Flamme brennt und die Makers League blüht auf.
 
-![people](/blog/people.jpg)
-![albert](/blog/albert.jpg)
-![woehli](/blog/woehli.jpg)
-![jochen](/blog/jochen.jpg)
-![coffee](/blog/coffee.jpg)
-![window-3](/blog/window-3.jpg)
-![wall](/blog/wall.jpg)
-![people-3](/blog/people-3.jpg)
-![gang](/blog/gang.jpg)
+![people](/images//people.jpg)
+![albert](/images//albert.jpg)
+![woehli](/images//woehli.jpg)
+![jochen](/images//jochen.jpg)
+![coffee](/images//coffee.jpg)
+![window-3](/images//window-3.jpg)
+![wall](/images//wall.jpg)
+![people-3](/images//people-3.jpg)
+![gang](/images//gang.jpg)
