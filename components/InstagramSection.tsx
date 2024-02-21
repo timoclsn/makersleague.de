@@ -40,6 +40,7 @@ export const InstagramSection = async ({ count = 6 }: Props) => {
                       alt="Instagram Image"
                       width={200}
                       height={200}
+                      unoptimized
                       className="absolute inset-0 h-full w-full object-cover"
                     />
                   )}
