@@ -15,6 +15,6 @@ Noch sind natürlich nicht alle Bremsen gelöst. Das Betreten des Makers Inn ble
 
 P.S.: Natürlich nicht. Keine Ananas. Come on.
 
-![Stammtisch](/content/blog/home-sweet-home/stammtisch-1.jpg)
-![Stammtisch 2](/content/blog/home-sweet-home/stammtisch-2.jpg)
-![Tischtennis](/content/blog/home-sweet-home/tischtennis.jpg)
+![Stammtisch](/images/stammtisch-1.jpg)
+![Stammtisch 2](/images/stammtisch-2.jpg)
+![Tischtennis](/images/tischtennis.jpg)

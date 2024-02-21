@@ -9,4 +9,4 @@ Die Makers League ist ein Verein. Das erklärt einiges und gleichzeitig nicht da
 
 Den Anfang macht Louisa Kilgus. Als freie Rednerin begleitet sie Kund:innen mit den richtigen Worten durch besondere Momente, am Traualtar ebenso wie am Grab eines geliebten Menschen. Was beides miteinander verbindet, welche Fragen Hochzeitsgäste der Traurednerin besonders häufig stellen und was das alles mit ein paar Gläsern Weinschorle zu tun hat erzählt sie in der ersten Ausgabe unserer Porträt-Reihe.
 
-[Louisa Kilgus im Porträt](/content/blog/vom-trauen-und-trauern/Louisa-Kilgus-im-Portraet-1.pdf)
+[Louisa Kilgus im Porträt](/docs/Louisa-Kilgus-im-Portraet-1.pdf)
