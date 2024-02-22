@@ -1,9 +1,10 @@
 "use client";
 
-import { Book, Calendar, HeartPlus, MakersLeague } from "icons";
+import { Calendar, HeartPlus, MakersLeague } from "icons";
 import { Eye, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavItem } from "./NavItem";
+import { TouchTarget } from "./TouchTarget";
 
 export const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,20 +30,25 @@ export const MobileNavigation = () => {
 
   return (
     <>
-      <button className="hover:opacity-80 lg:hidden" onClick={toggleMenu}>
-        <span className="sr-only">
-          {isOpen ? "Menü schließen" : "Menü öffnen"}
-        </span>
-        <Menu size={16} />
+      <button
+        className="relative hover:opacity-80 lg:hidden"
+        onClick={toggleMenu}
+        aria-label="Menü öffnen"
+      >
+        <TouchTarget>
+          <Menu size={16} />
+        </TouchTarget>
       </button>
       {isOpen && (
         <nav className="fixed left-0 top-0 z-10 h-[100dvh] w-full bg-pink duration-150 ease-in-out animate-in fade-in-75 zoom-in-110 lg:hidden">
           <button
             className="absolute right-0 top-0 m-4 rounded-full bg-light p-2 text-pink hover:opacity-80"
             onClick={closeMenu}
+            aria-label="Menü schließen"
           >
-            <span className="sr-only">Menü schließen</span>
-            <X />
+            <TouchTarget>
+              <X />
+            </TouchTarget>
           </button>
           <ul className="flex h-full flex-wrap">
             <NavItem
