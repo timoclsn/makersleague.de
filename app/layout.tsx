@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { ReactNode } from "react";
+import "../lib/env";
 import "../styles/globals.css";
 
 const title = "Makers League";

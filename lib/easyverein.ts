@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const EASYVEREIN_TOKEN = z.string().parse(process.env.EASYVEREIN_TOKEN);
+const { EASYVEREIN_TOKEN } = process.env;
 
 const VERSION = "v1.6";
 const DOMAIN = "easyverein.com";

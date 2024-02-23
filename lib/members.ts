@@ -5,7 +5,9 @@ import { join } from "path";
 import z from "zod";
 import { customField, getMembers } from "./easyverein";
 
-const ENV = z.string().parse(process.env.NODE_ENV);
+const { NODE_ENV } = process.env;
+const isDevelopment = NODE_ENV === "development";
+
 const MEMBERS_CACHE_PATH = join(__dirname, ".members");
 
 type SuperPowers = z.infer<typeof superPowersSchema>;
@@ -67,7 +69,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       const customFields = apiMember.customFields;
 
       if (!customFields) {
-        if (ENV === "development") {
+        if (isDevelopment) {
           console.log(
             `Not showing ${name} because they don't have any custom fields`,
           );
@@ -79,7 +81,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
         customField(customFields, customFieldNames.show)?.value === "True";
 
       if (!show) {
-        if (ENV === "development") {
+        if (isDevelopment) {
           console.log(
             `Not showing ${name} because they don't want to be shown`,
           );
@@ -90,7 +92,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       const profilePicture = apiMember._profilePicture;
 
       if (!profilePicture) {
-        if (ENV === "development") {
+        if (isDevelopment) {
           console.log(
             `Not showing ${name} because they don't have a profile picture`,
           );
@@ -106,7 +108,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       ];
 
       if (!slogan || !superPowers[0] || !superPowers[1] || !superPowers[2]) {
-        if (ENV === "development") {
+        if (isDevelopment) {
           console.log(
             `Not showing ${name} because they don't have a slogan or super powers`,
           );
