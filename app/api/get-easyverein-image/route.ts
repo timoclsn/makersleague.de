@@ -1,6 +1,6 @@
 export const runtime = "edge";
 
-const easyvereinToken = process.env.EASYVEREIN_TOKEN ?? "";
+const { EASYVEREIN_TOKEN } = process.env;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -14,7 +14,7 @@ export async function GET(request: Request) {
 
   const response = await fetch(url, {
     headers: {
-      Authorization: `Token ${easyvereinToken}`,
+      Authorization: `Token ${EASYVEREIN_TOKEN}`,
     },
     next: { revalidate: 60 },
   });
