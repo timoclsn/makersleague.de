@@ -1,5 +1,5 @@
 import { MobileNavigation } from "components/MobileNavigation";
-import { Logo, Profile } from "icons";
+import { Logo, Profile } from "components/icons";
 import Link from "next/link";
 
 export const Header = () => {

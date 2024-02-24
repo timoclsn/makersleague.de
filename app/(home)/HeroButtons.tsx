@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "components/Button";
-import { HeartPlus } from "icons";
+import { HeartPlus } from "components/icons";
 import { track } from "lib/tracking";
 import { ArrowDown } from "lucide-react";
 

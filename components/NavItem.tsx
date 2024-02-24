@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { Icon } from "icons";
-import { usePathname } from "next/navigation";
-import { colorMap } from "./utils";
 import { LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Icon } from "./icons";
+import { colorMap } from "./utils";
 
 interface NavItemProps {
   title: string;

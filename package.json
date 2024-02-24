@@ -2,7 +2,7 @@
   "name": "makersleague-de",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -25,7 +25,6 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@svgr/webpack": "8.1.0",
     "@tailwindcss/typography": "0.5.10",
     "@types/ical": "^0.8.3",
     "@types/lodash": "4.14.202",

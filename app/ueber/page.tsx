@@ -4,7 +4,7 @@ import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
 import { ValuesSection } from "components/ValuesSection";
-import { Arrow } from "icons";
+import { Arrow } from "components/icons";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";

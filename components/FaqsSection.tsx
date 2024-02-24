@@ -1,4 +1,4 @@
-import { Arrow } from "icons";
+import { Arrow } from "components/icons";
 import { getPreviewFaqs } from "lib/content";
 import { Button } from "./Button";
 import { Faqs } from "./Faqs";

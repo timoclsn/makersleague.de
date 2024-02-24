@@ -1,8 +1,8 @@
 "use client";
 
-import { Book, Calendar, HeartPlus, MakersLeague } from "icons";
-import { NavItem } from "./NavItem";
+import { Calendar, HeartPlus, MakersLeague } from "components/icons";
 import { Eye } from "lucide-react";
+import { NavItem } from "./NavItem";
 
 export const Navigation = () => {
   return (

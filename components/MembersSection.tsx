@@ -1,4 +1,4 @@
-import { Arrow } from "icons";
+import { Arrow } from "components/icons";
 import { getWebsiteMembers, getMembersCount } from "lib/members";
 import { Button } from "./Button";
 import { Members } from "./Members";

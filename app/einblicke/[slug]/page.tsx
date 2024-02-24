@@ -1,6 +1,6 @@
 import { ApplySection } from "components/ApplySection";
 import { Page } from "components/Page";
-import { Calendar, Profile, Watch } from "icons";
+import { Calendar, Profile, Watch } from "components/icons";
 import { getAllBlogPosts, getBlog } from "lib/content";
 import { createGenerateMetadata } from "lib/metadata";
 
