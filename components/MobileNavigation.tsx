@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, HeartPlus, MakersLeague } from "icons";
+import { Calendar, HeartPlus, MakersLeague } from "components/icons";
 import { Eye, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavItem } from "./NavItem";

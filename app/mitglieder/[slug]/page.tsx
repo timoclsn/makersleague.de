@@ -1,7 +1,7 @@
 import { Button } from "components/Button";
 import { Members } from "components/Members";
 import { Page } from "components/Page";
-import { Arrow, HeartPlus } from "icons";
+import { Arrow, HeartPlus } from "components/icons";
 import { getWebsiteMembers } from "lib/members";
 import { createGenerateMetadata } from "lib/metadata";
 import { getBaseUrl } from "lib/utils";

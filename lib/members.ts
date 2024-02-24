@@ -1,14 +1,12 @@
 import { readFileSync, writeFileSync } from "fs";
 import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
-import { join } from "path";
 import z from "zod";
 import { customField, getMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
 const isDevelopment = NODE_ENV === "development";
-
-const MEMBERS_CACHE_PATH = join(__dirname, ".members");
+const MEMBERS_CACHE = ".members";
 
 type SuperPowers = z.infer<typeof superPowersSchema>;
 const superPowersSchema = z.tuple([z.string(), z.string(), z.string()]);
@@ -55,7 +53,7 @@ const customFieldNames = {
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
   // Cache handling
   try {
-    const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE_PATH, "utf8"));
+    const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE, "utf8"));
     return z.array(websiteMemberSchema).nonempty().parse(cachedData);
   } catch (error) {
     console.log("Member cache not initialized");
@@ -150,7 +148,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
   try {
-    writeFileSync(MEMBERS_CACHE_PATH, JSON.stringify(websiteMembers), "utf8");
+    writeFileSync(MEMBERS_CACHE, JSON.stringify(websiteMembers), "utf8");
   } catch (error) {
     console.log("ERROR WRITING MEMBERS CACHE TO FILE");
     console.log(error);

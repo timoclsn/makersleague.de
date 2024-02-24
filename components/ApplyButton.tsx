@@ -1,6 +1,6 @@
 "use client";
 
-import { HeartPlus } from "icons";
+import { HeartPlus } from "components/icons";
 import { track } from "lib/tracking";
 import { Button } from "./Button";
 

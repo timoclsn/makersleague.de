@@ -1,4 +1,4 @@
-import { Arrow, Calendar, Profile, Watch } from "icons";
+import { Arrow, Calendar, Profile, Watch } from "components/icons";
 import { getAllBlogPosts } from "lib/content";
 import { Button } from "./Button";
 

@@ -1,4 +1,4 @@
-import { Heart, Storm } from "icons";
+import { Heart, Storm } from "components/icons";
 import Image from "next/image";
 
 export const FitSection = () => {

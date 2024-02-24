@@ -1,6 +1,6 @@
 import Image from "next/image";
 import contactImage from "./nina-kuch.png";
-import { Arrow } from "icons";
+import { Arrow } from "components/icons";
 import Link from "next/link";
 
 export const ContactSection = () => {

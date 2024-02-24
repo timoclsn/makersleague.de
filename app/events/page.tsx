@@ -3,7 +3,7 @@ import { CopyCalendarUrlButton } from "components/CopyCalendarUrlButton";
 import { Page } from "components/Page";
 import { StructuredData } from "components/StructuredData";
 import { formatISO } from "date-fns";
-import { Arrow, Calendar, Location, Profile } from "icons";
+import { Arrow, Calendar, Location, Profile } from "components/icons";
 import { getWebsiteEvents } from "lib/events";
 import { formatDate } from "lib/utils";
 import { CalendarX } from "lucide-react";

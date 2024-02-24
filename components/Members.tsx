@@ -1,4 +1,4 @@
-import { Arrow } from "icons";
+import { Arrow } from "components/icons";
 import { WebsiteMember } from "lib/members";
 import { getBaseUrl } from "lib/utils";
 import Image from "next/image";
