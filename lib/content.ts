@@ -2,11 +2,11 @@ import { format, parseISO } from "date-fns";
 import { de } from "date-fns/locale";
 import { readFile, readdir } from "fs/promises";
 import { compileMDX } from "next-mdx-remote/rsc";
-import Link from "next/link";
 import path from "path";
 import { cache } from "react";
 import readingTime from "reading-time";
 import { z } from "zod";
+import { components } from "./mdx";
 
 const CONTENT_PATH = ["content"] as const;
 const FILE_EXTENSIONS = [".md", ".mdx"] as const;
@@ -64,11 +64,7 @@ const getContent = async <Type extends ContentType>(
   const file = await readFile(filePath, "utf8");
   const { content, frontmatter } = await compileMDX({
     source: file,
-    components: {
-      a: ({ children, href }) => {
-        return <Link href={href ?? ""}>{children}</Link>;
-      },
-    },
+    components,
     options: { parseFrontmatter: true },
   });
 
