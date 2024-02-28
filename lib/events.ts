@@ -1,8 +1,26 @@
 import { parseISO } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
+import {
+  Beer,
+  Briefcase,
+  Calendar,
+  Computer,
+  GraduationCap,
+  Lightbulb,
+  Wrench,
+} from "lucide-react";
 import { customField, getEvents } from "./easyverein";
 
 const TIMEZONE = "Europe/Berlin";
+
+const eventIconMap = {
+  Masterclass: GraduationCap,
+  Stammtisch: Beer,
+  Workshop: Wrench,
+  "Office Day": Briefcase,
+  Inspire: Lightbulb,
+  Linux: Computer,
+} as const;
 
 export const getWebsiteEvents = async () => {
   const events = await getEvents();
@@ -24,6 +42,7 @@ export const getWebsiteEvents = async () => {
     .map(({ id, name, description, locationName, start, isPublic }) => {
       return {
         id,
+        icon: eventIcon(name),
         name,
         description,
         location: locationName,
@@ -40,4 +59,14 @@ export const getNextEvent = async (name: string) => {
   return events.find((event) => {
     return event.name.toLowerCase().includes(name.toLowerCase());
   });
+};
+
+const eventIcon = (name: string) => {
+  for (const key in eventIconMap) {
+    if (name.toLowerCase().includes(key.toLowerCase())) {
+      return eventIconMap[key as keyof typeof eventIconMap];
+    }
+  }
+
+  return Calendar;
 };
