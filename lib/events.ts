@@ -13,6 +13,15 @@ import { customField, getEvents } from "./easyverein";
 
 const TIMEZONE = "Europe/Berlin";
 
+const eventIconMap = {
+  Masterclass: GraduationCap,
+  Stammtisch: Beer,
+  Workshop: Wrench,
+  "Office Day": Briefcase,
+  Inspire: Lightbulb,
+  Linux: Computer,
+} as const;
+
 export const getWebsiteEvents = async () => {
   const events = await getEvents();
   const nowTime = new Date().getTime();
@@ -51,15 +60,6 @@ export const getNextEvent = async (name: string) => {
     return event.name.toLowerCase().includes(name.toLowerCase());
   });
 };
-
-const eventIconMap = {
-  Masterclass: GraduationCap,
-  Stammtisch: Beer,
-  Workshop: Wrench,
-  "Office Day": Briefcase,
-  Inspire: Lightbulb,
-  Linux: Computer,
-} as const;
 
 const eventIcon = (name: string) => {
   for (const key in eventIconMap) {
