@@ -78,9 +78,12 @@ const EventsPage = async () => {
                 const isMakersInn = event.location?.includes("Makers Inn");
                 return (
                   <article key={event.id}>
-                    <h2 className="mb-4 text-base font-bold md:text-2xl">
-                      {event.name}
-                    </h2>
+                    <div className="mb-2 flex items-center gap-3">
+                      <event.icon className="size-6 md:size-6" />
+                      <h2 className="text-base font-bold md:text-2xl">
+                        {event.name}
+                      </h2>
+                    </div>
                     <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
                       {event.location &&
                         (isMakersInn ? (
