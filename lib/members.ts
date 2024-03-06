@@ -1,13 +1,12 @@
 import { readFileSync, writeFileSync } from "fs";
 import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
-import path from "path";
 import z from "zod";
 import { customField, getMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
 const isDevelopment = NODE_ENV === "development";
-const MEMBERS_CACHE = path.join(process.cwd(), "members.json");
+const MEMBERS_CACHE = "members.json";
 
 type SuperPowers = z.infer<typeof superPowersSchema>;
 const superPowersSchema = z.tuple([z.string(), z.string(), z.string()]);
@@ -149,7 +148,11 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
   try {
-    writeFileSync(MEMBERS_CACHE, JSON.stringify(websiteMembers), "utf8");
+    writeFileSync(
+      MEMBERS_CACHE,
+      JSON.stringify(websiteMembers, null, 2),
+      "utf8",
+    );
   } catch (error) {
     console.log("ERROR WRITING MEMBERS CACHE TO FILE");
     console.log(error);
