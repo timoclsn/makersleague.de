@@ -29,7 +29,6 @@ export const Members = ({ members }: Props) => {
                 height={700}
                 quality={100}
                 className="mb-5 block"
-                unoptimized
               />
               <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
                 {member.name}

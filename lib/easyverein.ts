@@ -46,6 +46,12 @@ export const get = async <TSchema extends z.ZodTypeAny>(
     },
   });
 
+  if (!res.ok) {
+    throw new Error(
+      `Failed to fetch ${fetchUrl}. Status ${res.status} ${res.statusText}`,
+    );
+  }
+
   const data = await res.json();
   results = schema.parse(data.results);
 
