@@ -1,13 +1,12 @@
 import { readFileSync, writeFileSync } from "fs";
 import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
-import path from "path";
 import z from "zod";
 import { customField, getMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
 const isDevelopment = NODE_ENV === "development";
-const MEMBERS_CACHE = path.join(process.cwd(), "members.json");
+const MEMBERS_CACHE = "members.json";
 
 type SuperPowers = z.infer<typeof superPowersSchema>;
 const superPowersSchema = z.tuple([z.string(), z.string(), z.string()]);
