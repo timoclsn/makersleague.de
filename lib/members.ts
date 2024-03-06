@@ -148,7 +148,11 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
   try {
-    writeFileSync(MEMBERS_CACHE, JSON.stringify(websiteMembers), "utf8");
+    writeFileSync(
+      MEMBERS_CACHE,
+      JSON.stringify(websiteMembers, null, 2),
+      "utf8",
+    );
   } catch (error) {
     console.log("ERROR WRITING MEMBERS CACHE TO FILE");
     console.log(error);
