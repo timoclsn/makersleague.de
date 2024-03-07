@@ -20,6 +20,7 @@ interface GetOptions {
   limit?: number;
   page?: number;
   params?: string;
+  start__gte?: string;
 }
 
 export const get = async <TSchema extends z.ZodTypeAny>(
@@ -32,6 +33,7 @@ export const get = async <TSchema extends z.ZodTypeAny>(
   if (options.limit) searchParams.set("limit", String(options.limit));
   if (options.page) searchParams.set("page", String(options.page));
   if (options.params) searchParams.set("params", options.params);
+  if (options.start__gte) searchParams.set("start__gte", options.start__gte);
   const searchParamsString = searchParams.toString();
 
   const fetchUrl = `${URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
@@ -61,6 +63,9 @@ export const get = async <TSchema extends z.ZodTypeAny>(
     const res = await fetch(next, {
       method: "GET",
       headers,
+      next: {
+        revalidate: 60,
+      },
     });
     const data = await res.json();
     results = [...results, ...schema.parse(data.results)];
@@ -98,6 +103,7 @@ export const getMembers = async () => {
   return await get("member", z.array(memberSchema), {
     query:
       "{id,resignationDate,_isApplication,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}",
+    limit: 200,
   });
 };
 
@@ -112,8 +118,13 @@ const eventSchema = z.object({
 });
 
 export const getEvents = async () => {
+  const today = new Date();
+  today.setHours(1, 0, 0, 0);
+
   return await get("event", z.array(eventSchema), {
     query:
       "{id,name,description,start,locationName,isPublic,customFields{value,customField{name}}}",
+    limit: 200,
+    start__gte: today.toISOString(),
   });
 };

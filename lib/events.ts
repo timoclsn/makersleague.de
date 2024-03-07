@@ -24,13 +24,9 @@ const eventIconMap = {
 
 export const getWebsiteEvents = async () => {
   const events = await getEvents();
-  const nowTime = new Date().getTime();
 
   return events
-    .filter(({ start, customFields }) => {
-      const startTime = parseISO(start).getTime();
-      if (startTime < nowTime) return false;
-
+    .filter(({ customFields }) => {
       if (!customFields) return false;
       const show =
         customField(customFields, "Termin auf Website veröffentlichen")
