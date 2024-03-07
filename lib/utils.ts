@@ -1,7 +1,9 @@
 import { format as formatDfns } from "date-fns";
 import { de } from "date-fns/locale";
 
-const { NEXT_PUBLIC_VERCEL_ENV, NEXT_PUBLIC_VERCEL_URL, PORT } = process.env;
+const NEXT_PUBLIC_VERCEL_ENV = process.env.NEXT_PUBLIC_VERCEL_ENV;
+const NEXT_PUBLIC_VERCEL_URL = process.env.NEXT_PUBLIC_VERCEL_URL;
+const PORT = process.env.PORT;
 
 export const getBaseUrl = () => {
   if (NEXT_PUBLIC_VERCEL_ENV === "production") return `https://makersleague.de`;
