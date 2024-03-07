@@ -4,7 +4,7 @@ import { Page } from "components/Page";
 import { Arrow, HeartPlus } from "components/icons";
 import { getWebsiteMembers } from "lib/members";
 import { createGenerateMetadata } from "lib/metadata";
-import { getBaseUrl } from "lib/utils";
+import { getBaseUrl, isProductionDeployment } from "lib/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -93,6 +93,7 @@ const MemberPage = async ({ params }: Props) => {
                 alt={member.name}
                 width={300}
                 height={300}
+                unoptimized={!isProductionDeployment}
               />
             </div>
           </div>
