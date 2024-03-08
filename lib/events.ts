@@ -9,6 +9,8 @@ import {
   Lightbulb,
   Wrench,
 } from "lucide-react";
+import { z } from "zod";
+import { getCacheValue, setCacheValue } from "./cache";
 import { customField, getEvents } from "./easyverein";
 
 const TIMEZONE = "Europe/Berlin";
@@ -22,10 +24,29 @@ const eventIconMap = {
   Linux: Computer,
 } as const;
 
-export const getWebsiteEvents = async () => {
+type WebsiteEvent = z.output<typeof websiteEventSchema>;
+const websiteEventSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  description: z.string(),
+  location: z.string().nullable(),
+  start: z.coerce.date(),
+  membersOnly: z.boolean(),
+  url: z.string().url(),
+});
+
+export const getWebsiteEvents = async (): Promise<WebsiteEvent[]> => {
+  const cachedData = await getCacheValue("events", z.array(websiteEventSchema));
+  if (cachedData) {
+    console.info("Events loaded from cache");
+    return cachedData;
+  }
+
+  console.info("Fetching events from API");
+
   const events = await getEvents();
 
-  return events
+  const websiteEvents = events
     .filter(({ customFields }) => {
       if (!customFields) return false;
       const show =
@@ -38,7 +59,6 @@ export const getWebsiteEvents = async () => {
     .map(({ id, name, description, locationName, start, isPublic }) => {
       return {
         id,
-        icon: eventIcon(name),
         name,
         description,
         location: locationName,
@@ -48,6 +68,10 @@ export const getWebsiteEvents = async () => {
       };
     })
     .sort((a, b) => a.start.getTime() - b.start.getTime());
+
+  setCacheValue("events", websiteEvents);
+
+  return websiteEvents;
 };
 
 export const getNextEvent = async (name: string) => {
@@ -57,7 +81,7 @@ export const getNextEvent = async (name: string) => {
   });
 };
 
-const eventIcon = (name: string) => {
+export const eventIcon = (name: string) => {
   for (const key in eventIconMap) {
     if (name.toLowerCase().includes(key.toLowerCase())) {
       return eventIconMap[key as keyof typeof eventIconMap];

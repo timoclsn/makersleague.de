@@ -1,24 +1,17 @@
-import { readFileSync, writeFileSync } from "fs";
 import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
-import path from "path";
 import z from "zod";
+import { getCacheValue, setCacheValue } from "./cache";
 import { customField, getMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
 
 const isDevelopment = NODE_ENV === "development";
-const isServerless = process.env.VERCEL === "1";
-
-const FILE_NAME = "members.json";
-const MEMBERS_CACHE = isServerless
-  ? path.join("/tmp", FILE_NAME)
-  : path.join(process.cwd(), FILE_NAME);
 
 type SuperPowers = z.infer<typeof superPowersSchema>;
 const superPowersSchema = z.tuple([z.string(), z.string(), z.string()]);
 
-export type WebsiteMember = z.infer<typeof websiteMemberSchema>;
+export type WebsiteMember = z.output<typeof websiteMemberSchema>;
 const websiteMemberSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -58,14 +51,16 @@ const customFieldNames = {
 } as const;
 
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
-  // Cache handling
-  try {
-    const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE, "utf8"));
-    console.info(`Read members cache from ${MEMBERS_CACHE}`);
-    return z.array(websiteMemberSchema).nonempty().parse(cachedData);
-  } catch (error) {
-    console.log("Member cache not initialized");
+  const cachedData = await getCacheValue(
+    "members",
+    z.array(websiteMemberSchema),
+  );
+  if (cachedData) {
+    console.info("Members loaded from cache");
+    return cachedData;
   }
+
+  console.info("Fetching members from API");
 
   const apiMembers = await getActiveMembers();
 
@@ -155,17 +150,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
-  try {
-    writeFileSync(
-      MEMBERS_CACHE,
-      JSON.stringify(websiteMembers, null, 2),
-      "utf8",
-    );
-    console.info(`Wrote members cache to ${MEMBERS_CACHE}`);
-  } catch (error) {
-    console.log("ERROR WRITING MEMBERS CACHE TO FILE");
-    console.log(error);
-  }
+  setCacheValue("members", websiteMembers);
 
   return websiteMembers;
 };

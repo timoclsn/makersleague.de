@@ -43,5 +43,4 @@ yarn-error.log*
 .env
 
 # Generated Files
-.members
-members.json
+/.cache
