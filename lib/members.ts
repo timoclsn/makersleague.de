@@ -6,8 +6,14 @@ import z from "zod";
 import { customField, getMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
+
 const isDevelopment = NODE_ENV === "development";
-const MEMBERS_CACHE = path.join(process.cwd(), "members.json");
+const isServerless = process.env.VERCEL === "1";
+
+const FILE_NAME = "members.json";
+const MEMBERS_CACHE = isServerless
+  ? path.join("/tmp", FILE_NAME)
+  : path.join(process.cwd(), FILE_NAME);
 
 type SuperPowers = z.infer<typeof superPowersSchema>;
 const superPowersSchema = z.tuple([z.string(), z.string(), z.string()]);
@@ -55,6 +61,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
   // Cache handling
   try {
     const cachedData = JSON.parse(readFileSync(MEMBERS_CACHE, "utf8"));
+    console.info(`Read members cache from ${MEMBERS_CACHE}`);
     return z.array(websiteMemberSchema).nonempty().parse(cachedData);
   } catch (error) {
     console.log("Member cache not initialized");
@@ -154,6 +161,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       JSON.stringify(websiteMembers, null, 2),
       "utf8",
     );
+    console.info(`Wrote members cache to ${MEMBERS_CACHE}`);
   } catch (error) {
     console.log("ERROR WRITING MEMBERS CACHE TO FILE");
     console.log(error);

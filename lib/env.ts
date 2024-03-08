@@ -8,6 +8,9 @@ const envSchema = z.object({
   // Node.js
   PORT: envVarSchema.optional(),
 
+  // Vercel
+  VERCEL: z.enum(["1"]).optional(),
+
   // EasyVerein
   EASYVEREIN_TOKEN: envVarSchema,
 
