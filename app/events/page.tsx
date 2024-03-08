@@ -2,9 +2,9 @@ import { Button } from "components/Button";
 import { CopyCalendarUrlButton } from "components/CopyCalendarUrlButton";
 import { Page } from "components/Page";
 import { StructuredData } from "components/StructuredData";
-import { formatISO } from "date-fns";
 import { Arrow, Calendar, Location, Profile } from "components/icons";
-import { getWebsiteEvents } from "lib/events";
+import { formatISO } from "date-fns";
+import { eventIcon, getWebsiteEvents } from "lib/events";
 import { formatDate } from "lib/utils";
 import { CalendarX } from "lucide-react";
 import { Metadata } from "next";
@@ -75,11 +75,12 @@ const EventsPage = async () => {
           {events.length > 0 ? (
             <div className="space-y-24">
               {events.map((event) => {
+                const Icon = eventIcon(event.name);
                 const isMakersInn = event.location?.includes("Makers Inn");
                 return (
                   <article key={event.id}>
                     <div className="mb-2 flex items-center gap-3">
-                      <event.icon className="size-6 md:size-6" />
+                      <Icon className="size-6 md:size-6" />
                       <h2 className="text-base font-bold md:text-2xl">
                         {event.name}
                       </h2>
