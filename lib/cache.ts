@@ -3,7 +3,7 @@ import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { z } from "zod";
 
-const TTL_IN_MS = 60 * 1000; // 1 minute
+const DEFAULT_TTL_IN_S = 60; // 1 minute
 const isServerless = process.env.VERCEL === "1";
 
 type CacheKey = "members" | "events";
@@ -28,13 +28,17 @@ type InMemoryCache = Record<
 
 let inMemoryCache: InMemoryCache | undefined;
 
-export const setCacheValue = (key: CacheKey, value: any) => {
+export const setCacheValue = (
+  key: CacheKey,
+  value: any,
+  options: { ttl?: number } = {},
+) => {
   if (!inMemoryCache) {
     inMemoryCache = {};
   }
   inMemoryCache[key] = {
     data: value,
-    expiresAt: new Date().getTime() + TTL_IN_MS,
+    expiresAt: new Date().getTime() + (options.ttl ?? DEFAULT_TTL_IN_S) * 1000,
   };
   writeCacheFile();
 };
