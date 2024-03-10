@@ -11,7 +11,7 @@ export const EventsSection = async () => {
     <section id="next-events" className="bg-pink p-8 text-light">
       <h2 className="mb-2 text-base font-bold lg:text-2xl">Nächste Events</h2>
       <p className="mb-10 text-base opacity-60 lg:text-2xl">
-        Come by, say Hi. Komm vorbei und treffe andere Macher:innen!
+        Komm vorbei und treffe andere Macher:innen!
       </p>
 
       <ul className="mb-14 grid grid-cols-1 gap-16 lg:grid-cols-3">
