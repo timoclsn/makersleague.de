@@ -1,4 +1,5 @@
 import { ContactSection } from "components/ContactSection/ContactSection";
+import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
 import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
@@ -75,6 +76,7 @@ const UeberPage = async () => {
       <MembersSection />
       <ValuesSection />
       <InstagramSection />
+      <EventsSection />
       <FaqsSection />
       <ContactSection />
     </Page>

@@ -1,5 +1,6 @@
 import { ApplySection } from "components/ApplySection";
 import { ContactSection } from "components/ContactSection/ContactSection";
+import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { InstagramSection } from "components/InstagramSection";
@@ -84,6 +85,7 @@ const HomePage = () => (
         />
       </section>
       <MembersSection />
+      <EventsSection />
       <ValuesSection />
       <FitSection />
       <ApplySection />
