@@ -18,6 +18,7 @@ const button = cva({
       green: null,
       sand: null,
       dark: null,
+      light: null,
     },
     size: {
       medium: "px-6 py-4",
@@ -25,6 +26,7 @@ const button = cva({
     },
   },
   compoundVariants: [
+    // Solid
     {
       variant: "solid",
       color: "blue",
@@ -56,6 +58,13 @@ const button = cva({
       class: [colorMap.dark.bg, colorMap.dark.text],
     },
     {
+      variant: "solid",
+      color: "light",
+      class: [colorMap.light.bg, colorMap.light.text],
+    },
+
+    // Outline
+    {
       variant: "outline",
       color: "blue",
       class: "text-blue ring-blue",
@@ -86,6 +95,13 @@ const button = cva({
       class: "text-dark ring-dark",
     },
     {
+      variant: "outline",
+      color: "light",
+      class: "text-light ring-light",
+    },
+
+    // Link
+    {
       variant: "link",
       color: "blue",
       class: "text-blue",
@@ -114,6 +130,11 @@ const button = cva({
       variant: "link",
       color: "dark",
       class: "text-dark",
+    },
+    {
+      variant: "link",
+      color: "light",
+      class: "text-light",
     },
   ],
 });
