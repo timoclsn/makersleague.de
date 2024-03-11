@@ -4,6 +4,7 @@ import { htmlToString } from "lib/text";
 import { formatDate } from "lib/utils";
 import { ReactNode } from "react";
 import { Button } from "./Button";
+import { Track } from "./Track";
 
 export const EventsSection = async () => {
   const events = await getWebsiteEvents();
@@ -18,6 +19,7 @@ export const EventsSection = async () => {
       <ul className="mb-14 grid grid-cols-1 gap-16 lg:grid-cols-3 lg:gap-8">
         {nextEvents.map((event) => {
           const Icon = eventIcon(event.name);
+          const formattedDate = `${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`;
           return (
             <li key={event.id} className="flex flex-col justify-between">
               <div>
@@ -33,7 +35,7 @@ export const EventsSection = async () => {
                 <ul className="mb-8 flex flex-wrap gap-2 text-sm">
                   <Tag>
                     <Calendar />
-                    {`${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`}
+                    {formattedDate}
                   </Tag>
                 </ul>
                 {event.description && (
@@ -45,7 +47,14 @@ export const EventsSection = async () => {
                 )}
               </div>
               {event.url && (
-                <div className="mt-8 flex flex-col md:items-start">
+                <Track
+                  event="Event section more clicked"
+                  data={{
+                    name: event.name,
+                    date: formattedDate,
+                  }}
+                  className="mt-8 flex flex-col md:items-start"
+                >
                   <Button
                     color="light"
                     variant="outline"
@@ -57,7 +66,7 @@ export const EventsSection = async () => {
                     <Arrow className="text-2xl" />
                     Mehr
                   </Button>
-                </div>
+                </Track>
               )}
             </li>
           );

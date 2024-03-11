@@ -1,13 +1,21 @@
 const NEXT_PUBLIC_VERCEL_ENV = process.env.NEXT_PUBLIC_VERCEL_ENV;
 const NODE_ENV = process.env.NODE_ENV;
 
-interface TrackingEvents {
+export interface TrackingEvents {
   "Home hero primary clicked": null;
   "Home hero secondary clicked": null;
   "Apply clicked": null;
   "Next Stammtisch clicked": null;
   "Next Stammtisch closed": null;
   "Copy calendar subscription url": null;
+  "Event section more clicked": {
+    name: string;
+    date: string;
+  };
+  "Event page sign-up clicked": {
+    name: string;
+    date: string;
+  };
 }
 
 export const track = <TEventKey extends keyof TrackingEvents>(

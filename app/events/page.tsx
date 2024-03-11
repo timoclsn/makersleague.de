@@ -2,6 +2,7 @@ import { Button } from "components/Button";
 import { CopyCalendarUrlButton } from "components/CopyCalendarUrlButton";
 import { Page } from "components/Page";
 import { StructuredData } from "components/StructuredData";
+import { Track } from "components/Track";
 import { Arrow, Calendar, Location, Profile } from "components/icons";
 import { formatISO } from "date-fns";
 import { eventIcon, getWebsiteEvents, makersInn } from "lib/events";
@@ -77,6 +78,7 @@ const EventsPage = async () => {
               {events.map((event) => {
                 const Icon = eventIcon(event.name);
                 const isMakersInn = makersInn(event.location ?? "");
+                const formattedDate = `${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`;
                 return (
                   <article key={event.id}>
                     <div className="mb-2 flex items-center gap-3">
@@ -107,7 +109,7 @@ const EventsPage = async () => {
                         ))}
                       <Tag>
                         <Calendar className="text-xl" />
-                        {`${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`}
+                        {formattedDate}
                       </Tag>
                       <Tag>
                         <Profile className="text-xl" />
@@ -123,17 +125,25 @@ const EventsPage = async () => {
                       />
                     )}
                     {event.url && (
-                      <Button
-                        color="pink"
-                        variant="outline"
-                        size="small"
-                        href={event.url}
-                        target="_blank"
-                        rel="noopener"
+                      <Track
+                        event="Event page sign-up clicked"
+                        data={{
+                          name: event.name,
+                          date: formattedDate,
+                        }}
                       >
-                        <Arrow className="text-2xl" />
-                        Anmelden
-                      </Button>
+                        <Button
+                          color="pink"
+                          variant="outline"
+                          size="small"
+                          href={event.url}
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          <Arrow className="text-2xl" />
+                          Anmelden
+                        </Button>
+                      </Track>
                     )}
                   </article>
                 );
