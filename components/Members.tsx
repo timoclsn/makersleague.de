@@ -34,8 +34,8 @@ export const Members = ({ members }: Props) => {
               <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
                 {member.name}
               </h3>
-              <p className="w-full break-words pb-14">{member.slogan}</p>
-              <div className="flex w-full flex-1 flex-col items-end justify-end">
+              <p className="line-clamp-3 w-full break-words">{member.slogan}</p>
+              <div className="mt-14 flex w-full flex-1 flex-col items-end justify-end">
                 <span className="flex items-center justify-center gap-1 self-end font-bold text-pink group-hover:opacity-80">
                   <Arrow className="text-2xl" />
                   mehr

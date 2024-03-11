@@ -90,3 +90,7 @@ export const eventIcon = (name: string) => {
 
   return Calendar;
 };
+
+export const makersInn = (location: string) => {
+  return location.includes("Makers Inn");
+};

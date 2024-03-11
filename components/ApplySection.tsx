@@ -42,8 +42,8 @@ export const ApplySection = () => {
             <p className="mb-14">
               Es hat KLICK gemacht? Fülle jetzt die Bewerbung aus.
             </p>
-            <ApplyButton />
           </div>
+          <ApplyButton />
         </li>
         <li className="flex flex-col justify-between border-4 p-4 text-center text-dark sm:p-8">
           <div>
