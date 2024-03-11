@@ -1,5 +1,6 @@
 import { Arrow, Calendar } from "components/icons";
 import { eventIcon, getWebsiteEvents } from "lib/events";
+import { htmlToString } from "lib/text";
 import { formatDate } from "lib/utils";
 import { ReactNode } from "react";
 import { Button } from "./Button";
@@ -14,7 +15,7 @@ export const EventsSection = async () => {
         Komm vorbei und treffe andere Macher:innen!
       </p>
 
-      <ul className="mb-14 grid grid-cols-1 gap-16 lg:grid-cols-3">
+      <ul className="mb-14 grid grid-cols-1 gap-16 lg:grid-cols-3 lg:gap-8">
         {nextEvents.map((event) => {
           const Icon = eventIcon(event.name);
           return (
@@ -36,14 +37,15 @@ export const EventsSection = async () => {
                   </Tag>
                 </ul>
                 {event.description && (
-                  <div
-                    className="prose mb-8 line-clamp-5 prose-p:text-pink-light prose-a:text-pink-light prose-strong:text-pink-light"
-                    dangerouslySetInnerHTML={{ __html: event.description }}
-                  />
+                  <div className="prose prose-p:text-pink-light ">
+                    <p className="line-clamp-2 sm:line-clamp-3 lg:line-clamp-5">
+                      {htmlToString(event.description)}
+                    </p>
+                  </div>
                 )}
               </div>
               {event.url && (
-                <div className="flex flex-col md:items-start">
+                <div className="mt-8 flex flex-col md:items-start">
                   <Button
                     color="light"
                     variant="outline"
