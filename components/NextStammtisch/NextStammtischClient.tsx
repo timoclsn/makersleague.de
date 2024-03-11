@@ -64,6 +64,7 @@ export const NextStammtischClient = ({ id, date, url }: Props) => {
           </Dialog.Description>
           <div className="flex flex-col justify-end sm:flex-row">
             <Button
+              color="light"
               size="small"
               href={url}
               target="_blank"
