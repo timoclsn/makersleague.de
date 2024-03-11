@@ -53,7 +53,7 @@ export const EventsSection = async () => {
                     rel="noopener"
                   >
                     <Arrow className="text-2xl" />
-                    Anmelden
+                    Mehr
                   </Button>
                 </div>
               )}
