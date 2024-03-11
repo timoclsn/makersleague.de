@@ -3,8 +3,12 @@ import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { z } from "zod";
 
-const DEFAULT_TTL_IN_S = 60; // 1 minute
-const isServerless = process.env.VERCEL === "1";
+const { VERCEL, NODE_ENV } = process.env;
+
+const isServerless = VERCEL === "1";
+const isProduction = NODE_ENV === "production";
+
+const DEFAULT_TTL_IN_S = isProduction ? 60 : 3600; // 1 minute in production, 1 hour in development
 
 type CacheKey = "members" | "events";
 
