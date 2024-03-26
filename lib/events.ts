@@ -13,6 +13,8 @@ import { z } from "zod";
 import { getCacheValue, setCacheValue } from "./cache";
 import { customField, getEvents } from "./easyverein";
 
+export const revalidate = 60;
+
 const TIMEZONE = "Europe/Berlin";
 
 const eventIconMap = {
