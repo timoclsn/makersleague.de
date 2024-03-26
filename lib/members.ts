@@ -1,7 +1,6 @@
 import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
 import z from "zod";
-import { getCacheValue, setCacheValue } from "./cache";
 import { customField, getMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
@@ -51,17 +50,6 @@ const customFieldNames = {
 } as const;
 
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
-  const cachedData = await getCacheValue(
-    "members",
-    z.array(websiteMemberSchema),
-  );
-  if (cachedData) {
-    console.info("Members loaded from cache");
-    return cachedData;
-  }
-
-  console.info("Fetching members from API");
-
   const apiMembers = await getActiveMembers();
 
   const websiteMembers = apiMembers
@@ -149,8 +137,6 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       };
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
-
-  setCacheValue("members", websiteMembers);
 
   return websiteMembers;
 };
