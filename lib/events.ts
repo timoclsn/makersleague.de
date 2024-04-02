@@ -38,7 +38,8 @@ export const getWebsiteEvents = async (): Promise<WebsiteEvent[]> => {
   const events = await getEvents();
 
   const websiteEvents = events
-    .filter(({ customFields }) => {
+    .filter(({ _deletedBy, customFields }) => {
+      if (_deletedBy) return false;
       if (!customFields) return false;
       const show =
         customField(customFields, "Termin auf Website veröffentlichen")
