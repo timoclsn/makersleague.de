@@ -10,7 +10,10 @@ import {
   Wrench,
 } from "lucide-react";
 import { z } from "zod";
+import { getCacheValue, setCacheValue } from "./cache";
 import { customField, getEvents } from "./easyverein";
+
+const { NODE_ENV } = process.env;
 
 const TIMEZONE = "Europe/Berlin";
 
@@ -35,6 +38,19 @@ const websiteEventSchema = z.object({
 });
 
 export const getWebsiteEvents = async (): Promise<WebsiteEvent[]> => {
+  if (NODE_ENV === "development") {
+    const cachedData = await getCacheValue(
+      "events",
+      z.array(websiteEventSchema),
+    );
+    if (cachedData) {
+      console.info("Events loaded from cache");
+      return cachedData;
+    }
+
+    console.info("Fetching events from API");
+  }
+
   const events = await getEvents();
 
   const websiteEvents = events
@@ -60,6 +76,10 @@ export const getWebsiteEvents = async (): Promise<WebsiteEvent[]> => {
       };
     })
     .sort((a, b) => a.start.getTime() - b.start.getTime());
+
+  if (NODE_ENV === "development") {
+    setCacheValue("events", websiteEvents);
+  }
 
   return websiteEvents;
 };

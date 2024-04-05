@@ -10,6 +10,7 @@ import { ValuesSection } from "components/ValuesSection";
 import Image from "next/image";
 import { HeroButtons } from "./HeroButtons";
 import membersImg from "./mitglieder.png";
+import { BlogSection } from "components/BlogSection";
 
 const HomePage = () => (
   <>
@@ -91,6 +92,7 @@ const HomePage = () => (
       <ApplySection />
       <ContactSection />
       <InstagramSection />
+      <BlogSection />
       <FaqsSection />
     </Page>
   </>
