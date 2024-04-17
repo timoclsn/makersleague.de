@@ -18,7 +18,7 @@ Pianist Tom Mayer sitzt am Klavier.
 Er ist der Gast des heutigen Inspire Acts, welcher jeden Monat einmal im Makers Inn stattfindet.
 Während Tom die ersten Töne spielt, nehmen alle Teilnehmer ihre Plätze ein und sind gespannt, was sie heute Abend erwartet.
 Er soll heute die Brücke zwischen Kunst, der Komposition und Produktion eines Musikstücks und Unternehmertum schlagen.
-Der studierte BWLer hat sich vor 3 Jahren aus der Wirtschaft verabschiedet, um seiner Leidenschaft nachzugehen, die er bereits seit dem ….. Lebensjahr verfolgt und mit der er mittlerweile seinen Lebensunterhalt verdient: Musikstücke komponieren und spielen.
+Der studierte BWLer hat sich vor 3 Jahren aus der Wirtschaft verabschiedet, um seiner Leidenschaft nachzugehen, die er bereits seit der Kindheit verfolgt und mit der er mittlerweile seinen Lebensunterhalt verdient: Musikstücke komponieren und spielen.
 
 Er begleitet Hochzeiten, vertont Dokumentationen und gibt exklusiv für uns sein erstes Wohnzimmerkonzert.
 
