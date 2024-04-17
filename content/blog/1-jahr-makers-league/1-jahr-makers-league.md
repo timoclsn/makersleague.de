@@ -1,7 +1,7 @@
 ---
 title: "1 Jahr Makers League"
 publishedAt: "2024-04-05"
-summary: "Ein Erfahrungsbericht unseres Machers Patrick"
+summary: "Ein Erfahrungsbericht unseres Machers Patrick."
 author: "Patrick Michel"
 ---
 
