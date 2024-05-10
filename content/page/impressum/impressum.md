@@ -21,19 +21,19 @@ c/o Küferstr. 46
 73728 Esslingen  
 till@makersleague.de
 
-### 2. Vorstandsvorsitzender
-
-Jochen Reinhard  
-c/o Küferstr. 46  
-73728 Esslingen  
-jochen@makersleague.de
-
-### 3. Vorstandsvorsitzende
+### 2. Vorstandsvorsitzende
 
 Nina Kuch  
 c/o Küferstr. 46  
 73728 Esslingen  
 nina@makersleague.de
+
+### 3. Vorstandsvorsitzender
+
+Jochen Reinhard  
+c/o Küferstr. 46  
+73728 Esslingen  
+jochen@makersleague.de
 
 ### Erweiterter Vorstand
 
@@ -53,4 +53,4 @@ Amtsgericht Stuttgart
 
 ### V.i.S.d § 55 Abs. 2 RStV:
 
-Till Augner, Jochen Reinhard, Nina Kuch, Piet Sellke, Norman Knapp
+Till Augner, Nina Kuch, Jochen Reinhard, Piet Sellke, Norman Knapp

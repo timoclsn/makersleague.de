@@ -19,7 +19,7 @@ export const ContactSection = () => {
             <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
               Nina Kuch
             </h3>
-            <p>3. Vorstandsvorsitzende</p>
+            <p>2. Vorstandsvorsitzende</p>
             <a href="mailto:nina@makersleague.de" className="mb-14 block">
               nina@makersleague.de
             </a>
