@@ -1,6 +1,6 @@
 import { VariantProps, cva } from "cva";
 import Link from "next/link";
-import { Children, ReactNode, forwardRef } from "react";
+import { Children, ReactNode, RefObject } from "react";
 import { colorMap } from "./utils";
 
 const button = cva({
@@ -146,6 +146,7 @@ interface CommmonProps {
   title?: string;
   color?: keyof typeof colorMap;
   className?: string;
+  ref?: RefObject<HTMLButtonElement & HTMLAnchorElement>;
 }
 
 type ConditionalProps =
@@ -158,32 +159,27 @@ type ConditionalProps =
       rel?: never;
     }
   | {
+      type?: never;
       href?: string;
       target?: "_blank";
       rel?: "noopener noreferrer" | "noopener";
-      type?: never;
       onClick?: () => void;
       disabled?: never;
     };
 
 export type ButtonProps = CommmonProps & ConditionalProps & ButtonVariants;
 
-export const Button = forwardRef<
-  HTMLButtonElement & HTMLAnchorElement,
-  ButtonProps
->(function Button(
-  {
-    children,
-    type = "button",
-    variant = "solid",
-    color = "blue",
-    size = "medium",
-    className,
-    href,
-    ...props
-  },
+export const Button = ({
   ref,
-) {
+  children,
+  type = "button",
+  variant = "solid",
+  color = "blue",
+  size = "medium",
+  className,
+  href,
+  ...props
+}: ButtonProps) => {
   const Element = href ? Link : "button";
 
   return (
@@ -191,7 +187,7 @@ export const Button = forwardRef<
       type={Element === "button" ? type : undefined}
       ref={ref}
       className={button({ variant, color, size, class: className })}
-      href={href ?? ""}
+      href={href ?? {}}
       {...props}
     >
       {Children.map(children, (child, index) => (
@@ -199,4 +195,4 @@ export const Button = forwardRef<
       ))}
     </Element>
   );
-});
+};
