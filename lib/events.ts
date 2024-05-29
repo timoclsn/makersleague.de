@@ -1,5 +1,5 @@
 import { parseISO } from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
+import { toZonedTime } from "date-fns-tz";
 import {
   Beer,
   Briefcase,
@@ -70,7 +70,7 @@ export const getWebsiteEvents = async (): Promise<WebsiteEvent[]> => {
         name,
         description,
         location: locationName,
-        start: utcToZonedTime(parseISO(start), TIMEZONE),
+        start: toZonedTime(parseISO(start), TIMEZONE),
         membersOnly: !isPublic,
         url: `https://easyverein.com/public/ML/calendar/${id}`,
       };
