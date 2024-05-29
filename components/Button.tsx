@@ -187,8 +187,7 @@ export const Button = ({
       type={Element === "button" ? type : undefined}
       ref={ref}
       className={button({ variant, color, size, class: className })}
-      // @ts-expect-error href is only defined if Element is Link
-      href={href}
+      href={href ?? {}}
       {...props}
     >
       {Children.map(children, (child, index) => (
