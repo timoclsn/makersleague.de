@@ -1,10 +1,11 @@
 import { BlogSection } from "components/BlogSection";
-import { ContactSection } from "components/ContactSection/ContactSection";
+import { ContactSection } from "components/ContactSection";
 import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
 import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
+import { TestimonialsSection } from "components/TestimonialsSection";
 import { ValuesSection } from "components/ValuesSection";
 import { Arrow } from "components/icons";
 import { Metadata } from "next";
@@ -79,6 +80,7 @@ const UeberPage = async () => {
       <InstagramSection />
       <BlogSection />
       <EventsSection />
+      <TestimonialsSection />
       <FaqsSection />
       <ContactSection />
     </Page>

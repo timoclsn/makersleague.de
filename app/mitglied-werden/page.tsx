@@ -1,5 +1,5 @@
 import { ApplySection } from "components/ApplySection";
-import { ContactSection } from "components/ContactSection/ContactSection";
+import { ContactSection } from "components/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { Page } from "components/Page";

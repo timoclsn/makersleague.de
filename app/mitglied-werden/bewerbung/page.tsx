@@ -1,5 +1,5 @@
 import { ApplyForm } from "components/ApplyForm";
-import { ContactSection } from "components/ContactSection/ContactSection";
+import { ContactSection } from "components/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
 import { Page } from "components/Page";
 
