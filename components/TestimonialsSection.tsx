@@ -2,6 +2,9 @@ import { getAllTestimonials } from "lib/content";
 import { getWebsiteMember } from "lib/members";
 import { getBaseUrl, isProductionDeployment } from "lib/utils";
 import Image from "next/image";
+import { Button } from "./Button";
+import { Track } from "./Track";
+import { Arrow } from "./icons";
 
 export const TestimonialsSection = async () => {
   const testimonials = await getAllTestimonials();
@@ -34,13 +37,31 @@ export const TestimonialsSection = async () => {
                 className="block size-32 rounded-full"
                 unoptimized={!isProductionDeployment}
               />
-              <div className="mb-4 flex flex-col items-center">
+              <div className="mb-4 flex flex-col items-center text-center ">
                 <h3 className="text-base font-bold opacity-80 md:text-2xl">
                   {member.name}
                 </h3>
                 <p className="text-sm sm:text-base">{member.slogan}</p>
               </div>
               <div className="prose text-sm">{testimonial.content}</div>
+
+              <Track
+                event="Testimonial clicked"
+                data={{
+                  name: member.name,
+                }}
+                className="mt-8 flex w-full flex-col md:items-start"
+              >
+                <Button
+                  color="dark"
+                  variant="outline"
+                  size="small"
+                  href={`/mitglieder/${member.slug}`}
+                >
+                  <Arrow className="text-2xl" />
+                  Zum Steckbrief
+                </Button>
+              </Track>
             </li>
           );
         })}
