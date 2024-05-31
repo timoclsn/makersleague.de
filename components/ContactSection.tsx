@@ -1,6 +1,6 @@
 import { Arrow } from "components/icons";
 import { getWebsiteMember } from "lib/members";
-import { getBaseUrl } from "lib/utils";
+import { getBaseUrl, isProductionDeployment } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +25,9 @@ export const ContactSection = async () => {
               alt={member.name}
               width={700}
               height={700}
+              quality={100}
               className="mb-5 w-full"
+              unoptimized={!isProductionDeployment}
             />
             <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
               {member.name}
