@@ -159,6 +159,21 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
   return websiteMembers;
 };
 
+export const getWebsiteMember = async (name: string) => {
+  const members = await getWebsiteMembers();
+
+  const member = members.find((member) => {
+    const fullname = `${member.firstName} ${member.familyName}`;
+    return fullname === name;
+  });
+
+  if (!member) {
+    throw new Error(`Member ${name} not found`);
+  }
+
+  return member;
+};
+
 export const getMembersCount = async () => {
   const result = await getActiveMembers();
   return result.length;
