@@ -12,7 +12,7 @@ export const TestimonialsSection = async () => {
   return (
     <section id="testimoials">
       <h2 className="mb-2 text-base font-bold md:text-2xl">
-        Das sagen unserer Macher:innen
+        Das sagen die Macher:innen
       </h2>
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         Unsere Mitglieder:innen über die Makers League:
@@ -59,7 +59,7 @@ export const TestimonialsSection = async () => {
                   href={`/mitglieder/${member.slug}`}
                 >
                   <Arrow className="text-2xl" />
-                  Zum Steckbrief
+                  Steckbrief
                 </Button>
               </Track>
             </li>
