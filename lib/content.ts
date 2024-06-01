@@ -167,7 +167,7 @@ export const getAllBlogPosts = async () => {
 
 export const getAllTestimonials = async () => {
   const testimonials = await getAllContent("testimonial");
-  return testimonials.sort((a, b) => {
-    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
-  });
+  return testimonials.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
 };
