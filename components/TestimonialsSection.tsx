@@ -10,7 +10,7 @@ export const TestimonialsSection = async () => {
   const testimonials = await getAllTestimonials();
 
   return (
-    <section id="testimoials">
+    <section id="testimonials">
       <h2 className="mb-2 text-base font-bold md:text-2xl">
         Das sagen die Macher:innen
       </h2>
