@@ -1,8 +1,7 @@
 import { Arrow } from "components/icons";
 import { getWebsiteMember } from "lib/members";
-import { getBaseUrl, isProductionDeployment } from "lib/utils";
-import Image from "next/image";
 import Link from "next/link";
+import { MemberImage } from "./MemberImage";
 
 export const ContactSection = async () => {
   const member = await getWebsiteMember("Nina Kuch");
@@ -18,17 +17,7 @@ export const ContactSection = async () => {
         </p>
         <div className="flex justify-center">
           <div className="w-full border-4 border-dashed border-dark p-4 sm:w-auto">
-            <Image
-              src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
-                member.profilePicture,
-              )}`}
-              alt={member.name}
-              width={700}
-              height={700}
-              quality={100}
-              className="mb-5 w-full"
-              unoptimized={!isProductionDeployment}
-            />
+            <MemberImage member={member} className="mb-5 w-full" />
             <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
               {member.name}
             </h3>
