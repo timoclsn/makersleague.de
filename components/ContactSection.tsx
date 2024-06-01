@@ -1,9 +1,11 @@
-import Image from "next/image";
-import contactImage from "./nina-kuch.png";
 import { Arrow } from "components/icons";
+import { getWebsiteMember } from "lib/members";
 import Link from "next/link";
+import { MemberImage } from "./MemberImage";
 
-export const ContactSection = () => {
+export const ContactSection = async () => {
+  const member = await getWebsiteMember("Nina Kuch");
+
   return (
     <section id="contact">
       <div className="mb-14">
@@ -15,9 +17,9 @@ export const ContactSection = () => {
         </p>
         <div className="flex justify-center">
           <div className="w-full border-4 border-dashed border-dark p-4 sm:w-auto">
-            <Image src={contactImage} alt="Nina Kuch" className="mb-5 w-full" />
+            <MemberImage member={member} size={700} className="mb-5 w-full" />
             <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
-              Nina Kuch
+              {member.name}
             </h3>
             <p>2. Vorstandsvorsitzende</p>
             <a href="mailto:nina@makersleague.de" className="mb-14 block">
@@ -25,7 +27,7 @@ export const ContactSection = () => {
             </a>
             <div className="flex w-full flex-1 flex-col items-end justify-end">
               <Link
-                href="/mitglieder/nina-kuch"
+                href={`/mitglieder/${member.slug}`}
                 className="flex items-center justify-center gap-1 self-end font-bold text-pink hover:opacity-80"
               >
                 <Arrow className="text-2xl" />

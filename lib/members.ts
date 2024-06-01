@@ -123,9 +123,9 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
     })
     .map((apiMember) => {
       const id = apiMember.id;
-      const name = trim(apiMember.contactDetails.name);
       const firstName = trim(apiMember.contactDetails.firstName);
       const familyName = trim(apiMember.contactDetails.familyName);
+      const name = `${firstName} ${familyName}`;
       const profilePicture = apiMember._profilePicture!;
       const customFields = apiMember.customFields!;
       const slogan = customField(customFields, customFieldNames.slogan)?.value!;
@@ -157,6 +157,17 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
   }
 
   return websiteMembers;
+};
+
+export const getWebsiteMember = async (name: string) => {
+  const members = await getWebsiteMembers();
+  const member = members.find((member) => member.name === name);
+
+  if (!member) {
+    throw new Error(`Member ${name} not found`);
+  }
+
+  return member;
 };
 
 export const getMembersCount = async () => {

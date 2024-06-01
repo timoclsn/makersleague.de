@@ -1,5 +1,5 @@
 import { ApplySection } from "components/ApplySection";
-import { ContactSection } from "components/ContactSection/ContactSection";
+import { ContactSection } from "components/ContactSection";
 import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
@@ -11,6 +11,7 @@ import Image from "next/image";
 import { HeroButtons } from "./HeroButtons";
 import membersImg from "./mitglieder.png";
 import { BlogSection } from "components/BlogSection";
+import { TestimonialsSection } from "components/TestimonialsSection";
 
 const HomePage = () => (
   <>
@@ -89,6 +90,7 @@ const HomePage = () => (
       <EventsSection />
       <ValuesSection />
       <FitSection />
+      <TestimonialsSection />
       <ApplySection />
       <ContactSection />
       <InstagramSection />

@@ -1,8 +1,8 @@
 import { Arrow } from "components/icons";
 import { WebsiteMember } from "lib/members";
-import { getBaseUrl, isProductionDeployment } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { MemberImage } from "./MemberImage";
 
 interface Props {
   members: WebsiteMember[];
@@ -20,17 +20,7 @@ export const Members = ({ members }: Props) => {
         >
           <Link href={`/mitglieder/${member.slug}`}>
             <div className="group flex h-full flex-col items-start">
-              <Image
-                src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
-                  member.profilePicture,
-                )}`}
-                alt={member.name}
-                width={700}
-                height={700}
-                quality={100}
-                className="mb-5 block"
-                unoptimized={!isProductionDeployment}
-              />
+              <MemberImage member={member} size={700} className="mb-5 block" />
               <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
                 {member.name}
               </h3>

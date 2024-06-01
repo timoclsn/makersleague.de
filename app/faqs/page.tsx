@@ -1,4 +1,4 @@
-import { ContactSection } from "components/ContactSection/ContactSection";
+import { ContactSection } from "components/ContactSection";
 import { Faqs } from "components/Faqs";
 import { Page } from "components/Page";
 import { getAllFaqs } from "lib/content";

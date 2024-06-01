@@ -25,6 +25,10 @@ const frontmatterSchemas = {
     summary: z.string(),
     author: z.string(),
   }),
+  testimonial: z.object({
+    name: z.string(),
+    date: z.string(),
+  }),
 };
 
 type ContentType = keyof typeof frontmatterSchemas;
@@ -157,4 +161,13 @@ export const getBlog = async (name: string) => {
 export const getAllBlogPosts = async () => {
   const allBlogPosts = await getAllContent("blog");
   return allBlogPosts.map(enhanceBlog);
+};
+
+// Testimonials
+
+export const getAllTestimonials = async () => {
+  const testimonials = await getAllContent("testimonial");
+  return testimonials.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
 };

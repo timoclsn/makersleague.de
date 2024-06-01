@@ -1,10 +1,10 @@
 import { Button } from "components/Button";
+import { MemberImage } from "components/MemberImage";
 import { Members } from "components/Members";
 import { Page } from "components/Page";
 import { Arrow, HeartPlus } from "components/icons";
 import { getWebsiteMembers } from "lib/members";
 import { createGenerateMetadata } from "lib/metadata";
-import { getBaseUrl, isProductionDeployment } from "lib/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -86,15 +86,7 @@ const MemberPage = async ({ params }: Props) => {
               />
             </div>
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
-              <Image
-                src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
-                  member.profilePicture,
-                )}`}
-                alt={member.name}
-                width={300}
-                height={300}
-                unoptimized={!isProductionDeployment}
-              />
+              <MemberImage member={member} size={300} />
             </div>
           </div>
         </div>
