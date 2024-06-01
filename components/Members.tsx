@@ -20,7 +20,7 @@ export const Members = ({ members }: Props) => {
         >
           <Link href={`/mitglieder/${member.slug}`}>
             <div className="group flex h-full flex-col items-start">
-              <MemberImage member={member} className="mb-5 block" />
+              <MemberImage member={member} size={700} className="mb-5 block" />
               <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
                 {member.name}
               </h3>

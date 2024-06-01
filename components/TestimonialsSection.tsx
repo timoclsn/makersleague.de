@@ -34,6 +34,7 @@ export const TestimonialsSection = async () => {
                       </div>
                       <MemberImage
                         member={member}
+                        size={700}
                         className="block size-24 rounded-full"
                       />
                     </div>

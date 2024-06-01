@@ -86,7 +86,7 @@ const MemberPage = async ({ params }: Props) => {
               />
             </div>
             <div className="mx-auto mt-[75px] h-[400px] w-4/5">
-              <MemberImage member={member} />
+              <MemberImage member={member} size={300} />
             </div>
           </div>
         </div>

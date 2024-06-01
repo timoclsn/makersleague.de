@@ -17,7 +17,7 @@ export const ContactSection = async () => {
         </p>
         <div className="flex justify-center">
           <div className="w-full border-4 border-dashed border-dark p-4 sm:w-auto">
-            <MemberImage member={member} className="mb-5 w-full" />
+            <MemberImage member={member} size={700} className="mb-5 w-full" />
             <h3 className="break-word w-full text-base font-bold opacity-80 md:text-2xl">
               {member.name}
             </h3>

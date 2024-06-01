@@ -4,18 +4,19 @@ import Image from "next/image";
 
 interface Props {
   member: WebsiteMember;
+  size: number;
   className?: string;
 }
 
-export const MemberImage = ({ member, className }: Props) => {
+export const MemberImage = ({ member, size, className }: Props) => {
   return (
     <Image
       src={`${getBaseUrl()}/api/get-easyverein-image?url=${encodeURIComponent(
         member.profilePicture,
       )}`}
       alt={member.name}
-      width={700}
-      height={700}
+      width={size}
+      height={size}
       unoptimized={!isProductionDeployment}
       quality={100}
       className={className}
