@@ -18,7 +18,3 @@ Es ist ein Ort, der so konzipiert ist, dass Kreativität fließen kann!
 #### Wem würdest du empfehlen in die Makers League zu kommen?
 
 Jedem, der nur den kleinsten Wunsch verspürt, den Schritt in die Selbstständigkeit zu wagen. In der ML wird aus einem kleinen Licht ein großes Feuer. ❤️‍🔥
-
-#### Gibt es sonst noch etwas was du loswerden möchtest?
-
-Äh ja: Danke, dass ich so viele Menschen (ehrenamtlich) engagieren. Das ist absolut nicht selbstverständlich. Aber es wird gesehen und wertgeschätzt.
