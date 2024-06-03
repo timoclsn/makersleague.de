@@ -8,3 +8,9 @@
     rotate: 180deg;
   }
 }
+
+@layer components {
+  lite-youtube {
+    @apply mb-4 h-[200px] w-full !max-w-full sm:mb-8 sm:h-[400px] lg:h-[600px];
+  }
+}
