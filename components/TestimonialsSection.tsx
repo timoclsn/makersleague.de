@@ -55,7 +55,7 @@ export const TestimonialsSection = async () => {
                   </div>
 
                   {/* Content */}
-                  <blockquote className="prose mb-8 w-full max-w-none text-sm">
+                  <blockquote className="prose-quoteless prose mb-8 w-full max-w-none text-sm">
                     {testimonial.content}
                   </blockquote>
 
