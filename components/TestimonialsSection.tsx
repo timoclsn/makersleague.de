@@ -30,36 +30,38 @@ export const TestimonialsSection = async () => {
           return (
             <li key={index} className="flex-1">
               <article className="h-full">
-                <figure className="flex h-full flex-col items-center gap-4 bg-blue p-4 text-dark sm:p-8">
-                  {/* Head */}
-                  <div className="mb-4 flex w-full items-center gap-4">
-                    {/* Image */}
-                    <div className="relative flex-none">
-                      <div className="absolute -left-4 -top-4 flex items-center justify-center rounded-full bg-dark p-2 text-light">
-                        <Quote className="size-6 sm:size-8" />
+                <figure className="flex h-full flex-col items-center justify-between gap-8 bg-blue p-4 text-dark sm:p-8">
+                  <div className="flex flex-col gap-4">
+                    {/* Head */}
+                    <div className="flex w-full items-center gap-4">
+                      {/* Image */}
+                      <div className="relative flex-none">
+                        <div className="absolute -left-4 -top-4 flex items-center justify-center rounded-full bg-dark p-2 text-light">
+                          <Quote className="size-6 sm:size-8" />
+                        </div>
+                        <MemberImage
+                          member={member}
+                          size={700}
+                          className="block size-24 rounded-full"
+                        />
                       </div>
-                      <MemberImage
-                        member={member}
-                        size={700}
-                        className="block size-24 rounded-full"
-                      />
+
+                      {/* Name and slogan */}
+                      <figcaption>
+                        <h3 className="text-base font-bold md:text-2xl">
+                          {member.name}
+                        </h3>
+                        <p className="text-sm opacity-60 sm:text-base">
+                          {member.slogan}
+                        </p>
+                      </figcaption>
                     </div>
 
-                    {/* Name and slogan */}
-                    <figcaption>
-                      <h3 className="text-base font-bold md:text-2xl">
-                        {member.name}
-                      </h3>
-                      <p className="text-sm opacity-60 sm:text-base">
-                        {member.slogan}
-                      </p>
-                    </figcaption>
+                    {/* Content */}
+                    <blockquote className="prose-quoteless prose w-full max-w-none text-sm">
+                      {testimonial.content}
+                    </blockquote>
                   </div>
-
-                  {/* Content */}
-                  <blockquote className="prose-quoteless prose mb-8 w-full max-w-none text-sm">
-                    {testimonial.content}
-                  </blockquote>
 
                   {/* Button */}
                   <Track
