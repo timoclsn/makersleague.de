@@ -20,7 +20,9 @@ export const TestimonialsSection = async () => {
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         Unsere Mitglieder:innen über die Makers League:
       </p>
+
       <YouTubeEmbed videoid={TESTIMONIAL_VIDEO_ID} />
+
       <ul className="flex flex-col gap-4 sm:gap-8 md:flex-row">
         {testimonials.map(async (testimonial, index) => {
           const member = await getWebsiteMember(testimonial.data.name);
