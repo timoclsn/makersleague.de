@@ -21,6 +21,9 @@ const envSchema = z.object({
   // CRON
   CRON_SECRET: envVarSchema,
 
+  // Resend
+  RESEND_API_KEY: envVarSchema,
+
   // Client
 
   // Vercel

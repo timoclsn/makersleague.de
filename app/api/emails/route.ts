@@ -1,8 +1,11 @@
+import { WelcomeMail } from "emails/welcome";
 import { getActiveMembers } from "lib/easyverein";
 import { NextRequest } from "next/server";
-import { parseISO, isYesterday } from "date-fns";
+import { Resend } from "resend";
 
-const { CRON_SECRET, NODE_ENV } = process.env;
+const { CRON_SECRET, NODE_ENV, RESEND_API_KEY } = process.env;
+
+const resend = new Resend(RESEND_API_KEY);
 
 export async function GET(request: NextRequest) {
   if (NODE_ENV === "production") {
@@ -16,20 +19,30 @@ export async function GET(request: NextRequest) {
 
   const members = await getActiveMembers();
 
-  console.log(members.length);
-
-  members.forEach((member) => {
+  members.forEach(async (member) => {
     if (member.contactDetails.name === "Timo Clasen") {
-      console.log(member.joinDate);
-      console.log(member.emailOrUserName);
+      // if (member.joinDate) {
+      //   const joinDate = parseISO(member.joinDate);
+      //   if (isYesterday(joinDate)) {
+      //     console.log("joined yesterday");
 
-      if (member.joinDate) {
-        const joinDate = parseISO(member.joinDate);
-        if (isYesterday(joinDate)) {
-          console.log("joined yesterday");
+      //     // send email
+      //   }
+      // }
 
-          // send email
+      try {
+        const { error } = await resend.emails.send({
+          from: "Nina <nina@makersleague.de>",
+          to: [member.emailOrUserName],
+          subject: "Hello world",
+          react: WelcomeMail({ firstName: member.contactDetails.firstName }),
+        });
+
+        if (error) {
+          console.error(error);
         }
+      } catch (error) {
+        console.error(error);
       }
     }
   });
