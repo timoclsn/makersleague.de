@@ -2,7 +2,7 @@ import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
 import z from "zod";
 import { getCacheValue, setCacheValue } from "./cache";
-import { customField, getMembers } from "./easyverein";
+import { customField, getActiveMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
 
@@ -23,23 +23,6 @@ const websiteMemberSchema = z.object({
   about: z.string().nullable(),
   slug: z.string(),
 });
-
-const getActiveMembers = async () => {
-  const members = await getMembers();
-
-  return members.filter((member) => {
-    // Filter out pending applications
-    if (member._isApplication) {
-      return false;
-    }
-    // Filter out past members
-    if (member.resignationDate) {
-      return new Date(member.resignationDate) > new Date();
-    }
-
-    return true;
-  });
-};
 
 const customFieldNames = {
   show: "Auf Website anzeigen",

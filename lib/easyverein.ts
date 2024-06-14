@@ -88,6 +88,7 @@ const customFieldSchema = z.object({
 
 const memberSchema = z.object({
   id: z.number(),
+  joinDate: z.string().nullable(),
   resignationDate: z.string().nullable(),
   _isApplication: z.boolean(),
   _profilePicture: z.string().optional(),
@@ -96,14 +97,32 @@ const memberSchema = z.object({
     firstName: z.string(),
     familyName: z.string(),
   }),
+  emailOrUserName: z.string(),
   customFields: z.array(customFieldSchema).nullable(),
 });
 
 export const getMembers = async () => {
   return await get("member", z.array(memberSchema), {
     query:
-      "{id,resignationDate,_isApplication,_profilePicture,contactDetails{name,firstName,familyName},customFields{value,customField{name}}}",
+      "{id,joinDate,resignationDate,_isApplication,_profilePicture,contactDetails{name,firstName,familyName},emailOrUserName,customFields{value,customField{name}}}",
     limit: 200,
+  });
+};
+
+export const getActiveMembers = async () => {
+  const members = await getMembers();
+
+  return members.filter((member) => {
+    // Filter out pending applications
+    if (member._isApplication) {
+      return false;
+    }
+    // Filter out past members
+    if (member.resignationDate) {
+      return new Date(member.resignationDate) > new Date();
+    }
+
+    return true;
   });
 };
 
