@@ -13,6 +13,7 @@
   "dependencies": {
     "@next/third-parties": "^14.2.3",
     "@radix-ui/react-dialog": "^1.0.5",
+    "@react-email/components": "^0.0.19",
     "babel-plugin-react-compiler": "0.0.0-experimental-938cd9a-20240601",
     "cva": "1.0.0-beta.1",
     "date-fns": "3.6.0",
