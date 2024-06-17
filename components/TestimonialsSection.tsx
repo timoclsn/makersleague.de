@@ -23,7 +23,7 @@ export const TestimonialsSection = async () => {
 
       <YouTubeEmbed videoid={TESTIMONIAL_VIDEO_ID} />
 
-      <ul className="flex flex-col gap-4 sm:gap-8 md:flex-row">
+      <ul className="grid grid-cols-1 gap-4 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
         {testimonials.map(async (testimonial, index) => {
           const member = await getWebsiteMember(testimonial.data.name);
 
@@ -31,7 +31,7 @@ export const TestimonialsSection = async () => {
             <li key={index} className="flex-1">
               <article className="h-full">
                 <figure className="flex h-full flex-col items-center justify-between gap-8 bg-blue p-4 text-dark sm:p-8">
-                  <div className="flex flex-col gap-4">
+                  <div className="flex w-full flex-col gap-4">
                     {/* Head */}
                     <div className="flex w-full items-center gap-4">
                       {/* Image */}
@@ -47,18 +47,18 @@ export const TestimonialsSection = async () => {
                       </div>
 
                       {/* Name and slogan */}
-                      <figcaption>
-                        <h3 className="text-base font-bold md:text-2xl">
+                      <figcaption className="overflow-hidden">
+                        <h3 className="break-words text-base font-bold md:text-2xl">
                           {member.name}
                         </h3>
-                        <p className="text-sm opacity-60 sm:text-base">
+                        <p className="break-words text-sm opacity-60 sm:text-base">
                           {member.slogan}
                         </p>
                       </figcaption>
                     </div>
 
                     {/* Content */}
-                    <blockquote className="prose-quoteless prose w-full max-w-none text-sm">
+                    <blockquote className="prose prose-quoteless w-full max-w-none text-sm">
                       {testimonial.content}
                     </blockquote>
                   </div>
