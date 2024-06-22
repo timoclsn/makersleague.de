@@ -2,14 +2,14 @@ import { z } from "zod";
 
 const { EASYVEREIN_TOKEN } = process.env;
 
-const VERSION = "v1.6";
-const DOMAIN = "easyverein.com";
+const VERSION = "stable";
+const DOMAIN = "hexa.easyverein.com";
 const URL = `https://${DOMAIN}/api/${VERSION}`;
 
 type Endpoint = "member" | "event";
 
 const headers = {
-  Authorization: `Token ${EASYVEREIN_TOKEN}`,
+  Authorization: `Bearer ${EASYVEREIN_TOKEN}`,
   Accept: "application/json",
   "Content-Type": "application/json",
 };
