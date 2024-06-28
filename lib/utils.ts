@@ -1,3 +1,4 @@
+import { cx } from "cva";
 import { format as formatDfns } from "date-fns";
 import { de } from "date-fns/locale";
 
@@ -23,3 +24,5 @@ export const formatDate = (date: number | Date, format: string) =>
  */
 export const wait = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
+
+export const cn = cx;

@@ -18,6 +18,15 @@ const envSchema = z.object({
   INSTAGRAM_USER_ID: envVarSchema,
   INSTAGRAM_ACCESS_TOKEN: envVarSchema,
 
+  // CRON
+  CRON_SECRET: envVarSchema,
+
+  // Resend
+  RESEND_API_KEY: envVarSchema,
+
+  // Admin
+  HTTP_BASIC_AUTH: envVarSchema,
+
   // Client
 
   // Vercel
