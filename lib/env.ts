@@ -24,6 +24,9 @@ const envSchema = z.object({
   // Resend
   RESEND_API_KEY: envVarSchema,
 
+  // Admin
+  HTTP_BASIC_AUTH: envVarSchema,
+
   // Client
 
   // Vercel

@@ -86,6 +86,7 @@ const customFieldSchema = z.object({
   }),
 });
 
+export type Member = z.output<typeof memberSchema>;
 const memberSchema = z.object({
   id: z.number(),
   joinDate: z.string().nullable(),
