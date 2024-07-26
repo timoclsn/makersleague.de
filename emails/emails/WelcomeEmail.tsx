@@ -5,12 +5,12 @@ import {
   Html,
   Preview,
   Tailwind,
-  Text,
 } from "@react-email/components";
 import { Bold } from "../components/Bold";
 import { Heading } from "../components/Heading";
 import { Italic } from "../components/Italic";
 import { Link } from "../components/Link";
+import { Text } from "../components/Text";
 
 interface Props {
   firstName: string;
