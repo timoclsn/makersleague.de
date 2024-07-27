@@ -1,12 +1,9 @@
-import { isSameDay, parseISO, subMonths } from "date-fns";
-import WelcomeEmail from "emails/emails/WelcomeEmail";
+import { sendWelcomeMail } from "@/lib/email";
+import { parseISO } from "date-fns";
 import { getActiveMembers } from "lib/easyverein";
 import { NextRequest } from "next/server";
-import { Resend } from "resend";
 
 const { CRON_SECRET, NODE_ENV, RESEND_API_KEY } = process.env;
-
-const resend = new Resend(RESEND_API_KEY);
 
 export async function GET(request: NextRequest) {
   // Protection
@@ -37,21 +34,10 @@ export async function GET(request: NextRequest) {
         // }
       }
 
-      try {
-        const { error } = await resend.emails.send({
-          from: "Nina <nina@makersleague.de>",
-          to: [member.emailOrUserName],
-          bcc: ["goebeltimo@gmail.com"],
-          subject: "Herzlich Willkommen in der Makers League! 🎉",
-          react: WelcomeEmail({ firstName: member.contactDetails.firstName }),
-        });
-
-        if (error) {
-          console.error(error);
-        }
-      } catch (error) {
-        console.error(error);
-      }
+      await sendWelcomeMail({
+        name: member.contactDetails.firstName,
+        email: member.emailOrUserName,
+      });
     }
   });
 
