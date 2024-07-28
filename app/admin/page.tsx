@@ -1,10 +1,14 @@
-import { EmailCard } from "@/components/admin/EmailCard/EmailCard";
+import { WelcomeEmailCard } from "@/components/admin/WelcomeEmailCard/WelcomeEmailCard";
+import { Toaster } from "@/ui/toaster";
 
 const AdminPage = () => {
   return (
     <div>
       <h1 className="mb-10 text-4xl font-bold">Admin</h1>
-      <EmailCard />
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <WelcomeEmailCard />
+      </section>
+      <Toaster />
     </div>
   );
 };

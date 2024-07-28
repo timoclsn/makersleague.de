@@ -10,15 +10,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/ui/select";
-import { sendEmail } from "./actions";
+import { useToast } from "@/ui/use-toast";
 import { Loader2, Mail } from "lucide-react";
+import { sendEmail } from "./actions";
 
 interface Props {
   members: Array<Member>;
 }
 
 export const EmailCardForm = ({ members }: Props) => {
-  const { runAction, isRunning } = useAction(sendEmail);
+  const { toast } = useToast();
+  const { runAction, isRunning } = useAction(sendEmail, {
+    onSuccess: () => {
+      toast({
+        variant: "default",
+        title: "Erfolg!",
+        description: "Welcome E-Mail wurde versendet.",
+      });
+    },
+    onError: (error) => {
+      toast({
+        variant: "destructive",
+        title: "Fehler!",
+        description: "Etwas ist schiefgelaufen.",
+      });
+      console.error(error);
+    },
+  });
 
   return (
     <form

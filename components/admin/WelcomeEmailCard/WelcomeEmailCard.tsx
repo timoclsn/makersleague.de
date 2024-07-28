@@ -1,4 +1,4 @@
-import { getActiveMembers } from "@/lib/easyverein";
+import { getActiveMembers, getMembers } from "@/lib/easyverein";
 import {
   Card,
   CardContent,
@@ -7,10 +7,10 @@ import {
   CardTitle,
 } from "@/ui/card";
 import { Await } from "../../Await/Await";
-import { EmailCardForm } from "./EmailCardForm";
+import { EmailCardForm } from "./WelcomeEmailCardForm";
 
-export const EmailCard = () => {
-  const promise = getActiveMembers();
+export const WelcomeEmailCard = () => {
+  const promise = getMembers();
 
   return (
     <Await
@@ -18,13 +18,19 @@ export const EmailCard = () => {
       loading={<div>Loading…</div>}
       error={<div>Error…</div>}
     >
-      {(members) => {
+      {(allMembers) => {
+        const members = allMembers.sort((a, b) => {
+          if (a._isApplication) return 1;
+          if (!a.joinDate) return 1;
+          if (!b.joinDate) return -1;
+          return a.joinDate > b.joinDate ? -1 : 1;
+        });
         return (
           <Card>
             <CardHeader>
-              <CardTitle>E-Mails</CardTitle>
+              <CardTitle>Welcome E-Mail</CardTitle>
               <CardDescription>
-                Versende E-Mails an Mitglieder:innen
+                Versende Welcome E-Mails an Mitglieder:innen
               </CardDescription>
             </CardHeader>
             <CardContent>

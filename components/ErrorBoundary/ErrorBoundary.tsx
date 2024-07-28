@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { getErrorMessage } from '@/lib/data/utils';
-import { track } from '@/lib/tracking';
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { getErrorMessage } from "@/lib/data/utils";
+import { track } from "@/lib/tracking";
+import { Component, ErrorInfo, ReactNode } from "react";
 
 interface Props {
   children?: ReactNode;
@@ -23,9 +23,11 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    const errorMEssage = getErrorMessage(error);
-    console.error('Uncaught error:', error, errorInfo);
-    track('Uncaught error', { message: errorMEssage });
+    console.error("Caught error:", error, errorInfo);
+    track("Caught error", {
+      componentStack: errorInfo.componentStack ?? "",
+      digest: errorInfo.digest ?? "",
+    });
   }
 
   public render() {
