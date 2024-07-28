@@ -1,7 +1,7 @@
 "use server";
 
 import { createAction } from "@/lib/clients";
-import { sendWelcomeMail } from "@/lib/email";
+import { sendFollowUpMail, sendWelcomeMail } from "@/lib/email";
 import { z } from "zod";
 
 export const sendEmail = createAction({
@@ -12,6 +12,7 @@ export const sendEmail = createAction({
   action: async ({ input }) => {
     const { name, email } = input;
 
-    await sendWelcomeMail({ name, email });
+    // await sendWelcomeMail({ name, email });
+    await sendFollowUpMail({ name, email });
   },
 });
