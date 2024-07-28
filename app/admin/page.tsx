@@ -1,5 +1,14 @@
 import { WelcomeEmailCard } from "@/components/admin/WelcomeEmailCard/WelcomeEmailCard";
 import { Toaster } from "@/ui/toaster";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin",
+  description: "Makers League Admin Page",
+  robots: {
+    index: false,
+  },
+};
 
 const AdminPage = () => {
   return (
