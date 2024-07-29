@@ -16,6 +16,8 @@ export const middleware = (req: NextRequest) => {
 };
 
 const isAuthenticated = (req: NextRequest) => {
+  if (req.method !== "GET") return true;
+
   const authheader =
     req.headers.get("authorization") || req.headers.get("Authorization");
 
