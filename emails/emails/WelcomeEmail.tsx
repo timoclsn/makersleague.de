@@ -1,13 +1,13 @@
 import { Bold } from "../components/Bold";
 import { Button } from "../components/Button";
 import { Email } from "../components/Email";
-import { Footer } from "../components/Footer";
 import { Heading } from "../components/Heading";
 import { Italic } from "../components/Italic";
 import { Link } from "../components/Link";
 import { NextStammtisch } from "../components/NextStammtisch";
 import { Section } from "../components/Section";
 import { Text } from "../components/Text";
+import { Section as SectionPrimitive } from "@react-email/components";
 
 interface Props {
   firstName: string;
@@ -21,12 +21,15 @@ export const WelcomeEmail = ({
   nextStammtischUrl,
 }: Props) => {
   return (
-    <Email preview="Willkommen in der Makers League! Entdecke unsere Werte und trete der Community bei.">
+    <Email
+      preview="Willkommen in der Makers League! Entdecke unsere Werte und trete der Community bei."
+      greeting="Jetzt kann es für dich losgehen! Wir freuen uns auf dich!"
+    >
       <Section>
         <Heading>Hi {firstName},</Heading>
         <Text>
-          herzlich willkommen in der Makers League! Wir freuen uns sehr, dich
-          als neues Mitglied unserer Community zu begrüßen.
+          herzlich willkommen in der <Bold>Makers League</Bold>! Wir freuen uns
+          sehr, dich als neues Mitglied unserer Community zu begrüßen.
         </Text>
       </Section>
 
@@ -42,14 +45,14 @@ export const WelcomeEmail = ({
         <Text>
           Zudem sei gesagt: Wir sind ein junger Verein und bauen gemeinsam mit
           dir unsere Community auf. Noch ist nicht alles perfekt, aber das ist
-          Teil unserer DNA: Wir MACHEN gemeinsam. Jede:r packt an, Jede:r kann
+          Teil unserer DNA: Wir MACHEN gemeinsam. Jede*r packt an, Jede*r kann
           kreieren. Ob es darum geht, Know-how mit der Community zu teilen, das
           Makers Inn zu einem noch inspirierenderen Ort zu machen oder eigene
           Circles und Projekte ins Leben zu rufen – wir freuen uns über jedes
           Engagement und jede Idee.
         </Text>
         <Text>
-          <Italic>Wo findest du die anderen Macher:innen?</Italic>
+          <Italic>Wo findest du die anderen Macher*innen?</Italic>
         </Text>
       </Section>
 
@@ -66,11 +69,11 @@ export const WelcomeEmail = ({
           Zusätzlich kannst du gerne weiteren Gruppen in der Makers League
           Community beitreten.
         </Text>
-        <div className="my-4 flex justify-center">
+        <SectionPrimitive className="text-center">
           <Button href="https://chat.whatsapp.com/HHrRl5Gl2nwJlKO6BIhYax">
             Jetzt WhatsApp Community beitreten
           </Button>
-        </div>
+        </SectionPrimitive>
       </Section>
 
       <Section>
@@ -127,7 +130,7 @@ export const WelcomeEmail = ({
           Menü. Schicke zusätzlich ein möglichst hochauflösendes Portraitbild
           (Betreff Steckbrief) per Mail an{" "}
           <Link href="mailto:daniela@makersleague.de">Lela</Link>. Dadurch wirst
-          auch du bald Teil unserer Macher:innen Galerie im Makers Inn und auf
+          auch du bald Teil unserer Macher*innen Galerie im Makers Inn und auf
           unserer Website.
         </Text>
       </Section>
@@ -142,18 +145,6 @@ export const WelcomeEmail = ({
           <Link href="mailto:hello@makersleague.de">hello@makersleague.de</Link>{" "}
           senden.
         </Text>
-      </Section>
-
-      <Section>
-        <Text>
-          Jetzt kann es für dich losgehen! Wir freuen uns auf dich!
-          <br />
-          <br />
-          <Bold>Till, Nina, Jochen, Piet und Norman</Bold>
-          <br />
-          <Italic>Dein Makers League Vorstand</Italic>
-        </Text>
-        <Footer />
       </Section>
     </Email>
   );

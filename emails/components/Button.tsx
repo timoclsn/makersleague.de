@@ -3,7 +3,7 @@ import { cva, VariantProps } from "cva";
 import { ReactNode } from "react";
 
 const button = cva({
-  base: "items-center justify-center gap-2 px-4 py-2 text-sm font-bold hover:opacity-80",
+  base: "gap-2 px-6 py-4 text-sm font-bold hover:opacity-80",
   variants: {
     color: {
       dark: "bg-dark text-light",
@@ -15,11 +15,17 @@ const button = cva({
 interface Props extends VariantProps<typeof button> {
   children: ReactNode;
   href: string;
+  className?: string;
 }
 
-export const Button = ({ children, href, color = "dark" }: Props) => {
+export const Button = ({
+  children,
+  href,
+  color = "dark",
+  className,
+}: Props) => {
   return (
-    <ButtonPrimitive href={href} className={button({ color })}>
+    <ButtonPrimitive href={href} className={button({ color, className })}>
       {children}
     </ButtonPrimitive>
   );

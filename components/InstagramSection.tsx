@@ -24,7 +24,7 @@ export const InstagramSection = async ({ count = 6 }: Props) => {
           {mediaArray.map((media) => {
             const isVideo = media.media_url.includes("mp4");
             return (
-              <li key={media.id} className="border-4 p-4">
+              <li key={media.id} className="border-4 border-dark p-4">
                 <div className="relative mb-14 aspect-square">
                   {isVideo ? (
                     <video

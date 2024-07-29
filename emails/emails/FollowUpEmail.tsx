@@ -1,6 +1,5 @@
 import { Bold } from "../components/Bold";
 import { Email } from "../components/Email";
-import { Footer } from "../components/Footer";
 import { Heading } from "../components/Heading";
 import { Italic } from "../components/Italic";
 import { Link } from "../components/Link";
@@ -20,14 +19,17 @@ export const FollowUpEmail = ({
   nextStammtischUrl,
 }: Props) => {
   return (
-    <Email preview="Willkommen bei der Makers League! Teile dein Wissen und werde aktiv in der Community.">
+    <Email
+      preview="Willkommen bei der Makers League! Teile dein Wissen und werde aktiv in der Community."
+      greeting="Wir freuen uns darauf, von dir zu lesen!"
+    >
       <Section>
         <Heading>Hi {firstName},</Heading>
         <Text>
-          wir hoffen, dein Einstieg bei der Makers League läuft gut! Seit ein
-          paar Wochen bist du nun Teil unserer Community und wir möchten gerne
-          wissen, wie es dir bisher ergangen ist. Falls du Fragen hast oder
-          Feedback teilen möchtest, zögere nicht, uns zu{" "}
+          wir hoffen, dein Einstieg bei der <Bold>Makers League</Bold> läuft
+          gut! Seit ein paar Wochen bist du nun Teil unserer Community und wir
+          möchten gerne wissen, wie es dir bisher ergangen ist. Falls du Fragen
+          hast oder Feedback teilen möchtest, zögere nicht, uns zu{" "}
           <Link href="mailto:hello@makersleague.de">kontaktieren</Link>. Deine
           Meinung ist uns wichtig, um uns stetig zu verbessern.
         </Text>
@@ -47,17 +49,17 @@ export const FollowUpEmail = ({
         <Text>
           Bei unseren Inspire Talks teilen Makers League Mitglieder oder externe
           Speaker regelmäßig ihre Erfahrungen aus ihrer eigenen
-          Gründungsgeschichte. In der Master Class vermitteln MacherInnen Wissen
-          aus ihren Themen und Fachgebieten. Bespreche gerne mit Nina dein Thema
-          und den passenden Termin oder schreibe eine{" "}
+          Gründungsgeschichte. In der Master Class vermitteln Macher*innen
+          Wissen aus ihren Themen und Fachgebieten. Bespreche gerne mit Nina
+          dein Thema und den passenden Termin oder schreibe eine{" "}
           <Link href="mailto:hello@makersleague.de">Mail</Link>.
         </Text>
       </Section>
 
       <Section>
-        <Heading as="h2">🏆 Werde Macher:in des Monats</Heading>
+        <Heading as="h2">🏆 Werde Macher*in des Monats</Heading>
         <Text>
-          Als Macher:in des Monats kannst du 4 Wochen deine Idee oder dein
+          Als Macher*in des Monats kannst du 4 Wochen deine Idee oder dein
           Business im Schaufenster des Makers Inn präsentieren. Spreche mit Nina
           oder schreibe eine{" "}
           <Link href="mailto:hello@makersleague.de">Mail</Link>, wenn du
@@ -79,27 +81,15 @@ export const FollowUpEmail = ({
       </Section>
 
       <Section>
-        <Heading as="h2">🦸‍♂️🦸‍♀️ Finde weitere Macher:innen</Heading>
+        <Heading as="h2">🦸‍♂️🦸‍♀️ Finde weitere Macher*innen</Heading>
         <Text>
-          Wir sind uns sicher in Esslingen gibt es noch ganz viele Macher:innen,
+          Wir sind uns sicher in Esslingen gibt es noch ganz viele Macher*innen,
           die zu unserem Verein passen. Kennst du jemanden? Bringe sie oder ihn
-          gerne zum nächsten Stammtisch mit! Je mehr Macher:innen, desto mehr
+          gerne zum nächsten Stammtisch mit! Je mehr Macher*innen, desto mehr
           Superkräfte und tolle Projekte in Esslingen!
         </Text>
 
         <NextStammtisch date={nextStammtischDate} url={nextStammtischUrl} />
-      </Section>
-
-      <Section>
-        <Text>
-          Wir freuen uns darauf, von dir zu lesen!
-          <br />
-          <br />
-          <Bold>Till, Nina, Jochen, Piet und Norman</Bold>
-          <br />
-          <Italic>Dein Makers League Vorstand</Italic>
-        </Text>
-        <Footer />
       </Section>
     </Email>
   );

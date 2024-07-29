@@ -1,4 +1,11 @@
-import { Heading, Link, Text } from "@react-email/components";
+import {
+  Column,
+  Heading,
+  Link,
+  Row,
+  Section,
+  Text,
+} from "@react-email/components";
 import { Button } from "./Button";
 
 interface Props {
@@ -8,10 +15,10 @@ interface Props {
 
 export const NextStammtisch = ({ date, url }: Props) => {
   return (
-    <div className="flex justify-center">
-      <div className="w-full max-w-[320px] bg-pink p-4 text-sm text-pink-light">
+    <Section className="mx-auto w-full">
+      <Section className="max-w-[400px] bg-pink p-4 text-sm text-pink-light">
         <Heading as="h2" className="my-0 mb-2 text-base font-bold text-light">
-          Nächster Stammtisch
+          Nächster Stammtisch:
         </Heading>
         <Text className="my-0 mb-2">
           Am <span className="font-bold">{date}</span> im{" "}
@@ -25,12 +32,14 @@ export const NextStammtisch = ({ date, url }: Props) => {
           .<br />
           Jede*r ist willkommen!
         </Text>
-        <div className="flex justify-end">
-          <Button href={url} color="light">
-            Komm vorbei!
-          </Button>
-        </div>
-      </div>
-    </div>
+        <Row>
+          <Column align="right">
+            <Button href={url} color="light">
+              Jetzt anmelden!
+            </Button>
+          </Column>
+        </Row>
+      </Section>
+    </Section>
   );
 };

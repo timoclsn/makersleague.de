@@ -25,7 +25,7 @@ export const sendWelcomeMail = async ({
 
   try {
     const { error } = await resend.emails.send({
-      from: "Nina <nina@makersleague.de>",
+      from: "Nina von der Makers League <nina@makersleague.de>",
       to: [email],
       bcc: ["goebeltimo@gmail.com"],
       subject: "Herzlich Willkommen in der Makers League",
@@ -60,7 +60,7 @@ export const sendFollowUpMail = async ({
 
   try {
     const { error } = await resend.emails.send({
-      from: "Nina <nina@makersleague.de>",
+      from: "Nina von der Makers League <nina@makersleague.de>",
       to: [email],
       bcc: ["goebeltimo@gmail.com"],
       subject: "Dein Start bei der Makers League",

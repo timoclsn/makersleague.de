@@ -7,13 +7,16 @@ import {
   Tailwind,
 } from "@react-email/components";
 import { ReactNode } from "react";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 interface Props {
   children: ReactNode;
   preview: string;
+  greeting: string;
 }
 
-export const Email = ({ children, preview }: Props) => {
+export const Email = ({ children, preview, greeting }: Props) => {
   return (
     <Html>
       <Font
@@ -41,7 +44,11 @@ export const Email = ({ children, preview }: Props) => {
         }}
       >
         <Body className="bg-light">
-          <Container className="mx-auto px-4">{children}</Container>
+          <Container className="mx-auto max-w-prose px-4">
+            <Header />
+            {children}
+            <Footer greeting={greeting} />
+          </Container>
         </Body>
       </Tailwind>
     </Html>

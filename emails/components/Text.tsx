@@ -14,13 +14,15 @@ const text = cva({
 
 interface Props extends VariantProps<typeof text> {
   children: ReactNode;
+  className?: string;
 }
 
-export const Text = ({ children, align = "left" }: Props) => {
+export const Text = ({ children, align = "left", className }: Props) => {
   return (
     <TextPrimitive
       className={text({
         align,
+        className,
       })}
     >
       {children}
