@@ -1,7 +1,7 @@
 "use server";
 
 import { createAction } from "@/lib/clients";
-import { sendFollowUpMail } from "@/lib/email";
+import { sendFollowUpMail, sendWelcomeMail } from "@/lib/email";
 import { z } from "zod";
 
 export const sendEmail = createAction({
@@ -13,5 +13,6 @@ export const sendEmail = createAction({
     const { name, email } = input;
 
     await sendFollowUpMail({ name, email });
+    await sendWelcomeMail({ name, email });
   },
 });

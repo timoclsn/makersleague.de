@@ -47,7 +47,10 @@ export const EmailCardForm = ({ members }: Props) => {
         if (!member) return;
 
         // TODO: Remove guard
-        if (member.contactDetails.name === "Timo Clasen") {
+        if (
+          member.contactDetails.name === "Timo Clasen" ||
+          member.contactDetails.name === "Daniela Gorka"
+        ) {
           runAction({
             email: member.emailOrUserName,
             name: member.contactDetails.firstName,

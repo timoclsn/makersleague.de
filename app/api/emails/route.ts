@@ -19,7 +19,10 @@ export async function GET(request: NextRequest) {
   const members = await getActiveMembers();
 
   members.forEach(async (member) => {
-    if (member.contactDetails.name === "Timo Clasen") {
+    if (
+      member.contactDetails.name === "Timo Clasen" ||
+      member.contactDetails.name === "Daniela Gorka"
+    ) {
       // TODO: Remove guard
       if (member.joinDate) {
         const joinDate = parseISO(member.joinDate);
