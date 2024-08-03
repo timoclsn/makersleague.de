@@ -9,6 +9,9 @@ import { ReactNode } from "react";
 import "../lib/env";
 import "../styles/globals.css";
 
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
 const title = "Makers League";
 const description =
   "Makers League – Die Gemeinschaft für Macher:innen, die zusammen Ideen voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte frei!";
@@ -56,7 +59,7 @@ const RootLayout = ({ children }: Props) => {
       <body className="flex min-h-screen flex-col text-base text-dark">
         <div className="flex flex-1 flex-row">
           <Navigation />
-          <main className="bg-yellow-900 mx-auto flex w-full flex-1 flex-col p-4 md:p-10">
+          <main className="mx-auto flex w-full flex-1 flex-col bg-yellow-900 p-4 md:p-10">
             <Header />
             {children}
           </main>

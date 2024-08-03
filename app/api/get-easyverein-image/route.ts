@@ -16,7 +16,6 @@ export async function GET(request: Request) {
     headers: {
       Authorization: `Token ${EASYVEREIN_TOKEN}`,
     },
-    next: { revalidate: 60 },
   });
 
   const arraybuffer = await response.arrayBuffer();
