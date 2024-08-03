@@ -15,11 +15,6 @@ const mediaUrlsSchema = z.object({
 const getUserMediaIds = async (count: number) => {
   const response = await fetch(
     `https://graph.instagram.com/${INSTAGRAM_USER_ID}/media?access_token=${INSTAGRAM_ACCESS_TOKEN}`,
-    {
-      next: {
-        revalidate: 60,
-      },
-    },
   );
   const json = await response.json();
   return z.array(mediaIdSchema).parse(json.data).slice(0, count);
@@ -32,11 +27,6 @@ export const getMedia = async (count: number) => {
     mediaIds.map(async ({ id }) => {
       const response = await fetch(
         `https://graph.instagram.com/${id}?fields=media_url,permalink&access_token=${INSTAGRAM_ACCESS_TOKEN}`,
-        {
-          next: {
-            revalidate: 60,
-          },
-        },
       );
       const json = await response.json();
       return mediaUrlsSchema.parse(json);

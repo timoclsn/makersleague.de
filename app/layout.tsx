@@ -9,6 +9,9 @@ import { ReactNode } from "react";
 import "../lib/env";
 import "../styles/globals.css";
 
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
 const title = "Makers League";
 const description =
   "Makers League – Die Gemeinschaft für Macher:innen, die zusammen Ideen voranbringen. Wir entdecken, was in uns steckt und setzen Kräfte frei!";

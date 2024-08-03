@@ -43,9 +43,6 @@ export const get = async <TSchema extends z.ZodTypeAny>(
   const res = await fetch(fetchUrl, {
     method: "GET",
     headers,
-    next: {
-      revalidate: 60,
-    },
   });
 
   if (!res.ok) {
@@ -63,9 +60,6 @@ export const get = async <TSchema extends z.ZodTypeAny>(
     const res = await fetch(next, {
       method: "GET",
       headers,
-      next: {
-        revalidate: 60,
-      },
     });
     const data = await res.json();
     results = [...results, ...schema.parse(data.results)];
