@@ -2,6 +2,8 @@ import { WelcomeEmailCard } from "@/components/admin/WelcomeEmailCard/WelcomeEma
 import { Toaster } from "@/ui/toaster";
 import { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Admin",
   description: "Makers League Admin Page",
@@ -12,13 +14,13 @@ export const metadata: Metadata = {
 
 const AdminPage = () => {
   return (
-    <div>
+    <>
       <h1 className="mb-10 text-4xl font-bold">Admin</h1>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         <WelcomeEmailCard />
       </section>
       <Toaster />
-    </div>
+    </>
   );
 };
 

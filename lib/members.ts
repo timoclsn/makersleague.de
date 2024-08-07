@@ -34,18 +34,16 @@ const customFieldNames = {
 } as const;
 
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
-  if (NODE_ENV === "development") {
-    const cachedData = await getCacheValue(
-      "members",
-      z.array(websiteMemberSchema),
-    );
-    if (cachedData) {
-      console.info("Members loaded from cache");
-      return cachedData;
-    }
-
-    console.info("Fetching members from API");
+  const cachedData = await getCacheValue(
+    "members",
+    z.array(websiteMemberSchema),
+  );
+  if (cachedData) {
+    console.info("Members loaded from cache");
+    return cachedData;
   }
+
+  console.info("Fetching members from API");
 
   const apiMembers = await getActiveMembers();
 
@@ -135,9 +133,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
-  if (NODE_ENV === "development") {
-    setCacheValue("members", websiteMembers);
-  }
+  setCacheValue("members", websiteMembers);
 
   return websiteMembers;
 };
