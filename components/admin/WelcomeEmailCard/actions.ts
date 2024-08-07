@@ -1,7 +1,8 @@
 "use server";
 
 import { createAction } from "@/lib/clients";
-import { sendFollowUpMail, sendWelcomeMail } from "@/lib/email";
+import { ActionError } from "@/lib/data/errors";
+import { sendWelcomeMail } from "@/lib/email";
 import { z } from "zod";
 
 export const sendEmail = createAction({
@@ -12,7 +13,15 @@ export const sendEmail = createAction({
   action: async ({ input }) => {
     const { name, email } = input;
 
-    await sendFollowUpMail({ name, email });
-    await sendWelcomeMail({ name, email });
+    const error = await sendWelcomeMail({ name, email });
+
+    if (error) {
+      throw new ActionError({
+        message: error.message,
+        log: error.name,
+      });
+    }
+
+    return { email };
   },
 });

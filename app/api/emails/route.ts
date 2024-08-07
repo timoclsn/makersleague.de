@@ -19,20 +19,18 @@ export async function GET(request: NextRequest) {
   const members = await getActiveMembers();
 
   members.forEach(async (member) => {
-    if (
-      member.contactDetails.name === "Timo Clasen" ||
-      member.contactDetails.name === "Daniela Gorka"
-    ) {
-      // TODO: Remove guard
-      if (member.joinDate) {
-        const joinDate = parseISO(member.joinDate);
+    if (member.joinDate) {
+      const joinDate = parseISO(member.joinDate);
 
-        // Check in mail
-        if (isSameDay(joinDate, subMonths(new Date(), 1))) {
+      // Follow up mail after 1 month
+      if (isSameDay(joinDate, subMonths(new Date(), 1))) {
+        try {
           await sendFollowUpMail({
             email: member.emailOrUserName,
             name: member.contactDetails.firstName,
           });
+        } catch (error) {
+          console.error(error);
         }
       }
     }

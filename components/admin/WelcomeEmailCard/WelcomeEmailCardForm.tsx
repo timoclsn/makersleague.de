@@ -21,11 +21,14 @@ interface Props {
 export const EmailCardForm = ({ members }: Props) => {
   const { toast } = useToast();
   const { runAction, isRunning } = useAction(sendEmail, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (!data) return;
+      const { email } = data;
+
       toast({
         variant: "default",
         title: "Erfolg!",
-        description: "Welcome E-Mail wurde versendet.",
+        description: `Welcome E-Mail an ${email} wurde versendet.`,
       });
     },
     onError: (error) => {
@@ -46,16 +49,10 @@ export const EmailCardForm = ({ members }: Props) => {
         const member = members.find((member) => member.id === id);
         if (!member) return;
 
-        // TODO: Remove guard
-        if (
-          member.contactDetails.name === "Timo Clasen" ||
-          member.contactDetails.name === "Daniela Gorka"
-        ) {
-          runAction({
-            email: member.emailOrUserName,
-            name: member.contactDetails.firstName,
-          });
-        }
+        runAction({
+          email: member.emailOrUserName,
+          name: member.contactDetails.firstName,
+        });
       }}
     >
       <Select name="member" required>

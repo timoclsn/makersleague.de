@@ -6,8 +6,9 @@ import { getNextEvent } from "./events";
 import { formatDate } from "./utils";
 
 const { RESEND_API_KEY } = process.env;
-
 const resend = new Resend(RESEND_API_KEY);
+const DEFAULT_FROM = "Nina von der Makers League <nina@makersleague.de>";
+const DEFAULT_BCC = ["goebeltimo@gmail.com", "daniela@makersleague.de"];
 
 export const sendWelcomeMail = async ({
   name,
@@ -23,25 +24,19 @@ export const sendWelcomeMail = async ({
     typeof event.start === "string" ? parseISO(event.start) : event.start;
   const formatedDate = formatDate(startDate, "dd.MM.");
 
-  try {
-    const { error } = await resend.emails.send({
-      from: "Nina von der Makers League <nina@makersleague.de>",
-      to: [email],
-      bcc: ["goebeltimo@gmail.com"],
-      subject: "Herzlich Willkommen in der Makers League",
-      react: WelcomeEmail({
-        firstName: name,
-        nextStammtischDate: formatedDate,
-        nextStammtischUrl: event.url,
-      }),
-    });
+  const { error } = await resend.emails.send({
+    from: DEFAULT_FROM,
+    to: [email],
+    bcc: DEFAULT_BCC,
+    subject: "Herzlich Willkommen in der Makers League",
+    react: WelcomeEmail({
+      firstName: name,
+      nextStammtischDate: formatedDate,
+      nextStammtischUrl: event.url,
+    }),
+  });
 
-    if (error) {
-      console.error(error);
-    }
-  } catch (error) {
-    console.error(error);
-  }
+  return error;
 };
 
 export const sendFollowUpMail = async ({
@@ -58,23 +53,17 @@ export const sendFollowUpMail = async ({
     typeof event.start === "string" ? parseISO(event.start) : event.start;
   const formatedDate = formatDate(startDate, "dd.MM.");
 
-  try {
-    const { error } = await resend.emails.send({
-      from: "Nina von der Makers League <nina@makersleague.de>",
-      to: [email],
-      bcc: ["goebeltimo@gmail.com"],
-      subject: "Dein Start bei der Makers League",
-      react: FollowUpEmail({
-        firstName: name,
-        nextStammtischDate: formatedDate,
-        nextStammtischUrl: event.url,
-      }),
-    });
+  const { error } = await resend.emails.send({
+    from: DEFAULT_FROM,
+    to: [email],
+    bcc: DEFAULT_BCC,
+    subject: "Dein Start bei der Makers League",
+    react: FollowUpEmail({
+      firstName: name,
+      nextStammtischDate: formatedDate,
+      nextStammtischUrl: event.url,
+    }),
+  });
 
-    if (error) {
-      console.error(error);
-    }
-  } catch (error) {
-    console.error(error);
-  }
+  return error;
 };
