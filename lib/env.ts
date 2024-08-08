@@ -10,6 +10,7 @@ const envSchema = z.object({
 
   // Vercel
   VERCEL: z.enum(["1"]).optional(),
+  VERCEL_URL: envVarSchema.optional(),
 
   // EasyVerein
   EASYVEREIN_TOKEN: envVarSchema,
@@ -17,6 +18,15 @@ const envSchema = z.object({
   // Instagram
   INSTAGRAM_USER_ID: envVarSchema,
   INSTAGRAM_ACCESS_TOKEN: envVarSchema,
+
+  // CRON
+  CRON_SECRET: envVarSchema,
+
+  // Resend
+  RESEND_API_KEY: envVarSchema,
+
+  // Admin
+  HTTP_BASIC_AUTH: envVarSchema,
 
   // Client
 

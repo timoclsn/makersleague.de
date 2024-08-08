@@ -15,7 +15,7 @@ export const Members = ({ members }: Props) => {
         <li
           className={`${
             idx === 0 ? "oder-1" : "order-last"
-          } overflow-hidden border-4 p-4`}
+          } overflow-hidden border-4 border-dark p-4`}
           key={member.id}
         >
           <Link href={`/mitglieder/${member.slug}`}>
@@ -35,7 +35,7 @@ export const Members = ({ members }: Props) => {
           </Link>
         </li>
       ))}
-      <li className="order-2 border-4 border-dashed p-4 text-pink">
+      <li className="order-2 border-4 border-dashed border-pink p-4 text-pink">
         <Link href="/mitglied-werden">
           <div className="group flex h-full flex-col items-start">
             <Image
