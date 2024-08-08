@@ -6,11 +6,11 @@ import {
   Row,
 } from "@react-email/components";
 import { baseUrl } from "../lib/utils";
-import { Link } from "./Link";
-import { Text } from "./Text";
-import { Section } from "./Section";
 import { Bold } from "./Bold";
 import { Italic } from "./Italic";
+import { Link } from "./Link";
+import { Section } from "./Section";
+import { Text } from "./Text";
 
 interface Props {
   greeting: string;
@@ -36,7 +36,7 @@ export const Footer = ({ greeting }: Props) => {
         </Link>
         .
       </Text>
-      <Row>
+      <Row className="w-auto">
         <Column align="right">
           <LinkPrimitive href="https://www.instagram.com/makersleague.ev">
             <Img
@@ -44,6 +44,17 @@ export const Footer = ({ greeting }: Props) => {
               width="44"
               height="44"
               alt="Instagram"
+              className="mx-2"
+            />
+          </LinkPrimitive>
+        </Column>
+        <Column align="center">
+          <LinkPrimitive href="https://makersleague.de">
+            <Img
+              src={`${baseUrl}/emails/globe.png`}
+              width="44"
+              height="44"
+              alt="Website"
               className="mx-2"
             />
           </LinkPrimitive>
