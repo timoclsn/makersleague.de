@@ -1,4 +1,4 @@
-import { getActiveMembers, getMembers } from "@/lib/easyverein";
+import { getMembers } from "@/lib/easyverein";
 import {
   Card,
   CardContent,
