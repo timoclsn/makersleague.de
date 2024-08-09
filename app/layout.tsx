@@ -59,7 +59,7 @@ const RootLayout = ({ children }: Props) => {
       <body className="flex min-h-screen flex-col text-base text-dark">
         <div className="flex flex-1 flex-row">
           <Navigation />
-          <main className="mx-auto flex w-full flex-1 flex-col bg-yellow-900 p-4 md:p-10">
+          <main className="mx-auto flex w-full flex-1 flex-col p-4 md:p-10">
             <Header />
             {children}
           </main>

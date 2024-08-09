@@ -2,7 +2,7 @@ import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
 import z from "zod";
 import { getCacheValue, setCacheValue } from "./cache";
-import { customField, getMembers } from "./easyverein";
+import { customField, getActiveMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
 
@@ -24,23 +24,6 @@ const websiteMemberSchema = z.object({
   slug: z.string(),
 });
 
-const getActiveMembers = async () => {
-  const members = await getMembers();
-
-  return members.filter((member) => {
-    // Filter out pending applications
-    if (member._isApplication) {
-      return false;
-    }
-    // Filter out past members
-    if (member.resignationDate) {
-      return new Date(member.resignationDate) > new Date();
-    }
-
-    return true;
-  });
-};
-
 const customFieldNames = {
   show: "Auf Website anzeigen",
   slogan: "Profil-Slogan",
@@ -51,18 +34,16 @@ const customFieldNames = {
 } as const;
 
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
-  if (NODE_ENV === "development") {
-    const cachedData = await getCacheValue(
-      "members",
-      z.array(websiteMemberSchema),
-    );
-    if (cachedData) {
-      console.info("Members loaded from cache");
-      return cachedData;
-    }
-
-    console.info("Fetching members from API");
+  const cachedData = await getCacheValue(
+    "members",
+    z.array(websiteMemberSchema),
+  );
+  if (cachedData) {
+    console.info("Members loaded from cache");
+    return cachedData;
   }
+
+  console.info("Fetching members from API");
 
   const apiMembers = await getActiveMembers();
 
@@ -152,9 +133,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
 
-  if (NODE_ENV === "development") {
-    setCacheValue("members", websiteMembers);
-  }
+  setCacheValue("members", websiteMembers);
 
   return websiteMembers;
 };
