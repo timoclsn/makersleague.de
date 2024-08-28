@@ -1,13 +1,13 @@
 import { Img, Link } from "@react-email/components";
-import { baseUrl } from "../lib/utils";
+import { getBaseUrl } from "../lib/utils";
 import { Section } from "./Section";
 
 export const Header = () => {
   return (
     <Section>
-      <Link href={baseUrl}>
+      <Link href={getBaseUrl()}>
         <Img
-          src={`${baseUrl}/emails/logo.png`}
+          src={`${getBaseUrl()}/emails/logo.png`}
           width="40"
           height="50"
           alt="LinkedIn"

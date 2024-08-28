@@ -34,6 +34,12 @@ export const sendWelcomeMail = async ({
       nextStammtischDate: formatedDate,
       nextStammtischUrl: event.url,
     }),
+    tags: [
+      {
+        name: 'category',
+        value: 'welcome_email',
+      },
+    ],
   });
 
   return error;
@@ -63,6 +69,12 @@ export const sendFollowUpMail = async ({
       nextStammtischDate: formatedDate,
       nextStammtischUrl: event.url,
     }),
+    tags: [
+      {
+        name: 'category',
+        value: 'follow_up_email',
+      },
+    ],
   });
 
   return error;
