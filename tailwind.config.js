@@ -8,7 +8,8 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./ui/**/*.{js,ts,jsx,tsx}",
-    "./emails/**/*.{js,ts,jsx,tsx}",
+    "./emails/components/**/*.{js,ts,jsx,tsx}",
+    "./emails/emails/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {
