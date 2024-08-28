@@ -9,7 +9,7 @@ const PORT = process.env.PORT;
 export const isProductionDeployment = NEXT_PUBLIC_VERCEL_ENV === "production";
 
 export const getBaseUrl = () => {
-  if (NEXT_PUBLIC_VERCEL_ENV === "production") return "https://makersleague.de";
+  if (isProductionDeployment) return "https://makersleague.de";
   if (NEXT_PUBLIC_VERCEL_URL) return `https://${NEXT_PUBLIC_VERCEL_URL}`;
   return `http://localhost:${PORT ?? 3000}`;
 };

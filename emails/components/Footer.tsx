@@ -5,7 +5,7 @@ import {
   Link as LinkPrimitive,
   Row,
 } from "@react-email/components";
-import { baseUrl } from "../lib/utils";
+import { getBaseUrl } from "../lib/utils";
 import { Bold } from "./Bold";
 import { Italic } from "./Italic";
 import { Link } from "./Link";
@@ -32,7 +32,7 @@ export const Footer = ({ greeting }: Props) => {
         PS: Du bist auf Instagram oder LinkedIn aktiv? Dann vergiss nicht uns zu
         folgen und uns für Reposts zu verlinken{" "}
         <Link href="https://linktr.ee/makersleague">
-          Hier geht's zu unseren Kanälen
+          Hier geht&apos;s zu unseren Kanälen
         </Link>
         .
       </Text>
@@ -40,7 +40,7 @@ export const Footer = ({ greeting }: Props) => {
         <Column align="right">
           <LinkPrimitive href="https://www.instagram.com/makersleague.ev">
             <Img
-              src={`${baseUrl}/emails/instagram.png`}
+              src={`${getBaseUrl()}/emails/instagram.png`}
               width="44"
               height="44"
               alt="Instagram"
@@ -51,7 +51,7 @@ export const Footer = ({ greeting }: Props) => {
         <Column align="center">
           <LinkPrimitive href="https://makersleague.de">
             <Img
-              src={`${baseUrl}/emails/globe.png`}
+              src={`${getBaseUrl()}/emails/globe.png`}
               width="44"
               height="44"
               alt="Website"
@@ -62,7 +62,7 @@ export const Footer = ({ greeting }: Props) => {
         <Column align="left">
           <LinkPrimitive href="https://de.linkedin.com/company/makersleague">
             <Img
-              src={`${baseUrl}/emails/linkedin.png`}
+              src={`${getBaseUrl()}/emails/linkedin.png`}
               width="44"
               height="44"
               alt="LinkedIn"
