@@ -49,7 +49,7 @@ export const Footer = ({ greeting }: Props) => {
           </LinkPrimitive>
         </Column>
         <Column align="center">
-          <LinkPrimitive href="https://makersleague.de">
+          <LinkPrimitive href={getBaseUrl()}>
             <Img
               src={`${getBaseUrl()}/emails/globe.png`}
               width="44"
