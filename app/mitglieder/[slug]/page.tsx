@@ -58,6 +58,12 @@ const MemberPage = async ({ params }: Props) => {
         <div className="flex flex-col gap-28 md:flex-row">
           <div className="flex-1">
             <h1 className="mb-2 text-2xl font-bold">{member.name}</h1>
+            {member.boardTitle && (
+            <h2 className="mb-10 text-2xl opacity-60">{member.boardTitle}</h2>  
+            )}
+            {member.boardDomain && (
+            <h2 className="mb-10 text-2xl opacity-60">{member.boardDomain}</h2>  
+            )}
             <h2 className="mb-10 text-2xl opacity-60">{member.slogan}</h2>
 
             <h3 className="mb-2 font-bold">Meine Superkräfte:</h3>

@@ -22,6 +22,8 @@ const websiteMemberSchema = z.object({
   superPowers: superPowersSchema,
   about: z.string().nullable(),
   slug: z.string(),
+  boardTitle: z.string().optional(),
+  boardDomain: z.string().optional(),
 });
 
 const customFieldNames = {
@@ -31,6 +33,8 @@ const customFieldNames = {
   superPower2: "Meine Superkraft 2",
   superPower3: "Meine Superkraft 3",
   about: "Über mich",
+  boardTitle: "Vorstandstitel",
+  boardDomain: "Vorstandsressort",
 } as const;
 
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
@@ -118,6 +122,14 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       const about =
         customField(customFields, customFieldNames.about)?.value || null;
       const slug = kebabCase(name);
+      const boardTitle = customField(
+        customFields,
+        customFieldNames.boardTitle,
+      )?.value;
+      const boardDomain = customField(
+        customFields,
+        customFieldNames.boardDomain,
+      )?.value;
 
       return {
         id,
@@ -129,6 +141,8 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
         superPowers,
         about,
         slug,
+        boardTitle,
+        boardDomain,
       };
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
