@@ -1,3 +1,4 @@
+import { InfoBox } from "@/components/InfoBox";
 import { Button } from "components/Button";
 import { MemberImage } from "components/MemberImage";
 import { Members } from "components/Members";
@@ -57,15 +58,18 @@ const MemberPage = async ({ params }: Props) => {
         </div>
         <div className="flex flex-col gap-28 md:flex-row">
           <div className="flex-1">
-            <h1 className="mb-2 text-2xl font-bold">{member.name}</h1>
-            {member.boardTitle && (
-            <h2 className="mb-10 text-2xl opacity-60">{member.boardTitle}</h2>  
-            )}
-            {member.boardDomain && (
-            <h2 className="mb-10 text-2xl opacity-60">{member.boardDomain}</h2>  
-            )}
-            <h2 className="mb-10 text-2xl opacity-60">{member.slogan}</h2>
-
+            <div className="mb-10">
+              <h1 className="mb-2 text-2xl font-bold">{member.name}</h1>
+              <h2 className="text-2xl opacity-60">{member.slogan}</h2>
+              {member.boardTitle && member.boardDomain && (
+                <InfoBox>
+                  {member.firstName} ist{" "}
+                  <span className="font-bold">{member.boardTitle}</span> der
+                  Makers League und verantwortet den Bereich{" "}
+                  <span className="font-bold">{member.boardDomain}</span>.
+                </InfoBox>
+              )}
+            </div>
             <h3 className="mb-2 font-bold">Meine Superkräfte:</h3>
             <ul className="mb-8 ml-5 list-disc opacity-80">
               {member.superPowers.map((superPower, idx) => (
