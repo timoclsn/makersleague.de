@@ -18,8 +18,9 @@ export const Members = ({ members }: Props) => {
           } relative overflow-hidden border-4 border-dark p-4`}
           key={member.id}
         >
+          {/* Board member ribbon */}
           {member.boardTitle && (
-            <div className="absolute right-12 top-12 w-full origin-center -translate-y-1/2 translate-x-1/2 rotate-45 bg-blue p-2 text-center font-bold uppercase text-dark">
+            <div className="absolute right-12 top-12 w-full origin-center -translate-y-1/2 translate-x-1/2 rotate-45 bg-blue p-2 text-center text-[14px] font-bold uppercase text-dark">
               <span>Vorstand</span>
             </div>
           )}
