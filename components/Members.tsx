@@ -15,9 +15,14 @@ export const Members = ({ members }: Props) => {
         <li
           className={`${
             idx === 0 ? "oder-1" : "order-last"
-          } overflow-hidden border-4 border-dark p-4`}
+          } relative overflow-hidden border-4 border-dark p-4`}
           key={member.id}
         >
+          {member.boardTitle && (
+            <div className="absolute right-12 top-12 w-full origin-center -translate-y-1/2 translate-x-1/2 rotate-45 bg-blue p-2 text-center font-bold uppercase text-dark">
+              <span>Vorstand</span>
+            </div>
+          )}
           <Link href={`/mitglieder/${member.slug}`}>
             <div className="group flex h-full flex-col items-start">
               <MemberImage member={member} size={700} className="mb-5 block" />
