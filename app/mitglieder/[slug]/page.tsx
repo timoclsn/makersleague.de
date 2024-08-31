@@ -4,10 +4,13 @@ import { MemberImage } from "components/MemberImage";
 import { Members } from "components/Members";
 import { Page } from "components/Page";
 import { Arrow, HeartPlus } from "components/icons";
-import { getWebsiteMembers } from "lib/members";
+import {
+  getRandomOtherMembers,
+  getWebsiteMemberBySlug,
+  getWebsiteMembers,
+} from "lib/members";
 import { createGenerateMetadata } from "lib/metadata";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
   const { slug } = params;
@@ -37,15 +40,8 @@ interface Props {
 
 const MemberPage = async ({ params }: Props) => {
   const { slug } = params;
-  const allMembers = await getWebsiteMembers();
-  const member = allMembers.find((member) => member.slug === slug);
-  if (!member) {
-    notFound();
-  }
-  const otherMembers = allMembers
-    .filter((member) => member.slug !== slug)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 5);
+  const member = await getWebsiteMemberBySlug(slug);
+  const otherMembers = await getRandomOtherMembers(member, 5);
 
   return (
     <Page>
