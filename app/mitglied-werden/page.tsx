@@ -1,3 +1,4 @@
+import { BoardMembersSection } from "@/components/BoardMembersSection";
 import { ApplySection } from "components/ApplySection";
 import { ContactSection } from "components/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
@@ -28,6 +29,7 @@ const BecomeMemberPage = () => {
       <ValuesSection />
       <FaqsSection />
       <ContactSection />
+      <BoardMembersSection />
     </Page>
   );
 };

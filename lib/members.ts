@@ -199,3 +199,8 @@ export const getMembersCount = async () => {
   const result = await getActiveMembers();
   return result.length;
 };
+
+export const getBoardMembers = async () => {
+  const members = await getWebsiteMembers();
+  return members.filter((member) => member.boardTitle);
+};
