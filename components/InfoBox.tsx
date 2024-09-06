@@ -20,7 +20,7 @@ interface Props extends VariantProps<typeof infoBox> {
 export const InfoBox = ({ children, color = "blue", className }: Props) => {
   return (
     <div className={infoBox({ color, className })}>
-      <Info size={16} className="flex-none" />
+      <Info size={16} className="flex-none translate-y-0.5" />
       <p>{children}</p>
     </div>
   );

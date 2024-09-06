@@ -57,12 +57,21 @@ const MemberPage = async ({ params }: Props) => {
             <div className="mb-10">
               <h1 className="mb-2 text-2xl font-bold">{member.name}</h1>
               <h2 className="text-2xl opacity-60">{member.slogan}</h2>
-              {member.boardTitle && member.boardDomain && (
+              {member.boardTitle && (
                 <InfoBox>
                   {member.firstName} ist{" "}
                   <span className="font-bold">{member.boardTitle}</span> der
-                  Makers League und verantwortet den Bereich{" "}
-                  <span className="font-bold">{member.boardDomain}</span>.
+                  Makers League.
+                  {member.boardInfo && (
+                    <>
+                      <br />
+                      <br />
+                      <div
+                        className="prose"
+                        dangerouslySetInnerHTML={{ __html: member.boardInfo }}
+                      />
+                    </>
+                  )}
                 </InfoBox>
               )}
             </div>

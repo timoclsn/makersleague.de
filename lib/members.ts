@@ -25,6 +25,7 @@ const websiteMemberSchema = z.object({
   slug: z.string(),
   boardTitle: z.string().optional(),
   boardDomain: z.string().optional(),
+  boardInfo: z.string().optional(),
 });
 
 const customFieldNames = {
@@ -36,6 +37,7 @@ const customFieldNames = {
   about: "Über mich",
   boardTitle: "Vorstandstitel",
   boardDomain: "Vorstandsressort",
+  boardInfo: "Vorstandsinfo",
 } as const;
 
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
@@ -131,6 +133,10 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
         customFields,
         customFieldNames.boardDomain,
       )?.value;
+      const boardInfo = customField(
+        customFields,
+        customFieldNames.boardInfo,
+      )?.value;
 
       return {
         id,
@@ -144,6 +150,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
         slug,
         boardTitle,
         boardDomain,
+        boardInfo,
       };
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
