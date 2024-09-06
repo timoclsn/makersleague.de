@@ -17,21 +17,26 @@ export async function GET(request: NextRequest) {
   }
 
   const members = await getActiveMembers();
+  const oneMonthAgo = subMonths(new Date(), 1);
 
   members.forEach(async (member) => {
-    if (member.joinDate) {
-      const joinDate = parseISO(member.joinDate);
+    if (!member.joinDate) {
+      return;
+    }
 
-      // Follow up mail after 1 month
-      if (isSameDay(joinDate, subMonths(new Date(), 1))) {
-        try {
-          await sendFollowUpMail({
-            email: member.emailOrUserName,
-            name: member.contactDetails.firstName,
-          });
-        } catch (error) {
-          console.error(error);
-        }
+    const joinDate = parseISO(member.joinDate);
+
+    // Follow up mail after 1 month
+    if (isSameDay(joinDate, oneMonthAgo)) {
+      try {
+        await sendFollowUpMail({
+          email: member.emailOrUserName,
+          name: member.contactDetails.firstName,
+        });
+
+        console.info(`Sent follow up mail to ${member.emailOrUserName}`);
+      } catch (error) {
+        console.error(error);
       }
     }
   });
