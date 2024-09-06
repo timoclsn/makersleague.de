@@ -1,4 +1,6 @@
+import { BoardMembersSection } from "@/components/BoardMembersSection";
 import { ApplySection } from "components/ApplySection";
+import { BlogSection } from "components/BlogSection";
 import { ContactSection } from "components/ContactSection";
 import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
@@ -6,12 +8,11 @@ import { FitSection } from "components/FitSection";
 import { InstagramSection } from "components/InstagramSection";
 import { MembersSection } from "components/MembersSection";
 import { Page } from "components/Page";
+import { TestimonialsSection } from "components/TestimonialsSection";
 import { ValuesSection } from "components/ValuesSection";
 import Image from "next/image";
 import { HeroButtons } from "./HeroButtons";
 import membersImg from "./mitglieder.png";
-import { BlogSection } from "components/BlogSection";
-import { TestimonialsSection } from "components/TestimonialsSection";
 
 const HomePage = () => (
   <>
@@ -89,6 +90,7 @@ const HomePage = () => (
       <MembersSection />
       <EventsSection />
       <ValuesSection />
+      <BoardMembersSection />
       <FitSection />
       <TestimonialsSection />
       <ApplySection />

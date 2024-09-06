@@ -1,3 +1,4 @@
+import { BoardMembersSection } from "@/components/BoardMembersSection";
 import { BlogSection } from "components/BlogSection";
 import { ContactSection } from "components/ContactSection";
 import { EventsSection } from "components/EventsSection";
@@ -77,6 +78,7 @@ const UeberPage = async () => {
       </section>
       <MembersSection />
       <ValuesSection />
+      <BoardMembersSection />
       <InstagramSection />
       <BlogSection />
       <EventsSection />

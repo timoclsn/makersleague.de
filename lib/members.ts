@@ -2,7 +2,8 @@ import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
 import z from "zod";
 import { getCacheValue, setCacheValue } from "./cache";
-import { customField, getActiveMembers } from "./easyverein";
+import { customField, getActiveMembers, Member } from "./easyverein";
+import { notFound } from "next/navigation";
 
 const { NODE_ENV } = process.env;
 
@@ -22,6 +23,9 @@ const websiteMemberSchema = z.object({
   superPowers: superPowersSchema,
   about: z.string().nullable(),
   slug: z.string(),
+  boardTitle: z.string().optional(),
+  boardDomain: z.string().optional(),
+  boardInfo: z.string().optional(),
 });
 
 const customFieldNames = {
@@ -31,6 +35,9 @@ const customFieldNames = {
   superPower2: "Meine Superkraft 2",
   superPower3: "Meine Superkraft 3",
   about: "Über mich",
+  boardTitle: "Vorstandstitel",
+  boardDomain: "Vorstandsressort",
+  boardInfo: "Vorstandsinfo",
 } as const;
 
 export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
@@ -118,6 +125,18 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       const about =
         customField(customFields, customFieldNames.about)?.value || null;
       const slug = kebabCase(name);
+      const boardTitle = customField(
+        customFields,
+        customFieldNames.boardTitle,
+      )?.value;
+      const boardDomain = customField(
+        customFields,
+        customFieldNames.boardDomain,
+      )?.value;
+      const boardInfo = customField(
+        customFields,
+        customFieldNames.boardInfo,
+      )?.value;
 
       return {
         id,
@@ -129,6 +148,9 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
         superPowers,
         about,
         slug,
+        boardTitle,
+        boardDomain,
+        boardInfo,
       };
     })
     .sort((a, b) => a.familyName.localeCompare(b.familyName));
@@ -138,18 +160,47 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
   return websiteMembers;
 };
 
-export const getWebsiteMember = async (name: string) => {
+export const getWebsiteMemberByName = async (name: string) => {
   const members = await getWebsiteMembers();
   const member = members.find((member) => member.name === name);
 
   if (!member) {
-    throw new Error(`Member ${name} not found`);
+    console.error(`Member with name "${name}" not found`);
+    notFound();
   }
 
   return member;
 };
 
+export const getWebsiteMemberBySlug = async (slug: string) => {
+  const members = await getWebsiteMembers();
+  const member = members.find((member) => member.slug === slug);
+
+  if (!member) {
+    console.error(`Member with slug "${slug}" not found`);
+    notFound();
+  }
+
+  return member;
+};
+
+export const getRandomOtherMembers = async (
+  member: WebsiteMember,
+  count: number = 5,
+) => {
+  const allMembers = await getWebsiteMembers();
+  return allMembers
+    .filter((allMember) => allMember.slug !== member.slug)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, count);
+};
+
 export const getMembersCount = async () => {
   const result = await getActiveMembers();
   return result.length;
+};
+
+export const getBoardMembers = async () => {
+  const members = await getWebsiteMembers();
+  return members.filter((member) => member.boardTitle);
 };

@@ -1,6 +1,6 @@
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { getAllTestimonials } from "lib/content";
-import { getWebsiteMember } from "lib/members";
+import { getWebsiteMemberByName } from "lib/members";
 import { Quote } from "lucide-react";
 import { Button } from "./Button";
 import { MemberImage } from "./MemberImage";
@@ -25,7 +25,7 @@ export const TestimonialsSection = async () => {
 
       <ul className="grid grid-cols-1 gap-4 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
         {testimonials.map(async (testimonial, index) => {
-          const member = await getWebsiteMember(testimonial.data.name);
+          const member = await getWebsiteMemberByName(testimonial.data.name);
 
           return (
             <li key={index} className="flex-1">

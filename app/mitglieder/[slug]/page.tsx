@@ -1,12 +1,16 @@
+import { InfoBox } from "@/components/InfoBox";
 import { Button } from "components/Button";
 import { MemberImage } from "components/MemberImage";
 import { Members } from "components/Members";
 import { Page } from "components/Page";
 import { Arrow, HeartPlus } from "components/icons";
-import { getWebsiteMembers } from "lib/members";
+import {
+  getRandomOtherMembers,
+  getWebsiteMemberBySlug,
+  getWebsiteMembers,
+} from "lib/members";
 import { createGenerateMetadata } from "lib/metadata";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
   const { slug } = params;
@@ -36,15 +40,8 @@ interface Props {
 
 const MemberPage = async ({ params }: Props) => {
   const { slug } = params;
-  const allMembers = await getWebsiteMembers();
-  const member = allMembers.find((member) => member.slug === slug);
-  if (!member) {
-    notFound();
-  }
-  const otherMembers = allMembers
-    .filter((member) => member.slug !== slug)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 5);
+  const member = await getWebsiteMemberBySlug(slug);
+  const otherMembers = await getRandomOtherMembers(member, 5);
 
   return (
     <Page>
@@ -57,9 +54,27 @@ const MemberPage = async ({ params }: Props) => {
         </div>
         <div className="flex flex-col gap-28 md:flex-row">
           <div className="flex-1">
-            <h1 className="mb-2 text-2xl font-bold">{member.name}</h1>
-            <h2 className="mb-10 text-2xl opacity-60">{member.slogan}</h2>
-
+            <div className="mb-10">
+              <h1 className="mb-2 text-2xl font-bold">{member.name}</h1>
+              <h2 className="text-2xl opacity-60">{member.slogan}</h2>
+              {member.boardTitle && (
+                <InfoBox>
+                  {member.firstName} ist{" "}
+                  <span className="font-bold">{member.boardTitle}</span> der
+                  Makers League.
+                  {member.boardInfo && (
+                    <>
+                      <br />
+                      <br />
+                      <div
+                        className="prose"
+                        dangerouslySetInnerHTML={{ __html: member.boardInfo }}
+                      />
+                    </>
+                  )}
+                </InfoBox>
+              )}
+            </div>
             <h3 className="mb-2 font-bold">Meine Superkräfte:</h3>
             <ul className="mb-8 ml-5 list-disc opacity-80">
               {member.superPowers.map((superPower, idx) => (

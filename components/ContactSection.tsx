@@ -1,10 +1,10 @@
 import { Arrow } from "components/icons";
-import { getWebsiteMember } from "lib/members";
+import { getWebsiteMemberByName } from "lib/members";
 import Link from "next/link";
 import { MemberImage } from "./MemberImage";
 
 export const ContactSection = async () => {
-  const member = await getWebsiteMember("Nina Kuch");
+  const member = await getWebsiteMemberByName("Nina Kuch");
 
   return (
     <section id="contact">
