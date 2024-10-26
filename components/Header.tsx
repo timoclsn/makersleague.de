@@ -1,10 +1,23 @@
 import { MobileNavigation } from "components/MobileNavigation";
 import { Logo, Profile } from "components/icons";
+import { cva, VariantProps } from "cva";
 import Link from "next/link";
 
-export const Header = () => {
+const header = cva({
+  base: "flex items-start justify-between",
+  variants: {
+    variant: {
+      light: "text-light",
+      dark: "text-dark",
+    },
+  },
+});
+
+type Props = VariantProps<typeof header>;
+
+export const Header = ({ variant = "dark" }: Props) => {
   return (
-    <header className="mb-16 flex items-start justify-between md:mb-32">
+    <header className={header({ variant })}>
       <Link href="/" className="hover:opacity-80">
         <Logo className="text-[24px] lg:text-[45px]" />
         <span className="sr-only">Home</span>
