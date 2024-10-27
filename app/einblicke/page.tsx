@@ -1,6 +1,7 @@
+import { PageLayout } from "@/components/layouts/PageLayout";
 import { Blog } from "components/Blog";
 import { InstagramSection } from "components/InstagramSection";
-import { Page } from "components/Page";
+import { PageContent } from "components/layouts/PageContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,13 +12,15 @@ export const metadata: Metadata = {
 
 const InsightsPage = () => {
   return (
-    <Page>
-      <div>
-        <h1 className="mb-16 text-xl font-bold md:text-5xl">Einblicke</h1>
-        <InstagramSection count={9} />
-      </div>
-      <Blog />
-    </Page>
+    <PageLayout>
+      <PageContent>
+        <div>
+          <h1 className="mb-16 text-xl font-bold md:text-5xl">Einblicke</h1>
+          <InstagramSection count={9} />
+        </div>
+        <Blog />
+      </PageContent>
+    </PageLayout>
   );
 };
 

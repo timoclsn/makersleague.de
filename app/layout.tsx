@@ -1,5 +1,4 @@
 import { Footer } from "components/Footer";
-import { Header } from "components/Header";
 import { Navigation } from "components/Navigation";
 import { NextStammtisch } from "components/NextStammtisch/NextStammtisch";
 import { Metadata } from "next";

@@ -1,6 +1,8 @@
 import { Header } from "@/components/Header";
+import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import Image from "next/image";
+import esLogo from "./logo-es.svg";
 import makersInnImg from "./makers-inn.jpeg";
 
 const MakersInnPage = () => {
@@ -13,9 +15,6 @@ const MakersInnPage = () => {
           fill
           className="object-cover"
         />
-        <div className="absolute left-0 top-0 w-full p-4 md:p-10">
-          <Header variant="light" />
-        </div>
         <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
           <div className="flex flex-col items-center gap-2 text-center">
             <h1 className="bg-white text-6xl font-bold text-dark">
@@ -24,10 +23,58 @@ const MakersInnPage = () => {
             <h2 className="bg-white text-3xl font-bold text-dark">
               Die Zentrale Anlaufstelle für Menschen mit Ideen in Esslingen
             </h2>
+            <div className="bg-white px-2">
+              <p>Ein Projekt der</p>
+              <Image src={esLogo} alt="Logo der Stadt Esslingen" />
+            </div>
           </div>
         </div>
+        <div className="absolute left-0 top-0 w-full p-4 md:p-10">
+          <Header variant="light" />
+        </div>
       </section>
-      <section>Das ist ein TEST!!!</section>
+      <div className="p-4 md:p-10">
+        <PageContent>
+          <section>
+            <h1 className="mb-6 text-xl font-bold md:text-5xl">Info</h1>
+            <div className="mb-11 flex flex-col gap-12 md:flex-row">
+              <p>
+                Im Makers Inn entstehen Ideen für die Gründungen von morgen. Die
+                Stadt Esslingen stellt dafür den Raum inmitten der Esslinger
+                Altstadt zur Verfügung um die Vernetzung lokaler Gründer:innen
+                und Macher:innen zu verbessern der neben den Makers League
+                Mitgliedern auch Bürger:innen und Initiativen zur Verfügung
+                steht, die mit ihrem Angebot zur Gründungs- oder
+                Innovationsförderung beitragen.
+              </p>
+              <div className="relative flex flex-none flex-col overflow-hidden bg-blue p-6 pb-20">
+                <h2 className="mb-4 text-2xl font-bold">Was passiert hier?</h2>
+                <ul>
+                  <li>Austausch & Workshops</li>
+                  <li>Wissenstransfer</li>
+                  <li>Gründungsspezifische Events</li>
+                  <li>Gemeinsames Arbeiten</li>
+                  <li>Treffpunkt für Macher:innen</li>
+                  <li>Ideen werden sichtbar gemacht</li>
+                </ul>
+                <div className="absolute bottom-0 right-0 -mb-10 -mr-6 w-[150px]">
+                  <Image
+                    src="/assets/doodle-loving-blue.svg"
+                    alt="Doodle Loving"
+                    width={300}
+                    height={336}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>Galerie</section>
+          <section>Für wen ist es?</section>
+          <section>Was macht das Makers Inn besonders?</section>
+          <section>Ansprechpartnerin</section>
+          <section>FAQ Section</section>
+        </PageContent>
+      </div>
     </PageLayoutFull>
   );
 };

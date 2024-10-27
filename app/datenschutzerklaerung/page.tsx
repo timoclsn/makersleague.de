@@ -1,4 +1,5 @@
-import { Page } from "components/Page";
+import { PageLayout } from "@/components/layouts/PageLayout";
+import { PageContent } from "components/layouts/PageContent";
 import { getPage } from "lib/content";
 import { Metadata } from "next";
 
@@ -11,12 +12,14 @@ const PrivacyPage = async () => {
   const { data, content } = await getPage("datenschutzerklaerung");
 
   return (
-    <Page>
-      <section className="prose mb-8">
-        <h1>{data.title}</h1>
-        {content}
-      </section>
-    </Page>
+    <PageLayout>
+      <PageContent>
+        <section className="prose mb-8">
+          <h1>{data.title}</h1>
+          {content}
+        </section>
+      </PageContent>
+    </PageLayout>
   );
 };
 
