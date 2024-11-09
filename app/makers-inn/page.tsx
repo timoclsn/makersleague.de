@@ -49,7 +49,7 @@ const MakersInnPage = () => {
               </p>
               <div className="relative flex flex-none flex-col overflow-hidden bg-blue p-6 pb-20">
                 <h2 className="mb-4 text-2xl font-bold">Was passiert hier?</h2>
-                <ul>
+                <ul className="list-inside list-disc">
                   <li>Austausch & Workshops</li>
                   <li>Wissenstransfer</li>
                   <li>Gründungsspezifische Events</li>
