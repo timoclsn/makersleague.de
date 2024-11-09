@@ -4,6 +4,7 @@ import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import Image from "next/image";
 import esLogo from "./logo-es.svg";
 import makersInnImg from "./makers-inn.jpeg";
+import { Gallery } from "./Gallery";
 
 const MakersInnPage = () => {
   return (
@@ -68,7 +69,10 @@ const MakersInnPage = () => {
               </div>
             </div>
           </section>
-          <section>Galerie</section>
+          <section>
+            <h1 className="mb-6 text-xl font-bold md:text-5xl">Galerie</h1>
+            <Gallery />
+          </section>
           <section>Für wen ist es?</section>
           <section>Was macht das Makers Inn besonders?</section>
           <section>Ansprechpartnerin</section>
