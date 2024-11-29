@@ -10,6 +10,21 @@ const resend = new Resend(RESEND_API_KEY);
 const DEFAULT_FROM = "Nina von der Makers League <nina@makersleague.de>";
 const DEFAULT_BCC = ["goebeltimo@gmail.com", "daniela@makersleague.de"];
 
+export const sendLoggingMail = async ({
+  followUpEmailCount,
+}: {
+  followUpEmailCount: number;
+}) => {
+  const { error } = await resend.emails.send({
+    from: DEFAULT_FROM,
+    to: ["goebeltimo@gmail.com"],
+    subject: "Email Cron Job Log",
+    text: `Sent ${followUpEmailCount} follow up emails`,
+  });
+
+  return error;
+};
+
 export const sendWelcomeMail = async ({
   name,
   email,
@@ -36,8 +51,8 @@ export const sendWelcomeMail = async ({
     }),
     tags: [
       {
-        name: 'category',
-        value: 'welcome_email',
+        name: "category",
+        value: "welcome_email",
       },
     ],
   });
@@ -71,8 +86,8 @@ export const sendFollowUpMail = async ({
     }),
     tags: [
       {
-        name: 'category',
-        value: 'follow_up_email',
+        name: "category",
+        value: "follow_up_email",
       },
     ],
   });
