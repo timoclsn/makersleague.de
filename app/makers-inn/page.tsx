@@ -73,7 +73,23 @@ const MakersInnPage = () => {
             <h1 className="mb-6 text-xl font-bold md:text-5xl">Galerie</h1>
             <Gallery />
           </section>
-          <section>Für wen ist es?</section>
+          <section className="relative bg-blue p-8">
+            <h2 className="mb-2 text-base font-bold md:text-2xl">
+              Für wen ist es?
+            </h2>
+            <p className="mb-10 text-base opacity-60 md:text-2xl">Subline</p>
+            <p className="opacity-80">
+              Für Makers League Mitglieder täglicher Zugang von 08:00-20:00 Uhr
+              um an ihren Ideen zu arbeiten und gemeinsam im Austausch mit
+              anderen Macher:innen ihre Gründungsvorhaben voranzutreiben und
+              voneinander lernen.{" "}
+            </p>
+            <br />
+            <p className="opacity-80">
+              Monatlich organisiert die Makers League dafür verschiedene Events
+              (Link zu Eventkalender).
+            </p>
+          </section>
           <section>Was macht das Makers Inn besonders?</section>
           <section>Ansprechpartnerin</section>
           <section>FAQ Section</section>
