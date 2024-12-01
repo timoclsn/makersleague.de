@@ -1,12 +1,10 @@
-import { sendFollowUpMail } from "@/lib/email";
+import { sendFollowUpMail, sendLoggingMail } from "@/lib/email";
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers } from "lib/easyverein";
 import { NextRequest } from "next/server";
 
 const { CRON_SECRET, NODE_ENV } = process.env;
-
-let followUpEmailCount = 0;
 
 export async function GET(request: NextRequest) {
   // Protection
@@ -32,18 +30,25 @@ export async function GET(request: NextRequest) {
     // Follow up mail after 1 month
     if (isSameDay(joinDate, oneMonthAgo)) {
       try {
-        await sendFollowUpMail({
+        const error = await sendFollowUpMail({
           email: member.emailOrUserName,
           name: member.contactDetails.firstName,
         });
 
+        if (error) {
+          throw new Error(error.message, { cause: error });
+        }
+
         console.info(`Sent follow up mail to ${member.emailOrUserName}`);
-        followUpEmailCount++;
       } catch (error) {
         console.error(
           `Failed to send follow up mail to ${member.emailOrUserName}:`,
           error,
         );
+        await sendLoggingMail({
+          subject: "Failed to send follow up mail",
+          text: `Failed to send follow up mail to ${member.emailOrUserName}.`,
+        });
       }
     }
   }

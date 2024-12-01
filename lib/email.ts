@@ -2,13 +2,45 @@ import FollowUpEmail from "@/emails/emails/FollowUpEmail";
 import { parseISO } from "date-fns";
 import WelcomeEmail from "emails/emails/WelcomeEmail";
 import { Resend } from "resend";
-import { getNextEvent } from "./events";
+import { getNextEvent, WebsiteEvent } from "./events";
 import { formatDate } from "./utils";
 
 const { RESEND_API_KEY } = process.env;
+
 const resend = new Resend(RESEND_API_KEY);
+
 const DEFAULT_FROM = "Nina von der Makers League <nina@makersleague.de>";
 const DEFAULT_BCC = ["goebeltimo@gmail.com", "daniela@makersleague.de"];
+
+export const sendLoggingMail = async ({
+  subject,
+  text,
+}: {
+  subject: string;
+  text: string;
+}) => {
+  const { error } = await resend.emails.send({
+    from: DEFAULT_FROM,
+    to: ["goebeltimo@gmail.com"],
+    subject,
+    text,
+  });
+
+  return error;
+};
+
+const getStammtischData = (event: WebsiteEvent) => {
+  if (!event.start || !event.url) return;
+
+  const startDate =
+    typeof event.start === "string" ? parseISO(event.start) : event.start;
+  const formatedDate = formatDate(startDate, "dd.MM.");
+
+  return {
+    date: formatedDate,
+    url: event.url,
+  };
+};
 
 export const sendWelcomeMail = async ({
   name,
@@ -18,11 +50,6 @@ export const sendWelcomeMail = async ({
   email: string;
 }) => {
   const event = await getNextEvent("stammtisch");
-  if (!event || !event.start || !event.url) return;
-
-  const startDate =
-    typeof event.start === "string" ? parseISO(event.start) : event.start;
-  const formatedDate = formatDate(startDate, "dd.MM.");
 
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
@@ -31,8 +58,7 @@ export const sendWelcomeMail = async ({
     subject: "Herzlich Willkommen in der Makers League",
     react: WelcomeEmail({
       firstName: name,
-      nextStammtischDate: formatedDate,
-      nextStammtischUrl: event.url,
+      nextStammtisch: event ? getStammtischData(event) : undefined,
     }),
     tags: [
       {
@@ -53,11 +79,6 @@ export const sendFollowUpMail = async ({
   email: string;
 }) => {
   const event = await getNextEvent("stammtisch");
-  if (!event || !event.start || !event.url) return;
-
-  const startDate =
-    typeof event.start === "string" ? parseISO(event.start) : event.start;
-  const formatedDate = formatDate(startDate, "dd.MM.");
 
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
@@ -66,8 +87,7 @@ export const sendFollowUpMail = async ({
     subject: "Dein Start bei der Makers League",
     react: FollowUpEmail({
       firstName: name,
-      nextStammtischDate: formatedDate,
-      nextStammtischUrl: event.url,
+      nextStammtisch: event ? getStammtischData(event) : undefined,
     }),
     tags: [
       {
