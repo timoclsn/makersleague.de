@@ -24,7 +24,7 @@ const eventIconMap = {
   Linux: Computer,
 } as const;
 
-type WebsiteEvent = z.output<typeof websiteEventSchema>;
+export type WebsiteEvent = z.output<typeof websiteEventSchema>;
 const websiteEventSchema = z.object({
   id: z.number(),
   name: z.string(),
