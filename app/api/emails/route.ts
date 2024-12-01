@@ -1,4 +1,4 @@
-import { sendFollowUpMail, sendLoggingMail } from "@/lib/email";
+import { sendFollowUpMail } from "@/lib/email";
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers } from "lib/easyverein";
@@ -22,9 +22,9 @@ export async function GET(request: NextRequest) {
   const members = await getActiveMembers();
   const oneMonthAgo = toZonedTime(subMonths(new Date(), 1), "UTC");
 
-  members.forEach(async (member) => {
+  for (const member of members) {
     if (!member.joinDate) {
-      return;
+      continue;
     }
 
     const joinDate = toZonedTime(parseISO(member.joinDate), "UTC");
@@ -38,15 +38,15 @@ export async function GET(request: NextRequest) {
         });
 
         console.info(`Sent follow up mail to ${member.emailOrUserName}`);
-
         followUpEmailCount++;
       } catch (error) {
-        console.error(error);
+        console.error(
+          `Failed to send follow up mail to ${member.emailOrUserName}:`,
+          error,
+        );
       }
     }
-  });
-
-  await sendLoggingMail({ followUpEmailCount });
+  }
 
   return Response.json({
     success: true,
