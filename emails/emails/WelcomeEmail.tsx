@@ -1,3 +1,4 @@
+import { Section as SectionPrimitive } from "@react-email/components";
 import { Bold } from "../components/Bold";
 import { Button } from "../components/Button";
 import { Email } from "../components/Email";
@@ -7,19 +8,16 @@ import { Link } from "../components/Link";
 import { NextStammtisch } from "../components/NextStammtisch";
 import { Section } from "../components/Section";
 import { Text } from "../components/Text";
-import { Section as SectionPrimitive } from "@react-email/components";
 
 interface Props {
   firstName: string;
-  nextStammtischDate: string;
-  nextStammtischUrl: string;
+  nextStammtisch?: {
+    date: string;
+    url: string;
+  };
 }
 
-export const WelcomeEmail = ({
-  firstName,
-  nextStammtischDate,
-  nextStammtischUrl,
-}: Props) => {
+export const WelcomeEmail = ({ firstName, nextStammtisch }: Props) => {
   return (
     <Email
       preview="Willkommen in der Makers League! Entdecke unsere Werte und trete der Community bei."
@@ -88,7 +86,9 @@ export const WelcomeEmail = ({
           anmelden.
         </Text>
 
-        <NextStammtisch date={nextStammtischDate} url={nextStammtischUrl} />
+        {nextStammtisch && (
+          <NextStammtisch date={nextStammtisch.date} url={nextStammtisch.url} />
+        )}
       </Section>
 
       <Section>

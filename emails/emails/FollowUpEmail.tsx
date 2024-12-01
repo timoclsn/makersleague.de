@@ -9,15 +9,13 @@ import { Text } from "../components/Text";
 
 interface Props {
   firstName: string;
-  nextStammtischDate: string;
-  nextStammtischUrl: string;
+  nextStammtisch?: {
+    date: string;
+    url: string;
+  };
 }
 
-export const FollowUpEmail = ({
-  firstName,
-  nextStammtischDate,
-  nextStammtischUrl,
-}: Props) => {
+export const FollowUpEmail = ({ firstName, nextStammtisch }: Props) => {
   return (
     <Email
       preview="Willkommen bei der Makers League! Teile dein Wissen und werde aktiv in der Community."
@@ -88,8 +86,9 @@ export const FollowUpEmail = ({
           gerne zum nächsten Stammtisch mit! Je mehr Macher*innen, desto mehr
           Superkräfte und tolle Projekte in Esslingen!
         </Text>
-
-        <NextStammtisch date={nextStammtischDate} url={nextStammtischUrl} />
+        {nextStammtisch && (
+          <NextStammtisch date={nextStammtisch.date} url={nextStammtisch.url} />
+        )}
       </Section>
     </Email>
   );
