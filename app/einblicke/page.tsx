@@ -14,7 +14,7 @@ const InsightsPage = () => {
     <Page>
       <div>
         <h1 className="mb-16 text-xl font-bold md:text-5xl">Einblicke</h1>
-        <InstagramSection count={9} />
+        <InstagramSection />
       </div>
       <Blog />
     </Page>
