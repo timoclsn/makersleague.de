@@ -15,10 +15,6 @@ const envSchema = z.object({
   // EasyVerein
   EASYVEREIN_TOKEN: envVarSchema,
 
-  // Instagram
-  INSTAGRAM_USER_ID: envVarSchema,
-  INSTAGRAM_ACCESS_TOKEN: envVarSchema,
-
   // CRON
   CRON_SECRET: envVarSchema,
 
