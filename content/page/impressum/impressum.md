@@ -59,4 +59,4 @@ Amtsgericht Stuttgart
 
 ### V.i.S.d § 55 Abs. 2 RStV:
 
-Till Augner, Nina Kuch, Jochen Reinhard, Piet Sellke, Norman Knapp
+Till Augner, Nina Kuch, Patrick Funk, Uta Hertel-Vogt, Norman Knapp
