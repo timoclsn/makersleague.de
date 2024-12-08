@@ -30,17 +30,23 @@ nina@makersleague.de
 
 ### 3. Vorstandsvorsitzender
 
-Jochen Reinhard  
+Patrick Funk  
 c/o Küferstr. 46  
 73728 Esslingen  
-jochen@makersleague.de
+patrick@makersleague.de
 
-### Erweiterter Vorstand
+### 4. Vorstandsvorsitzende
 
-Piet Sellke  
-piet@makersleague.de
+Uta Hertel-Vogt  
+c/o Küferstr. 46  
+73728 Esslingen  
+uta@makersleague.de
+
+### 5. Vorstandsvorsitzender
 
 Norman Knapp  
+c/o Küferstr. 46  
+73728 Esslingen  
 norman@makersleague.de
 
 ### Registergericht
