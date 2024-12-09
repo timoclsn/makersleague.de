@@ -35,18 +35,12 @@ c/o Küferstr. 46
 73728 Esslingen  
 patrick@makersleague.de
 
-### 4. Vorstandsvorsitzende
+### Erweiterter Vorstand
 
 Uta Hertel-Vogt  
-c/o Küferstr. 46  
-73728 Esslingen  
 uta@makersleague.de
 
-### 5. Vorstandsvorsitzender
-
 Norman Knapp  
-c/o Küferstr. 46  
-73728 Esslingen  
 norman@makersleague.de
 
 ### Registergericht
