@@ -1,4 +1,5 @@
 import { BoardMembersSection } from "@/components/BoardMembersSection";
+import { PageLayout } from "@/components/layouts/PageLayout";
 import { ApplySection } from "components/ApplySection";
 import { BlogSection } from "components/BlogSection";
 import { ContactSection } from "components/ContactSection";
@@ -6,8 +7,8 @@ import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { InstagramSection } from "components/InstagramSection";
+import { PageContent } from "components/layouts/PageContent";
 import { MembersSection } from "components/MembersSection";
-import { Page } from "components/Page";
 import { TestimonialsSection } from "components/TestimonialsSection";
 import { ValuesSection } from "components/ValuesSection";
 import Image from "next/image";
@@ -15,7 +16,7 @@ import { HeroButtons } from "./HeroButtons";
 import membersImg from "./mitglieder.png";
 
 const HomePage = () => (
-  <>
+  <PageLayout>
     <div className="mb-20 flex min-h-[calc(100svh-100px)] flex-1 flex-col md:mb-32 md:min-h-[calc(100svh-188px)] lg:min-h-[calc(100svh-209px)]">
       <div className="mx-auto max-w-screen-xl">
         <h1 className="mb-4 text-base opacity-80 md:text-2xl">
@@ -60,7 +61,7 @@ const HomePage = () => (
         </div>
       </div>
     </div>
-    <Page>
+    <PageContent>
       <section id="about-us" className="scroll-mt-10">
         <h1 className="mb-6 text-xl font-bold md:text-5xl">Über uns</h1>
         <div className="mb-14 flex flex-col gap-12 md:flex-row">
@@ -98,8 +99,8 @@ const HomePage = () => (
       <InstagramSection />
       <BlogSection />
       <FaqsSection />
-    </Page>
-  </>
+    </PageContent>
+  </PageLayout>
 );
 
 export default HomePage;
