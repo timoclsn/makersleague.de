@@ -1,5 +1,5 @@
-import { ReactNode, Suspense } from 'react';
-import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
+import { JSX, ReactNode, Suspense } from "react";
+import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 
 interface AwaitProps<T> {
   promise: Promise<T>;
@@ -28,8 +28,8 @@ export const Await = <T extends unknown>({
 };
 
 interface InnerAwaitProps<T> {
-  promise: AwaitProps<T>['promise'];
-  children: AwaitProps<T>['children'];
+  promise: AwaitProps<T>["promise"];
+  children: AwaitProps<T>["children"];
 }
 
 const InnerAwait = async <T extends unknown>({
