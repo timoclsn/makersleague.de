@@ -5,7 +5,7 @@ import { getAllBlogPosts, getBlog } from "lib/content";
 import { createGenerateMetadata } from "lib/metadata";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
-  const { slug } = params;
+  const { slug } = await params;
   const { data } = await getBlog(slug);
 
   return {
@@ -22,13 +22,11 @@ export const generateStaticParams = async () => {
 };
 
 interface Props {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 const BlogPostPage = async ({ params }: Props) => {
-  const { slug } = params;
+  const { slug } = await params;
   const { data, content } = await getBlog(slug);
 
   return (
