@@ -14,7 +14,7 @@ import { createGenerateMetadata } from "lib/metadata";
 import Image from "next/image";
 
 export const generateMetadata = createGenerateMetadata(async ({ params }) => {
-  const { slug } = params;
+  const { slug } = await params;
   const allMembers = await getWebsiteMembers();
   const member = allMembers.find((member) => member.slug === slug);
   if (!member) return {};
@@ -34,13 +34,11 @@ export const generateStaticParams = async () => {
 };
 
 interface Props {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 const MemberPage = async ({ params }: Props) => {
-  const { slug } = params;
+  const { slug } = await params;
   const member = await getWebsiteMemberBySlug(slug);
   const otherMembers = await getRandomOtherMembers(member, 5);
 
