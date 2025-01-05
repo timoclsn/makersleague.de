@@ -2,8 +2,7 @@ import kebabCase from "lodash/kebabCase";
 import trim from "lodash/trim";
 import z from "zod";
 import { getCacheValue, setCacheValue } from "./cache";
-import { customField, getActiveMembers, Member } from "./easyverein";
-import { notFound } from "next/navigation";
+import { customField, getActiveMembers } from "./easyverein";
 
 const { NODE_ENV } = process.env;
 
