@@ -166,7 +166,7 @@ export const getWebsiteMemberByName = async (name: string) => {
 
   if (!member) {
     console.error(`Member with name "${name}" not found`);
-    notFound();
+    return null;
   }
 
   return member;
@@ -178,7 +178,7 @@ export const getWebsiteMemberBySlug = async (slug: string) => {
 
   if (!member) {
     console.error(`Member with slug "${slug}" not found`);
-    notFound();
+    return null;
   }
 
   return member;

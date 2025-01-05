@@ -27,6 +27,10 @@ export const TestimonialsSection = async () => {
         {testimonials.map(async (testimonial, index) => {
           const member = await getWebsiteMemberByName(testimonial.data.name);
 
+          if (!member) {
+            return null;
+          }
+
           return (
             <li key={index} className="flex-1">
               <article className="h-full">

@@ -6,6 +6,10 @@ import { MemberImage } from "./MemberImage";
 export const ContactSection = async () => {
   const member = await getWebsiteMemberByName("Nina Kuch");
 
+  if (!member) {
+    return null;
+  }
+
   return (
     <section id="contact">
       <div className="mb-14">
