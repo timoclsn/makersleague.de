@@ -20,12 +20,12 @@ const MakersInnPage = () => {
           fill
           className="object-cover"
         />
-        <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
+        <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center px-2">
           <div className="flex flex-col items-center gap-2 text-center">
-            <h1 className="bg-white text-6xl font-bold text-dark">
-              Das Makers-Inn
+            <h1 className="bg-white px-2 text-3xl font-bold text-dark sm:text-4xl lg:text-5xl xl:text-6xl">
+              Das Makers Inn
             </h1>
-            <h2 className="bg-white text-3xl font-bold text-dark">
+            <h2 className="bg-white px-2 text-lg font-bold text-dark sm:text-xl lg:text-2xl xl:text-3xl">
               Die Zentrale Anlaufstelle für Menschen mit Ideen in Esslingen
             </h2>
             <div className="bg-white px-2">
