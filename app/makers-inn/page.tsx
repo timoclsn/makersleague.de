@@ -1,10 +1,14 @@
+import { Button } from "@/components/Button";
+import { ContactSection } from "@/components/ContactSection";
+import { FaqsSection } from "@/components/FaqsSection";
 import { Header } from "@/components/Header";
 import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
+import { Calendar } from "lucide-react";
 import Image from "next/image";
+import { Gallery } from "./Gallery";
 import esLogo from "./logo-es.svg";
 import makersInnImg from "./makers-inn.jpeg";
-import { Gallery } from "./Gallery";
 
 const MakersInnPage = () => {
   return (
@@ -77,22 +81,122 @@ const MakersInnPage = () => {
             <h2 className="mb-2 text-base font-bold md:text-2xl">
               Für wen ist es?
             </h2>
-            <p className="mb-10 text-base opacity-60 md:text-2xl">Subline</p>
+            <p className="mb-10 text-base opacity-60 md:text-2xl">
+              Gemeinsam Ideen entwickeln und umsetzen
+            </p>
             <p className="opacity-80">
               Für Makers League Mitglieder täglicher Zugang von 08:00-20:00 Uhr
               um an ihren Ideen zu arbeiten und gemeinsam im Austausch mit
               anderen Macher:innen ihre Gründungsvorhaben voranzutreiben und
-              voneinander lernen.{" "}
+              voneinander lernen.
             </p>
             <br />
             <p className="opacity-80">
-              Monatlich organisiert die Makers League dafür verschiedene Events
-              (Link zu Eventkalender).
+              Monatlich organisiert die Makers League dafür verschiedene Events.
             </p>
+
+            <div className="mt-10">
+              <h3 className="mb-4 font-bold">
+                Initiativen, die hier Zuhause sind
+              </h3>
+              <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
+                <div className="rounded-md bg-white p-4 shadow-sm">
+                  <h4 className="mb-2 font-bold">ML Events</h4>
+                  <Button
+                    color="dark"
+                    variant="outline"
+                    size="small"
+                    href="/events"
+                  >
+                    <Calendar className="text-xl" />
+                    Zum Eventkalender
+                  </Button>
+                </div>
+                <div className="rounded-md bg-white p-4 shadow-sm">
+                  <h4 className="mb-2 font-bold">Linux Cafe</h4>
+                  <Button
+                    color="dark"
+                    variant="outline"
+                    size="small"
+                    href="https://reparaturcafe-esslingen.de/linuxcafe/"
+                    target="_blank"
+                  >
+                    Zur Website
+                  </Button>
+                </div>
+                <div className="rounded-md bg-white p-4 shadow-sm">
+                  <h4 className="mb-2 font-bold">Freifunk Esslingen e.V.</h4>
+                  <Button
+                    color="dark"
+                    variant="outline"
+                    size="small"
+                    href="https://freifunk-esslingen.de/"
+                    target="_blank"
+                  >
+                    Zur Website
+                  </Button>
+                </div>
+              </div>
+            </div>
           </section>
-          <section>Was macht das Makers Inn besonders?</section>
-          <section>Ansprechpartnerin</section>
-          <section>FAQ Section</section>
+
+          <section>
+            <h2 className="mb-2 text-base font-bold md:text-2xl">
+              Was macht das Makers Inn besonders?
+            </h2>
+            <p className="mb-10 text-base opacity-60 md:text-2xl">
+              Ein einzigartiger Ort für Macher:innen
+            </p>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="rounded-md border border-gray-200 p-6">
+                <h3 className="mb-2 font-bold">Mitten in der Stadt</h3>
+                <p className="opacity-80">
+                  Zentral in der Esslinger Altstadt gelegen, leicht erreichbar
+                  und gut vernetzt.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-gray-200 p-6">
+                <h3 className="mb-2 font-bold">280qm Open Space</h3>
+                <p className="opacity-80">
+                  Großzügiger Raum für Kreativität, Zusammenarbeit und
+                  Entwicklung neuer Ideen.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-gray-200 p-6">
+                <h3 className="mb-2 font-bold">Macher:innen Schaufenster</h3>
+                <p className="opacity-80">
+                  Präsentiere deine Ideen und Projekte der Öffentlichkeit und
+                  gewinne neue Unterstützer.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-gray-200 p-6">
+                <h3 className="mb-2 font-bold">Modulare Arbeitsinseln</h3>
+                <p className="opacity-80">
+                  Flexible Arbeitsbereiche, die sich an deine Bedürfnisse
+                  anpassen lassen.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-gray-200 p-6">
+                <h3 className="mb-2 font-bold">Fokuszone</h3>
+                <p className="opacity-80">
+                  Bereiche für konzentriertes Arbeiten, wenn du Ruhe für deine
+                  Projekte brauchst.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <ContactSection
+            name="Daniela Gorka"
+            email="daniala@makersleague.de"
+            subtitle="Innovationsmanagerin Stadt Esslingen"
+          />
+          <FaqsSection />
         </PageContent>
       </div>
     </PageLayoutFull>

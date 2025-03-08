@@ -30,7 +30,11 @@ const BecomeMemberPage = () => {
         <FitSection />
         <ValuesSection />
         <FaqsSection />
-        <ContactSection />
+        <ContactSection
+          name="Nina Kuch"
+          email="nina@makersleague.de"
+          subtitle="2. Vorstandsvorsitzende"
+        />
         <BoardMembersSection />
       </PageContent>
     </PageLayout>

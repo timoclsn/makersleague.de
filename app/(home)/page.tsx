@@ -95,7 +95,11 @@ const HomePage = () => (
       <FitSection />
       <TestimonialsSection />
       <ApplySection />
-      <ContactSection />
+      <ContactSection
+        name="Nina Kuch"
+        email="nina@makersleague.de"
+        subtitle="2. Vorstandsvorsitzende"
+      />
       <InstagramSection />
       <BlogSection />
       <FaqsSection />

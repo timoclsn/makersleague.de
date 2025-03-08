@@ -16,7 +16,11 @@ const ApplyPage = () => {
           <ApplyForm />
         </section>
         <FaqsSection />
-        <ContactSection />
+        <ContactSection
+          name="Nina Kuch"
+          email="nina@makersleague.de"
+          subtitle="2. Vorstandsvorsitzende"
+        />
       </PageContent>
     </PageLayout>
   );
