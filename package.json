@@ -13,6 +13,7 @@
     "ui:diff": "pnpm dlx shadcn-ui diff"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@next/third-parties": "^15.1.2",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-select": "^2.1.4",

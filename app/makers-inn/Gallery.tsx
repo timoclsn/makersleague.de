@@ -1,5 +1,7 @@
 "use client";
 
+import { AutoAnimate } from "@/components/AutoAnimate";
+import { Button } from "@/components/Button";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
@@ -95,11 +97,17 @@ export const Gallery = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const open = openIndex !== null;
 
+  const initialImagesToDisplay = 4;
+  const [imagesToDisplay, setImagesToDisplay] = useState(
+    initialImagesToDisplay,
+  );
+  const showMoreBtn = imagesToDisplay < images.length;
+
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {images.map((image, index) => (
-          <div key={index} className="relative aspect-square bg-gray-200">
+      <AutoAnimate as="ul" className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {images.slice(0, imagesToDisplay).map((image, index) => (
+          <li key={index} className="relative aspect-square bg-gray-200">
             <Image
               src={image.src}
               alt={image.description}
@@ -114,9 +122,20 @@ export const Gallery = () => {
                 Öffne Makers Inn Bild {index + 1} in Lightbox
               </span>
             </button>
-          </div>
+          </li>
         ))}
-      </div>
+      </AutoAnimate>
+      {showMoreBtn && (
+        <div className="mt-8 flex items-center justify-center">
+          <Button
+            onClick={() =>
+              setImagesToDisplay(imagesToDisplay + initialImagesToDisplay)
+            }
+          >
+            Mehr anzeigen
+          </Button>
+        </div>
+      )}
       {open && (
         <Lightbox
           open={open}
