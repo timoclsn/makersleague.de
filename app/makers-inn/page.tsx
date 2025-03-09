@@ -8,18 +8,18 @@ import { Calendar } from "lucide-react";
 import Image from "next/image";
 import { Gallery } from "./Gallery";
 import esLogo from "./logo-es.svg";
-import makersInnImg from "./makers-inn.jpeg";
+// import makersInnImg from "./makers-inn.jpeg";
 
 const MakersInnPage = () => {
   return (
     <PageLayoutFull>
       <section className="relative h-screen w-full">
-        <Image
-          src={makersInnImg}
-          alt="Makers Inn"
-          fill
-          className="object-cover"
-        />
+        {/* <Image */}
+        {/*   src={makersInnImg} */}
+        {/*   alt="Makers Inn" */}
+        {/*   fill */}
+        {/*   className="object-cover" */}
+        {/* /> */}
         <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center px-2">
           <div className="flex flex-col items-center gap-2 text-center">
             <h1 className="bg-white px-2 text-3xl font-bold text-dark sm:text-4xl lg:text-5xl xl:text-6xl">
