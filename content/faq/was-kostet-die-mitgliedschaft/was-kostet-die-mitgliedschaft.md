@@ -1,6 +1,6 @@
 ---
 question: "Was kostet die Mitgliedschaft?"
-preview: true
+tags: [general]
 ---
 
 Die Mitgliedschaft für ordentliche Mitglieder, die sich aktiv in unserer Community einbringen wollen, kostet mindestens 60€ pro Jahr.

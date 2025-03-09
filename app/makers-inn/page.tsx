@@ -4,12 +4,15 @@ import { FaqsSection } from "@/components/FaqsSection";
 import { Header } from "@/components/Header";
 import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
+import { getFaqsByTags } from "@/lib/content";
 import { Calendar } from "lucide-react";
 import Image from "next/image";
 import { Gallery } from "./Gallery";
 import esLogo from "./logo-es.svg";
 
-const MakersInnPage = () => {
+const MakersInnPage = async () => {
+  const faqs = await getFaqsByTags(["makers-inn"]);
+
   return (
     <PageLayoutFull>
       <section className="relative h-screen w-full">
@@ -195,7 +198,7 @@ const MakersInnPage = () => {
             email="daniala@makersleague.de"
             subtitle="Innovationsmanagerin Stadt Esslingen"
           />
-          <FaqsSection />
+          <FaqsSection faqs={faqs} />
         </PageContent>
       </div>
     </PageLayoutFull>

@@ -1,5 +1,6 @@
 import { BoardMembersSection } from "@/components/BoardMembersSection";
 import { PageLayout } from "@/components/layouts/PageLayout";
+import { getFaqsByTags } from "@/lib/content";
 import { ApplySection } from "components/ApplySection";
 import { ContactSection } from "components/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
   description: "Makers League Mitglied werden",
 };
 
-const BecomeMemberPage = () => {
+const BecomeMemberPage = async () => {
+  const faqs = await getFaqsByTags(["general"]);
   return (
     <PageLayout>
       <PageContent>
@@ -29,7 +31,7 @@ const BecomeMemberPage = () => {
         <ApplySection />
         <FitSection />
         <ValuesSection />
-        <FaqsSection />
+        <FaqsSection faqs={faqs} />
         <ContactSection
           name="Nina Kuch"
           email="nina@makersleague.de"

@@ -1,10 +1,12 @@
 import { PageLayout } from "@/components/layouts/PageLayout";
+import { getFaqsByTags } from "@/lib/content";
 import { ApplyForm } from "components/ApplyForm";
 import { ContactSection } from "components/ContactSection";
 import { FaqsSection } from "components/FaqsSection";
 import { PageContent } from "components/layouts/PageContent";
 
-const ApplyPage = () => {
+const ApplyPage = async () => {
+  const faqs = await getFaqsByTags(["general"]);
   return (
     <PageLayout>
       <PageContent>
@@ -15,7 +17,7 @@ const ApplyPage = () => {
           </h2>
           <ApplyForm />
         </section>
-        <FaqsSection />
+        <FaqsSection faqs={faqs} />
         <ContactSection
           name="Nina Kuch"
           email="nina@makersleague.de"
