@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 const UeberPage = async () => {
-  const faqs = await getFaqsByTags(["general"]);
+  const faq = await getFaqsByTags(["general"]);
   return (
     <PageLayout>
       <PageContent>
@@ -87,7 +87,7 @@ const UeberPage = async () => {
         <BlogSection />
         <EventsSection />
         <TestimonialsSection />
-        <FaqsSection faqs={faqs} />
+        <FaqsSection faqs={faq} />
         <ContactSection
           name="Nina Kuch"
           email="nina@makersleague.de"
