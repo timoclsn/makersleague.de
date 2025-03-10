@@ -1,5 +1,6 @@
 import { BoardMembersSection } from "@/components/BoardMembersSection";
 import { PageLayout } from "@/components/layouts/PageLayout";
+import { getFaqsByTags } from "@/lib/content";
 import { BlogSection } from "components/BlogSection";
 import { ContactSection } from "components/ContactSection";
 import { EventsSection } from "components/EventsSection";
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 };
 
 const UeberPage = async () => {
+  const faqs = await getFaqsByTags(["general"]);
   return (
     <PageLayout>
       <PageContent>
@@ -85,7 +87,7 @@ const UeberPage = async () => {
         <BlogSection />
         <EventsSection />
         <TestimonialsSection />
-        <FaqsSection />
+        <FaqsSection faqs={faqs} />
         <ContactSection
           name="Nina Kuch"
           email="nina@makersleague.de"
