@@ -18,9 +18,28 @@ export async function GET(request: NextRequest) {
   }
 
   const members = await getActiveMembers();
+
+  const today = toZonedTime(new Date(), "UTC");
   const oneMonthAgo = toZonedTime(subMonths(new Date(), 1), "UTC");
 
+  const birthdayMembers = [];
+
   for (const member of members) {
+    if (member.contactDetails.dateOfBirth) {
+      const dateOfBirth = toZonedTime(
+        parseISO(member.contactDetails.dateOfBirth),
+        "UTC",
+      );
+
+      // Check if today is the member's birthday (comparing month and day only)
+      if (
+        today.getDate() === dateOfBirth.getDate() &&
+        today.getMonth() === dateOfBirth.getMonth()
+      ) {
+        birthdayMembers.push(member);
+      }
+    }
+
     if (!member.joinDate) {
       continue;
     }
@@ -52,6 +71,8 @@ export async function GET(request: NextRequest) {
       }
     }
   }
+
+  console.log(birthdayMembers);
 
   return Response.json({
     success: true,
