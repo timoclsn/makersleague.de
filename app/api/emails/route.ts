@@ -26,24 +26,20 @@ export async function GET(request: NextRequest) {
   const oneMonthAgo = toZonedTime(subMonths(new Date(), 1), "UTC");
 
   for (const member of members) {
-    // Birthday notification member collection
     if (member.contactDetails.dateOfBirth) {
       const dateOfBirth = toZonedTime(
         parseISO(member.contactDetails.dateOfBirth),
         "UTC",
       );
 
-      // Check if today is the member's birthday
       if (isBirthday(dateOfBirth)) {
         birthdayMembers.push(member);
       }
     }
 
-    // Follow up mail handling
     if (member.joinDate) {
       const joinDate = toZonedTime(parseISO(member.joinDate), "UTC");
 
-      // Follow up mail after 1 month
       if (isSameDay(joinDate, oneMonthAgo)) {
         emailQueue.push({
           type: "followUp",
@@ -54,7 +50,6 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Add birthday notification email if we have any birthday members
   if (birthdayMembers.length > 0) {
     emailQueue.push({
       type: "birthdayNotification",

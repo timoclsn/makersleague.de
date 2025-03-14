@@ -199,6 +199,7 @@ export const sendEmails = async (payloads: Array<EmailPayload>) => {
     {} as Record<EmailType, number>,
   );
 
+  // Use allSettled to ensure all emails are sent
   const results = await Promise.allSettled(payloads.map(sendEmail));
 
   const failed = results.filter((r) => r.status === "rejected").length;
