@@ -1,8 +1,4 @@
-import {
-  sendBirthdayNotificationMail,
-  sendFollowUpMail,
-  sendLoggingMail,
-} from "@/lib/email";
+import { EmailPayload, sendEmails } from "@/lib/email";
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers, Member } from "lib/easyverein";
@@ -22,9 +18,12 @@ export async function GET(request: NextRequest) {
     }
   }
 
+  const emailQueue: Array<EmailPayload> = [];
+
   const members = await getActiveMembers();
-  const oneMonthAgo = toZonedTime(subMonths(new Date(), 1), "UTC");
   const birthdayMembers: Array<Member> = [];
+
+  const oneMonthAgo = toZonedTime(subMonths(new Date(), 1), "UTC");
 
   for (const member of members) {
     // Birthday notification member collection
@@ -40,59 +39,32 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Foww up mail handling
+    // Follow up mail handling
     if (member.joinDate) {
       const joinDate = toZonedTime(parseISO(member.joinDate), "UTC");
 
       // Follow up mail after 1 month
       if (isSameDay(joinDate, oneMonthAgo)) {
-        try {
-          const error = await sendFollowUpMail({
-            email: member.emailOrUserName,
-            name: member.contactDetails.firstName,
-          });
-
-          if (error) {
-            throw new Error(error.message, { cause: error });
-          }
-
-          console.info(`Sent follow up mail to ${member.emailOrUserName}`);
-        } catch (error) {
-          console.error(
-            `Failed to send follow up mail to ${member.emailOrUserName}:`,
-            error,
-          );
-          await sendLoggingMail({
-            subject: "Failed to send follow up mail",
-            text: `Failed to send follow up mail to ${member.emailOrUserName}.`,
-          });
-        }
+        emailQueue.push({
+          type: "followUp",
+          name: member.contactDetails.firstName,
+          email: member.emailOrUserName,
+        });
       }
     }
   }
 
-  // Birthday notification mail
+  // Add birthday notification email if we have any birthday members
   if (birthdayMembers.length > 0) {
-    try {
-      const error = await sendBirthdayNotificationMail(birthdayMembers);
-
-      if (error) {
-        throw new Error(error.message, { cause: error });
-      }
-
-      console.info(
-        `Sent birthday notification email for ${birthdayMembers.length} members`,
-      );
-    } catch (error) {
-      console.error("Failed to send birthday notification email:", error);
-      await sendLoggingMail({
-        subject: "Failed to send birthday notification email",
-        text: `Failed to send birthday notification email for ${birthdayMembers.length} members.`,
-      });
-    }
+    emailQueue.push({
+      type: "birthdayNotification",
+      members: birthdayMembers,
+    });
   }
 
-  return Response.json({
-    success: true,
-  });
+  if (emailQueue.length !== 0) {
+    await sendEmails(emailQueue);
+  }
+
+  return Response.json({ success: true });
 }
