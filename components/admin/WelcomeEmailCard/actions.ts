@@ -2,7 +2,7 @@
 
 import { createAction } from "@/lib/clients";
 import { ActionError } from "@/lib/data/errors";
-import { sendLoggingMail, sendWelcomeMail } from "@/lib/email";
+import { sendLoggingEmail, sendWelcomeEmail } from "@/lib/email";
 import { z } from "zod";
 
 export const sendEmail = createAction({
@@ -13,10 +13,10 @@ export const sendEmail = createAction({
   action: async ({ input }) => {
     const { name, email } = input;
 
-    const error = await sendWelcomeMail({ name, email });
+    const error = await sendWelcomeEmail({ name, email });
 
     if (error) {
-      await sendLoggingMail({
+      await sendLoggingEmail({
         subject: "Failed to send welcome mail",
         text: `Failed to send welcome mail to ${email}.`,
       });
