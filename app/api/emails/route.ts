@@ -1,4 +1,4 @@
-import { EmailPayload, sendEmails } from "@/lib/email";
+import { Email, sendEmails } from "@/lib/email";
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers, Member } from "lib/easyverein";
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  const emailQueue: Array<EmailPayload> = [];
+  const emailQueue: Array<Email> = [];
 
   const members = await getActiveMembers();
   const birthdayMembers: Array<Member> = [];

@@ -12,12 +12,6 @@ const resend = new Resend(RESEND_API_KEY);
 
 const DEFAULT_FROM = "Nina von der Makers League <nina@makersleague.de>";
 
-export type EmailType =
-  | "welcome"
-  | "followUp"
-  | "birthdayNotification"
-  | "logging";
-
 const getStammtischData = (event: WebsiteEvent) => {
   if (!event.start || !event.url) return;
 
@@ -141,21 +135,15 @@ export const sendBirthdayNotificationMail = async ({
   return error;
 };
 
-type InferEmailPayload<T extends EmailType> = T extends "welcome"
-  ? Parameters<typeof sendWelcomeMail>[0]
-  : T extends "followUp"
-    ? Parameters<typeof sendFollowUpMail>[0]
-    : T extends "birthdayNotification"
-      ? Parameters<typeof sendBirthdayNotificationMail>[0]
-      : T extends "logging"
-        ? Parameters<typeof sendLoggingMail>[0]
-        : never;
+export type Email =
+  | ({ type: "welcome" } & Parameters<typeof sendWelcomeMail>[0])
+  | ({ type: "followUp" } & Parameters<typeof sendFollowUpMail>[0])
+  | ({ type: "birthdayNotification" } & Parameters<
+      typeof sendBirthdayNotificationMail
+    >[0])
+  | ({ type: "logging" } & Parameters<typeof sendLoggingMail>[0]);
 
-export type EmailPayload = {
-  [T in EmailType]: { type: T } & InferEmailPayload<T>;
-}[EmailType];
-
-const sendEmail = async (payload: EmailPayload) => {
+const sendEmail = async (payload: Email) => {
   try {
     let error;
 
@@ -188,14 +176,14 @@ const sendEmail = async (payload: EmailPayload) => {
   }
 };
 
-export const sendEmails = async (payloads: Array<EmailPayload>) => {
+export const sendEmails = async (payloads: Array<Email>) => {
   // Count emails by type before sending
   const emailCounts = payloads.reduce(
     (acc, payload) => {
       acc[payload.type] = (acc[payload.type] || 0) + 1;
       return acc;
     },
-    {} as Record<EmailType, number>,
+    {} as Record<Email["type"], number>,
   );
 
   // Use allSettled to ensure all emails are sent
