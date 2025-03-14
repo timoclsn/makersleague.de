@@ -57,8 +57,12 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  if (emailQueue.length !== 0) {
-    await sendEmails(emailQueue);
+  if (NODE_ENV === "production") {
+    if (emailQueue.length !== 0) {
+      await sendEmails(emailQueue);
+    }
+  } else {
+    console.info("Emails: ", emailQueue);
   }
 
   return Response.json({ success: true });
