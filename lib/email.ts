@@ -11,7 +11,6 @@ const { RESEND_API_KEY } = process.env;
 const resend = new Resend(RESEND_API_KEY);
 
 const DEFAULT_FROM = "Nina von der Makers League <nina@makersleague.de>";
-const DEFAULT_BCC = ["goebeltimo@gmail.com", "daniela@makersleague.de"];
 
 export const sendLoggingMail = async ({
   subject,
@@ -55,7 +54,7 @@ export const sendWelcomeMail = async ({
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
     to: [email],
-    bcc: DEFAULT_BCC,
+    bcc: ["goebeltimo@gmail.com", "daniela@makersleague.de"],
     subject: "Herzlich Willkommen in der Makers League",
     react: WelcomeEmail({
       firstName: name,
@@ -84,7 +83,7 @@ export const sendFollowUpMail = async ({
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
     to: [email],
-    bcc: DEFAULT_BCC,
+    bcc: ["goebeltimo@gmail.com", "daniela@makersleague.de"],
     subject: "Dein Start bei der Makers League",
     react: FollowUpEmail({
       firstName: name,
@@ -118,7 +117,7 @@ export const sendBirthdayNotificationMail = async (members: Array<Member>) => {
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
     to: ["hello@makersleague.de"],
-    bcc: DEFAULT_BCC,
+    bcc: ["goebeltimo@gmail.com"],
     subject: `🎂 ML-Geburtstage am ${formatDate(today, "dd.MM.yyyy")}`,
     text,
     tags: [
