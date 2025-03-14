@@ -91,6 +91,7 @@ const memberSchema = z.object({
     name: z.string(),
     firstName: z.string(),
     familyName: z.string(),
+    dateOfBirth: z.string().nullable(),
   }),
   emailOrUserName: z.string(),
   customFields: z.array(customFieldSchema).nullable(),
@@ -99,7 +100,7 @@ const memberSchema = z.object({
 export const getMembers = async () => {
   return await get("member", z.array(memberSchema), {
     query:
-      "{id,joinDate,resignationDate,_isApplication,_profilePicture,contactDetails{name,firstName,familyName},emailOrUserName,customFields{value,customField{name}}}",
+      "{id,joinDate,resignationDate,_isApplication,_profilePicture,contactDetails{name,firstName,familyName,dateOfBirth},emailOrUserName,customFields{value,customField{name}}}",
     limit: 200,
   });
 };

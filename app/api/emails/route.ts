@@ -1,7 +1,8 @@
-import { sendFollowUpMail, sendLoggingMail } from "@/lib/email";
+import { QueueEmail, sendEmails } from "@/lib/email";
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
-import { getActiveMembers } from "lib/easyverein";
+import { getActiveMembers, Member } from "lib/easyverein";
+import { isBirthday } from "lib/utils";
 import { NextRequest } from "next/server";
 
 const { CRON_SECRET, NODE_ENV } = process.env;
@@ -17,43 +18,54 @@ export async function GET(request: NextRequest) {
     }
   }
 
+  const emailQueue: Array<QueueEmail> = [];
+
   const members = await getActiveMembers();
+  const birthdayMembers: Array<Member> = [];
+
   const oneMonthAgo = toZonedTime(subMonths(new Date(), 1), "UTC");
 
   for (const member of members) {
-    if (!member.joinDate) {
-      continue;
+    if (member.contactDetails.dateOfBirth) {
+      const dateOfBirth = toZonedTime(
+        parseISO(member.contactDetails.dateOfBirth),
+        "UTC",
+      );
+
+      if (isBirthday(dateOfBirth)) {
+        birthdayMembers.push(member);
+      }
     }
 
-    const joinDate = toZonedTime(parseISO(member.joinDate), "UTC");
+    if (member.joinDate) {
+      const joinDate = toZonedTime(parseISO(member.joinDate), "UTC");
 
-    // Follow up mail after 1 month
-    if (isSameDay(joinDate, oneMonthAgo)) {
-      try {
-        const error = await sendFollowUpMail({
-          email: member.emailOrUserName,
-          name: member.contactDetails.firstName,
-        });
-
-        if (error) {
-          throw new Error(error.message, { cause: error });
-        }
-
-        console.info(`Sent follow up mail to ${member.emailOrUserName}`);
-      } catch (error) {
-        console.error(
-          `Failed to send follow up mail to ${member.emailOrUserName}:`,
-          error,
-        );
-        await sendLoggingMail({
-          subject: "Failed to send follow up mail",
-          text: `Failed to send follow up mail to ${member.emailOrUserName}.`,
+      if (isSameDay(joinDate, oneMonthAgo)) {
+        emailQueue.push({
+          type: "followUp",
+          args: {
+            name: member.contactDetails.firstName,
+            email: member.emailOrUserName,
+          },
         });
       }
     }
   }
 
-  return Response.json({
-    success: true,
-  });
+  if (birthdayMembers.length > 0) {
+    emailQueue.push({
+      type: "birthdayNotification",
+      args: { members: birthdayMembers },
+    });
+  }
+
+  if (NODE_ENV === "production") {
+    if (emailQueue.length !== 0) {
+      await sendEmails(emailQueue);
+    }
+  } else {
+    console.info("Emails: ", emailQueue);
+  }
+
+  return Response.json({ success: true });
 }

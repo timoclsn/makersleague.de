@@ -26,3 +26,16 @@ export const wait = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
 export const cn = cx;
+
+/**
+ * Checks if a given date is today's birthday (comparing only month and day)
+ * @param birthDate - The birth date to check
+ * @param today - Optional reference date (defaults to current date)
+ * @returns boolean indicating if it's the birthday
+ */
+export const isBirthday = (birthDate: Date, today: Date = new Date()): boolean => {
+  return (
+    today.getDate() === birthDate.getDate() &&
+    today.getMonth() === birthDate.getMonth()
+  );
+};
