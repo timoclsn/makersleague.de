@@ -18,7 +18,6 @@ export type EmailType =
   | "birthdayNotification"
   | "logging";
 
-// Helper function to get stammtisch data for emails
 const getStammtischData = (event: WebsiteEvent) => {
   if (!event.start || !event.url) return;
 
