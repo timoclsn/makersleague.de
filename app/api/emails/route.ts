@@ -1,4 +1,4 @@
-import { Email, sendEmails } from "@/lib/email";
+import { QueueEmail, sendEmails } from "@/lib/email";
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers, Member } from "lib/easyverein";
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  const emailQueue: Array<Email> = [];
+  const emailQueue: Array<QueueEmail> = [];
 
   const members = await getActiveMembers();
   const birthdayMembers: Array<Member> = [];
@@ -43,8 +43,10 @@ export async function GET(request: NextRequest) {
       if (isSameDay(joinDate, oneMonthAgo)) {
         emailQueue.push({
           type: "followUp",
-          name: member.contactDetails.firstName,
-          email: member.emailOrUserName,
+          args: {
+            name: member.contactDetails.firstName,
+            email: member.emailOrUserName,
+          },
         });
       }
     }
@@ -53,7 +55,7 @@ export async function GET(request: NextRequest) {
   if (birthdayMembers.length > 0) {
     emailQueue.push({
       type: "birthdayNotification",
-      members: birthdayMembers,
+      args: { members: birthdayMembers },
     });
   }
 

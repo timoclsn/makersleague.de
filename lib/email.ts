@@ -25,7 +25,7 @@ const getStammtischData = (event: WebsiteEvent) => {
   };
 };
 
-export const sendLoggingMail = async ({
+export const sendLoggingEmail = async ({
   subject,
   text,
 }: {
@@ -42,7 +42,7 @@ export const sendLoggingMail = async ({
   return error;
 };
 
-export const sendWelcomeMail = async ({
+export const sendWelcomeEmail = async ({
   name,
   email,
 }: {
@@ -60,18 +60,12 @@ export const sendWelcomeMail = async ({
       firstName: name,
       nextStammtisch: event ? getStammtischData(event) : undefined,
     }),
-    tags: [
-      {
-        name: "category",
-        value: "welcome_email",
-      },
-    ],
   });
 
   return error;
 };
 
-export const sendFollowUpMail = async ({
+const getFollowUpEmail = async ({
   name,
   email,
 }: {
@@ -80,7 +74,7 @@ export const sendFollowUpMail = async ({
 }) => {
   const event = await getNextEvent("stammtisch");
 
-  const { error } = await resend.emails.send({
+  return {
     from: DEFAULT_FROM,
     to: [email],
     bcc: ["goebeltimo@gmail.com", "daniela@makersleague.de"],
@@ -89,18 +83,10 @@ export const sendFollowUpMail = async ({
       firstName: name,
       nextStammtisch: event ? getStammtischData(event) : undefined,
     }),
-    tags: [
-      {
-        name: "category",
-        value: "follow_up_email",
-      },
-    ],
-  });
-
-  return error;
+  };
 };
 
-export const sendBirthdayNotificationMail = async ({
+const getBirthdayNotificationEmail = async ({
   members,
 }: {
   members: Array<Member>;
@@ -118,7 +104,7 @@ export const sendBirthdayNotificationMail = async ({
 
   const text = `Geburtstage heute:\n\n${formattedMembersList}`;
 
-  const { error } = await resend.emails.send({
+  return {
     from: DEFAULT_FROM,
     to: ["hello@makersleague.de"],
     bcc: ["goebeltimo@gmail.com"],
@@ -130,85 +116,44 @@ export const sendBirthdayNotificationMail = async ({
         value: "birthday_notification",
       },
     ],
-  });
-
-  return error;
+  };
 };
 
-export type Email =
-  | ({ type: "welcome" } & Parameters<typeof sendWelcomeMail>[0])
-  | ({ type: "followUp" } & Parameters<typeof sendFollowUpMail>[0])
-  | ({ type: "birthdayNotification" } & Parameters<
-      typeof sendBirthdayNotificationMail
-    >[0])
-  | ({ type: "logging" } & Parameters<typeof sendLoggingMail>[0]);
+// Map of email types that can be send via the queue
+const queueEmailsMap = {
+  followUp: getFollowUpEmail,
+  birthdayNotification: getBirthdayNotificationEmail,
+} as const;
 
-const sendEmail = async (payload: Email) => {
+type QueueEmailsMap = typeof queueEmailsMap;
+type QueueEmailType = keyof QueueEmailsMap;
+export type QueueEmail = {
+  [K in QueueEmailType]: { type: K; args: Parameters<QueueEmailsMap[K]>[0] };
+}[QueueEmailType];
+
+export const sendEmails = async (emails: Array<QueueEmail>) => {
   try {
-    let error;
+    const resendEmailPromises = emails.map((email) => {
+      return queueEmailsMap[email.type](email.args as any);
+    });
 
-    switch (payload.type) {
-      case "welcome":
-        error = await sendWelcomeMail(payload);
-        break;
-      case "followUp":
-        error = await sendFollowUpMail(payload);
-        break;
-      case "birthdayNotification":
-        error = await sendBirthdayNotificationMail(payload);
-        break;
-      case "logging":
-        error = await sendLoggingMail(payload);
-        break;
-    }
+    const resendEmails = await Promise.all(resendEmailPromises);
+
+    const { error } = await resend.batch.send(resendEmails);
 
     if (error) {
-      await sendLoggingMail({
-        subject: `Failed to send ${payload.type} email`,
-        text: error.message,
-      });
+      throw new Error(error.message, { cause: error });
     }
+
+    await sendLoggingEmail({
+      subject: "Emails sent",
+      text: `Emails sent: ${JSON.stringify(emails, null, 2)}`,
+    });
   } catch (error) {
-    await sendLoggingMail({
-      subject: `Error sending ${payload.type} email`,
-      text: error instanceof Error ? error.message : "Unknown error occurred",
+    console.error("Error sending emails:", error);
+    await sendLoggingEmail({
+      subject: "Error sending batch emails",
+      text: `Error sending batch emails: ${JSON.stringify(emails, null, 2)}`,
     });
   }
-};
-
-export const sendEmails = async (payloads: Array<Email>) => {
-  // Count emails by type before sending
-  const emailCounts = payloads.reduce(
-    (acc, payload) => {
-      acc[payload.type] = (acc[payload.type] || 0) + 1;
-      return acc;
-    },
-    {} as Record<Email["type"], number>,
-  );
-
-  // Use allSettled to ensure all emails are sent
-  const results = await Promise.allSettled(payloads.map(sendEmail));
-
-  const failed = results.filter((r) => r.status === "rejected").length;
-  const succeeded = results.length - failed;
-
-  const summaryMailContent = [
-    `📧 Email Summary:`,
-    `Total: ${payloads.length} emails`,
-    `Success: ${succeeded}`,
-    `Failed: ${failed}`,
-    `\nBy type:`,
-    ...Object.entries(emailCounts).map(
-      ([type, count]) => `- ${type}: ${count}`,
-    ),
-  ];
-
-  const summaryText = summaryMailContent.join("\n");
-
-  console.info(summaryText);
-
-  await sendLoggingMail({
-    subject: "Email sending summary",
-    text: summaryText,
-  });
 };
