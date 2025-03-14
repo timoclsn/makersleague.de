@@ -6,6 +6,7 @@ import {
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers, Member } from "lib/easyverein";
+import { isBirthday } from "lib/utils";
 import { NextRequest } from "next/server";
 
 const { CRON_SECRET, NODE_ENV } = process.env;
@@ -22,10 +23,7 @@ export async function GET(request: NextRequest) {
   }
 
   const members = await getActiveMembers();
-
-  const today = toZonedTime(new Date(), "UTC");
   const oneMonthAgo = toZonedTime(subMonths(new Date(), 1), "UTC");
-
   const birthdayMembers: Array<Member> = [];
 
   for (const member of members) {
@@ -36,11 +34,8 @@ export async function GET(request: NextRequest) {
         "UTC",
       );
 
-      // Check if today is the member's birthday (comparing month and day only)
-      if (
-        today.getDate() === dateOfBirth.getDate() &&
-        today.getMonth() === dateOfBirth.getMonth()
-      ) {
+      // Check if today is the member's birthday
+      if (isBirthday(dateOfBirth)) {
         birthdayMembers.push(member);
       }
     }
