@@ -2,6 +2,7 @@ import FollowUpEmail from "@/emails/emails/FollowUpEmail";
 import { parseISO } from "date-fns";
 import WelcomeEmail from "emails/emails/WelcomeEmail";
 import { Resend } from "resend";
+import { Member } from "./easyverein";
 import { getNextEvent, WebsiteEvent } from "./events";
 import { formatDate } from "./utils";
 
@@ -93,6 +94,37 @@ export const sendFollowUpMail = async ({
       {
         name: "category",
         value: "follow_up_email",
+      },
+    ],
+  });
+
+  return error;
+};
+
+export const sendBirthdayNotificationMail = async (members: Array<Member>) => {
+  const today = new Date();
+
+  const formattedMembersList = members
+    .map((member) => {
+      const birthDate = parseISO(member.contactDetails?.dateOfBirth || "");
+      const age = today.getFullYear() - birthDate.getFullYear();
+
+      return `- ${member.contactDetails.name} (wird heute ${age} Jahre alt) - ${member.emailOrUserName}`;
+    })
+    .join("\n");
+
+  const text = `Geburtstage heute:\n\n${formattedMembersList}`;
+
+  const { error } = await resend.emails.send({
+    from: DEFAULT_FROM,
+    to: ["hello@makersleague.de"],
+    bcc: DEFAULT_BCC,
+    subject: `🎂 ML-Geburtstage am ${formatDate(today, "dd.MM.yyyy")}`,
+    text,
+    tags: [
+      {
+        name: "category",
+        value: "birthday_notification",
       },
     ],
   });
