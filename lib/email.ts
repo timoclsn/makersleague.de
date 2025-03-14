@@ -134,7 +134,8 @@ export type QueueEmail = {
 export const sendEmails = async (emails: Array<QueueEmail>) => {
   try {
     const resendEmailPromises = emails.map((email) => {
-      return queueEmailsMap[email.type](email.args as any);
+      // @ts-expect-error: Can' get the type right here
+      return queueEmailsMap[email.type](email.args);
     });
 
     const resendEmails = await Promise.all(resendEmailPromises);
