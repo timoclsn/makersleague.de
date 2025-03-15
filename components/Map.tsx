@@ -15,7 +15,7 @@ export const Map = ({ className }: Props) => {
     return (
       <div className={`relative flex aspect-video w-full items-center justify-center overflow-hidden bg-gray-50 ${className}`}>
         <div className="flex max-w-lg flex-col items-center gap-4 p-4 text-center sm:gap-6 sm:p-8">
-          <MapPin className="h-6 w-6 text-pink sm:h-8 sm:w-8" />
+          <MapPin className="h-6 w-6 text-blue-accent sm:h-8 sm:w-8" />
           <div>
             <h3 className="mb-2 text-sm font-bold sm:text-base">Externe Karte laden?</h3>
             <p className="text-xs opacity-80 sm:text-sm">

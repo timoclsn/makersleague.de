@@ -93,8 +93,8 @@ const HomePage = async () => {
           />
         </section>
         <MembersSection />
-        <EventsSection />
         <MakersInnSection />
+        <EventsSection />
         <ValuesSection />
         <BoardMembersSection />
         <FitSection />

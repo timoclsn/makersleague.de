@@ -6,7 +6,7 @@ import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import { Map } from "@/components/Map";
 import { getFaqsByTags } from "@/lib/content";
-import { Calendar, MapPin, Terminal, Wifi } from "lucide-react";
+import { Calendar, MapPin, Terminal, Wifi, Layout, Focus, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import freifunkLogo from "./freifunk.png";
@@ -175,7 +175,10 @@ const MakersInnPage = async () => {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-md border border-gray-200 p-6">
-                <h3 className="mb-2 font-bold">Mitten in der Stadt</h3>
+                <div className="mb-4 flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-blue-accent" />
+                  <h3 className="font-bold">Mitten in der Stadt</h3>
+                </div>
                 <p className="opacity-80">
                   Zentral in der Esslinger Altstadt gelegen, leicht erreichbar
                   und gut vernetzt.
@@ -183,7 +186,10 @@ const MakersInnPage = async () => {
               </div>
 
               <div className="rounded-md border border-gray-200 p-6">
-                <h3 className="mb-2 font-bold">280qm Open Space</h3>
+                <div className="mb-4 flex items-center gap-2">
+                  <Users className="h-5 w-5 text-blue-accent" />
+                  <h3 className="font-bold">280qm Open Space</h3>
+                </div>
                 <p className="opacity-80">
                   Großzügiger Raum für Kreativität, Zusammenarbeit und
                   Entwicklung neuer Ideen.
@@ -191,7 +197,10 @@ const MakersInnPage = async () => {
               </div>
 
               <div className="rounded-md border border-gray-200 p-6">
-                <h3 className="mb-2 font-bold">Macher:innen Schaufenster</h3>
+                <div className="mb-4 flex items-center gap-2">
+                  <Calendar className="h-5 w-5 text-blue-accent" />
+                  <h3 className="font-bold">Macher:innen Schaufenster</h3>
+                </div>
                 <p className="opacity-80">
                   Präsentiere deine Ideen und Projekte der Öffentlichkeit und
                   gewinne neue Unterstützer.
@@ -199,7 +208,10 @@ const MakersInnPage = async () => {
               </div>
 
               <div className="rounded-md border border-gray-200 p-6">
-                <h3 className="mb-2 font-bold">Modulare Arbeitsinseln</h3>
+                <div className="mb-4 flex items-center gap-2">
+                  <Layout className="h-5 w-5 text-blue-accent" />
+                  <h3 className="font-bold">Modulare Arbeitsinseln</h3>
+                </div>
                 <p className="opacity-80">
                   Flexible Arbeitsbereiche, die sich an deine Bedürfnisse
                   anpassen lassen.
@@ -207,7 +219,10 @@ const MakersInnPage = async () => {
               </div>
 
               <div className="rounded-md border border-gray-200 p-6">
-                <h3 className="mb-2 font-bold">Fokuszone</h3>
+                <div className="mb-4 flex items-center gap-2">
+                  <Focus className="h-5 w-5 text-blue-accent" />
+                  <h3 className="font-bold">Fokuszone</h3>
+                </div>
                 <p className="opacity-80">
                   Bereiche für konzentriertes Arbeiten, wenn du Ruhe für deine
                   Projekte brauchst.
@@ -226,7 +241,7 @@ const MakersInnPage = async () => {
               <div className="flex justify-end">
                 <address className="text-lg not-italic">
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-pink" />
+                    <MapPin className="h-5 w-5 text-blue-accent" />
                     <div>
                       <p>Küferstr. 46</p>
                       <p>73728 Esslingen</p>
