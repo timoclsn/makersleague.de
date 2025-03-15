@@ -218,15 +218,17 @@ const MakersInnPage = async () => {
             </p>
             <div className="flex flex-col gap-8">
               <Map className="border border-gray-200" />
-              <address className="not-italic text-lg">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-pink" />
-                  <div>
-                    <p>Küferstr. 46</p>
-                    <p>73728 Esslingen</p>
+              <div className="flex justify-end">
+                <address className="text-lg not-italic">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-pink" />
+                    <div>
+                      <p>Küferstr. 46</p>
+                      <p>73728 Esslingen</p>
+                    </div>
                   </div>
-                </div>
-              </address>
+                </address>
+              </div>
             </div>
           </section>
 

@@ -1,4 +1,5 @@
 import { BoardMembersSection } from "@/components/BoardMembersSection";
+import { MakersInnSection } from "@/components/MakersInnSection";
 import { PageLayout } from "@/components/layouts/PageLayout";
 import { getFaqsByTags } from "@/lib/content";
 import { BlogSection } from "components/BlogSection";
@@ -83,6 +84,7 @@ const UeberPage = async () => {
         <MembersSection />
         <ValuesSection />
         <BoardMembersSection />
+        <MakersInnSection />
         <InstagramSection />
         <BlogSection />
         <EventsSection />
