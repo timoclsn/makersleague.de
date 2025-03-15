@@ -5,7 +5,7 @@ import { Arrow } from "./icons";
 
 export const MakersInnSection = () => {
   return (
-    <section className="bg-blue p-8">
+    <section className="bg-blue p-8" id="makers-inn">
       <h2 className="mb-2 text-base font-bold md:text-2xl">Das Makers Inn</h2>
       <p className="mb-10 text-base opacity-60 md:text-2xl">
         Die Zentrale Anlaufstelle für Menschen mit Ideen in Esslingen
