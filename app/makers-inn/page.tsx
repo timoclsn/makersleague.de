@@ -2,12 +2,13 @@ import { ContactSection } from "@/components/ContactSection";
 import { FaqsSection } from "@/components/FaqsSection";
 import { Header } from "@/components/Header";
 import { Logo } from "@/components/icons/Logo";
-import { Map } from "@/components/Map";
 import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
+import { Map } from "@/components/Map";
 import { getFaqsByTags } from "@/lib/content";
-import { Calendar, Terminal, Wifi, MapPin } from "lucide-react";
+import { Calendar, MapPin, Terminal, Wifi } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import freifunkLogo from "./freifunk.png";
 import { Gallery } from "./Gallery";
 import linuxCafeLogo from "./linux-cafe.png";
@@ -90,14 +91,18 @@ const MakersInnPage = async () => {
               Gemeinsam Ideen entwickeln und umsetzen
             </p>
             <p className="opacity-80">
-              Für Makers League Mitglieder täglicher Zugang von 08:00-20:00 Uhr
-              um an ihren Ideen zu arbeiten und gemeinsam im Austausch mit
-              anderen Macher:innen ihre Gründungsvorhaben voranzutreiben und
-              voneinander lernen.
+              Für Makers League Mitglieder:innen täglicher Zugang von
+              08:00-20:00 Uhr um an ihren Ideen zu arbeiten und gemeinsam im
+              Austausch mit anderen Macher:innen ihre Gründungsvorhaben
+              voranzutreiben und voneinander lernen.
             </p>
             <br />
             <p className="opacity-80">
-              Monatlich organisiert die Makers League dafür verschiedene Events.
+              Monatlich organisiert die Makers League dafür verschiedene{" "}
+              <Link href="/events" className="underline">
+                Events
+              </Link>
+              .
             </p>
 
             <div className="mt-10">
@@ -105,7 +110,7 @@ const MakersInnPage = async () => {
                 Initiativen, die hier Zuhause sind
               </h3>
               <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
-                <a
+                <Link
                   href="/events"
                   className="block bg-white p-4 transition-transform hover:scale-105"
                 >
@@ -117,8 +122,8 @@ const MakersInnPage = async () => {
                       Zum Eventkalender
                     </p>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://reparaturcafe-esslingen.de/linuxcafe/"
                   target="_blank"
                   className="block bg-white p-4 transition-transform hover:scale-105"
@@ -135,8 +140,8 @@ const MakersInnPage = async () => {
                       Zur Website
                     </p>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://freifunk-esslingen.de/"
                   target="_blank"
                   className="block bg-white p-4 transition-transform hover:scale-105"
@@ -155,7 +160,7 @@ const MakersInnPage = async () => {
                       Zur Website
                     </p>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </section>
