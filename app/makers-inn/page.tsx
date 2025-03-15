@@ -2,10 +2,11 @@ import { ContactSection } from "@/components/ContactSection";
 import { FaqsSection } from "@/components/FaqsSection";
 import { Header } from "@/components/Header";
 import { Logo } from "@/components/icons/Logo";
+import { Map } from "@/components/Map";
 import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import { getFaqsByTags } from "@/lib/content";
-import { Calendar, Terminal, Wifi } from "lucide-react";
+import { Calendar, Terminal, Wifi, MapPin } from "lucide-react";
 import Image from "next/image";
 import freifunkLogo from "./freifunk.png";
 import { Gallery } from "./Gallery";
@@ -207,6 +208,25 @@ const MakersInnPage = async () => {
                   Projekte brauchst.
                 </p>
               </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="mb-2 text-base font-bold md:text-2xl">Adresse</h2>
+            <p className="mb-10 text-base opacity-60 md:text-2xl">
+              Hier findest du uns
+            </p>
+            <div className="flex flex-col gap-8">
+              <Map className="border border-gray-200" />
+              <address className="not-italic text-lg">
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-pink" />
+                  <div>
+                    <p>Küferstr. 46</p>
+                    <p>73728 Esslingen</p>
+                  </div>
+                </div>
+              </address>
             </div>
           </section>
 
