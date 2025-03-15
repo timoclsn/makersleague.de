@@ -1,13 +1,15 @@
-import { Button } from "@/components/Button";
 import { ContactSection } from "@/components/ContactSection";
 import { FaqsSection } from "@/components/FaqsSection";
 import { Header } from "@/components/Header";
+import { Logo } from "@/components/icons/Logo";
 import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import { getFaqsByTags } from "@/lib/content";
-import { Calendar } from "lucide-react";
+import { Calendar, Terminal, Wifi } from "lucide-react";
 import Image from "next/image";
+import freifunkLogo from "./freifunk.png";
 import { Gallery } from "./Gallery";
+import linuxCafeLogo from "./linux-cafe.png";
 import esLogo from "./logo-es.svg";
 
 const MakersInnPage = async () => {
@@ -102,42 +104,57 @@ const MakersInnPage = async () => {
                 Initiativen, die hier Zuhause sind
               </h3>
               <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
-                <div className="rounded-md bg-white p-4 shadow-sm">
-                  <h4 className="mb-2 font-bold">ML Events</h4>
-                  <Button
-                    color="dark"
-                    variant="outline"
-                    size="small"
-                    href="/events"
-                  >
-                    <Calendar className="text-xl" />
-                    Zum Eventkalender
-                  </Button>
-                </div>
-                <div className="rounded-md bg-white p-4 shadow-sm">
-                  <h4 className="mb-2 font-bold">Linux Cafe</h4>
-                  <Button
-                    color="dark"
-                    variant="outline"
-                    size="small"
-                    href="https://reparaturcafe-esslingen.de/linuxcafe/"
-                    target="_blank"
-                  >
-                    Zur Website
-                  </Button>
-                </div>
-                <div className="rounded-md bg-white p-4 shadow-sm">
-                  <h4 className="mb-2 font-bold">Freifunk Esslingen e.V.</h4>
-                  <Button
-                    color="dark"
-                    variant="outline"
-                    size="small"
-                    href="https://freifunk-esslingen.de/"
-                    target="_blank"
-                  >
-                    Zur Website
-                  </Button>
-                </div>
+                <a
+                  href="/events"
+                  className="block rounded-md bg-white p-4 transition-transform hover:scale-105"
+                >
+                  <h4 className="mb-4 text-center font-bold">ML Events</h4>
+                  <div className="flex flex-col items-center gap-4">
+                    <Logo className="h-16 w-16 text-pink" />
+                    <p className="flex items-center gap-2 text-sm font-medium text-dark">
+                      <Calendar className="h-4 w-4" />
+                      Zum Eventkalender
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href="https://reparaturcafe-esslingen.de/linuxcafe/"
+                  target="_blank"
+                  className="block rounded-md bg-white p-4 transition-transform hover:scale-105"
+                >
+                  <h4 className="mb-4 text-center font-bold">Linux Cafe</h4>
+                  <div className="flex flex-col items-center gap-4">
+                    <Image
+                      src={linuxCafeLogo}
+                      alt="Linux Cafe Logo"
+                      className="h-16 w-auto object-contain"
+                    />
+                    <p className="flex items-center gap-2 text-sm font-medium text-dark">
+                      <Terminal className="h-4 w-4" />
+                      Zur Website
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href="https://freifunk-esslingen.de/"
+                  target="_blank"
+                  className="block rounded-md bg-white p-4 transition-transform hover:scale-105"
+                >
+                  <h4 className="mb-4 text-center font-bold">
+                    Freifunk Esslingen e.V.
+                  </h4>
+                  <div className="flex flex-col items-center gap-4">
+                    <Image
+                      src={freifunkLogo}
+                      alt="Freifunk Logo"
+                      className="h-16 w-auto object-contain"
+                    />
+                    <p className="flex items-center gap-2 text-sm font-medium text-dark">
+                      <Wifi className="h-4 w-4" />
+                      Zur Website
+                    </p>
+                  </div>
+                </a>
               </div>
             </div>
           </section>
