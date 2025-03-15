@@ -107,7 +107,7 @@ const MakersInnPage = async () => {
               <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
                 <a
                   href="/events"
-                  className="block rounded-md bg-white p-4 transition-transform hover:scale-105"
+                  className="block bg-white p-4 transition-transform hover:scale-105"
                 >
                   <h4 className="mb-4 text-center font-bold">ML Events</h4>
                   <div className="flex flex-col items-center gap-4">
@@ -121,7 +121,7 @@ const MakersInnPage = async () => {
                 <a
                   href="https://reparaturcafe-esslingen.de/linuxcafe/"
                   target="_blank"
-                  className="block rounded-md bg-white p-4 transition-transform hover:scale-105"
+                  className="block bg-white p-4 transition-transform hover:scale-105"
                 >
                   <h4 className="mb-4 text-center font-bold">Linux Cafe</h4>
                   <div className="flex flex-col items-center gap-4">
@@ -139,7 +139,7 @@ const MakersInnPage = async () => {
                 <a
                   href="https://freifunk-esslingen.de/"
                   target="_blank"
-                  className="block rounded-md bg-white p-4 transition-transform hover:scale-105"
+                  className="block bg-white p-4 transition-transform hover:scale-105"
                 >
                   <h4 className="mb-4 text-center font-bold">
                     Freifunk Esslingen e.V.
