@@ -14,13 +14,12 @@ export const Map = ({ className }: Props) => {
   if (!hasConsent) {
     return (
       <div className={`relative flex aspect-video w-full items-center justify-center overflow-hidden bg-gray-50 ${className}`}>
-        <div className="flex max-w-lg flex-col items-center gap-6 p-8 text-center">
-          <MapPin className="h-8 w-8 text-pink" />
+        <div className="flex max-w-lg flex-col items-center gap-4 p-4 text-center sm:gap-6 sm:p-8">
+          <MapPin className="h-6 w-6 text-pink sm:h-8 sm:w-8" />
           <div>
-            <h3 className="mb-2 font-bold">Externe Karte laden?</h3>
-            <p className="text-sm opacity-80">
-              Wenn du auf &quot;Karte anzeigen&quot; klickst, wird eine Verbindung zu OpenStreetMap hergestellt. 
-              Dabei können personenbezogene Daten an den Dienst übermittelt werden.
+            <h3 className="mb-2 text-sm font-bold sm:text-base">Externe Karte laden?</h3>
+            <p className="text-xs opacity-80 sm:text-sm">
+              Mit dem Laden der Karte akzeptierst du die Übermittlung von Daten an OpenStreetMap.
             </p>
           </div>
           <Button onClick={() => setHasConsent(true)}>
