@@ -174,7 +174,7 @@ const MakersInnPage = async () => {
             </p>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <div className="rounded-md border border-gray-200 p-6">
+              <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-blue-accent" />
                   <h3 className="font-bold">Mitten in der Stadt</h3>
@@ -185,7 +185,7 @@ const MakersInnPage = async () => {
                 </p>
               </div>
 
-              <div className="rounded-md border border-gray-200 p-6">
+              <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
                   <Users className="h-5 w-5 text-blue-accent" />
                   <h3 className="font-bold">280qm Open Space</h3>
@@ -196,7 +196,7 @@ const MakersInnPage = async () => {
                 </p>
               </div>
 
-              <div className="rounded-md border border-gray-200 p-6">
+              <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
                   <Calendar className="h-5 w-5 text-blue-accent" />
                   <h3 className="font-bold">Macher:innen Schaufenster</h3>
@@ -207,7 +207,7 @@ const MakersInnPage = async () => {
                 </p>
               </div>
 
-              <div className="rounded-md border border-gray-200 p-6">
+              <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
                   <Layout className="h-5 w-5 text-blue-accent" />
                   <h3 className="font-bold">Modulare Arbeitsinseln</h3>
@@ -218,7 +218,7 @@ const MakersInnPage = async () => {
                 </p>
               </div>
 
-              <div className="rounded-md border border-gray-200 p-6">
+              <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
                   <Focus className="h-5 w-5 text-blue-accent" />
                   <h3 className="font-bold">Fokuszone</h3>
