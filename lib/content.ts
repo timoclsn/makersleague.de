@@ -11,13 +11,16 @@ import { components } from "./mdx";
 const CONTENT_PATH = ["content"] as const;
 const FILE_EXTENSIONS = [".md", ".mdx"] as const;
 
+const faqTags = z.enum(["general", "makers-inn"]);
+type FaqTag = z.infer<typeof faqTags>;
+
 const frontmatterSchemas = {
   page: z.object({
     title: z.string(),
   }),
   faq: z.object({
     question: z.string(),
-    preview: z.boolean(),
+    tags: z.array(faqTags),
   }),
   blog: z.object({
     title: z.string(),
@@ -127,9 +130,11 @@ export const getAllFaqs = async () => {
   return await getAllContent("faq");
 };
 
-export const getPreviewFaqs = async () => {
+export const getFaqsByTags = async (tags: Array<FaqTag>) => {
   const allFaqs = await getAllFaqs();
-  return allFaqs.filter((faq) => faq.data.preview);
+  return allFaqs.filter((faq) =>
+    faq.data.tags.some((tag) => tags.includes(tag)),
+  );
 };
 
 // Blog
