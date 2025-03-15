@@ -15,6 +15,7 @@ import { ValuesSection } from "components/ValuesSection";
 import Image from "next/image";
 import { HeroButtons } from "./HeroButtons";
 import membersImg from "./mitglieder.png";
+import { MakersInnSection } from "components/MakersInnSection";
 
 const HomePage = async () => {
   const faqs = await getFaqsByTags(["general"]);
@@ -93,6 +94,7 @@ const HomePage = async () => {
         </section>
         <MembersSection />
         <EventsSection />
+        <MakersInnSection />
         <ValuesSection />
         <BoardMembersSection />
         <FitSection />
