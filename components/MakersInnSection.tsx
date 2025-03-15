@@ -31,7 +31,7 @@ export const MakersInnSection = () => {
         </div>
         <div className="relative aspect-video flex-1 overflow-hidden">
           <Image
-            src="https://st27fwzq2l.ufs.sh/f/SYIvy1FiUWjdryHAq8fEVe1aOCdFLcxXPQu09nvTYb4kmMBH"
+            src="https://st27fwzq2l.ufs.sh/f/SYIvy1FiUWjdUppCGDzdATVG7RSsNX6LCntb01OzKPFWYQmq"
             alt="Makers Inn"
             fill
             className="object-cover transition-transform hover:scale-105"

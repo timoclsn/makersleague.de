@@ -20,7 +20,7 @@ const MakersInnPage = async () => {
     <PageLayoutFull>
       <section className="relative h-screen w-full">
         <Image
-          src="https://st27fwzq2l.ufs.sh/f/SYIvy1FiUWjdryHAq8fEVe1aOCdFLcxXPQu09nvTYb4kmMBH"
+          src="https://st27fwzq2l.ufs.sh/f/SYIvy1FiUWjdUppCGDzdATVG7RSsNX6LCntb01OzKPFWYQmq"
           alt="Makers Inn"
           fill
           className="object-cover"
