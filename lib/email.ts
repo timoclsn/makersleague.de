@@ -106,8 +106,7 @@ const getBirthdayNotificationEmail = async ({
 
   return {
     from: DEFAULT_FROM,
-    // to: ["hello@makersleague.de"],
-    to: ["goebeltimo@gmail.com"],
+    to: ["hello@makersleague.de"],
     bcc: ["goebeltimo@gmail.com"],
     subject: `🎂 ML-Geburtstage am ${formatDate(today, "dd.MM.yyyy")}`,
     text,
@@ -146,11 +145,6 @@ export const sendEmails = async (emails: Array<QueueEmail>) => {
     if (error) {
       throw new Error(error.message, { cause: error });
     }
-
-    await sendLoggingEmail({
-      subject: "Emails sent",
-      text: `Emails sent: ${JSON.stringify(emails, null, 2)}`,
-    });
   } catch (error) {
     console.error("Error sending emails:", error);
     await sendLoggingEmail({
