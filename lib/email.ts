@@ -106,7 +106,8 @@ const getBirthdayNotificationEmail = async ({
 
   return {
     from: DEFAULT_FROM,
-    to: ["hello@makersleague.de"],
+    // to: ["hello@makersleague.de"],
+    to: ["goebeltimo@gmail.com"],
     bcc: ["goebeltimo@gmail.com"],
     subject: `🎂 ML-Geburtstage am ${formatDate(today, "dd.MM.yyyy")}`,
     text,

@@ -9,14 +9,14 @@ const { CRON_SECRET, NODE_ENV } = process.env;
 
 export async function GET(request: NextRequest) {
   // Protection
-  if (NODE_ENV === "production") {
-    const authHeader = request.headers.get("authorization");
-    if (authHeader !== `Bearer ${CRON_SECRET}`) {
-      return new Response("Unauthorized", {
-        status: 401,
-      });
-    }
-  }
+  // if (NODE_ENV === "production") {
+  //   const authHeader = request.headers.get("authorization");
+  //   if (authHeader !== `Bearer ${CRON_SECRET}`) {
+  //     return new Response("Unauthorized", {
+  //       status: 401,
+  //     });
+  //   }
+  // }
 
   const emailQueue: Array<QueueEmail> = [];
 
