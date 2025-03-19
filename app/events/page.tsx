@@ -83,7 +83,7 @@ const EventsPage = async () => {
                 return (
                   <article key={event.id}>
                     <div className="mb-2 flex items-center gap-3">
-                      <Icon className="size-4 md:size-6" />
+                      <Icon className="size-4 flex-none md:size-6" />
                       <h2 className="text-base font-bold md:text-2xl">
                         {event.name}
                       </h2>
