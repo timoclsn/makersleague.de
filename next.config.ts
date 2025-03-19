@@ -22,6 +22,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "st27fwzq2l.ufs.sh",
+        pathname: "/f/*",
+      },
     ],
   },
   async rewrites() {

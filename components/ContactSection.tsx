@@ -3,8 +3,14 @@ import { getWebsiteMemberByName } from "lib/members";
 import Link from "next/link";
 import { MemberImage } from "./MemberImage";
 
-export const ContactSection = async () => {
-  const member = await getWebsiteMemberByName("Nina Kuch");
+interface Props {
+  name: string;
+  email: string;
+  subtitle: string;
+}
+
+export const ContactSection = async ({ name, email, subtitle }: Props) => {
+  const member = await getWebsiteMemberByName(name);
 
   if (!member) {
     return null;
@@ -17,7 +23,7 @@ export const ContactSection = async () => {
           Deine Ansprechpartnerin vor Ort
         </h2>
         <p className="mb-10 text-base opacity-60 md:text-2xl">
-          Bei Fragen, melde dich bei Nina!
+          Bei Fragen, melde dich bei {member.firstName}!
         </p>
         <div className="flex justify-center">
           <div className="w-full border-4 border-dashed border-dark p-4 sm:w-auto">
@@ -25,9 +31,9 @@ export const ContactSection = async () => {
             <h3 className="w-full break-words text-base font-bold opacity-80 md:text-2xl">
               {member.name}
             </h3>
-            <p>2. Vorstandsvorsitzende</p>
-            <a href="mailto:nina@makersleague.de" className="mb-14 block">
-              nina@makersleague.de
+            <p>{subtitle}</p>
+            <a href={`mailto:${email}`} className="mb-14 block">
+              {email}
             </a>
             <div className="flex w-full flex-1 flex-col items-end justify-end">
               <Link

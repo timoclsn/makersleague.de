@@ -24,7 +24,7 @@ export const EventsSection = async () => {
             <li key={event.id} className="flex flex-col justify-between">
               <div>
                 <div className="mb-2 flex items-center gap-3">
-                  <Icon className="size-4 lg:size-6" />
+                  <Icon className="size-4 flex-none lg:size-6" />
                   <h2
                     className="truncate text-base font-bold lg:text-xl"
                     title={event.name}
@@ -39,7 +39,7 @@ export const EventsSection = async () => {
                   </Tag>
                 </ul>
                 {event.description && (
-                  <div className="prose prose-p:text-pink-light ">
+                  <div className="prose prose-p:text-pink-light">
                     <p className="line-clamp-2 sm:line-clamp-3 lg:line-clamp-5">
                       {htmlToString(event.description)}
                     </p>

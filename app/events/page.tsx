@@ -1,9 +1,10 @@
+import { PageLayout } from "@/components/layouts/PageLayout";
 import { Button } from "components/Button";
 import { CopyCalendarUrlButton } from "components/CopyCalendarUrlButton";
-import { Page } from "components/Page";
+import { Arrow, Calendar, Location, Profile } from "components/icons";
+import { PageContent } from "components/layouts/PageContent";
 import { StructuredData } from "components/StructuredData";
 import { Track } from "components/Track";
-import { Arrow, Calendar, Location, Profile } from "components/icons";
 import { formatISO } from "date-fns";
 import { eventIcon, getWebsiteEvents, makersInn } from "lib/events";
 import { formatDate } from "lib/utils";
@@ -20,7 +21,7 @@ const EventsPage = async () => {
   const events = await getWebsiteEvents();
 
   return (
-    <>
+    <PageLayout>
       {events.map((event) => {
         return (
           <StructuredData key={event.id} type="Event">
@@ -54,7 +55,7 @@ const EventsPage = async () => {
           </StructuredData>
         );
       })}
-      <Page>
+      <PageContent>
         <section>
           <h1 className="mb-8 text-xl font-bold md:text-5xl">
             Stammtisch & Events
@@ -82,7 +83,7 @@ const EventsPage = async () => {
                 return (
                   <article key={event.id}>
                     <div className="mb-2 flex items-center gap-3">
-                      <Icon className="size-4 md:size-6" />
+                      <Icon className="size-4 flex-none md:size-6" />
                       <h2 className="text-base font-bold md:text-2xl">
                         {event.name}
                       </h2>
@@ -158,8 +159,8 @@ const EventsPage = async () => {
             </div>
           )}
         </section>
-      </Page>
-    </>
+      </PageContent>
+    </PageLayout>
   );
 };
 
