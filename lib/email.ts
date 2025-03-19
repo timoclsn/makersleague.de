@@ -145,11 +145,6 @@ export const sendEmails = async (emails: Array<QueueEmail>) => {
     if (error) {
       throw new Error(error.message, { cause: error });
     }
-
-    await sendLoggingEmail({
-      subject: "Emails sent",
-      text: `Emails sent: ${JSON.stringify(emails, null, 2)}`,
-    });
   } catch (error) {
     console.error("Error sending emails:", error);
     await sendLoggingEmail({
