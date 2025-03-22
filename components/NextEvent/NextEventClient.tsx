@@ -14,7 +14,7 @@ interface Props {
   url: string;
 }
 
-export const NextStammtischClient = ({ id, name, date, url }: Props) => {
+export const NextEventClient = ({ id, name, date, url }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const storageKey = "shown-stammtisch";
 

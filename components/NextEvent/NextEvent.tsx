@@ -1,9 +1,9 @@
 import { parseISO } from "date-fns";
 import { getNextEvent } from "lib/events";
 import { formatDate } from "lib/utils";
-import { NextStammtischClient } from "./NextStammtischClient";
+import { NextEventClient } from "./NextEventClient";
 
-export const NextStammtisch = async () => {
+export const NextEvent = async () => {
   const event = await getNextEvent();
   if (!event || !event.start || !event.url) return null;
 
@@ -12,7 +12,7 @@ export const NextStammtisch = async () => {
   const formatedDate = formatDate(startDate, "dd.MM.");
 
   return (
-    <NextStammtischClient
+    <NextEventClient
       id={event.id}
       name={event.name}
       date={formatedDate}
