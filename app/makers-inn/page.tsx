@@ -6,10 +6,9 @@ import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import { Map } from "@/components/Map";
 import { getFaqsByTags } from "@/lib/content";
-import { Calendar, MapPin, Terminal, Wifi, Layout, Focus, Users } from "lucide-react";
+import { Calendar, Focus, Layout, MapPin, Terminal, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import freifunkLogo from "./freifunk.png";
 import { Gallery } from "./Gallery";
 import linuxCafeLogo from "./linux-cafe.png";
 import esLogo from "./logo-es.svg";
@@ -83,7 +82,7 @@ const MakersInnPage = async () => {
             <h1 className="mb-6 text-xl font-bold md:text-5xl">Galerie</h1>
             <Gallery />
           </section>
-          <section className="relative bg-blue p-8">
+          <section id="initiatives" className="relative bg-blue p-8">
             <h2 className="mb-2 text-base font-bold md:text-2xl">
               Für wen ist es?
             </h2>
@@ -109,7 +108,7 @@ const MakersInnPage = async () => {
               <h3 className="mb-4 font-bold">
                 Initiativen, die hier Zuhause sind
               </h3>
-              <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <Link
                   href="/events"
                   className="block bg-white p-4 transition-transform hover:scale-105"
@@ -137,26 +136,6 @@ const MakersInnPage = async () => {
                     />
                     <p className="flex items-center gap-2 text-sm font-medium text-dark">
                       <Terminal className="h-4 w-4" />
-                      Zur Website
-                    </p>
-                  </div>
-                </Link>
-                <Link
-                  href="https://freifunk-esslingen.de/"
-                  target="_blank"
-                  className="block bg-white p-4 transition-transform hover:scale-105"
-                >
-                  <h4 className="mb-4 text-center font-bold">
-                    Freifunk Esslingen e.V.
-                  </h4>
-                  <div className="flex flex-col items-center gap-4">
-                    <Image
-                      src={freifunkLogo}
-                      alt="Freifunk Logo"
-                      className="h-16 w-auto object-contain"
-                    />
-                    <p className="flex items-center gap-2 text-sm font-medium text-dark">
-                      <Wifi className="h-4 w-4" />
                       Zur Website
                     </p>
                   </div>
