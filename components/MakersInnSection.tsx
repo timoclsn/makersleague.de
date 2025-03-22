@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Calendar, MapPin, Users, Layout, Focus } from "lucide-react";
+import { Calendar, MapPin, Users, Layout, Focus, Phone } from "lucide-react";
 import { Button } from "./Button";
 import { Arrow } from "./icons";
 
@@ -37,6 +37,10 @@ export const MakersInnSection = () => {
             <div className="flex items-center gap-2">
               <Focus className="h-5 w-5 flex-none text-blue-accent" />
               <span>Fokuszone</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Phone className="h-5 w-5 flex-none text-blue-accent" />
+              <span>Telefonbox</span>
             </div>
           </div>
         </div>

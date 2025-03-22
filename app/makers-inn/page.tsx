@@ -6,7 +6,7 @@ import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import { Map } from "@/components/Map";
 import { getFaqsByTags } from "@/lib/content";
-import { Calendar, Focus, Layout, MapPin, Terminal, Users } from "lucide-react";
+import { Calendar, Focus, Layout, MapPin, Phone, Terminal, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Gallery } from "./Gallery";
@@ -205,6 +205,17 @@ const MakersInnPage = async () => {
                 <p className="opacity-80">
                   Bereiche für konzentriertes Arbeiten, wenn du Ruhe für deine
                   Projekte brauchst.
+                </p>
+              </div>
+
+              <div className="border border-gray-200 p-6">
+                <div className="mb-4 flex items-center gap-2">
+                  <Phone className="h-5 w-5 text-blue-accent" />
+                  <h3 className="font-bold">Telefonbox</h3>
+                </div>
+                <p className="opacity-80">
+                  Eine geschützte Telefonbox für wichtige Gespräche und
+                  Videocalls in ruhiger Atmosphäre.
                 </p>
               </div>
             </div>
