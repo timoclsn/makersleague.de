@@ -233,7 +233,7 @@ const MakersInnPage = async () => {
 
           <ContactSection
             name="Daniela Gorka"
-            email="daniala@makersleague.de"
+            email="daniela.gorka@esslingen.de"
             subtitle="Innovationsmanagerin Stadt Esslingen"
           />
           <FaqsSection faqs={faqs} />
