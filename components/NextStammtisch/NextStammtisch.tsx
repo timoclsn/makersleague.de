@@ -4,7 +4,7 @@ import { formatDate } from "lib/utils";
 import { NextStammtischClient } from "./NextStammtischClient";
 
 export const NextStammtisch = async () => {
-  const event = await getNextEvent("stammtisch");
+  const event = await getNextEvent();
   if (!event || !event.start || !event.url) return null;
 
   const startDate =
@@ -12,6 +12,11 @@ export const NextStammtisch = async () => {
   const formatedDate = formatDate(startDate, "dd.MM.");
 
   return (
-    <NextStammtischClient id={event.id} date={formatedDate} url={event.url} />
+    <NextStammtischClient
+      id={event.id}
+      name={event.name}
+      date={formatedDate}
+      url={event.url}
+    />
   );
 };
