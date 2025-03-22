@@ -5,7 +5,7 @@ import { NextEventClient } from "./NextEventClient";
 
 export const NextEvent = async () => {
   const event = await getNextEvent();
-  if (!event || !event.start || !event.url) return null;
+  if (!event || !event.name || !event.start || !event.url) return null;
 
   const startDate =
     typeof event.start === "string" ? parseISO(event.start) : event.start;
