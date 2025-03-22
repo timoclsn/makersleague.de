@@ -14,9 +14,9 @@ export const BlogSection = async () => {
     .slice(0, 3);
   return (
     <section id="blog" className="bg-sand p-8 text-dark">
-      <h2 className="mb-2 text-base font-bold lg:text-2xl">Neue Blogposts</h2>
+      <h2 className="mb-2 text-base font-bold lg:text-2xl">Einblicke</h2>
       <p className="mb-10 text-base opacity-60 lg:text-2xl">
-        Die neuesten Geschichten rund um die Makers League
+        Geschichten rund um die Makers League
       </p>
 
       <ul className="mb-14 grid grid-cols-1 gap-16 lg:grid-cols-3 lg:gap-8">
@@ -57,7 +57,7 @@ export const BlogSection = async () => {
       </ul>
       <Button color="dark" variant="solid" size="medium" href="/einblicke#blog">
         <Book className="text-2xl" />
-        Alle Blogposts
+        Meh Einblicke
       </Button>
     </section>
   );
