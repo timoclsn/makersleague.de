@@ -1,6 +1,6 @@
 ---
 question: Für wen ist das Makers Inn nicht geeignet?
-tags: []
+tags: [makers-inn]
 ---
 
 Du möchtest nichts mit der Community zu tun haben und suchst nur einen günstigen Ort zum Arbeiten? Dann bist du hier leider nicht richtig.
