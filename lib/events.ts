@@ -75,11 +75,16 @@ export const getWebsiteEvents = async (): Promise<WebsiteEvent[]> => {
   return websiteEvents;
 };
 
-export const getNextEvent = async (name: string) => {
+export const getNextEvent = async (name?: string) => {
   const events = await getWebsiteEvents();
-  return events.find((event) => {
-    return event.name.toLowerCase().includes(name.toLowerCase());
-  });
+
+  if (name) {
+    return events.find((event) => {
+      return event.name.toLowerCase().includes(name.toLowerCase());
+    });
+  }
+
+  return events[0];
 };
 
 export const eventIcon = (name: string) => {
