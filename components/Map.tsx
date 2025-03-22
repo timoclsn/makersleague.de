@@ -1,37 +1,34 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { MapPin } from "lucide-react";
 import { Button } from "./Button";
 
-interface Props {
-  className?: string;
-}
-
-export const Map = ({ className }: Props) => {
+export const Map = () => {
   const [hasConsent, setHasConsent] = useState(false);
 
   if (!hasConsent) {
     return (
-      <div className={`relative flex aspect-video w-full items-center justify-center overflow-hidden bg-gray-50 ${className}`}>
+      <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden border border-gray-200 bg-gray-50">
         <div className="flex max-w-lg flex-col items-center gap-4 p-4 text-center sm:gap-6 sm:p-8">
           <MapPin className="h-6 w-6 text-blue-accent sm:h-8 sm:w-8" />
           <div>
-            <h3 className="mb-2 text-sm font-bold sm:text-base">Externe Karte laden?</h3>
+            <h3 className="mb-2 text-sm font-bold sm:text-base">
+              Externe Karte laden?
+            </h3>
             <p className="text-xs opacity-80 sm:text-sm">
-              Mit dem Laden der Karte akzeptierst du die Übermittlung von Daten an OpenStreetMap.
+              Mit dem Laden der Karte akzeptierst du die Übermittlung von Daten
+              an OpenStreetMap.
             </p>
           </div>
-          <Button onClick={() => setHasConsent(true)}>
-            Karte anzeigen
-          </Button>
+          <Button onClick={() => setHasConsent(true)}>Karte anzeigen</Button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`relative aspect-video w-full overflow-hidden ${className}`}>
+    <div className="relative aspect-video w-full overflow-hidden border border-gray-200">
       <iframe
         width="100%"
         height="100%"
@@ -45,4 +42,5 @@ export const Map = ({ className }: Props) => {
       />
     </div>
   );
-}; 
+};
+

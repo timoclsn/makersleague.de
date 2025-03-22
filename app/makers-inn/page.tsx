@@ -6,7 +6,15 @@ import { PageContent } from "@/components/layouts/PageContent";
 import { PageLayoutFull } from "@/components/layouts/PageLayoutFull";
 import { Map } from "@/components/Map";
 import { getFaqsByTags } from "@/lib/content";
-import { Calendar, Focus, Layout, MapPin, Phone, Terminal, Users } from "lucide-react";
+import {
+  Calendar,
+  Focus,
+  Layout,
+  MapPin,
+  Phone,
+  Terminal,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Gallery } from "./Gallery";
@@ -227,7 +235,7 @@ const MakersInnPage = async () => {
               Hier findest du uns
             </p>
             <div className="flex flex-col gap-8">
-              <Map className="border border-gray-200" />
+              <Map />
               <div className="flex justify-end">
                 <address className="text-lg not-italic">
                   <div className="flex items-center gap-2">
