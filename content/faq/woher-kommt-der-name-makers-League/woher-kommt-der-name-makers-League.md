@@ -1,6 +1,6 @@
 ---
 question: "Woher kommt der Name Makers League?"
-preview: false
+tags: [makers-inn]
 ---
 
 Kennst du die Filme der [Justice League](<https://de.wikipedia.org/wiki/Justice_League_(Film)>)? Er handelt von einer Gruppe von Superheld:innen, die ungewöhnliche Wege gehen und sich im Kampf für Gerechtigkeit gemeinsam mit ihren unterschiedlichen Superkräften unterstützen.

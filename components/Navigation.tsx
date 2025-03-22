@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar, HeartPlus, MakersLeague } from "components/icons";
-import { Eye } from "lucide-react";
+import { House } from "lucide-react";
 import { NavItem } from "./NavItem";
 
 export const Navigation = () => {
@@ -26,7 +26,7 @@ export const Navigation = () => {
           color="green"
           href="/mitglied-werden"
         />
-        <NavItem title="Einblicke" Icon={Eye} color="sand" href="/einblicke" />
+        <NavItem title="Der Ort" Icon={House} color="sand" href="/makers-inn" />
       </ul>
     </nav>
   );

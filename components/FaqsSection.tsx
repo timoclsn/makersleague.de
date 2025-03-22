@@ -1,11 +1,13 @@
 import { Arrow } from "components/icons";
-import { getPreviewFaqs } from "lib/content";
+import { Faq } from "lib/content";
 import { Button } from "./Button";
 import { Faqs } from "./Faqs";
 
-export const FaqsSection = async () => {
-  const faqs = await getPreviewFaqs();
+interface Props {
+  faqs: Faq[];
+}
 
+export const FaqsSection = async ({ faqs }: Props) => {
   return (
     <section id="faqs">
       <div className="mb-14">

@@ -1,5 +1,4 @@
 import { Footer } from "components/Footer";
-import { Header } from "components/Header";
 import { Navigation } from "components/Navigation";
 import { NextStammtisch } from "components/NextStammtisch/NextStammtisch";
 import { Metadata } from "next";
@@ -59,10 +58,7 @@ const RootLayout = ({ children }: Props) => {
       <body className="flex min-h-screen flex-col text-base text-dark">
         <div className="flex flex-1 flex-row">
           <Navigation />
-          <main className="mx-auto flex w-full flex-1 flex-col p-4 md:p-10">
-            <Header />
-            {children}
-          </main>
+          {children}
         </div>
         <Footer />
         <NextStammtisch />

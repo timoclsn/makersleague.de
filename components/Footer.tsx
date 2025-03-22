@@ -4,7 +4,7 @@ import Link from "next/link";
 export const Footer = () => {
   return (
     <footer className="bg-dark px-4 py-8 text-light md:px-10 md:py-8">
-      <ul className="flex flex-col items-center gap-6 overflow-hidden md:flex-row">
+      <ul className="flex flex-col items-center gap-6 overflow-hidden lg:flex-row">
         <li className="hover:opacity-80">
           <Link href="https://www.instagram.com/makersleague.ev">
             <span className="sr-only">Instagram</span>
@@ -16,6 +16,9 @@ export const Footer = () => {
             <span className="sr-only">LinkedIn</span>
             <Linkedin />
           </Link>
+        </li>
+        <li className="hover:opacity-80">
+          <Link href="/makers-inn">Makers Inn</Link>
         </li>
         <li className="hover:opacity-80">
           <Link href="/impressum">Impressum</Link>
