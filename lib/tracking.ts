@@ -23,6 +23,9 @@ export interface TrackingEvents {
   "Testimonial clicked": {
     name: string;
   };
+  "Gallery opened": {
+    image: string;
+  };
 }
 
 export const track = <TEventKey extends keyof TrackingEvents>(

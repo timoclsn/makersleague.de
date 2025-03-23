@@ -2,6 +2,7 @@
 
 import { AutoAnimate } from "@/components/AutoAnimate";
 import { Button } from "@/components/Button";
+import { track } from "@/lib/tracking";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
@@ -116,7 +117,10 @@ export const Gallery = () => {
             />
             <button
               className="absolute bottom-0 left-0 right-0 top-0 h-full w-full"
-              onClick={() => setOpenIndex(index)}
+              onClick={() => {
+                track("Gallery opened", { image: image.src });
+                return setOpenIndex(index);
+              }}
             >
               <span className="sr-only">
                 Öffne Makers Inn Bild {index + 1} in Lightbox
