@@ -33,7 +33,7 @@ export const NextEventClient = ({ id, name, date, url }: Props) => {
     setIsOpen(open);
     if (!open) {
       localStorage.setItem(storageKey, String(id));
-      track("Next Event closed");
+      track("Next Event closed", { name });
     }
   };
 
@@ -72,7 +72,7 @@ export const NextEventClient = ({ id, name, date, url }: Props) => {
               target="_blank"
               rel="noopener"
               onClick={() => {
-                track("Next Event clicked");
+                track("Next Event clicked", { name });
               }}
             >
               <Calendar size={18} />
