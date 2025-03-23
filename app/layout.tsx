@@ -1,6 +1,6 @@
 import { Footer } from "components/Footer";
 import { Navigation } from "components/Navigation";
-import { NextStammtisch } from "components/NextStammtisch/NextStammtisch";
+import { NextEvent } from "components/NextEvent/NextEvent";
 import { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
@@ -61,7 +61,7 @@ const RootLayout = ({ children }: Props) => {
           {children}
         </div>
         <Footer />
-        <NextStammtisch />
+        <NextEvent />
         <Script data-no-cookie data-api="/_hive" src="/bee.js" />
       </body>
     </html>
