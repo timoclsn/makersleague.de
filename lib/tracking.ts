@@ -9,8 +9,8 @@ export interface TrackingEvents {
   "Home hero primary clicked": null;
   "Home hero secondary clicked": null;
   "Apply clicked": null;
-  "Next Stammtisch clicked": null;
-  "Next Stammtisch closed": null;
+  "Next Event clicked": null;
+  "Next Event closed": null;
   "Copy calendar subscription url": null;
   "Event section more clicked": {
     name: string;

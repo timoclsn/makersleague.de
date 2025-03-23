@@ -16,11 +16,11 @@ interface Props {
 
 export const NextEventClient = ({ id, name, date, url }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const storageKey = "shown-stammtisch";
+  const storageKey = "shown-next-event";
 
   useEffect(() => {
-    const shownStammtisch = Number(localStorage.getItem(storageKey));
-    if (shownStammtisch === id) return;
+    const shownNextEvent = Number(localStorage.getItem(storageKey));
+    if (shownNextEvent === id) return;
 
     const timeoutId = setTimeout(() => {
       setIsOpen(true);
@@ -33,7 +33,7 @@ export const NextEventClient = ({ id, name, date, url }: Props) => {
     setIsOpen(open);
     if (!open) {
       localStorage.setItem(storageKey, String(id));
-      track("Next Stammtisch closed");
+      track("Next Event closed");
     }
   };
 
@@ -72,7 +72,7 @@ export const NextEventClient = ({ id, name, date, url }: Props) => {
               target="_blank"
               rel="noopener"
               onClick={() => {
-                track("Next Stammtisch clicked");
+                track("Next Event clicked");
               }}
             >
               <Calendar size={18} />
