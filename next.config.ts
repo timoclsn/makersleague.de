@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   basePath: "",
   images: {
-    unoptimized: true,
-    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2678400,
+    formats: ["image/webp"],
     remotePatterns: [
       {
         hostname: "localhost",
