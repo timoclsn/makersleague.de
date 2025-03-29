@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   basePath: "",
   images: {
     minimumCacheTTL: 2678400,
-    formats: ["image/avif", "image/webp"],
+    formats: ["image/webp"],
     remotePatterns: [
       {
         hostname: "localhost",
