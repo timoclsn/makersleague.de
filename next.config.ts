@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   basePath: "",
   images: {
-    unoptimized: true,
+    minimumCacheTTL: 2678400,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
