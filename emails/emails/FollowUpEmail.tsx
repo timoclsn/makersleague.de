@@ -98,6 +98,8 @@ export default FollowUpEmail;
 
 FollowUpEmail.PreviewProps = {
   firstName: "Timo",
-  nextStammtischDate: "13.08.",
-  nextStammtischUrl: "https://makersleague.de",
+  nextStammtisch: {
+    date: "13.08.",
+    url: "https://makersleague.de",
+  },
 } as Props;

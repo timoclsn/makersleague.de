@@ -154,6 +154,8 @@ export default WelcomeEmail;
 
 WelcomeEmail.PreviewProps = {
   firstName: "Timo",
-  nextStammtischDate: "13.08.",
-  nextStammtischUrl: "https://makersleague.de",
+  nextStammtisch: {
+    date: "13.08.",
+    url: "https://makersleague.de",
+  },
 } as Props;
