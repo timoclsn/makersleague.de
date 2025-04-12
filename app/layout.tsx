@@ -1,6 +1,7 @@
 import { Footer } from "components/Footer";
 import { Navigation } from "components/Navigation";
 import { NextEvent } from "components/NextEvent/NextEvent";
+import { PostHogProvider } from "components/PostHogProvider";
 import { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
@@ -56,13 +57,15 @@ const RootLayout = ({ children }: Props) => {
   return (
     <html lang="de" className={`min-h-screen ${fontSans.variable}`}>
       <body className="flex min-h-screen flex-col text-base text-dark">
-        <div className="flex flex-1 flex-row">
-          <Navigation />
-          {children}
-        </div>
-        <Footer />
-        <NextEvent />
-        <Script data-no-cookie data-api="/_hive" src="/bee.js" />
+        <PostHogProvider>
+          <div className="flex flex-1 flex-row">
+            <Navigation />
+            {children}
+          </div>
+          <Footer />
+          <NextEvent />
+          <Script data-no-cookie data-api="/_hive" src="/bee.js" />
+        </PostHogProvider>
       </body>
     </html>
   );
