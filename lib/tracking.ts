@@ -1,3 +1,5 @@
+import posthog from "posthog-js";
+
 const NEXT_PUBLIC_VERCEL_ENV = process.env.NEXT_PUBLIC_VERCEL_ENV;
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -40,6 +42,7 @@ export const track = <TEventKey extends keyof TrackingEvents>(
   const [event, data] = args;
   if (NEXT_PUBLIC_VERCEL_ENV === "production") {
     splitbee.track(event, data);
+    posthog.capture(event, data);
   }
   if (NODE_ENV === "development") {
     console.info("Tracking event:", {
