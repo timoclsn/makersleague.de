@@ -1,13 +1,13 @@
 import { Footer } from "components/Footer";
 import { Navigation } from "components/Navigation";
 import { NextEvent } from "components/NextEvent/NextEvent";
+import { PostHogProvider } from "components/PostHogProvider";
 import { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { ReactNode } from "react";
 import "../lib/env";
 import "../styles/globals.css";
-import { PostHogProvider } from "components/PostHogProvider";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
