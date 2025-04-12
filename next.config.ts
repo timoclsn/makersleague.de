@@ -39,6 +39,19 @@ const nextConfig: NextConfig = {
         source: "/_hive/:slug",
         destination: "https://hive.splitbee.io/:slug",
       },
+      // PostHog rewrites
+      {
+        source: "/ingest/static/:path*",
+        destination: "https://eu-assets.i.posthog.com/static/:path*",
+      },
+      {
+        source: "/ingest/:path*",
+        destination: "https://eu.i.posthog.com/:path*",
+      },
+      {
+        source: "/ingest/decide",
+        destination: "https://eu.i.posthog.com/decide",
+      },
     ];
   },
   async redirects() {
@@ -125,6 +138,8 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // This is required to support PostHog trailing slash API requests
+  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;

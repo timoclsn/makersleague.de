@@ -7,6 +7,7 @@ import Script from "next/script";
 import { ReactNode } from "react";
 import "../lib/env";
 import "../styles/globals.css";
+import { PostHogProvider } from "components/PostHogProvider";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -56,13 +57,15 @@ const RootLayout = ({ children }: Props) => {
   return (
     <html lang="de" className={`min-h-screen ${fontSans.variable}`}>
       <body className="flex min-h-screen flex-col text-base text-dark">
-        <div className="flex flex-1 flex-row">
-          <Navigation />
-          {children}
-        </div>
-        <Footer />
-        <NextEvent />
-        <Script data-no-cookie data-api="/_hive" src="/bee.js" />
+        <PostHogProvider>
+          <div className="flex flex-1 flex-row">
+            <Navigation />
+            {children}
+          </div>
+          <Footer />
+          <NextEvent />
+          <Script data-no-cookie data-api="/_hive" src="/bee.js" />
+        </PostHogProvider>
       </body>
     </html>
   );
