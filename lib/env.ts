@@ -31,6 +31,9 @@ const envSchema = z.object({
     .enum(["production", "preview", "development"])
     .optional(),
   NEXT_PUBLIC_VERCEL_URL: envVarSchema.optional(),
+
+  // PostHog
+  NEXT_PUBLIC_POSTHOG_KEY: envVarSchema,
 });
 
 envSchema.parse(process.env);
