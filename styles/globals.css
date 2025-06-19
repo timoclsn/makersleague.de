@@ -1,17 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer utilities {
-  .writing-vertical {
-    writing-mode: vertical-rl;
-    rotate: 180deg;
+@config '../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
+}
+
+@utility writing-vertical {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
 }
 
 @layer components {
   lite-youtube {
-    @apply mb-4 h-[200px] w-full !max-w-full sm:mb-8 sm:h-[400px] lg:h-[600px];
+    @apply mb-4 h-[200px] w-full max-w-full! sm:mb-8 sm:h-[400px] lg:h-[600px];
   }
 }
 
