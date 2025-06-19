@@ -22,7 +22,7 @@ const HomePage = async () => {
   return (
     <PageLayout>
       <div className="mb-20 flex min-h-[calc(100svh-100px)] flex-1 flex-col md:mb-32 md:min-h-[calc(100svh-188px)] lg:min-h-[calc(100svh-209px)]">
-        <div className="mx-auto max-w-screen-xl">
+        <div className="mx-auto max-w-(--breakpoint-xl)">
           <h1 className="mb-4 text-base opacity-80 md:text-2xl">
             Makers League e. V.
           </h1>
