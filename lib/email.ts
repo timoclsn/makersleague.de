@@ -149,7 +149,7 @@ export const sendEmails = async (emails: Array<QueueEmail>) => {
     console.error("Error sending emails:", error);
     await sendLoggingEmail({
       subject: "Error sending batch emails",
-      text: `Error sending batch emails: ${JSON.stringify(emails, null, 2)}`,
+      text: `Error sending batch emails: ${JSON.stringify(emails, null, 2)} \n\n Error: ${error instanceof Error ? error.message : String(error)}`,
     });
   }
 };
