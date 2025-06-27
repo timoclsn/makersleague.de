@@ -92,6 +92,25 @@ export const WelcomeEmail = ({ firstName, nextStammtisch }: Props) => {
       </Section>
 
       <Section>
+        <Heading as="h2">🏢 Makers Inn</Heading>
+        <Text>
+          Möchtest du das Makers Inn nutzen? Dann kontaktiere Daniela Gorka
+          unter{" "}
+          <Link href="mailto:daniela@makersleague.de">
+            daniela@makersleague.de
+          </Link>
+          , um einen Termin für deine persönliche Einweisung vor Ort zu
+          vereinbaren (Zeitbedarf ca. eine Stunde). Anschließend erhältst du
+          Zugang zu unserem Smart Lock und kannst täglich von 8 bis 20 Uhr im
+          Makers Inn an deiner Idee arbeiten.
+        </Text>
+
+        {nextStammtisch && (
+          <NextStammtisch date={nextStammtisch.date} url={nextStammtisch.url} />
+        )}
+      </Section>
+
+      <Section>
         <Heading as="h2">☑️ Communitymanagement</Heading>
         <Text>
           Unsere Community wird über die Vereinssoftware Easyverein organisiert.
