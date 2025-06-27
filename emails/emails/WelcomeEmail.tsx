@@ -77,10 +77,10 @@ export const WelcomeEmail = ({ firstName, nextStammtisch }: Props) => {
       <Section>
         <Heading as="h2">🍻 Stammtisch und Events</Heading>
         <Text>
-          Unser Stammtische und Inspire Talks findet üblicherweise am 2. und 4.
+          Unser Stammtische finden üblicherweise am 1. Donnerstag und 3.
           Dienstag jedes Monats um 18:00 Uhr im Makers Inn statt. Zusätzlich
           bieten wir monatlich eine Makers League Masterclass an und ab und an
-          weitere Specials wie Workshops oder Meetups.
+          weitere Specials wie Workshops oder Meetups.{" "}
           <Link href="https://makersleague.de/events">Hier</Link> findest du
           alle Termine und kannst dich direkt für unser Community Events
           anmelden.
