@@ -65,6 +65,29 @@ export const sendWelcomeEmail = async ({
   return error;
 };
 
+export const sendFollowUpEmail = async ({
+  name,
+  email,
+}: {
+  name: string;
+  email: string;
+}) => {
+  const event = await getNextEvent("stammtisch");
+
+  const { error } = await resend.emails.send({
+    from: DEFAULT_FROM,
+    to: [email],
+    bcc: ["goebeltimo@gmail.com", "daniela@makersleague.de"],
+    subject: "Dein Start bei der Makers League",
+    react: FollowUpEmail({
+      firstName: name,
+      nextStammtisch: event ? getStammtischData(event) : undefined,
+    }),
+  });
+
+  return error;
+};
+
 const getFollowUpEmail = async ({
   name,
   email,
