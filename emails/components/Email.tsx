@@ -2,13 +2,14 @@ import {
   Body,
   Container,
   Font,
+  Head,
   Html,
   Preview,
   Tailwind,
 } from "@react-email/components";
 import { ReactNode } from "react";
-import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 interface Props {
   children: ReactNode;
@@ -43,6 +44,7 @@ export const Email = ({ children, preview, greeting }: Props) => {
           },
         }}
       >
+        <Head />
         <Body className="bg-light">
           <Container className="mx-auto max-w-prose px-4">
             <Header />
