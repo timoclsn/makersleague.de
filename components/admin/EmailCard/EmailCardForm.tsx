@@ -13,22 +13,27 @@ import {
 } from "@/ui/select";
 import { useToast } from "@/ui/use-toast";
 import { Loader2, Mail } from "lucide-react";
+import { useState } from "react";
 
 interface Props {
   members: Array<Member>;
 }
 
-export const FollowUpEmailCardForm = ({ members }: Props) => {
+export const EmailCardForm = ({ members }: Props) => {
+  const [currentEmailType, setCurrentEmailType] = useState<
+    "welcome" | "followUp"
+  >("welcome");
   const { toast } = useToast();
   const { runAction, isRunning } = useAction(sendEmail, {
     onSuccess: (data) => {
       if (!data) return;
       const { email } = data;
+      const typeText = currentEmailType === "welcome" ? "Welcome" : "Follow-Up";
 
       toast({
         variant: "default",
         title: "Erfolg!",
-        description: `Follow-Up E-Mail an ${email} wurde versendet.`,
+        description: `${typeText} E-Mail an ${email} wurde versendet.`,
       });
     },
     onError: (error) => {
@@ -46,16 +51,35 @@ export const FollowUpEmailCardForm = ({ members }: Props) => {
       className="flex flex-col gap-4"
       action={(formData) => {
         const id = Number(formData.get("member"));
+        const emailType = formData.get("emailType") as "welcome" | "followUp";
         const member = members.find((member) => member.id === id);
         if (!member) return;
 
+        setCurrentEmailType(emailType);
         runAction({
           email: member.emailOrUserName,
           name: member.contactDetails.firstName,
-          emailType: "followUp",
+          emailType,
         });
       }}
     >
+      <Select
+        name="emailType"
+        required
+        defaultValue="welcome"
+        onValueChange={(value) =>
+          setCurrentEmailType(value as "welcome" | "followUp")
+        }
+      >
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="E-Mail Typ" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="welcome">Welcome E-Mail</SelectItem>
+          <SelectItem value="followUp">Follow-Up E-Mail</SelectItem>
+        </SelectContent>
+      </Select>
+
       <Select name="member" required>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Mitglied" />
@@ -70,13 +94,16 @@ export const FollowUpEmailCardForm = ({ members }: Props) => {
           })}
         </SelectContent>
       </Select>
+
       <Button type="submit" disabled={isRunning} className="flex gap-2">
         {isRunning ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
           <Mail className="size-4" />
         )}
-        E-Mail senden
+        {currentEmailType === "welcome"
+          ? "Welcome E-Mail senden"
+          : "Follow-Up E-Mail senden"}
       </Button>
     </form>
   );
