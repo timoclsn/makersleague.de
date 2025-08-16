@@ -1,5 +1,6 @@
 "use client";
 
+import { sendEmail } from "@/components/admin/actions";
 import { useAction } from "@/lib/data/client";
 import { Member } from "@/lib/easyverein";
 import { Button } from "@/ui/button";
@@ -12,13 +13,12 @@ import {
 } from "@/ui/select";
 import { useToast } from "@/ui/use-toast";
 import { Loader2, Mail } from "lucide-react";
-import { sendEmail } from "./actions";
 
 interface Props {
   members: Array<Member>;
 }
 
-export const EmailCardForm = ({ members }: Props) => {
+export const FollowUpEmailCardForm = ({ members }: Props) => {
   const { toast } = useToast();
   const { runAction, isRunning } = useAction(sendEmail, {
     onSuccess: (data) => {
@@ -52,6 +52,7 @@ export const EmailCardForm = ({ members }: Props) => {
         runAction({
           email: member.emailOrUserName,
           name: member.contactDetails.firstName,
+          emailType: "followUp",
         });
       }}
     >

@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/ui/card";
 import { Await } from "../../Await/Await";
-import { EmailCardForm } from "./FollowUpEmailCardForm";
+import { FollowUpEmailCardForm } from "./FollowUpEmailCardForm";
 
 export const FollowUpEmailCard = () => {
   const promise = getMembers();
@@ -34,7 +34,7 @@ export const FollowUpEmailCard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <EmailCardForm members={members} />
+              <FollowUpEmailCardForm members={members} />
             </CardContent>
           </Card>
         );
