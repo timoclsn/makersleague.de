@@ -7,9 +7,9 @@ import {
   CardTitle,
 } from "@/ui/card";
 import { Await } from "../../Await/Await";
-import { FollowUpEmailCardForm } from "./FollowUpEmailCardForm";
+import { EmailCardForm } from "./EmailCardForm";
 
-export const FollowUpEmailCard = () => {
+export const EmailCard = () => {
   const promise = getMembers();
 
   return (
@@ -28,13 +28,13 @@ export const FollowUpEmailCard = () => {
         return (
           <Card>
             <CardHeader>
-              <CardTitle>Follow-Up E-Mail</CardTitle>
+              <CardTitle>E-Mail senden</CardTitle>
               <CardDescription>
-                Versende Follow-Up E-Mails an Mitglieder:innen
+                Versende E-Mails an Mitglieder:innen
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <FollowUpEmailCardForm members={members} />
+              <EmailCardForm members={members} />
             </CardContent>
           </Card>
         );
