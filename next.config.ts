@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
   },
   reactStrictMode: true,
+  typedRoutes: true,
   basePath: "",
   images: {
     minimumCacheTTL: 2678400,

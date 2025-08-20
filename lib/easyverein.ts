@@ -23,11 +23,11 @@ interface GetOptions {
   start__gte?: string;
 }
 
-export const get = async <TSchema extends z.ZodTypeAny>(
+export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
   endpoint: Endpoint,
   schema: TSchema,
   options: GetOptions = {},
-) => {
+): Promise<z.output<TSchema>> => {
   const searchParams = new URLSearchParams();
   if (options.query) searchParams.set("query", options.query);
   if (options.limit) searchParams.set("limit", String(options.limit));
@@ -37,8 +37,6 @@ export const get = async <TSchema extends z.ZodTypeAny>(
   const searchParamsString = searchParams.toString();
 
   const fetchUrl = `${URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
-
-  let results: z.output<TSchema> = [];
 
   const res = await fetch(fetchUrl, {
     method: "GET",
@@ -52,7 +50,7 @@ export const get = async <TSchema extends z.ZodTypeAny>(
   }
 
   const data = await res.json();
-  results = schema.parse(data.results);
+  let results = schema.parse(data.results);
 
   let next = data.next;
 
@@ -62,7 +60,8 @@ export const get = async <TSchema extends z.ZodTypeAny>(
       headers,
     });
     const data = await res.json();
-    results = [...results, ...schema.parse(data.results)];
+    const nextResults = schema.parse(data.results);
+    results = [...results, ...nextResults] as z.output<TSchema>;
     next = data.next;
   }
 

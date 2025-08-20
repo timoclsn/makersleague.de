@@ -1,4 +1,5 @@
 import { Arrow, Calendar, Profile, Watch } from "components/icons";
+import { Route } from "next";
 import { getAllBlogPosts } from "lib/content";
 import { Button } from "./Button";
 
@@ -25,21 +26,21 @@ export const Blog = async () => {
               {data.summary}
             </p>
             <ul className="mb-8 flex flex-wrap gap-4 md:gap-8">
-              <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
+              <li className="bg-blue text-blue-accent flex items-center justify-center gap-2 rounded-full px-3 py-1 font-bold">
                 <Profile className="text-xl" />
                 <span>{data.author}</span>
               </li>
-              <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
+              <li className="bg-blue text-blue-accent flex items-center justify-center gap-2 rounded-full px-3 py-1 font-bold">
                 <Watch className="text-xl" />
                 <span>{data.readingTime}</span>
               </li>
-              <li className="flex items-center justify-center gap-2 rounded-full bg-blue px-3 py-1 font-bold text-blue-accent">
+              <li className="bg-blue text-blue-accent flex items-center justify-center gap-2 rounded-full px-3 py-1 font-bold">
                 <Calendar className="text-xl" />
                 <span>{data.publishedAtFormatted}</span>
               </li>
             </ul>
             <Button
-              href={`/einblicke/${name}`}
+              href={`/einblicke/${name}` as Route}
               color="sand"
               variant="outline"
               size="small"

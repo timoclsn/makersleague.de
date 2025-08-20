@@ -1,15 +1,15 @@
 import {
   unstable_cache as nextCache,
   unstable_noStore as noStore,
-} from 'next/cache';
-import { cache as reactCache } from 'react';
-import { z } from 'zod';
+} from "next/cache";
+import { cache as reactCache } from "react";
+import { z } from "zod";
 import {
   CacheOptions,
   CreateClientOptions,
   MaybePromise,
   ServerQuery,
-} from '../types';
+} from "../types";
 
 export const createQueryClient = <Context>(
   createClientOpts?: CreateClientOptions<Context>,
@@ -37,9 +37,11 @@ export const createQueryClient = <Context>(
 
       try {
         // Validate input if schema is provided
-        let parsedInput = input;
-        if (queryBuilderOpts.input) {
+        let parsedInput: z.output<TInputSchema>;
+        if (queryBuilderOpts.input && input !== undefined) {
           parsedInput = queryBuilderOpts.input.parse(input);
+        } else {
+          parsedInput = input as z.output<TInputSchema>;
         }
 
         // Run middleware if provided and get context
@@ -47,7 +49,7 @@ export const createQueryClient = <Context>(
 
         // Resolve cache options
         const cacheOptions =
-          typeof queryBuilderOpts.cache === 'function'
+          typeof queryBuilderOpts.cache === "function"
             ? queryBuilderOpts.cache({ input: parsedInput, ctx })
             : queryBuilderOpts.cache;
 
@@ -72,7 +74,7 @@ export const createQueryClient = <Context>(
               ? {
                   revalidate: cacheOptions.options.revalidate,
                   tags: cacheOptions.options.tags
-                    ? ['all', ...cacheOptions.options.tags]
+                    ? ["all", ...cacheOptions.options.tags]
                     : undefined,
                 }
               : undefined,

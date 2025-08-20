@@ -12,7 +12,7 @@ import { z } from "zod";
 export const sendEmail = createAction({
   input: z.object({
     name: z.string(),
-    email: z.string().email(),
+    email: z.email(),
     emailType: z.enum(["welcome", "followUp"]),
   }),
   action: async ({ input }) => {

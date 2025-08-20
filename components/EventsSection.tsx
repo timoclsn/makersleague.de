@@ -1,4 +1,5 @@
 import { Arrow, Calendar } from "components/icons";
+import { Route } from "next";
 import { eventIcon, getWebsiteEvents } from "lib/events";
 import { htmlToString } from "lib/text";
 import { formatDate } from "lib/utils";
@@ -10,7 +11,7 @@ export const EventsSection = async () => {
   const events = await getWebsiteEvents();
   const nextEvents = events.slice(0, 3);
   return (
-    <section id="next-events" className="bg-pink p-8 text-light">
+    <section id="next-events" className="bg-pink text-light p-8">
       <h2 className="mb-2 text-base font-bold lg:text-2xl">Nächste Events</h2>
       <p className="mb-10 text-base opacity-60 lg:text-2xl">
         Komm vorbei und treffe andere Macher:innen!
@@ -59,7 +60,7 @@ export const EventsSection = async () => {
                     color="light"
                     variant="outline"
                     size="small"
-                    href={event.url}
+                    href={event.url as Route}
                     target="_blank"
                     rel="noopener"
                   >
@@ -86,7 +87,7 @@ interface TagProps {
 
 const Tag = ({ children }: TagProps) => {
   return (
-    <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-2 py-1 font-bold text-pink">
+    <li className="bg-pink-light text-pink flex items-center justify-center gap-2 rounded-full px-2 py-1 font-bold">
       {children}
     </li>
   );

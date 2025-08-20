@@ -1,11 +1,9 @@
-import {
-    isHTTPAccessFallbackError
-} from "next/dist/client/components/http-access-fallback/http-access-fallback.js";
+import { isHTTPAccessFallbackError } from "next/dist/client/components/http-access-fallback/http-access-fallback.js";
 import { isRedirectError } from "next/dist/client/components/redirect-error.js";
-import { z } from 'zod';
-import { ActionError, DEFAULT_ERROR_MESSAGE } from '../errors';
-import { CreateClientOptions, MaybePromise, ServerAction } from '../types';
-import { id } from '../utils';
+import { z } from "zod";
+import { ActionError, DEFAULT_ERROR_MESSAGE } from "../errors";
+import { CreateClientOptions, MaybePromise, ServerAction } from "../types";
+import { id } from "../utils";
 
 export const createActionClient = <Context>(
   createClientOpts?: CreateClientOptions<Context>,
@@ -30,19 +28,21 @@ export const createActionClient = <Context>(
 
       try {
         // Validate input if schema is provided
-        let parsedInput = input;
+        let parsedInput: z.output<TInputSchema>;
         if (actionBuilderOpts.input) {
           const result = await actionBuilderOpts.input.safeParseAsync(input);
           if (!result.success) {
             return {
-              status: 'validationError',
+              status: "validationError",
               id: id(),
               data: null,
-              validationErrors: result.error.flatten().fieldErrors,
+              validationErrors: z.flattenError(result.error).fieldErrors,
               error: null,
             };
           }
           parsedInput = result.data;
+        } else {
+          parsedInput = input as z.output<TInputSchema>;
         }
 
         // Run middleware if provided and get context
@@ -55,7 +55,7 @@ export const createActionClient = <Context>(
         });
 
         return {
-          status: 'success',
+          status: "success",
           id: id(),
           data: response ?? null,
           validationErrors: null,
@@ -75,7 +75,7 @@ export const createActionClient = <Context>(
           error instanceof ActionError ? error.message : DEFAULT_ERROR_MESSAGE;
 
         return {
-          status: 'error',
+          status: "error",
           id: id(),
           data: null,
           validationErrors: null,
