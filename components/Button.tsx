@@ -1,5 +1,6 @@
 import { VariantProps, cva } from "cva";
 import Link from "next/link";
+import { Route } from "next";
 import { Children, ReactNode, RefObject } from "react";
 import { colorMap } from "./utils";
 
@@ -160,7 +161,7 @@ type ConditionalProps =
     }
   | {
       type?: never;
-      href?: string;
+      href?: Route;
       target?: "_blank";
       rel?: "noopener noreferrer" | "noopener";
       onClick?: () => void;
@@ -180,19 +181,23 @@ export const Button = ({
   href,
   ...props
 }: ButtonProps) => {
-  const Element = href ? Link : "button";
+  const buttonClassName = button({ variant, color, size, class: className });
+
+  if (href) {
+    return (
+      <Link ref={ref} className={buttonClassName} href={href} {...props}>
+        {Children.map(children, (child, index) => (
+          <span key={index}>{child}</span>
+        ))}
+      </Link>
+    );
+  }
 
   return (
-    <Element
-      type={Element === "button" ? type : undefined}
-      ref={ref}
-      className={button({ variant, color, size, class: className })}
-      href={href ?? {}}
-      {...props}
-    >
+    <button type={type} ref={ref} className={buttonClassName} {...props}>
       {Children.map(children, (child, index) => (
         <span key={index}>{child}</span>
       ))}
-    </Element>
+    </button>
   );
 };
