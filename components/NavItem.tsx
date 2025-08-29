@@ -2,6 +2,7 @@
 
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import { Route } from "next";
 import { usePathname } from "next/navigation";
 import { Icon } from "./icons";
 import { colorMap } from "./utils";
@@ -11,7 +12,7 @@ interface NavItemProps {
   subtitle?: string;
   color?: keyof typeof colorMap;
   Icon: Icon | LucideIcon;
-  href: string;
+  href: Route;
   onclick?: () => void;
 }
 
@@ -34,7 +35,7 @@ export const NavItem = ({
           <div className="lg:writing-vertical flex flex-col group-hover:opacity-80">
             <p
               className={`text-2lg font-bold${
-                pathname?.includes(href) && " underline"
+                pathname?.includes(href) && "underline"
               }`}
             >
               {title}

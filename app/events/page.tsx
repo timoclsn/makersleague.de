@@ -6,6 +6,7 @@ import { PageContent } from "components/layouts/PageContent";
 import { StructuredData } from "components/StructuredData";
 import { Track } from "components/Track";
 import { formatISO } from "date-fns";
+import { Route } from "next";
 import { eventIcon, getWebsiteEvents, makersInn } from "lib/events";
 import { formatDate } from "lib/utils";
 import { CalendarX } from "lucide-react";
@@ -137,7 +138,7 @@ const EventsPage = async () => {
                           color="pink"
                           variant="outline"
                           size="small"
-                          href={event.url}
+                          href={event.url as Route}
                           target="_blank"
                           rel="noopener"
                         >
@@ -172,7 +173,7 @@ interface TagProps {
 
 const Tag = ({ children }: TagProps) => {
   return (
-    <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
+    <li className="bg-pink-light text-pink flex items-center justify-center gap-2 rounded-full px-3 py-1 font-bold">
       {children}
     </li>
   );

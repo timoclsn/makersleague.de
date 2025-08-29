@@ -5,6 +5,7 @@ import { Button } from "components/Button";
 import { TouchTarget } from "components/TouchTarget";
 import { track } from "lib/tracking";
 import { Calendar, X } from "lucide-react";
+import { Route } from "next";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -41,13 +42,13 @@ export const NextEventClient = ({ id, name, date, url }: Props) => {
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange} modal={false}>
       <Dialog.Portal>
         <Dialog.Content
-          className="fixed bottom-0 left-0 right-0 m-4 bg-pink p-4 text-sm text-pink-light duration-200 ease-out animate-in fade-in-50 zoom-in-95 slide-in-from-bottom-1/2 sm:right-auto sm:w-auto sm:min-w-[500px] sm:text-base sm:slide-in-from-bottom-0 sm:slide-in-from-left-1/2"
+          className="bg-pink text-pink-light animate-in fade-in-50 zoom-in-95 slide-in-from-bottom-1/2 sm:slide-in-from-bottom-0 sm:slide-in-from-left-1/2 fixed right-0 bottom-0 left-0 m-4 p-4 text-sm duration-200 ease-out sm:right-auto sm:w-auto sm:min-w-[500px] sm:text-base"
           onPointerDownOutside={(e) => e.preventDefault()}
           onInteractOutside={(e) => e.preventDefault()}
           onEscapeKeyDown={(e) => e.preventDefault()}
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
-          <Dialog.Title className="mb-2 font-bold text-light">
+          <Dialog.Title className="text-light mb-2 font-bold">
             Nächstes Event
           </Dialog.Title>
           <Dialog.Description className="mb-2 sm:mb-4">
@@ -68,7 +69,7 @@ export const NextEventClient = ({ id, name, date, url }: Props) => {
             <Button
               color="light"
               size="small"
-              href={url}
+              href={url as Route}
               target="_blank"
               rel="noopener"
               onClick={() => {
@@ -79,7 +80,7 @@ export const NextEventClient = ({ id, name, date, url }: Props) => {
               Komm vorbei
             </Button>
           </div>
-          <Dialog.Close className="absolute right-0 top-0 m-2 p-2 text-pink-light">
+          <Dialog.Close className="text-pink-light absolute top-0 right-0 m-2 p-2">
             <TouchTarget>
               <X size={18} />
             </TouchTarget>

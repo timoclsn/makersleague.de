@@ -1,4 +1,5 @@
 import { Arrow, Book, Calendar } from "components/icons";
+import { Route } from "next";
 import { getAllBlogPosts } from "lib/content";
 import { ReactNode } from "react";
 import { Button } from "./Button";
@@ -13,7 +14,7 @@ export const BlogSection = async () => {
     )
     .slice(0, 3);
   return (
-    <section id="blog" className="bg-sand p-8 text-dark">
+    <section id="blog" className="bg-sand text-dark p-8">
       <h2 className="mb-2 text-base font-bold lg:text-2xl">Einblicke</h2>
       <p className="mb-10 text-base opacity-60 lg:text-2xl">
         Geschichten rund um die Makers League
@@ -45,7 +46,7 @@ export const BlogSection = async () => {
                   color="dark"
                   variant="outline"
                   size="small"
-                  href={`/einblicke/${blogPost.name}`}
+                  href={`/einblicke/${blogPost.name}` as Route}
                 >
                   <Arrow className="text-2xl" />
                   Weiterlesen
@@ -69,7 +70,7 @@ interface TagProps {
 
 const Tag = ({ children }: TagProps) => {
   return (
-    <li className="flex items-center justify-center gap-2 rounded-full bg-dark px-2 py-1 font-bold text-light">
+    <li className="bg-dark text-light flex items-center justify-center gap-2 rounded-full px-2 py-1 font-bold">
       {children}
     </li>
   );
