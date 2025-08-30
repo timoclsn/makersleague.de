@@ -41,7 +41,6 @@ export const track = <TEventKey extends keyof TrackingEvents>(
 ) => {
   const [event, data] = args;
   if (NEXT_PUBLIC_VERCEL_ENV === "production") {
-    splitbee.track(event, data);
     posthog.capture(event, data);
   }
   if (NODE_ENV === "development") {

@@ -4,7 +4,6 @@ import { NextEvent } from "components/NextEvent/NextEvent";
 import { PostHogProvider } from "components/PostHogProvider";
 import { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
-import Script from "next/script";
 import { ReactNode } from "react";
 import "../lib/env";
 import "../styles/globals.css";
@@ -64,7 +63,6 @@ const RootLayout = ({ children }: Props) => {
           </div>
           <Footer />
           <NextEvent />
-          <Script data-no-cookie data-api="/_hive" src="/bee.js" />
         </PostHogProvider>
       </body>
     </html>
