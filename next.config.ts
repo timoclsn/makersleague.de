@@ -30,6 +30,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  outputFileTracingExcludes: {
+    "*": [".pnpm-store/**/*"],
+  },
   async rewrites() {
     return [
       // PostHog rewrites
