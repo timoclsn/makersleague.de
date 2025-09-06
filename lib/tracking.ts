@@ -45,10 +45,7 @@ export const track = <TEventKey extends keyof TrackingEvents>(
   }
 
   if (NEXT_PUBLIC_VERCEL_ENV !== "production") return;
-
-  // @ts-expect-error - stonks is loaded from external script
   if (typeof window === "undefined" || !window.stonks) return;
 
-  // @ts-expect-error - stonks is loaded from external script
   window.stonks.event(event, data);
 };
