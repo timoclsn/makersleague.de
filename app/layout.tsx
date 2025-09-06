@@ -1,9 +1,9 @@
 import { Footer } from "components/Footer";
 import { Navigation } from "components/Navigation";
 import { NextEvent } from "components/NextEvent/NextEvent";
-import { PostHogProvider } from "components/PostHogProvider";
 import { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import { ReactNode } from "react";
 import "../lib/env";
 import "../styles/globals.css";
@@ -55,15 +55,14 @@ interface Props {
 const RootLayout = ({ children }: Props) => {
   return (
     <html lang="de" className={`min-h-screen ${fontSans.variable}`}>
-      <body className="flex min-h-screen flex-col text-base text-dark">
-        <PostHogProvider>
-          <div className="flex flex-1 flex-row">
-            <Navigation />
-            {children}
-          </div>
-          <Footer />
-          <NextEvent />
-        </PostHogProvider>
+      <body className="text-dark flex min-h-screen flex-col text-base">
+        <div className="flex flex-1 flex-row">
+          <Navigation />
+          {children}
+        </div>
+        <Footer />
+        <NextEvent />
+        <Script src="/ods/script" data-url="/ods/events" />
       </body>
     </html>
   );
