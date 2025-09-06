@@ -35,18 +35,13 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
-      // PostHog rewrites
       {
-        source: "/ingest/static/:path*",
-        destination: "https://eu-assets.i.posthog.com/static/:path*",
+        source: "/ods/script",
+        destination: "https://assets.onedollarstats.com/stonks.js",
       },
       {
-        source: "/ingest/:path*",
-        destination: "https://eu.i.posthog.com/:path*",
-      },
-      {
-        source: "/ingest/decide",
-        destination: "https://eu.i.posthog.com/decide",
+        source: "/ods/events",
+        destination: "https://collector.onedollarstats.com/events",
       },
     ];
   },
@@ -134,8 +129,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // This is required to support PostHog trailing slash API requests
-  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;

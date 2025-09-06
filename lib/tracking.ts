@@ -1,5 +1,3 @@
-import posthog from "posthog-js";
-
 const NEXT_PUBLIC_VERCEL_ENV = process.env.NEXT_PUBLIC_VERCEL_ENV;
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -40,13 +38,14 @@ export const track = <TEventKey extends keyof TrackingEvents>(
     : [event: TEventKey, data: TrackingEvents[TEventKey]]
 ) => {
   const [event, data] = args;
-  if (NEXT_PUBLIC_VERCEL_ENV === "production") {
-    posthog.capture(event, data);
-  }
+
   if (NODE_ENV === "development") {
-    console.info("Tracking event:", {
-      event,
-      data,
-    });
+    console.info("Tracking event:", { event, data });
+    return;
   }
+
+  if (NEXT_PUBLIC_VERCEL_ENV !== "production") return;
+  if (typeof window === "undefined" || !window.stonks) return;
+
+  window.stonks.event(event, data);
 };
