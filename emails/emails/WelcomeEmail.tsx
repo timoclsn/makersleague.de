@@ -96,18 +96,12 @@ export const WelcomeEmail = ({ firstName, nextStammtisch }: Props) => {
         <Text>
           Möchtest du das Makers Inn nutzen? Dann kontaktiere Daniela Gorka
           unter{" "}
-          <Link href="mailto:daniela@makersleague.de">
-            daniela@makersleague.de
-          </Link>
+          <Link href="mailto:hello@makersleague.de">hello@makersleague.de</Link>
           , um einen Termin für deine persönliche Einweisung vor Ort zu
           vereinbaren (Zeitbedarf ca. eine Stunde). Anschließend erhältst du
           Zugang zu unserem Smart Lock und kannst täglich von 8 bis 20 Uhr im
           Makers Inn an deiner Idee arbeiten.
         </Text>
-
-        {nextStammtisch && (
-          <NextStammtisch date={nextStammtisch.date} url={nextStammtisch.url} />
-        )}
       </Section>
 
       <Section>
@@ -148,7 +142,7 @@ export const WelcomeEmail = ({ firstName, nextStammtisch }: Props) => {
           und lade ein Profilbild hoch. Du findest den entsprechenden Reiter im
           Menü. Schicke zusätzlich ein möglichst hochauflösendes Portraitbild
           (Betreff Steckbrief) per Mail an{" "}
-          <Link href="mailto:daniela@makersleague.de">Lela</Link>. Dadurch wirst
+          <Link href="mailto:hello@makersleague.de">uns</Link>. Dadurch wirst
           auch du bald Teil unserer Macher*innen Galerie im Makers Inn und auf
           unserer Website.
         </Text>

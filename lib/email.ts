@@ -54,7 +54,7 @@ export const sendWelcomeEmail = async ({
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
     to: [email],
-    bcc: ["goebeltimo@gmail.com", "daniela@makersleague.de"],
+    bcc: ["goebeltimo@gmail.com", "hello@makersleague.de"],
     subject: "Herzlich Willkommen in der Makers League",
     react: WelcomeEmail({
       firstName: name,
@@ -77,7 +77,7 @@ export const sendFollowUpEmail = async ({
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
     to: [email],
-    bcc: ["goebeltimo@gmail.com", "daniela@makersleague.de"],
+    bcc: ["goebeltimo@gmail.com", "hello@makersleague.de"],
     subject: "Dein Start bei der Makers League",
     react: FollowUpEmail({
       firstName: name,
@@ -100,7 +100,7 @@ const getFollowUpEmail = async ({
   return {
     from: DEFAULT_FROM,
     to: [email],
-    bcc: ["goebeltimo@gmail.com", "daniela@makersleague.de"],
+    bcc: ["goebeltimo@gmail.com", "hello@makersleague.de"],
     subject: "Dein Start bei der Makers League",
     react: FollowUpEmail({
       firstName: name,
