@@ -24,7 +24,7 @@ export const Footer = ({ greeting }: Props) => {
         {greeting}
         <br />
         <br />
-        <Bold>Till, Nina, Patrick, Uta und Norman</Bold>
+        <Bold>Till, Nina, Patrick, Uta und Eric</Bold>
         <br />
         <Italic>Dein Makers League Vorstand</Italic>
       </Text>

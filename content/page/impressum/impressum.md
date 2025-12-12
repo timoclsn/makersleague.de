@@ -40,8 +40,8 @@ patrick@makersleague.de
 Uta Hertel-Vogt  
 uta@makersleague.de
 
-Norman Knapp  
-norman@makersleague.de
+Eric Groz
+eric@makersleague.de
 
 ### Registergericht
 
