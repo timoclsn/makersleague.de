@@ -40,7 +40,7 @@ patrick@makersleague.de
 Uta Hertel-Vogt  
 uta@makersleague.de
 
-Eric Groz
+Eric Groz  
 eric@makersleague.de
 
 ### Registergericht
