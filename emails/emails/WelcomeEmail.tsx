@@ -5,19 +5,21 @@ import { Email } from "../components/Email";
 import { Heading } from "../components/Heading";
 import { Italic } from "../components/Italic";
 import { Link } from "../components/Link";
-import { NextStammtisch } from "../components/NextStammtisch";
+import { NextEvent } from "../components/NextEvent";
 import { Section } from "../components/Section";
 import { Text } from "../components/Text";
 
 interface Props {
   firstName: string;
-  nextStammtisch?: {
+  nextEvent?: {
+    name: string;
     date: string;
+    location: string | null;
     url: string;
   };
 }
 
-export const WelcomeEmail = ({ firstName, nextStammtisch }: Props) => {
+export const WelcomeEmail = ({ firstName, nextEvent }: Props) => {
   return (
     <Email
       preview="Willkommen in der Makers League! Entdecke unsere Werte und trete der Community bei."
@@ -86,8 +88,13 @@ export const WelcomeEmail = ({ firstName, nextStammtisch }: Props) => {
           anmelden.
         </Text>
 
-        {nextStammtisch && (
-          <NextStammtisch date={nextStammtisch.date} url={nextStammtisch.url} />
+        {nextEvent && (
+          <NextEvent
+            name={nextEvent.name}
+            date={nextEvent.date}
+            location={nextEvent.location}
+            url={nextEvent.url}
+          />
         )}
       </Section>
 
@@ -167,8 +174,10 @@ export default WelcomeEmail;
 
 WelcomeEmail.PreviewProps = {
   firstName: "Timo",
-  nextStammtisch: {
+  nextEvent: {
+    name: "Stammtisch",
     date: "13.08.",
+    location: "Makers Inn",
     url: "https://makersleague.de",
   },
 } as Props;

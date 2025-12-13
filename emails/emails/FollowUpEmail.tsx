@@ -3,19 +3,21 @@ import { Email } from "../components/Email";
 import { Heading } from "../components/Heading";
 import { Italic } from "../components/Italic";
 import { Link } from "../components/Link";
-import { NextStammtisch } from "../components/NextStammtisch";
+import { NextEvent } from "../components/NextEvent";
 import { Section } from "../components/Section";
 import { Text } from "../components/Text";
 
 interface Props {
   firstName: string;
-  nextStammtisch?: {
+  nextEvent?: {
+    name: string;
     date: string;
+    location: string | null;
     url: string;
   };
 }
 
-export const FollowUpEmail = ({ firstName, nextStammtisch }: Props) => {
+export const FollowUpEmail = ({ firstName, nextEvent }: Props) => {
   return (
     <Email
       preview="Willkommen bei der Makers League! Teile dein Wissen und werde aktiv in der Community."
@@ -86,8 +88,13 @@ export const FollowUpEmail = ({ firstName, nextStammtisch }: Props) => {
           gerne zum nächsten Stammtisch mit! Je mehr Macher*innen, desto mehr
           Superkräfte und tolle Projekte in Esslingen!
         </Text>
-        {nextStammtisch && (
-          <NextStammtisch date={nextStammtisch.date} url={nextStammtisch.url} />
+        {nextEvent && (
+          <NextEvent
+            name={nextEvent.name}
+            date={nextEvent.date}
+            location={nextEvent.location}
+            url={nextEvent.url}
+          />
         )}
       </Section>
     </Email>
@@ -98,8 +105,10 @@ export default FollowUpEmail;
 
 FollowUpEmail.PreviewProps = {
   firstName: "Timo",
-  nextStammtisch: {
+  nextEvent: {
+    name: "Stammtisch",
     date: "13.08.",
+    location: "Makers Inn",
     url: "https://makersleague.de",
   },
 } as Props;
