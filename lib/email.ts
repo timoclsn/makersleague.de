@@ -12,15 +12,17 @@ const resend = new Resend(RESEND_API_KEY);
 
 const DEFAULT_FROM = "Nina von der Makers League <nina@makersleague.de>";
 
-const getStammtischData = (event: WebsiteEvent) => {
+const getEventData = (event: WebsiteEvent) => {
   if (!event.start || !event.url) return;
 
   const startDate =
     typeof event.start === "string" ? parseISO(event.start) : event.start;
-  const formatedDate = formatDate(startDate, "dd.MM.");
+  const formattedDate = formatDate(startDate, "dd.MM.");
 
   return {
-    date: formatedDate,
+    name: event.name,
+    date: formattedDate,
+    location: event.location,
     url: event.url,
   };
 };
@@ -49,7 +51,7 @@ export const sendWelcomeEmail = async ({
   name: string;
   email: string;
 }) => {
-  const event = await getNextEvent("stammtisch");
+  const event = await getNextEvent();
 
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
@@ -58,7 +60,7 @@ export const sendWelcomeEmail = async ({
     subject: "Herzlich Willkommen in der Makers League",
     react: WelcomeEmail({
       firstName: name,
-      nextStammtisch: event ? getStammtischData(event) : undefined,
+      nextEvent: event ? getEventData(event) : undefined,
     }),
   });
 
@@ -72,7 +74,7 @@ export const sendFollowUpEmail = async ({
   name: string;
   email: string;
 }) => {
-  const event = await getNextEvent("stammtisch");
+  const event = await getNextEvent();
 
   const { error } = await resend.emails.send({
     from: DEFAULT_FROM,
@@ -81,7 +83,7 @@ export const sendFollowUpEmail = async ({
     subject: "Dein Start bei der Makers League",
     react: FollowUpEmail({
       firstName: name,
-      nextStammtisch: event ? getStammtischData(event) : undefined,
+      nextEvent: event ? getEventData(event) : undefined,
     }),
   });
 
@@ -95,7 +97,7 @@ const getFollowUpEmail = async ({
   name: string;
   email: string;
 }) => {
-  const event = await getNextEvent("stammtisch");
+  const event = await getNextEvent();
 
   return {
     from: DEFAULT_FROM,
@@ -104,7 +106,7 @@ const getFollowUpEmail = async ({
     subject: "Dein Start bei der Makers League",
     react: FollowUpEmail({
       firstName: name,
-      nextStammtisch: event ? getStammtischData(event) : undefined,
+      nextEvent: event ? getEventData(event) : undefined,
     }),
   };
 };
