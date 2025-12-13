@@ -13,22 +13,18 @@ import {
 } from "@/ui/select";
 import { useToast } from "@/ui/use-toast";
 import { Loader2, Mail } from "lucide-react";
-import { useState } from "react";
 
 interface Props {
   members: Array<Member>;
 }
 
 export const EmailCardForm = ({ members }: Props) => {
-  const [currentEmailType, setCurrentEmailType] = useState<
-    "welcome" | "followUp"
-  >("welcome");
   const { toast } = useToast();
   const { runAction, isRunning } = useAction(sendEmail, {
     onSuccess: (data) => {
       if (!data) return;
-      const { email } = data;
-      const typeText = currentEmailType === "welcome" ? "Welcome" : "Follow-Up";
+      const { email, emailType } = data;
+      const typeText = emailType === "welcome" ? "Welcome" : "Follow-Up";
 
       toast({
         variant: "default",
@@ -53,9 +49,17 @@ export const EmailCardForm = ({ members }: Props) => {
         const id = Number(formData.get("member"));
         const emailType = formData.get("emailType") as "welcome" | "followUp";
         const member = members.find((member) => member.id === id);
-        if (!member) return;
 
-        setCurrentEmailType(emailType);
+        if (!member) {
+          toast({
+            variant: "destructive",
+            title: "Fehler!",
+            description: "Ausgewähltes Mitglied nicht gefunden.",
+          });
+
+          return;
+        }
+
         runAction({
           email: member.emailOrUserName,
           name: member.contactDetails.firstName,
@@ -63,14 +67,7 @@ export const EmailCardForm = ({ members }: Props) => {
         });
       }}
     >
-      <Select
-        name="emailType"
-        required
-        defaultValue="welcome"
-        onValueChange={(value) =>
-          setCurrentEmailType(value as "welcome" | "followUp")
-        }
-      >
+      <Select name="emailType" required defaultValue="welcome">
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="E-Mail Typ" />
         </SelectTrigger>
@@ -101,9 +98,7 @@ export const EmailCardForm = ({ members }: Props) => {
         ) : (
           <Mail className="size-4" />
         )}
-        {currentEmailType === "welcome"
-          ? "Welcome E-Mail senden"
-          : "Follow-Up E-Mail senden"}
+        E-Mail senden
       </Button>
     </form>
   );

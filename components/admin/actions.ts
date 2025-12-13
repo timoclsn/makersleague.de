@@ -44,6 +44,6 @@ export const sendEmail = createAction({
       });
     }
 
-    return { email };
+    return { email, emailType };
   },
 });
