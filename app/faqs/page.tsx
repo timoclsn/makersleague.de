@@ -1,5 +1,5 @@
 import { PageLayout } from "@/components/layouts/PageLayout";
-import { ContactSection } from "components/ContactSection";
+import { ContactSectionClub } from "components/ContactSectionClub";
 import { Faqs } from "components/Faqs";
 import { PageContent } from "components/layouts/PageContent";
 import { getAllFaqs } from "lib/content";
@@ -22,11 +22,7 @@ const FaqPage = async () => {
           </p>
           <Faqs faqs={faqs} />
         </section>
-        <ContactSection
-          name="Nina Kuch"
-          email="nina@makersleague.de"
-          subtitle="2. Vorstandsvorsitzende"
-        />
+        <ContactSectionClub />
       </PageContent>
     </PageLayout>
   );

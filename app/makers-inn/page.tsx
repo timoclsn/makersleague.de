@@ -1,4 +1,4 @@
-import { ContactSection } from "@/components/ContactSection";
+import { ContactSectionCity } from "@/components/ContactSectionCity";
 import { FaqsSection } from "@/components/FaqsSection";
 import { Header } from "@/components/Header";
 import { Logo } from "@/components/icons/Logo";
@@ -33,12 +33,12 @@ const MakersInnPage = async () => {
           fill
           className="object-cover"
         />
-        <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center px-2">
+        <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center px-2">
           <div className="flex flex-col items-center gap-2 text-center">
-            <h1 className="bg-white px-2 text-3xl font-bold text-dark sm:text-4xl lg:text-5xl xl:text-6xl">
+            <h1 className="text-dark bg-white px-2 text-3xl font-bold sm:text-4xl lg:text-5xl xl:text-6xl">
               Das Makers Inn
             </h1>
-            <h2 className="bg-white px-2 text-lg font-bold text-dark sm:text-xl lg:text-2xl xl:text-3xl">
+            <h2 className="text-dark bg-white px-2 text-lg font-bold sm:text-xl lg:text-2xl xl:text-3xl">
               Die Zentrale Anlaufstelle für Menschen mit Ideen in Esslingen
             </h2>
             <div className="bg-white px-2">
@@ -47,7 +47,7 @@ const MakersInnPage = async () => {
             </div>
           </div>
         </div>
-        <div className="absolute left-0 top-0 w-full p-4 md:p-10">
+        <div className="absolute top-0 left-0 w-full p-4 md:p-10">
           <Header variant="light" />
         </div>
       </section>
@@ -65,7 +65,7 @@ const MakersInnPage = async () => {
                 steht, die mit ihrem Angebot zur Gründungs- oder
                 Innovationsförderung beitragen.
               </p>
-              <div className="relative flex flex-none flex-col overflow-hidden bg-blue p-6 pb-20">
+              <div className="bg-blue relative flex flex-none flex-col overflow-hidden p-6 pb-20">
                 <h2 className="mb-4 text-2xl font-bold">Was passiert hier?</h2>
                 <ul className="list-inside list-disc">
                   <li>Austausch & Workshops</li>
@@ -75,7 +75,7 @@ const MakersInnPage = async () => {
                   <li>Treffpunkt für Macher:innen</li>
                   <li>Ideen werden sichtbar gemacht</li>
                 </ul>
-                <div className="absolute bottom-0 right-0 -mb-10 -mr-6 w-[150px]">
+                <div className="absolute right-0 bottom-0 -mr-6 -mb-10 w-[150px]">
                   <Image
                     src="/assets/doodle-loving-blue.svg"
                     alt="Doodle Loving"
@@ -90,7 +90,7 @@ const MakersInnPage = async () => {
             <h1 className="mb-6 text-xl font-bold md:text-5xl">Galerie</h1>
             <Gallery />
           </section>
-          <section id="initiatives" className="relative bg-blue p-8">
+          <section id="initiatives" className="bg-blue relative p-8">
             <h2 className="mb-2 text-base font-bold md:text-2xl">
               Für wen ist es?
             </h2>
@@ -123,8 +123,8 @@ const MakersInnPage = async () => {
                 >
                   <h4 className="mb-4 text-center font-bold">ML Events</h4>
                   <div className="flex flex-col items-center gap-4">
-                    <Logo className="h-16 w-16 text-pink" />
-                    <p className="flex items-center gap-2 text-sm font-medium text-dark">
+                    <Logo className="text-pink h-16 w-16" />
+                    <p className="text-dark flex items-center gap-2 text-sm font-medium">
                       <Calendar className="h-4 w-4" />
                       Zum Eventkalender
                     </p>
@@ -142,7 +142,7 @@ const MakersInnPage = async () => {
                       alt="Linux Cafe Logo"
                       className="h-16 w-auto object-contain"
                     />
-                    <p className="flex items-center gap-2 text-sm font-medium text-dark">
+                    <p className="text-dark flex items-center gap-2 text-sm font-medium">
                       <Terminal className="h-4 w-4" />
                       Zur Website
                     </p>
@@ -163,7 +163,7 @@ const MakersInnPage = async () => {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-blue-accent" />
+                  <MapPin className="text-blue-accent h-5 w-5" />
                   <h3 className="font-bold">Mitten in der Stadt</h3>
                 </div>
                 <p className="opacity-80">
@@ -174,7 +174,7 @@ const MakersInnPage = async () => {
 
               <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
-                  <Users className="h-5 w-5 text-blue-accent" />
+                  <Users className="text-blue-accent h-5 w-5" />
                   <h3 className="font-bold">280qm Open Space</h3>
                 </div>
                 <p className="opacity-80">
@@ -185,7 +185,7 @@ const MakersInnPage = async () => {
 
               <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
-                  <Calendar className="h-5 w-5 text-blue-accent" />
+                  <Calendar className="text-blue-accent h-5 w-5" />
                   <h3 className="font-bold">Macher:innen Schaufenster</h3>
                 </div>
                 <p className="opacity-80">
@@ -196,7 +196,7 @@ const MakersInnPage = async () => {
 
               <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
-                  <Layout className="h-5 w-5 text-blue-accent" />
+                  <Layout className="text-blue-accent h-5 w-5" />
                   <h3 className="font-bold">Modulare Arbeitsinseln</h3>
                 </div>
                 <p className="opacity-80">
@@ -207,7 +207,7 @@ const MakersInnPage = async () => {
 
               <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
-                  <Focus className="h-5 w-5 text-blue-accent" />
+                  <Focus className="text-blue-accent h-5 w-5" />
                   <h3 className="font-bold">Fokuszone</h3>
                 </div>
                 <p className="opacity-80">
@@ -218,7 +218,7 @@ const MakersInnPage = async () => {
 
               <div className="border border-gray-200 p-6">
                 <div className="mb-4 flex items-center gap-2">
-                  <Phone className="h-5 w-5 text-blue-accent" />
+                  <Phone className="text-blue-accent h-5 w-5" />
                   <h3 className="font-bold">Telefonbox</h3>
                 </div>
                 <p className="opacity-80">
@@ -239,7 +239,7 @@ const MakersInnPage = async () => {
               <div className="flex justify-end">
                 <address className="text-lg not-italic">
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-blue-accent" />
+                    <MapPin className="text-blue-accent h-5 w-5" />
                     <div>
                       <p>Küferstr. 46</p>
                       <p>73728 Esslingen</p>
@@ -250,11 +250,7 @@ const MakersInnPage = async () => {
             </div>
           </section>
 
-          <ContactSection
-            name="Daniela Gorka"
-            email="daniela.gorka@esslingen.de"
-            subtitle="Innovationsmanagerin Stadt Esslingen"
-          />
+          <ContactSectionCity />
           <FaqsSection faqs={faqs} />
         </PageContent>
       </div>

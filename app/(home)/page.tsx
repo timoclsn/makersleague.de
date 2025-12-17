@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/layouts/PageLayout";
 import { getFaqsByTags } from "@/lib/content";
 import { ApplySection } from "components/ApplySection";
 import { BlogSection } from "components/BlogSection";
-import { ContactSection } from "components/ContactSection";
+import { ContactSectionClub } from "components/ContactSectionClub";
 import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
@@ -26,7 +26,7 @@ const HomePage = async () => {
           <h1 className="mb-4 text-base opacity-80 md:text-2xl">
             Makers League e. V.
           </h1>
-          <h2 className="mb-4 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
+          <h2 className="mb-4 text-xl leading-tight font-bold md:text-5xl md:leading-tight">
             Die Gemeinschaft für Macher*innen in Esslingen.
           </h2>
           <p className="mb-14 text-lg leading-tight opacity-80 md:text-3xl md:leading-tight">
@@ -54,7 +54,7 @@ const HomePage = async () => {
               priority
             />
           </div>
-          <div className="absolute bottom-8 right-0 -mr-24 w-[260px] md:-mr-64 md:w-[600px]">
+          <div className="absolute right-0 bottom-8 -mr-24 w-[260px] md:-mr-64 md:w-[600px]">
             <Image
               src="/assets/doodle-coffee.svg"
               alt="Doodle Coffee"
@@ -89,7 +89,7 @@ const HomePage = async () => {
           <Image
             src={membersImg}
             alt="Makers League Mitglieder Gruppenbild"
-            className="border-4 border-dashed border-dark p-4"
+            className="border-dark border-4 border-dashed p-4"
           />
         </section>
         <MembersSection />
@@ -100,11 +100,7 @@ const HomePage = async () => {
         <FitSection />
         <TestimonialsSection />
         <ApplySection />
-        <ContactSection
-          name="Nina Kuch"
-          email="nina@makersleague.de"
-          subtitle="2. Vorstandsvorsitzende"
-        />
+        <ContactSectionClub />
         <InstagramSection />
         <BlogSection />
         <FaqsSection faqs={faqs} />
