@@ -2,7 +2,7 @@ import { BoardMembersSection } from "@/components/BoardMembersSection";
 import { PageLayout } from "@/components/layouts/PageLayout";
 import { getFaqsByTags } from "@/lib/content";
 import { ApplySection } from "components/ApplySection";
-import { ContactSection } from "components/ContactSection";
+import { ContactSectionClub } from "components/ContactSectionClub";
 import { FaqsSection } from "components/FaqsSection";
 import { FitSection } from "components/FitSection";
 import { PageContent } from "components/layouts/PageContent";
@@ -23,7 +23,7 @@ const BecomeMemberPage = async () => {
           <h1 className="mb-4 text-base opacity-80 md:text-2xl">
             Mitglied werden
           </h1>
-          <h2 className="mb-11 text-xl font-bold leading-tight md:text-5xl md:leading-tight">
+          <h2 className="mb-11 text-xl leading-tight font-bold md:text-5xl md:leading-tight">
             Du möchtest Teil unseres Macher*innen Netzwerks werden? Dann findest
             du hier alle wichtigen Infos!
           </h2>
@@ -32,11 +32,7 @@ const BecomeMemberPage = async () => {
         <FitSection />
         <ValuesSection />
         <FaqsSection faqs={faqs} />
-        <ContactSection
-          name="Nina Kuch"
-          email="nina@makersleague.de"
-          subtitle="2. Vorstandsvorsitzende"
-        />
+        <ContactSectionClub />
         <BoardMembersSection />
       </PageContent>
     </PageLayout>

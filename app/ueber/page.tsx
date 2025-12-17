@@ -3,7 +3,7 @@ import { MakersInnSection } from "@/components/MakersInnSection";
 import { PageLayout } from "@/components/layouts/PageLayout";
 import { getFaqsByTags } from "@/lib/content";
 import { BlogSection } from "components/BlogSection";
-import { ContactSection } from "components/ContactSection";
+import { ContactSectionClub } from "components/ContactSectionClub";
 import { EventsSection } from "components/EventsSection";
 import { FaqsSection } from "components/FaqsSection";
 import { InstagramSection } from "components/InstagramSection";
@@ -50,7 +50,7 @@ const UeberPage = async () => {
               Hilfsbereitschaft, Optimismus und Vertrauen, in uns, in euch und
               in die ganze Region.
             </p>
-            <div className="relative flex flex-col overflow-hidden bg-blue p-6">
+            <div className="bg-blue relative flex flex-col overflow-hidden p-6">
               <h2 className="mb-4 text-2xl font-bold">Unsere Werte</h2>
               <h3 className="mb-2 font-bold">
                 OMG – Offenheit, Machen & Gemeinschaft
@@ -64,13 +64,13 @@ const UeberPage = async () => {
               <div className="mt-20 flex flex-1 flex-col-reverse items-start">
                 <Link
                   href="#values"
-                  className="flex items-center justify-center gap-1 font-bold text-blue-accent hover:opacity-80"
+                  className="text-blue-accent flex items-center justify-center gap-1 font-bold hover:opacity-80"
                 >
                   <Arrow className="text-2xl" />
                   mehr
                 </Link>
               </div>
-              <div className="absolute bottom-0 right-0 -mb-10 -mr-6 w-[150px]">
+              <div className="absolute right-0 bottom-0 -mr-6 -mb-10 w-[150px]">
                 <Image
                   src="/assets/doodle-loving-blue.svg"
                   alt="Doodle Loving"
@@ -90,11 +90,7 @@ const UeberPage = async () => {
         <EventsSection />
         <TestimonialsSection />
         <FaqsSection faqs={faqs} />
-        <ContactSection
-          name="Nina Kuch"
-          email="nina@makersleague.de"
-          subtitle="2. Vorstandsvorsitzende"
-        />
+        <ContactSectionClub />
       </PageContent>
     </PageLayout>
   );

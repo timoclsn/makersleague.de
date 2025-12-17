@@ -101,9 +101,10 @@ export const WelcomeEmail = ({ firstName, nextEvent }: Props) => {
       <Section>
         <Heading as="h2">🏢 Makers Inn</Heading>
         <Text>
-          Möchtest du das Makers Inn nutzen? Dann kontaktiere Daniela Gorka
-          unter{" "}
-          <Link href="mailto:hello@makersleague.de">hello@makersleague.de</Link>
+          Möchtest du das Makers Inn nutzen? Dann kontaktiere Simon Kortus unter{" "}
+          <Link href="mailto:simon.kortus@esslingen.de ">
+            simon.kortus@esslingen.de
+          </Link>
           , um einen Termin für deine persönliche Einweisung vor Ort zu
           vereinbaren (Zeitbedarf ca. eine Stunde). Anschließend erhältst du
           Zugang zu unserem Smart Lock und kannst täglich von 8 bis 20 Uhr im
