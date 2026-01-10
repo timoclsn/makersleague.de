@@ -10,10 +10,10 @@ export const ApplySection = () => {
         So kannst du Mitglied in der Makers League werden
       </p>
       <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <li className="flex flex-col justify-between border-4 border-dark p-4 text-center text-dark sm:p-8">
+        <li className="border-dark text-dark flex flex-col justify-between border-4 p-4 text-center sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
-              <div className="flex items-center justify-center rounded-full bg-pink p-6 text-light">
+              <div className="bg-pink text-light flex items-center justify-center rounded-full p-6">
                 <Calendar size={56} />
               </div>
             </div>
@@ -21,7 +21,7 @@ export const ApplySection = () => {
               Schritt 1: Event
             </h3>
             <p className="mb-14">
-              Besuche ein Event oder Stammtisch im Makers Inn.
+              Besuche ein Event oder After Work im Makers Inn.
             </p>
           </div>
           <Button href="/events" color="pink">
@@ -29,10 +29,10 @@ export const ApplySection = () => {
             Events
           </Button>
         </li>
-        <li className="flex flex-col justify-between border-4 border-dark p-4 text-center text-dark sm:p-8">
+        <li className="border-dark text-dark flex flex-col justify-between border-4 p-4 text-center sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
-              <div className="flex items-center justify-center rounded-full bg-green p-6 text-light">
+              <div className="bg-green text-light flex items-center justify-center rounded-full p-6">
                 <FormInput size={56} />
               </div>
             </div>
@@ -45,10 +45,10 @@ export const ApplySection = () => {
           </div>
           <ApplyButton />
         </li>
-        <li className="flex flex-col justify-between border-4 border-dark p-4 text-center text-dark sm:p-8">
+        <li className="border-dark text-dark flex flex-col justify-between border-4 p-4 text-center sm:p-8">
           <div>
             <div className="mb-8 flex justify-center">
-              <div className="flex items-center justify-center rounded-full bg-blue p-6 text-dark">
+              <div className="bg-blue text-dark flex items-center justify-center rounded-full p-6">
                 <PartyPopper size={56} />
               </div>
             </div>

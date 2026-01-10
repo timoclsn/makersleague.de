@@ -58,9 +58,7 @@ const EventsPage = async () => {
       })}
       <PageContent>
         <section>
-          <h1 className="mb-8 text-xl font-bold md:text-5xl">
-            Stammtisch & Events
-          </h1>
+          <h1 className="mb-8 text-xl font-bold md:text-5xl">Events</h1>
           <div className="mb-24 flex flex-col gap-4 sm:flex-row">
             <Button
               color="pink"

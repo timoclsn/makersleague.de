@@ -6,7 +6,7 @@ import { NavItem } from "./NavItem";
 
 export const Navigation = () => {
   return (
-    <nav className="order-last hidden bg-dark lg:block">
+    <nav className="bg-dark order-last hidden lg:block">
       <ul className="sticky top-0 flex h-screen w-[160px] flex-wrap">
         <NavItem
           title="Über Uns"
@@ -14,12 +14,7 @@ export const Navigation = () => {
           color="blue"
           href="/ueber"
         />
-        <NavItem
-          title="Stammtisch & Events"
-          Icon={Calendar}
-          color="pink"
-          href="/events"
-        />
+        <NavItem title="Events" Icon={Calendar} color="pink" href="/events" />
         <NavItem
           title="Mitglied werden"
           Icon={HeartPlus}

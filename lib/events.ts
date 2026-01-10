@@ -7,6 +7,7 @@ import {
   Computer,
   GraduationCap,
   Lightbulb,
+  Utensils,
   Wrench,
 } from "lucide-react";
 import { z } from "zod";
@@ -16,12 +17,13 @@ import { customField, getEvents } from "./easyverein";
 const TIMEZONE = "Europe/Berlin";
 
 const eventIconMap = {
-  Masterclass: GraduationCap,
-  Stammtisch: Beer,
+  "Master Class": GraduationCap,
+  "After Work": Beer,
   Workshop: Wrench,
   "Office Day": Briefcase,
   Inspire: Lightbulb,
   Linux: Computer,
+  "Makers Lunch": Utensils,
 } as const;
 
 export type WebsiteEvent = z.output<typeof websiteEventSchema>;
