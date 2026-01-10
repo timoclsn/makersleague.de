@@ -85,7 +85,7 @@ export const FollowUpEmail = ({ firstName, nextEvent }: Props) => {
         <Text>
           Wir sind uns sicher in Esslingen gibt es noch ganz viele Macher*innen,
           die zu unserem Verein passen. Kennst du jemanden? Bringe sie oder ihn
-          gerne zum nächsten Stammtisch mit! Je mehr Macher*innen, desto mehr
+          gerne zum nächsten After Work mit! Je mehr Macher*innen, desto mehr
           Superkräfte und tolle Projekte in Esslingen!
         </Text>
         {nextEvent && (
@@ -106,7 +106,7 @@ export default FollowUpEmail;
 FollowUpEmail.PreviewProps = {
   firstName: "Timo",
   nextEvent: {
-    name: "Stammtisch",
+    name: "After Work",
     date: "13.08.",
     location: "Makers Inn",
     url: "https://makersleague.de",

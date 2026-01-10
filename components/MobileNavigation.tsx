@@ -40,9 +40,9 @@ export const MobileNavigation = () => {
         </TouchTarget>
       </button>
       {isOpen && (
-        <nav className="fixed left-0 top-0 z-10 h-dvh w-full bg-pink duration-150 ease-in-out animate-in fade-in-75 zoom-in-110 lg:hidden">
+        <nav className="bg-pink animate-in fade-in-75 zoom-in-110 fixed top-0 left-0 z-10 h-dvh w-full duration-150 ease-in-out lg:hidden">
           <button
-            className="absolute right-0 top-0 m-4 rounded-full bg-light p-2 text-pink hover:opacity-80"
+            className="bg-light text-pink absolute top-0 right-0 m-4 rounded-full p-2 hover:opacity-80"
             onClick={closeMenu}
             aria-label="Menü schließen"
           >
@@ -60,8 +60,8 @@ export const MobileNavigation = () => {
               onclick={closeMenu}
             />
             <NavItem
-              title="Stammtisch & Events"
-              subtitle="Termine und Anmeldung zum nächsten Stammtisch"
+              title="Events"
+              subtitle="Termine und Anmeldung zum nächsten After Work"
               Icon={Calendar}
               color="pink"
               href="/events"
