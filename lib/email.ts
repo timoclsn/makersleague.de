@@ -6,7 +6,7 @@ import { Member } from "./easyverein";
 import { getNextEvent, WebsiteEvent } from "./events";
 import { formatDate } from "./utils";
 
-const { RESEND_API_KEY } = process.env;
+const { RESEND_API_KEY, WHATSAPP_COMMUNITY_LINK } = process.env;
 
 const resend = new Resend(RESEND_API_KEY);
 
@@ -60,6 +60,7 @@ export const sendWelcomeEmail = async ({
     subject: "Herzlich Willkommen in der Makers League",
     react: WelcomeEmail({
       firstName: name,
+      whatsAppLink: WHATSAPP_COMMUNITY_LINK,
       nextEvent: event ? getEventData(event) : undefined,
     }),
   });

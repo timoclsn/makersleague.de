@@ -24,6 +24,9 @@ const envSchema = z.object({
   // Admin
   HTTP_BASIC_AUTH: envVarSchema,
 
+  // WhatsApp
+  WHATSAPP_COMMUNITY_LINK: envVarSchema,
+
   // Client
 
   // Vercel
