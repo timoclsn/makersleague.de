@@ -11,6 +11,7 @@ import { Text } from "../components/Text";
 
 interface Props {
   firstName: string;
+  whatsAppLink: string;
   nextEvent?: {
     name: string;
     date: string;
@@ -19,7 +20,7 @@ interface Props {
   };
 }
 
-export const WelcomeEmail = ({ firstName, nextEvent }: Props) => {
+export const WelcomeEmail = ({ firstName, whatsAppLink, nextEvent }: Props) => {
   return (
     <Email
       preview="Willkommen in der Makers League! Entdecke unsere Werte und trete der Community bei."
@@ -60,9 +61,7 @@ export const WelcomeEmail = ({ firstName, nextEvent }: Props) => {
         <Heading as="h2">📱 WhatsApp Community</Heading>
         <Text>
           Trete mit{" "}
-          <Link href="https://chat.whatsapp.com/HHrRl5Gl2nwJlKO6BIhYax">
-            diesem Link
-          </Link>{" "}
+          <Link href={whatsAppLink}>diesem Link</Link>{" "}
           unserer WhatsApp Community bei und bleibe immer auf dem Laufenden! Im
           Makers League Chat kannst du den anderen Mitgliedern Fragen stellen,
           Tipps teilen und sonstige News rund um unsere Community erfahren.
@@ -70,7 +69,7 @@ export const WelcomeEmail = ({ firstName, nextEvent }: Props) => {
           Community beitreten.
         </Text>
         <SectionPrimitive className="text-center">
-          <Button href="https://chat.whatsapp.com/HHrRl5Gl2nwJlKO6BIhYax">
+          <Button href={whatsAppLink}>
             Jetzt WhatsApp Community beitreten
           </Button>
         </SectionPrimitive>
@@ -175,6 +174,7 @@ export default WelcomeEmail;
 
 WelcomeEmail.PreviewProps = {
   firstName: "Timo",
+  whatsAppLink: "https://chat.whatsapp.com/example",
   nextEvent: {
     name: "After Work",
     date: "13.08.",
