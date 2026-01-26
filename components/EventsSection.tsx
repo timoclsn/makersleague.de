@@ -20,7 +20,7 @@ export const EventsSection = async () => {
       <ul className="mb-14 grid grid-cols-1 gap-16 lg:grid-cols-3 lg:gap-8">
         {nextEvents.map((event) => {
           const Icon = eventIcon(event.name);
-          const formattedDate = `${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`;
+          const formattedDate = `${formatDate(event.start, "dd. MMM yyyy | HH:mm")} Uhr`;
           return (
             <li key={event.id} className="flex flex-col justify-between">
               <div>

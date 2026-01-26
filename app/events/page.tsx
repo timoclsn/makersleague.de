@@ -78,7 +78,7 @@ const EventsPage = async () => {
               {events.map((event) => {
                 const Icon = eventIcon(event.name);
                 const isMakersInn = makersInn(event.location ?? "");
-                const formattedDate = `${formatDate(event.start, "dd. MMM yyyy | HH")} Uhr`;
+                const formattedDate = `${formatDate(event.start, "dd. MMM yyyy | HH:mm")} Uhr`;
                 return (
                   <article key={event.id}>
                     <div className="mb-2 flex items-center gap-3">
