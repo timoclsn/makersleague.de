@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const { EASYVEREIN_TOKEN } = process.env;
 
-const VERSION = "stable";
+const VERSION = "v1.7";
 const DOMAIN = "hexa.easyverein.com";
 const URL = `https://${DOMAIN}/api/${VERSION}`;
 
