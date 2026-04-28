@@ -14,6 +14,10 @@ const envSchema = z.object({
 
   // EasyVerein
   EASYVEREIN_TOKEN: envVarSchema,
+  EDGE_CONFIG: envVarSchema.optional(),
+  EDGE_CONFIG_ID: envVarSchema.optional(),
+  VERCEL_API_TOKEN: envVarSchema.optional(),
+  VERCEL_TEAM_ID: envVarSchema.optional(),
 
   // CRON
   CRON_SECRET: envVarSchema,

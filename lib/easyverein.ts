@@ -1,18 +1,30 @@
+import { get as getEdgeConfigValue } from "@vercel/edge-config";
 import { z } from "zod";
 
-const { EASYVEREIN_TOKEN } = process.env;
-
-const VERSION = "v1.7";
+const VERSION = "v2.0";
 const DOMAIN = "hexa.easyverein.com";
-const URL = `https://${DOMAIN}/api/${VERSION}`;
+export const API_URL = `https://${DOMAIN}/api/${VERSION}`;
+
+export const EDGE_CONFIG_TOKEN_KEY = "easyvereinToken";
 
 type Endpoint = "member" | "event";
 
-const headers = {
-  Authorization: `Bearer ${EASYVEREIN_TOKEN}`,
+export const getEasyvereinToken = async () => {
+  if (process.env.EDGE_CONFIG) {
+    const token = await getEdgeConfigValue(EDGE_CONFIG_TOKEN_KEY);
+    if (typeof token === "string" && token) return token;
+  }
+
+  if (process.env.EASYVEREIN_TOKEN) return process.env.EASYVEREIN_TOKEN;
+
+  throw new Error("Easyverein token not configured");
+};
+
+const buildHeaders = async () => ({
+  Authorization: `Bearer ${await getEasyvereinToken()}`,
   Accept: "application/json",
   "Content-Type": "application/json",
-};
+});
 
 interface GetOptions {
   id?: string;
@@ -36,7 +48,9 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
   if (options.start__gte) searchParams.set("start__gte", options.start__gte);
   const searchParamsString = searchParams.toString();
 
-  const fetchUrl = `${URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
+  const fetchUrl = `${API_URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
+
+  const headers = await buildHeaders();
 
   const res = await fetch(fetchUrl, {
     method: "GET",
@@ -93,7 +107,7 @@ const memberSchema = z.object({
     dateOfBirth: z.string().nullable(),
   }),
   emailOrUserName: z.string(),
-  customFields: z.array(customFieldSchema).nullable(),
+  customFields: z.array(customFieldSchema),
 });
 
 export const getMembers = async () => {
@@ -129,7 +143,7 @@ const eventSchema = z.object({
   locationName: z.string().nullable(),
   isPublic: z.boolean(),
   _deletedBy: z.string().nullable(),
-  customFields: z.array(customFieldSchema).nullable(),
+  customFields: z.array(customFieldSchema),
 });
 
 export const getEvents = async () => {
