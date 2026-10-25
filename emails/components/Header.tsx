@@ -1,4 +1,4 @@
-import { Img, Link } from "@react-email/components";
+import { Img, Link } from "react-email";
 import { getBaseUrl } from "../lib/utils";
 import { Section } from "./Section";
 

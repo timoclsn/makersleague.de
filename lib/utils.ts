@@ -28,6 +28,14 @@ export const wait = (ms: number) =>
 export const cn = cx;
 
 /**
+ * Shuffle an array in place.
+ * @param array - The array to shuffle.
+ * @returns The same array in random order.
+ */
+export const shuffle = <T>(array: Array<T>) =>
+  array.sort(() => Math.random() - 0.5);
+
+/**
  * Checks if a given date is today's birthday (comparing only month and day)
  * @param birthDate - The birth date to check
  * @param today - Optional reference date (defaults to current date)

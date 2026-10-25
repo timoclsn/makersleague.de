@@ -1,11 +1,12 @@
 import { Arrow } from "components/icons";
 import { getWebsiteMembers, getMembersCount } from "lib/members";
+import { shuffle } from "lib/utils";
 import { Button } from "./Button";
 import { Members } from "./Members";
 
 export const MembersSection = async () => {
   const allMembers = await getWebsiteMembers();
-  const members = allMembers.sort(() => Math.random() - 0.5).slice(0, 5);
+  const members = shuffle(allMembers).slice(0, 5);
   const membersCount = await getMembersCount();
 
   return (

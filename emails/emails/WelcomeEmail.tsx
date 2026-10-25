@@ -1,4 +1,4 @@
-import { Section as SectionPrimitive } from "@react-email/components";
+import { Section as SectionPrimitive } from "react-email";
 import { Bold } from "../components/Bold";
 import { Button } from "../components/Button";
 import { Email } from "../components/Email";

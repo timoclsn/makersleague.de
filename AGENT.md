@@ -13,6 +13,10 @@
 - Prefer `GLOBAL_CONFIG` over `EASYVEREIN_TOKEN`; never print or commit either
 - Never call the easyVerein `refresh-token` endpoint by hand: it rotates the production token
 
+## TypeScript
+- `tsc` is TypeScript 7 (`@typescript/native`), used by `pnpm typecheck`
+- The `typescript` package is aliased to `@typescript/typescript6`, because typescript-eslint and `next build` still need the TypeScript 6 API. Keep both until typescript-eslint supports TS 7
+
 ## Code Style
 - TypeScript with strict typing
 - React & Next.js App Router structure

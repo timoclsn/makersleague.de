@@ -22,11 +22,15 @@ export class ErrorBoundary extends Component<Props, State> {
     return { hasError: true };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  public componentDidCatch(
+    error: Error & { digest?: string },
+    errorInfo: ErrorInfo,
+  ) {
     console.error("Caught error:", error, errorInfo);
     track("Caught error", {
       componentStack: errorInfo.componentStack ?? "",
-      digest: errorInfo.digest ?? "",
+      // Server errors carry their digest on the error, not on errorInfo
+      digest: error.digest ?? "",
     });
   }
 

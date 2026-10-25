@@ -1,4 +1,4 @@
-import { Section as SectionPrimitive } from "@react-email/components";
+import { Section as SectionPrimitive } from "react-email";
 import { cx } from "cva";
 import { ReactNode } from "react";
 

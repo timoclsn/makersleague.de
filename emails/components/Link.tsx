@@ -1,4 +1,4 @@
-import { Link as LinkPrimitive } from "@react-email/components";
+import { Link as LinkPrimitive } from "react-email";
 import { ReactNode } from "react";
 
 interface Props {

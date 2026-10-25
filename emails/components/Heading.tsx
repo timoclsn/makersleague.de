@@ -1,7 +1,7 @@
 import {
   Heading as HeadingPrimitive,
   HeadingProps,
-} from "@react-email/components";
+} from "react-email";
 import { VariantProps, cva } from "cva";
 import { ReactNode } from "react";
 

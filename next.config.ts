@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    reactCompiler: true,
-  },
+  reactCompiler: true,
   reactStrictMode: true,
   typedRoutes: true,
   basePath: "",
   images: {
     minimumCacheTTL: 2678400,
     formats: ["image/webp"],
+    // Next.js 16 only allows quality 75 by default; MemberImage uses 100
+    qualities: [75, 100],
     remotePatterns: [
       {
         hostname: "localhost",

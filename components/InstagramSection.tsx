@@ -1,4 +1,4 @@
-import { Instagram } from "lucide-react";
+import { InstagramOutline } from "components/icons/BrandIcons";
 import { Button } from "./Button";
 
 export const InstagramSection = async () => {
@@ -15,7 +15,7 @@ export const InstagramSection = async () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Instagram className="text-2xl" />
+        <InstagramOutline className="text-2xl" />
         Zu Instagram
       </Button>
     </section>

@@ -1,4 +1,4 @@
-import { Button as ButtonPrimitive } from "@react-email/components";
+import { Button as ButtonPrimitive } from "react-email";
 import { cva, VariantProps } from "cva";
 import { ReactNode } from "react";
 

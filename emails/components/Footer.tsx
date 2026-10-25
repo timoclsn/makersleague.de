@@ -4,7 +4,7 @@ import {
   Img,
   Link as LinkPrimitive,
   Row,
-} from "@react-email/components";
+} from "react-email";
 import { getBaseUrl } from "../lib/utils";
 import { Bold } from "./Bold";
 import { Italic } from "./Italic";

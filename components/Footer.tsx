@@ -1,14 +1,14 @@
-import { Instagram, Linkedin } from "lucide-react";
+import { InstagramOutline, Linkedin } from "components/icons/BrandIcons";
 import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="bg-dark text-light px-4 py-8 md:px-10 md:py-8">
+    <footer className="bg-dark px-4 py-8 text-light md:px-10 md:py-8">
       <ul className="flex flex-col items-center gap-6 overflow-hidden lg:flex-row">
         <li className="hover:opacity-80">
           <Link href="https://www.instagram.com/makersleague.ev">
             <span className="sr-only">Instagram</span>
-            <Instagram />
+            <InstagramOutline />
           </Link>
         </li>
         <li className="hover:opacity-80">
