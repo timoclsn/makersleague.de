@@ -1,4 +1,4 @@
-import { get as getEdgeConfigValue } from "@vercel/edge-config";
+import { createClient } from "@vercel/edge-config";
 import { z } from "zod";
 
 const VERSION = "v2.0";
@@ -9,9 +9,16 @@ export const EDGE_CONFIG_TOKEN_KEY = "makersleagueEasyvereinToken";
 
 type Endpoint = "member" | "event";
 
+// Vercel renamed Edge Config to Global Config; new store connections set GLOBAL_CONFIG
+const edgeConfigConnectionString =
+  process.env.GLOBAL_CONFIG ?? process.env.EDGE_CONFIG;
+const edgeConfig = edgeConfigConnectionString
+  ? createClient(edgeConfigConnectionString)
+  : null;
+
 export const getEasyvereinToken = async () => {
-  if (process.env.EDGE_CONFIG) {
-    const token = await getEdgeConfigValue(EDGE_CONFIG_TOKEN_KEY);
+  if (edgeConfig) {
+    const token = await edgeConfig.get(EDGE_CONFIG_TOKEN_KEY);
     if (typeof token === "string" && token) return token;
   }
 
