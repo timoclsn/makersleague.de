@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     headers: {
       Authorization: `Bearer ${await getEasyvereinToken()}`,
     },
-    redirect: "error",
+    redirect: "manual",
   });
 
   if (!response.ok) {
