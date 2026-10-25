@@ -2,20 +2,18 @@ import { QueueEmail, sendEmails, sendLoggingEmail } from "@/lib/email";
 import { isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers, Member } from "lib/easyverein";
+import { isAuthorizedCronRequest } from "lib/cron";
 import { isBirthday } from "lib/utils";
 import { NextRequest } from "next/server";
 
-const { CRON_SECRET, NODE_ENV } = process.env;
+const { NODE_ENV } = process.env;
 
 export async function GET(request: NextRequest) {
   // Protection
-  if (NODE_ENV === "production") {
-    const authHeader = request.headers.get("authorization");
-    if (authHeader !== `Bearer ${CRON_SECRET}`) {
-      return new Response("Unauthorized", {
-        status: 401,
-      });
-    }
+  if (!isAuthorizedCronRequest(request)) {
+    return new Response("Unauthorized", {
+      status: 401,
+    });
   }
 
   const emailQueue: Array<QueueEmail> = [];

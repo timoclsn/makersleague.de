@@ -9,11 +9,9 @@ export const EDGE_CONFIG_TOKEN_KEY = "makersleagueEasyvereinToken";
 
 type Endpoint = "member" | "event";
 
-// Vercel renamed Edge Config to Global Config; new store connections set GLOBAL_CONFIG
-const edgeConfigConnectionString =
-  process.env.GLOBAL_CONFIG ?? process.env.EDGE_CONFIG;
-const edgeConfig = edgeConfigConnectionString
-  ? createClient(edgeConfigConnectionString)
+// Vercel Global Config (formerly Edge Config) connection string
+const edgeConfig = process.env.GLOBAL_CONFIG
+  ? createClient(process.env.GLOBAL_CONFIG)
   : null;
 
 export const getEasyvereinToken = async () => {
@@ -27,11 +25,17 @@ export const getEasyvereinToken = async () => {
   throw new Error("Easyverein token not configured");
 };
 
+export const getAuthorizationHeader = async () =>
+  `Bearer ${await getEasyvereinToken()}`;
+
 const buildHeaders = async () => ({
-  Authorization: `Bearer ${await getEasyvereinToken()}`,
+  Authorization: await getAuthorizationHeader(),
   Accept: "application/json",
   "Content-Type": "application/json",
 });
+
+export const fetchEasyverein = async (path: string) =>
+  fetch(`${API_URL}/${path}`, { headers: await buildHeaders() });
 
 interface GetOptions {
   id?: string;
@@ -90,7 +94,7 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
 };
 
 export const customField = (customFields: CustomField[], name: string) =>
-  customFields?.find((customField) => customField.customField.name === name);
+  customFields.find((customField) => customField.customField.name === name);
 
 type CustomField = z.infer<typeof customFieldSchema>;
 const customFieldSchema = z.object({

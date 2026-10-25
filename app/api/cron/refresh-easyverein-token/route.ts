@@ -1,20 +1,14 @@
-import {
-  API_URL,
-  EDGE_CONFIG_TOKEN_KEY,
-  getEasyvereinToken,
-} from "@/lib/easyverein";
+import { isAuthorizedCronRequest } from "@/lib/cron";
+import { EDGE_CONFIG_TOKEN_KEY, fetchEasyverein } from "@/lib/easyverein";
 import { sendLoggingEmail } from "@/lib/email";
 import { NextRequest } from "next/server";
 import { z } from "zod";
 
-const {
-  CRON_SECRET,
-  NODE_ENV,
-  VERCEL_API_TOKEN,
-  EDGE_CONFIG_ID,
-  VERCEL_TEAM_ID,
-} = process.env;
+const { NODE_ENV, VERCEL_API_TOKEN, EDGE_CONFIG_ID, VERCEL_TEAM_ID } =
+  process.env;
+const isProduction = NODE_ENV === "production";
 
+// The exact response shape of refresh-token is undocumented, so accept the likely field names
 const refreshTokenResponseSchema = z
   .object({
     token: z.string().optional(),
@@ -25,24 +19,19 @@ const refreshTokenResponseSchema = z
   .passthrough();
 
 export async function GET(request: NextRequest) {
-  if (NODE_ENV === "production") {
-    const authHeader = request.headers.get("authorization");
-    if (authHeader !== `Bearer ${CRON_SECRET}`) {
-      return new Response("Unauthorized", { status: 401 });
-    }
+  if (!isAuthorizedCronRequest(request)) {
+    return new Response("Unauthorized", { status: 401 });
   }
 
   try {
-    const currentToken = await getEasyvereinToken();
+    if (!VERCEL_API_TOKEN || !EDGE_CONFIG_ID) {
+      throw new Error(
+        "Missing VERCEL_API_TOKEN or EDGE_CONFIG_ID environment variables",
+      );
+    }
 
     // easyVerein flags on every response whether the token should be renewed
-    const checkRes = await fetch(`${API_URL}/member?limit=1&query={id}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${currentToken}`,
-        Accept: "application/json",
-      },
-    });
+    const checkRes = await fetchEasyverein("member?limit=1&query={id}");
 
     if (!checkRes.ok) {
       throw new Error(
@@ -57,13 +46,7 @@ export async function GET(request: NextRequest) {
       return Response.json({ success: true, refreshed: false });
     }
 
-    const refreshRes = await fetch(`${API_URL}/refresh-token`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${currentToken}`,
-        Accept: "application/json",
-      },
-    });
+    const refreshRes = await fetchEasyverein("refresh-token");
 
     if (!refreshRes.ok) {
       throw new Error(
@@ -73,16 +56,11 @@ export async function GET(request: NextRequest) {
 
     const body = refreshTokenResponseSchema.parse(await refreshRes.json());
     const newToken = body.token ?? body.Bearer ?? body.bearer;
+    const expiresIn = body.expiresIn ?? null;
 
     if (!newToken) {
       throw new Error(
         `No token in refresh-token response. Body keys: ${Object.keys(body).join(", ")}`,
-      );
-    }
-
-    if (!VERCEL_API_TOKEN || !EDGE_CONFIG_ID) {
-      throw new Error(
-        "Missing VERCEL_API_TOKEN or EDGE_CONFIG_ID environment variables",
       );
     }
 
@@ -117,23 +95,19 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    if (NODE_ENV === "production") {
+    if (isProduction) {
       await sendLoggingEmail({
         subject: "ML Easyverein Token Refreshed",
-        text: `Easyverein token refreshed successfully. expiresIn: ${body.expiresIn ?? "unknown"}`,
+        text: `Easyverein token refreshed successfully. expiresIn: ${expiresIn ?? "unknown"}`,
       });
     }
 
-    return Response.json({
-      success: true,
-      refreshed: true,
-      expiresIn: body.expiresIn ?? null,
-    });
+    return Response.json({ success: true, refreshed: true, expiresIn });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error("Failed to refresh easyverein token:", error);
 
-    if (NODE_ENV === "production") {
+    if (isProduction) {
       await sendLoggingEmail({
         subject: "ML Easyverein Token Refresh FAILED",
         text: `Easyverein token refresh failed:\n\n${message}`,

@@ -15,7 +15,6 @@ const envSchema = z.object({
   // EasyVerein
   // Fallback when the token is not in Edge Config (e.g. local dev)
   EASYVEREIN_TOKEN: envVarSchema.optional(),
-  EDGE_CONFIG: envVarSchema.optional(),
   GLOBAL_CONFIG: envVarSchema.optional(),
   EDGE_CONFIG_ID: envVarSchema.optional(),
   VERCEL_API_TOKEN: envVarSchema.optional(),

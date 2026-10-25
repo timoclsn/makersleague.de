@@ -1,6 +1,15 @@
-import { getEasyvereinToken } from "lib/easyverein";
+import { getAuthorizationHeader } from "lib/easyverein";
 
 export const runtime = "edge";
+
+const parseUrl = (value: string | null) => {
+  if (!value) return null;
+  try {
+    return new URL(value);
+  } catch {
+    return null;
+  }
+};
 
 const isEasyvereinUrl = (url: URL) =>
   url.protocol === "https:" &&
@@ -9,9 +18,9 @@ const isEasyvereinUrl = (url: URL) =>
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const url = searchParams.get("url");
+  const url = parseUrl(searchParams.get("url"));
 
-  if (!url || !URL.canParse(url) || !isEasyvereinUrl(new URL(url))) {
+  if (!url || !isEasyvereinUrl(url)) {
     return new Response(null, {
       status: 400,
     });
@@ -19,7 +28,7 @@ export async function GET(request: Request) {
 
   const response = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${await getEasyvereinToken()}`,
+      Authorization: await getAuthorizationHeader(),
     },
     redirect: "manual",
   });
@@ -30,9 +39,10 @@ export async function GET(request: Request) {
     });
   }
 
-  const arraybuffer = await response.arrayBuffer();
-  const byteArrays = new Array(arraybuffer);
-  const blob = new Blob(byteArrays, { type: "image/png" });
-
-  return new Response(blob);
+  return new Response(response.body, {
+    headers: {
+      "Content-Type": response.headers.get("Content-Type") ?? "image/png",
+      "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800",
+    },
+  });
 }

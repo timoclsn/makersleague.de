@@ -6,7 +6,7 @@ The site loads members and events from the [easyVerein API](https://hexa.easyver
 
 - API v2.0 only accepts expiring tokens (valid for 30 days). Every response carries a `tokenRefreshNeeded` header that says when the token should be renewed.
 - The current token lives in Vercel Global Config (formerly Edge Config) under the key `makersleagueEasyvereinToken`, in the `feature-flags` store (`ecfg_gkl0jqefeddsvswkbbt85ldaqkpk`). The plan allows only one store, so it is shared with another project, hence the prefixed key.
-- `getEasyvereinToken()` in `lib/easyverein.ts` reads the token from the store via the `GLOBAL_CONFIG` connection string (or legacy `EDGE_CONFIG`). If no store is configured or the key is missing, it falls back to `EASYVEREIN_TOKEN`.
+- `getEasyvereinToken()` in `lib/easyverein.ts` reads the token from the store via the `GLOBAL_CONFIG` connection string. If no store is configured or the key is missing, it falls back to `EASYVEREIN_TOKEN`.
 - The daily cron `/api/cron/refresh-easyverein-token` (03:00 UTC, production only) checks `tokenRefreshNeeded`. Only when it is `true` does it call easyVerein's `refresh-token` endpoint and write the new token to the store. It sends a logging email on every renewal and on every failure.
 
 Calling `refresh-token` rotates the token. Don't call it by hand or from tests unless you mean to.
@@ -45,5 +45,5 @@ Agents in cloud environments usually can't run `vercel env pull`. Give them `GLO
 ## When something breaks
 
 - **Builds or pages fail with 401:** the stored token is expired or invalid. Check the failure emails from the cron, then get a new v2.0 token from easyVerein and save it as `makersleagueEasyvereinToken` in the store.
-- **"Easyverein token not configured":** neither `GLOBAL_CONFIG`/`EDGE_CONFIG` nor `EASYVEREIN_TOKEN` is set.
+- **"Easyverein token not configured":** neither `GLOBAL_CONFIG` nor `EASYVEREIN_TOKEN` is set.
 - **Cron fails with "Missing VERCEL_API_TOKEN or EDGE_CONFIG_ID":** the production env vars from the table above are missing.
