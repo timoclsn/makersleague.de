@@ -35,6 +35,28 @@ export async function GET(request: NextRequest) {
   try {
     const currentToken = await getEasyvereinToken();
 
+    // easyVerein flags on every response whether the token should be renewed
+    const checkRes = await fetch(`${API_URL}/member?limit=1&query={id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${currentToken}`,
+        Accept: "application/json",
+      },
+    });
+
+    if (!checkRes.ok) {
+      throw new Error(
+        `Token check request failed: ${checkRes.status} ${checkRes.statusText}`,
+      );
+    }
+
+    const refreshNeeded =
+      checkRes.headers.get("tokenRefreshNeeded")?.toLowerCase() === "true";
+
+    if (!refreshNeeded) {
+      return Response.json({ success: true, refreshed: false });
+    }
+
     const refreshRes = await fetch(`${API_URL}/refresh-token`, {
       method: "GET",
       headers: {
@@ -102,7 +124,11 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    return Response.json({ success: true, expiresIn: body.expiresIn ?? null });
+    return Response.json({
+      success: true,
+      refreshed: true,
+      expiresIn: body.expiresIn ?? null,
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error("Failed to refresh easyverein token:", error);

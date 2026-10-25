@@ -6,7 +6,7 @@
     },
     {
       "path": "/api/cron/refresh-easyverein-token",
-      "schedule": "0 3 * * 0"
+      "schedule": "0 3 * * *"
     }
   ]
 }
