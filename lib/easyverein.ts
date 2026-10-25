@@ -16,8 +16,12 @@ const edgeConfig = process.env.GLOBAL_CONFIG
 
 export const getEasyvereinToken = async () => {
   if (edgeConfig) {
-    const token = await edgeConfig.get(EDGE_CONFIG_TOKEN_KEY);
-    if (typeof token === "string" && token) return token;
+    try {
+      const token = await edgeConfig.get(EDGE_CONFIG_TOKEN_KEY);
+      if (typeof token === "string" && token) return token;
+    } catch (error) {
+      console.error("Failed to read easyVerein token from Edge Config:", error);
+    }
   }
 
   if (process.env.EASYVEREIN_TOKEN) return process.env.EASYVEREIN_TOKEN;
@@ -84,6 +88,13 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
       method: "GET",
       headers,
     });
+
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch ${next}. Status ${res.status} ${res.statusText}`,
+      );
+    }
+
     const data = await res.json();
     const nextResults = schema.parse(data.results);
     results = [...results, ...nextResults] as z.output<TSchema>;

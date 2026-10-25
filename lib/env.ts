@@ -41,7 +41,13 @@ const envSchema = z.object({
   NEXT_PUBLIC_VERCEL_URL: envVarSchema.optional(),
 });
 
-envSchema.parse(process.env);
+const env = envSchema.parse(process.env);
+
+if (!env.GLOBAL_CONFIG && !env.EASYVEREIN_TOKEN) {
+  throw new Error(
+    "Set GLOBAL_CONFIG or EASYVEREIN_TOKEN for the easyVerein API",
+  );
+}
 
 declare global {
   namespace NodeJS {

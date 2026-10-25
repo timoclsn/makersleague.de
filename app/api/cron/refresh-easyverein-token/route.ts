@@ -1,6 +1,7 @@
 import { isAuthorizedCronRequest } from "@/lib/cron";
 import { EDGE_CONFIG_TOKEN_KEY, fetchEasyverein } from "@/lib/easyverein";
 import { sendLoggingEmail } from "@/lib/email";
+import { wait } from "@/lib/utils";
 import { NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -17,6 +18,17 @@ const refreshTokenResponseSchema = z
     expiresIn: z.union([z.number(), z.string()]).optional(),
   })
   .passthrough();
+
+const withRetries = async (fn: () => Promise<void>, attempts = 3) => {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (attempt >= attempts) throw error;
+      await wait(attempt * 2000);
+    }
+  }
+};
 
 export async function GET(request: NextRequest) {
   if (!isAuthorizedCronRequest(request)) {
@@ -71,29 +83,32 @@ export async function GET(request: NextRequest) {
       edgeConfigUrl.searchParams.set("teamId", VERCEL_TEAM_ID);
     }
 
-    const patchRes = await fetch(edgeConfigUrl, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${VERCEL_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        items: [
-          {
-            operation: "update",
-            key: EDGE_CONFIG_TOKEN_KEY,
-            value: newToken,
-          },
-        ],
-      }),
-    });
+    // The old token may already be invalid, so retry before giving up on the new one
+    await withRetries(async () => {
+      const patchRes = await fetch(edgeConfigUrl, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${VERCEL_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            {
+              operation: "upsert",
+              key: EDGE_CONFIG_TOKEN_KEY,
+              value: newToken,
+            },
+          ],
+        }),
+      });
 
-    if (!patchRes.ok) {
-      const errorBody = await patchRes.text();
-      throw new Error(
-        `Edge Config update failed: ${patchRes.status} ${patchRes.statusText} — ${errorBody}`,
-      );
-    }
+      if (!patchRes.ok) {
+        const errorBody = await patchRes.text();
+        throw new Error(
+          `Edge Config update failed: ${patchRes.status} ${patchRes.statusText} — ${errorBody}`,
+        );
+      }
+    });
 
     if (isProduction) {
       await sendLoggingEmail({
