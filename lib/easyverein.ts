@@ -5,7 +5,7 @@ const VERSION = "v2.0";
 const DOMAIN = "hexa.easyverein.com";
 export const API_URL = `https://${DOMAIN}/api/${VERSION}`;
 
-export const EDGE_CONFIG_TOKEN_KEY = "easyvereinToken";
+export const EDGE_CONFIG_TOKEN_KEY = "makersleagueEasyvereinToken";
 
 type Endpoint = "member" | "event";
 
