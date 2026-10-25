@@ -1,12 +1,17 @@
+import { getEasyvereinToken } from "lib/easyverein";
+
 export const runtime = "edge";
 
-const { EASYVEREIN_TOKEN } = process.env;
+const isEasyvereinUrl = (url: URL) =>
+  url.protocol === "https:" &&
+  (url.hostname === "easyverein.com" ||
+    url.hostname.endsWith(".easyverein.com"));
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("url");
 
-  if (!url) {
+  if (!url || !URL.canParse(url) || !isEasyvereinUrl(new URL(url))) {
     return new Response(null, {
       status: 400,
     });
@@ -14,9 +19,16 @@ export async function GET(request: Request) {
 
   const response = await fetch(url, {
     headers: {
-      Authorization: `Token ${EASYVEREIN_TOKEN}`,
+      Authorization: `Bearer ${await getEasyvereinToken()}`,
     },
+    redirect: "error",
   });
+
+  if (!response.ok) {
+    return new Response(null, {
+      status: 502,
+    });
+  }
 
   const arraybuffer = await response.arrayBuffer();
   const byteArrays = new Array(arraybuffer);
