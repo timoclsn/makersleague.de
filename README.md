@@ -9,6 +9,6 @@
 
 ## How to run locally
 
-- Add `.env` file with Easyverin API token
-- Run `npm install`
-- Run `npm run dev`
+- Pull the env vars with `pnpm dlx vercel env pull .env.local` (see [docs/easyverein-token.md](docs/easyverein-token.md) for the easyVerein token and how to run without Vercel access)
+- Run `pnpm install`
+- Run `pnpm dev`
