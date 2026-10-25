@@ -7,6 +7,12 @@
 - Format: `pnpm format` or `npm run format`
 - Type check: `pnpm typecheck` or `npm run typecheck`
 
+## Environment
+- `lint` and `typecheck` need no env vars; `build` and `dev` need a valid easyVerein v2.0 token
+- Read [docs/easyverein-token.md](docs/easyverein-token.md) for how the token is stored, rotated and provided locally
+- Prefer `GLOBAL_CONFIG` over `EASYVEREIN_TOKEN`; never print or commit either
+- Never call the easyVerein `refresh-token` endpoint by hand: it rotates the production token
+
 ## Code Style
 - TypeScript with strict typing
 - React & Next.js App Router structure

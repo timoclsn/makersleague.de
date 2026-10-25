@@ -58,15 +58,6 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       const name = apiMember.contactDetails.name;
       const customFields = apiMember.customFields;
 
-      if (!customFields) {
-        if (isDevelopment) {
-          console.log(
-            `Not showing ${name} because they don't have any custom fields`,
-          );
-        }
-        return false;
-      }
-
       const show =
         customField(customFields, customFieldNames.show)?.value === "True";
 
@@ -114,7 +105,7 @@ export const getWebsiteMembers = async (): Promise<WebsiteMember[]> => {
       const familyName = trim(apiMember.contactDetails.familyName);
       const name = `${firstName} ${familyName}`;
       const profilePicture = apiMember._profilePicture!;
-      const customFields = apiMember.customFields!;
+      const customFields = apiMember.customFields;
       const slogan = customField(customFields, customFieldNames.slogan)?.value!;
       const superPowers: SuperPowers = [
         customField(customFields, customFieldNames.superPower1)?.value!,

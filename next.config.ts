@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
     ],
   },
   outputFileTracingExcludes: {
-    "*": [".pnpm-store/**/*"],
+    "*": [".pnpm-store/**/*", ".next/cache/**/*", ".git/**/*"],
   },
   async rewrites() {
     return [

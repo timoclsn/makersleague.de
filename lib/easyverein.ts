@@ -1,18 +1,45 @@
+import { createClient } from "@vercel/edge-config";
 import { z } from "zod";
 
-const { EASYVEREIN_TOKEN } = process.env;
-
-const VERSION = "v1.7";
+const VERSION = "v2.0";
 const DOMAIN = "hexa.easyverein.com";
-const URL = `https://${DOMAIN}/api/${VERSION}`;
+export const API_URL = `https://${DOMAIN}/api/${VERSION}`;
+
+export const EDGE_CONFIG_TOKEN_KEY = "makersleagueEasyvereinToken";
 
 type Endpoint = "member" | "event";
 
-const headers = {
-  Authorization: `Bearer ${EASYVEREIN_TOKEN}`,
+// Vercel Global Config (formerly Edge Config) connection string
+const edgeConfig = process.env.GLOBAL_CONFIG
+  ? createClient(process.env.GLOBAL_CONFIG)
+  : null;
+
+export const getEasyvereinToken = async () => {
+  if (edgeConfig) {
+    try {
+      const token = await edgeConfig.get(EDGE_CONFIG_TOKEN_KEY);
+      if (typeof token === "string" && token) return token;
+    } catch (error) {
+      console.error("Failed to read easyVerein token from Edge Config:", error);
+    }
+  }
+
+  if (process.env.EASYVEREIN_TOKEN) return process.env.EASYVEREIN_TOKEN;
+
+  throw new Error("Easyverein token not configured");
+};
+
+export const getAuthorizationHeader = async () =>
+  `Bearer ${await getEasyvereinToken()}`;
+
+const buildHeaders = async () => ({
+  Authorization: await getAuthorizationHeader(),
   Accept: "application/json",
   "Content-Type": "application/json",
-};
+});
+
+export const fetchEasyverein = async (path: string) =>
+  fetch(`${API_URL}/${path}`, { headers: await buildHeaders() });
 
 interface GetOptions {
   id?: string;
@@ -36,7 +63,9 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
   if (options.start__gte) searchParams.set("start__gte", options.start__gte);
   const searchParamsString = searchParams.toString();
 
-  const fetchUrl = `${URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
+  const fetchUrl = `${API_URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
+
+  const headers = await buildHeaders();
 
   const res = await fetch(fetchUrl, {
     method: "GET",
@@ -59,6 +88,13 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
       method: "GET",
       headers,
     });
+
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch ${next}. Status ${res.status} ${res.statusText}`,
+      );
+    }
+
     const data = await res.json();
     const nextResults = schema.parse(data.results);
     results = [...results, ...nextResults] as z.output<TSchema>;
@@ -69,7 +105,7 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
 };
 
 export const customField = (customFields: CustomField[], name: string) =>
-  customFields?.find((customField) => customField.customField.name === name);
+  customFields.find((customField) => customField.customField.name === name);
 
 type CustomField = z.infer<typeof customFieldSchema>;
 const customFieldSchema = z.object({
@@ -93,7 +129,7 @@ const memberSchema = z.object({
     dateOfBirth: z.string().nullable(),
   }),
   emailOrUserName: z.string(),
-  customFields: z.array(customFieldSchema).nullable(),
+  customFields: z.array(customFieldSchema),
 });
 
 export const getMembers = async () => {
@@ -129,7 +165,7 @@ const eventSchema = z.object({
   locationName: z.string().nullable(),
   isPublic: z.boolean(),
   _deletedBy: z.string().nullable(),
-  customFields: z.array(customFieldSchema).nullable(),
+  customFields: z.array(customFieldSchema),
 });
 
 export const getEvents = async () => {
