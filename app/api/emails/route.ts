@@ -1,5 +1,5 @@
 import { QueueEmail, sendEmails, sendLoggingEmail } from "@/lib/email";
-import { isSameDay, parseISO, subMonths } from "date-fns";
+import { formatISO, isSameDay, parseISO, subMonths } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getActiveMembers, Member } from "lib/easyverein";
 import { isAuthorizedCronRequest } from "lib/cron";
@@ -60,7 +60,10 @@ export async function GET(request: NextRequest) {
 
   if (NODE_ENV === "production") {
     if (emailQueue.length !== 0) {
-      await sendEmails(emailQueue);
+      // Resend drops a second send with the same key, e.g. if the cron runs twice
+      await sendEmails(emailQueue, {
+        idempotencyKey: `email-cron-${formatISO(today, { representation: "date" })}`,
+      });
     }
 
     await sendLoggingEmail({
