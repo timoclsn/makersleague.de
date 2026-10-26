@@ -1,4 +1,4 @@
-import { parseISO } from "date-fns";
+import { addHours, parseISO } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import {
   Beer,
@@ -14,7 +14,10 @@ import { z } from "zod";
 import { getCacheValue, setCacheValue } from "./cache";
 import { customField, getEvents } from "./easyverein";
 
-const TIMEZONE = "Europe/Berlin";
+export const TIMEZONE = "Europe/Berlin";
+
+// Assumed duration for events without an end time in easyVerein
+const DEFAULT_EVENT_DURATION_IN_H = 2;
 
 const eventIconMap = {
   "Master Class": GraduationCap,
@@ -33,6 +36,7 @@ const websiteEventSchema = z.object({
   description: z.string(),
   location: z.string().nullable(),
   start: z.coerce.date(),
+  end: z.coerce.date(),
   membersOnly: z.boolean(),
   url: z.string().url(),
 });
@@ -58,13 +62,21 @@ export const getWebsiteEvents = async (): Promise<WebsiteEvent[]> => {
 
       return true;
     })
-    .map(({ id, name, description, locationName, start, isPublic }) => {
+    .map(({ id, name, description, locationName, start, end, isPublic }) => {
+      const startDate = parseISO(start);
+      const endDate = end ? parseISO(end) : null;
       return {
         id,
         name,
         description,
         location: locationName,
-        start: toZonedTime(parseISO(start), TIMEZONE),
+        start: toZonedTime(startDate, TIMEZONE),
+        end: toZonedTime(
+          endDate && endDate > startDate
+            ? endDate
+            : addHours(startDate, DEFAULT_EVENT_DURATION_IN_H),
+          TIMEZONE,
+        ),
         membersOnly: !isPublic,
         url: `https://easyverein.com/public/ML/calendar/${id}`,
       };
