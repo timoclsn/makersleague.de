@@ -5,7 +5,7 @@ The site loads members and events from the [easyVerein API](https://hexa.easyver
 ## How it works
 
 - API v2.0 only accepts expiring tokens (valid for 30 days). Every response carries a `tokenRefreshNeeded` header that says when the token should be renewed.
-- The current token lives in Vercel Global Config (formerly Edge Config) under the key `makersleagueEasyvereinToken`, in the `feature-flags` store (`ecfg_gkl0jqefeddsvswkbbt85ldaqkpk`). The plan allows only one store, so it is shared with another project, hence the prefixed key.
+- The current token lives in Vercel Global Config (formerly Edge Config) under the key `makersleagueEasyvereinToken`, in the store connected to the Vercel project (its ID is in the `EDGE_CONFIG_ID` env var). The key is prefixed because the store can hold other projects' items too.
 - `getEasyvereinToken()` in `lib/easyverein.ts` reads the token from the store via the `GLOBAL_CONFIG` connection string. If no store is configured or the key is missing, it falls back to `EASYVEREIN_TOKEN`.
 - The daily cron `/api/cron/refresh-easyverein-token` (03:00 UTC, production only) checks `tokenRefreshNeeded`. Only when it is `true` does it call easyVerein's `refresh-token` endpoint and write the new token to the store. It sends a logging email on every renewal and on every failure.
 
