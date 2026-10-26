@@ -6,7 +6,7 @@ import {
   Html,
   Preview,
   Tailwind,
-} from "@react-email/components";
+} from "react-email";
 import { ReactNode } from "react";
 import { Footer } from "./Footer";
 import { Header } from "./Header";

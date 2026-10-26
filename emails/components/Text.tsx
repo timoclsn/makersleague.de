@@ -1,4 +1,4 @@
-import { Text as TextPrimitive } from "@react-email/components";
+import { Text as TextPrimitive } from "react-email";
 import { cva, VariantProps } from "cva";
 import { ReactNode } from "react";
 

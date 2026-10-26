@@ -1,7 +1,5 @@
 import { getAuthorizationHeader } from "lib/easyverein";
 
-export const runtime = "edge";
-
 const parseUrl = (value: string | null) => {
   if (!value) return null;
   try {

@@ -5,7 +5,7 @@ import {
   Row,
   Section,
   Text,
-} from "@react-email/components";
+} from "react-email";
 import { makersInn } from "../../lib/events";
 import { Button } from "./Button";
 

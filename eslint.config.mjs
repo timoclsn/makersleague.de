@@ -1,22 +1,19 @@
-import { FlatCompat } from "@eslint/eslintrc";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import prettier from "eslint-config-prettier/flat";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-});
-
-const eslintConfig = [
-  {
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-      "emails/.react-email/**",
-      "emails/node_modules/**",
-    ],
-  },
-  ...compat.extends("next/core-web-vitals", "prettier"),
-];
+const eslintConfig = defineConfig([
+  globalIgnores([
+    "node_modules/**",
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    "emails/.react-email/**",
+    "emails/node_modules/**",
+  ]),
+  ...nextCoreWebVitals,
+  prettier,
+]);
 
 export default eslintConfig;

@@ -1,4 +1,4 @@
-import { createClient } from "@vercel/edge-config";
+import { createClient } from "@vercel/global-config";
 import { z } from "zod";
 
 const VERSION = "v2.0";
