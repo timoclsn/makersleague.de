@@ -1,15 +1,28 @@
 import { format, parseISO } from "date-fns";
 import { de } from "date-fns/locale";
-import { readFile, readdir } from "fs/promises";
 import { compileMDX } from "next-mdx-remote/rsc";
-import path from "path";
 import { cache } from "react";
 import readingTime from "reading-time";
 import { z } from "zod";
 import { components } from "./mdx";
 
-const CONTENT_PATH = ["content"] as const;
-const FILE_EXTENSIONS = [".md", ".mdx"] as const;
+// Bundled at build time, so no filesystem access (and no tracing of the
+// whole project into every function). Raw text via the turbopack rule in next.config.ts
+// (`import: "default"` returns undefined in eager mode in Next 16.4, so map it here)
+const contentFiles = Object.fromEntries(
+  Object.entries(
+    import.meta.glob<{ default: string }>(
+      ["/content/**/*.md", "/content/**/*.mdx"],
+      { query: "?raw", eager: true },
+    ),
+  ).map(([filePath, module]) => [filePath, module.default]),
+);
+
+// "/content/<type>/<name>/<file>.mdx" -> { type, name }
+const parseContentPath = (filePath: string) => {
+  const [, , type, name] = filePath.split("/");
+  return { type, name };
+};
 
 const faqTags = z.enum(["general", "makers-inn"]);
 type FaqTag = z.infer<typeof faqTags>;
@@ -50,25 +63,16 @@ const getContent = async <Type extends ContentType>(
 ) => {
   const dirName = name;
 
-  // Get file name for content file
-  const dirPath = path.join(process.cwd(), ...CONTENT_PATH, type, dirName);
-  const fileNames = await readdir(dirPath);
-  const fileName = fileNames.find((name) =>
-    FILE_EXTENSIONS.some((extention) => path.extname(name) === extention),
-  );
-  if (!fileName) {
+  // Get content file
+  const file = Object.entries(contentFiles).find(([filePath]) => {
+    const content = parseContentPath(filePath);
+    return content.type === type && content.name === dirName;
+  })?.[1];
+  if (file === undefined) {
     throw new Error(`No content file found for ${type}/${dirName}`);
   }
 
-  // Read file and compile MDX
-  const filePath = path.join(
-    process.cwd(),
-    ...CONTENT_PATH,
-    type,
-    dirName,
-    fileName,
-  );
-  const file = await readFile(filePath, "utf8");
+  // Compile MDX
   const { content, frontmatter } = await compileMDX({
     source: file,
     components,
@@ -97,8 +101,10 @@ const getContent = async <Type extends ContentType>(
 
 const getAllContent = async <Type extends ContentType>(type: Type) => {
   // Get content names
-  const dirPath = path.join(process.cwd(), ...CONTENT_PATH, type);
-  const dirNames = await readdir(dirPath);
+  const dirNames = Object.keys(contentFiles)
+    .map(parseContentPath)
+    .filter((content) => content.type === type)
+    .map((content) => content.name);
 
   return await Promise.all(
     dirNames.map(async (name) => {

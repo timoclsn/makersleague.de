@@ -157,7 +157,10 @@ export type QueueEmail = {
   [K in QueueEmailType]: { type: K; args: Parameters<QueueEmailsMap[K]>[0] };
 }[QueueEmailType];
 
-export const sendEmails = async (emails: Array<QueueEmail>) => {
+export const sendEmails = async (
+  emails: Array<QueueEmail>,
+  { idempotencyKey }: { idempotencyKey?: string } = {},
+) => {
   try {
     const resendEmailPromises = emails.map((email) => {
       // @ts-expect-error: Can' get the type right here
@@ -166,10 +169,26 @@ export const sendEmails = async (emails: Array<QueueEmail>) => {
 
     const resendEmails = await Promise.all(resendEmailPromises);
 
-    const { error } = await resend.batch.send(resendEmails);
+    // Permissive: one invalid address doesn't stop the other emails
+    const { data, error } = await resend.batch.send(resendEmails, {
+      idempotencyKey,
+      batchValidation: "permissive",
+    });
 
     if (error) {
       throw new Error(error.message, { cause: error });
+    }
+
+    if (data.errors.length > 0) {
+      const failedEmails = data.errors.map(({ index, message }) => ({
+        email: emails[index],
+        message,
+      }));
+      console.error("Some batch emails failed:", failedEmails);
+      await sendLoggingEmail({
+        subject: "Some batch emails failed",
+        text: `Some batch emails failed: ${JSON.stringify(failedEmails, null, 2)}`,
+      });
     }
   } catch (error) {
     console.error("Error sending emails:", error);

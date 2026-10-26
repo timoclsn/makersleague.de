@@ -1,5 +1,6 @@
+import { randomUUID } from "crypto";
 import { existsSync, mkdirSync } from "fs";
-import { readFile, writeFile } from "fs/promises";
+import { readFile, rename, writeFile } from "fs/promises";
 import path from "path";
 import { z } from "zod";
 
@@ -84,13 +85,16 @@ export const getCacheValue = async <TSchema extends z.ZodTypeAny>(
 };
 
 const writeCacheFile = () => {
-  try {
-    writeFile(CACHE_FILE, JSON.stringify(inMemoryCache, null, 2));
-    console.info(`Cache written to ${CACHE_FILE}`);
-  } catch (error) {
-    console.error("Error writing cache to file");
-    console.error(error);
-  }
+  // Write to a temp file and rename it, so parallel build workers never read
+  // a half-written cache file
+  const tempFile = `${CACHE_FILE}.${randomUUID()}.tmp`;
+  writeFile(tempFile, JSON.stringify(inMemoryCache, null, 2))
+    .then(() => rename(tempFile, CACHE_FILE))
+    .then(() => console.info(`Cache written to ${CACHE_FILE}`))
+    .catch((error) => {
+      console.error("Error writing cache to file");
+      console.error(error);
+    });
 };
 
 const readCacheFile = async () => {

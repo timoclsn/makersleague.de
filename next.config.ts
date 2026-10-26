@@ -3,6 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactCompiler: true,
   reactStrictMode: true,
+  turbopack: {
+    rules: {
+      // Raw content files for import.meta.glob in lib/content.ts
+      "*.md": { condition: { query: "?raw" }, type: "text" },
+      "*.mdx": { condition: { query: "?raw" }, type: "text" },
+    },
+  },
   typedRoutes: true,
   basePath: "",
   images: {
