@@ -162,6 +162,7 @@ const eventSchema = z.object({
   name: z.string(),
   description: z.string(),
   start: z.string(),
+  end: z.string().nullable(),
   locationName: z.string().nullable(),
   isPublic: z.boolean(),
   _deletedBy: z.string().nullable(),
@@ -174,7 +175,7 @@ export const getEvents = async () => {
 
   return await get("event", z.array(eventSchema), {
     query:
-      "{id,name,description,start,locationName,isPublic,_deletedBy,customFields{value,customField{name}}}",
+      "{id,name,description,start,end,locationName,isPublic,_deletedBy,customFields{value,customField{name}}}",
     limit: 200,
     start__gte: today.toISOString(),
   });

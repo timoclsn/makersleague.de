@@ -5,13 +5,20 @@ import { Arrow, Calendar, Location, Profile } from "components/icons";
 import { PageContent } from "components/layouts/PageContent";
 import { StructuredData } from "components/StructuredData";
 import { Track } from "components/Track";
-import { formatISO } from "date-fns";
+import { fromZonedTime, formatInTimeZone } from "date-fns-tz";
 import { Route } from "next";
-import { eventIcon, getWebsiteEvents, makersInn } from "lib/events";
+import {
+  eventIcon,
+  getWebsiteEvents,
+  makersInn,
+  TIMEZONE,
+  WebsiteEvent,
+} from "lib/events";
 import { formatDate } from "lib/utils";
 import { CalendarX } from "lucide-react";
 import { Metadata } from "next";
 import { ReactNode } from "react";
+import { Event, Place, WithContext } from "schema-dts";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -26,33 +33,7 @@ const EventsPage = async () => {
       {events.map((event) => {
         return (
           <StructuredData key={event.id} type="Event">
-            {{
-              "@context": "https://schema.org",
-              "@type": "Event",
-              name: event.name,
-              startDate: formatISO(event.start),
-              eventAttendanceMode:
-                "https://schema.org/OfflineEventAttendanceMode",
-              eventStatus: "https://schema.org/EventScheduled",
-              location: {
-                "@type": "Place",
-                name: "Makers Inn",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "Küferstraße 46",
-                  addressLocality: "Esslingen am Neckar",
-                  postalCode: "73728",
-                  addressRegion: "BW",
-                  addressCountry: "DE",
-                },
-              },
-              description: event.description,
-              organizer: {
-                "@type": "Organization",
-                name: "Makers League e.V.",
-                url: "https://makersleague.de",
-              },
-            }}
+            {eventStructuredData(event)}
           </StructuredData>
         );
       })}
@@ -164,6 +145,70 @@ const EventsPage = async () => {
 };
 
 export default EventsPage;
+
+const ORIGIN = "https://makersleague.de";
+
+const makersLeague = {
+  name: "Makers League e.V.",
+  url: ORIGIN,
+};
+
+const makersInnPlace: Place = {
+  "@type": "Place",
+  name: "Makers Inn",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Küferstraße 46",
+    addressLocality: "Esslingen am Neckar",
+    postalCode: "73728",
+    addressRegion: "BW",
+    addressCountry: "DE",
+  },
+};
+
+// Event dates are stored as Berlin wall-clock time, so convert them back to
+// the real instant and print them with the Berlin UTC offset
+const toIsoDateTime = (date: Date) =>
+  formatInTimeZone(
+    fromZonedTime(date, TIMEZONE),
+    TIMEZONE,
+    "yyyy-MM-dd'T'HH:mm:ssXXX",
+  );
+
+const eventStructuredData = (event: WebsiteEvent): WithContext<Event> => ({
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: event.name,
+  startDate: toIsoDateTime(event.start),
+  endDate: toIsoDateTime(event.end),
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  location:
+    !event.location || makersInn(event.location)
+      ? makersInnPlace
+      : {
+          "@type": "Place",
+          name: event.location,
+          address: event.location,
+        },
+  image: [`${ORIGIN}/assets/og-image.png`],
+  description: event.description,
+  offers: {
+    "@type": "Offer",
+    price: 0,
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+    url: event.url,
+  },
+  organizer: {
+    "@type": "Organization",
+    ...makersLeague,
+  },
+  performer: {
+    "@type": "PerformingGroup",
+    ...makersLeague,
+  },
+});
 
 interface TagProps {
   children: ReactNode;
