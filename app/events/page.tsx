@@ -216,7 +216,7 @@ interface TagProps {
 
 const Tag = ({ children }: TagProps) => {
   return (
-    <li className="flex items-center justify-center gap-2 rounded-full bg-pink-light px-3 py-1 font-bold text-pink">
+    <li className="bg-pink-light text-pink flex items-center justify-center gap-2 rounded-full px-3 py-1 font-bold">
       {children}
     </li>
   );
