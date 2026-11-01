@@ -8,10 +8,10 @@
     "export": "email export"
   },
   "dependencies": {
-    "@react-email/ui": "^6.11.3",
+    "@react-email/ui": "^6.11.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "react-email": "6.11.3"
+    "react-email": "6.11.6"
   },
   "devDependencies": {
     "@types/react": "19.3.0",
