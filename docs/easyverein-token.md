@@ -7,7 +7,7 @@ The site loads members and events from the [easyVerein API](https://hexa.easyver
 - API v2.0 only accepts expiring tokens (valid for 30 days). Every response carries a `tokenRefreshNeeded` header that says when the token should be renewed.
 - The current token lives in Vercel Global Config (formerly Edge Config) under the key `makersleagueEasyvereinToken`, in the store connected to the Vercel project (its ID is in the `EDGE_CONFIG_ID` env var). The key is prefixed because the store can hold other projects' items too.
 - `getEasyvereinToken()` in `lib/easyverein.ts` reads the token from the store via the `GLOBAL_CONFIG` connection string. If no store is configured or the key is missing, it falls back to `EASYVEREIN_TOKEN`.
-- The daily cron `/api/cron/refresh-easyverein-token` (03:00 UTC, production only) checks `tokenRefreshNeeded`. Only when it is `true` does it call easyVerein's `refresh-token` endpoint and write the new token to the store. It sends a logging email on every renewal and on every failure.
+- The daily cron `/api/cron/refresh-easyverein-token` (03:00 UTC, production only) checks `tokenRefreshNeeded`. Only when it is `true` does it first check that it can write to the store (by writing the current token back), then call easyVerein's `refresh-token` endpoint and write the new token to the store. It sends a logging email on every renewal and on every failure.
 
 Calling `refresh-token` rotates the token. Don't call it by hand or from tests unless you mean to.
 
@@ -46,4 +46,6 @@ Agents in cloud environments usually can't run `vercel env pull`. Give them `GLO
 
 - **Builds or pages fail with 401:** the stored token is expired or invalid. Check the failure emails from the cron, then get a new v2.0 token from easyVerein and save it as `makersleagueEasyvereinToken` in the store.
 - **"Easyverein token not configured":** neither `GLOBAL_CONFIG` nor `EASYVEREIN_TOKEN` is set.
+- **Cron fails with "Skipped the refresh because the store is not writable":** the cron could not write to the store with `VERCEL_API_TOKEN`, `EDGE_CONFIG_ID` and `VERCEL_TEAM_ID`, so it left the current token alone. Fix those env vars and run the cron again from the Vercel dashboard before the token expires.
+- **Cron fails with "The token was rotated but the new one could not be saved":** the old token is already invalid. Create a new v2.0 token in easyVerein, save it in the store, then fix the write access as above.
 - **Cron fails with "Missing VERCEL_API_TOKEN or EDGE_CONFIG_ID":** the production env vars from the table above are missing.

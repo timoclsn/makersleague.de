@@ -1,5 +1,9 @@
 import { isAuthorizedCronRequest } from "@/lib/cron";
-import { EDGE_CONFIG_TOKEN_KEY, fetchEasyverein } from "@/lib/easyverein";
+import {
+  EDGE_CONFIG_TOKEN_KEY,
+  fetchEasyverein,
+  getEasyvereinToken,
+} from "@/lib/easyverein";
 import { sendLoggingEmail } from "@/lib/email";
 import { wait } from "@/lib/utils";
 import { NextRequest } from "next/server";
@@ -27,6 +31,35 @@ const withRetries = async (fn: () => Promise<void>, attempts = 3) => {
       if (attempt >= attempts) throw error;
       await wait(attempt * 2000);
     }
+  }
+};
+
+const writeStoredToken = async (token: string) => {
+  const edgeConfigUrl = new URL(
+    `https://api.vercel.com/v1/edge-config/${EDGE_CONFIG_ID}/items`,
+  );
+  if (VERCEL_TEAM_ID) {
+    edgeConfigUrl.searchParams.set("teamId", VERCEL_TEAM_ID);
+  }
+
+  const patchRes = await fetch(edgeConfigUrl, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${VERCEL_API_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      items: [
+        { operation: "upsert", key: EDGE_CONFIG_TOKEN_KEY, value: token },
+      ],
+    }),
+  });
+
+  if (!patchRes.ok) {
+    const errorBody = await patchRes.text();
+    throw new Error(
+      `Edge Config update failed: ${patchRes.status} ${patchRes.statusText} — ${errorBody}`,
+    );
   }
 };
 
@@ -58,6 +91,17 @@ export async function GET(request: NextRequest) {
       return Response.json({ success: true, refreshed: false });
     }
 
+    // refresh-token invalidates the current token, so make sure the store
+    // accepts writes before rotating. Writing the current value is a no-op.
+    try {
+      await writeStoredToken(await getEasyvereinToken());
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(
+        `Skipped the refresh because the store is not writable, so the current token stays valid. Check VERCEL_API_TOKEN, EDGE_CONFIG_ID and VERCEL_TEAM_ID.\n\n${message}`,
+      );
+    }
+
     const refreshRes = await fetchEasyverein("refresh-token");
 
     if (!refreshRes.ok) {
@@ -76,39 +120,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const edgeConfigUrl = new URL(
-      `https://api.vercel.com/v1/edge-config/${EDGE_CONFIG_ID}/items`,
-    );
-    if (VERCEL_TEAM_ID) {
-      edgeConfigUrl.searchParams.set("teamId", VERCEL_TEAM_ID);
-    }
-
     // The old token may already be invalid, so retry before giving up on the new one
-    await withRetries(async () => {
-      const patchRes = await fetch(edgeConfigUrl, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${VERCEL_API_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items: [
-            {
-              operation: "upsert",
-              key: EDGE_CONFIG_TOKEN_KEY,
-              value: newToken,
-            },
-          ],
-        }),
-      });
-
-      if (!patchRes.ok) {
-        const errorBody = await patchRes.text();
-        throw new Error(
-          `Edge Config update failed: ${patchRes.status} ${patchRes.statusText} — ${errorBody}`,
-        );
-      }
-    });
+    try {
+      await withRetries(() => writeStoredToken(newToken));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(
+        `${message}\n\nThe token was rotated but the new one could not be saved, so the stored token no longer works. Create a new v2.0 token in easyVerein and save it as ${EDGE_CONFIG_TOKEN_KEY} in the store.`,
+      );
+    }
 
     if (isProduction) {
       await sendLoggingEmail({
