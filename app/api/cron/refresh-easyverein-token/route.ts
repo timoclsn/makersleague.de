@@ -87,7 +87,10 @@ export async function GET(request: NextRequest) {
     const refreshNeeded =
       checkRes.headers.get("tokenRefreshNeeded")?.toLowerCase() === "true";
 
-    if (!refreshNeeded) {
+    // ?force=1 rotates even when easyVerein doesn't ask for it, to test the whole flow
+    const force = request.nextUrl.searchParams.get("force") === "1";
+
+    if (!refreshNeeded && !force) {
       return Response.json({ success: true, refreshed: false });
     }
 

@@ -11,6 +11,14 @@ The site loads members and events from the [easyVerein API](https://hexa.easyver
 
 Calling `refresh-token` rotates the token. Don't call it by hand or from tests unless you mean to.
 
+To test the whole flow (store write check, rotation, saving the new token and the email) without waiting for easyVerein to flag the token, call the cron with `?force=1` and the cron secret:
+
+```sh
+curl -H "Authorization: Bearer $CRON_SECRET" "https://makersleague.de/api/cron/refresh-easyverein-token?force=1"
+```
+
+It returns `{"success":true,"refreshed":true,...}` and sends the "ML Easyverein Token Refreshed" email. If the store isn't writable, it stops before rotating and the current token keeps working.
+
 ## Environment variables
 
 | Variable           | Where                                                        | Purpose                                                          |
