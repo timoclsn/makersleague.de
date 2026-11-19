@@ -18,8 +18,11 @@ const edgeConfig = process.env.GLOBAL_CONFIG
 // Hobby), so keep the token in memory per function instance instead of
 // reading it on every easyVerein request.
 const TOKEN_CACHE_TTL_MS = 60 * 60 * 1000;
+// A 401 triggers a fresh read, but at most this often, so requests that keep
+// failing (e.g. unknown image URLs) can't burn through the quota.
+const TOKEN_REREAD_MIN_INTERVAL_MS = 60 * 1000;
 
-let cachedToken: { value: Promise<string>; expiresAt: number } | null = null;
+let cachedToken: { value: Promise<string>; readAt: number } | null = null;
 
 const readEasyvereinToken = async () => {
   if (edgeConfig) {
@@ -41,20 +44,16 @@ export const clearEasyvereinTokenCache = () => {
 };
 
 export const getEasyvereinToken = () => {
-  if (!cachedToken || cachedToken.expiresAt <= Date.now()) {
+  if (!cachedToken || Date.now() - cachedToken.readAt >= TOKEN_CACHE_TTL_MS) {
     // Cache the promise so parallel requests share one read
-    const value = readEasyvereinToken();
-    const entry = { value, expiresAt: Date.now() + TOKEN_CACHE_TTL_MS };
+    const entry = { value: readEasyvereinToken(), readAt: Date.now() };
     cachedToken = entry;
-    value.catch(() => {
+    entry.value.catch(() => {
       if (cachedToken === entry) cachedToken = null;
     });
   }
   return cachedToken.value;
 };
-
-export const getAuthorizationHeader = async () =>
-  `Bearer ${await getEasyvereinToken()}`;
 
 // Sends the request with the cached token. On 401 the token was probably
 // rotated by the cron since it was cached, so read it again and retry once.
@@ -62,18 +61,23 @@ export const fetchWithToken = async (
   url: string | URL,
   init: RequestInit = {},
 ) => {
-  const send = async () =>
-    fetch(url, {
-      ...init,
-      headers: {
-        ...init.headers,
-        Authorization: await getAuthorizationHeader(),
-      },
-    });
+  const send = async () => {
+    const headers = new Headers(init.headers);
+    headers.set("Authorization", `Bearer ${await getEasyvereinToken()}`);
+    return fetch(url, { ...init, headers });
+  };
 
   const res = await send();
   if (res.status !== 401) return res;
 
+  if (
+    cachedToken &&
+    Date.now() - cachedToken.readAt < TOKEN_REREAD_MIN_INTERVAL_MS
+  ) {
+    return res;
+  }
+
+  await res.body?.cancel();
   clearEasyvereinTokenCache();
   return send();
 };
