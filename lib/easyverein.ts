@@ -14,7 +14,14 @@ const edgeConfig = process.env.GLOBAL_CONFIG
   ? createClient(process.env.GLOBAL_CONFIG)
   : null;
 
-export const getEasyvereinToken = async () => {
+// Every Global Config read counts against the team's monthly quota (50,000 on
+// Hobby), so keep the token in memory per function instance instead of
+// reading it on every easyVerein request.
+const TOKEN_CACHE_TTL_MS = 10 * 60 * 1000;
+
+let cachedToken: { value: Promise<string>; expiresAt: number } | null = null;
+
+const readEasyvereinToken = async () => {
   if (edgeConfig) {
     try {
       const token = await edgeConfig.get(EDGE_CONFIG_TOKEN_KEY);
@@ -29,17 +36,55 @@ export const getEasyvereinToken = async () => {
   throw new Error("Easyverein token not configured");
 };
 
+export const clearEasyvereinTokenCache = () => {
+  cachedToken = null;
+};
+
+export const getEasyvereinToken = () => {
+  if (!cachedToken || cachedToken.expiresAt <= Date.now()) {
+    // Cache the promise so parallel requests share one read
+    const value = readEasyvereinToken();
+    const entry = { value, expiresAt: Date.now() + TOKEN_CACHE_TTL_MS };
+    cachedToken = entry;
+    value.catch(() => {
+      if (cachedToken === entry) cachedToken = null;
+    });
+  }
+  return cachedToken.value;
+};
+
 export const getAuthorizationHeader = async () =>
   `Bearer ${await getEasyvereinToken()}`;
 
-const buildHeaders = async () => ({
-  Authorization: await getAuthorizationHeader(),
+// Sends the request with the cached token. On 401 the token was probably
+// rotated by the cron since it was cached, so read it again and retry once.
+export const fetchWithToken = async (
+  url: string | URL,
+  init: RequestInit = {},
+) => {
+  const send = async () =>
+    fetch(url, {
+      ...init,
+      headers: {
+        ...init.headers,
+        Authorization: await getAuthorizationHeader(),
+      },
+    });
+
+  const res = await send();
+  if (res.status !== 401) return res;
+
+  clearEasyvereinTokenCache();
+  return send();
+};
+
+const jsonHeaders = {
   Accept: "application/json",
   "Content-Type": "application/json",
-});
+};
 
 export const fetchEasyverein = async (path: string) =>
-  fetch(`${API_URL}/${path}`, { headers: await buildHeaders() });
+  fetchWithToken(`${API_URL}/${path}`, { headers: jsonHeaders });
 
 interface GetOptions {
   id?: string;
@@ -65,11 +110,9 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
 
   const fetchUrl = `${API_URL}/${endpoint}${options.id ? "/" + options.id : ""}${searchParamsString ? "?" + searchParamsString : ""}`;
 
-  const headers = await buildHeaders();
-
-  const res = await fetch(fetchUrl, {
+  const res = await fetchWithToken(fetchUrl, {
     method: "GET",
-    headers,
+    headers: jsonHeaders,
   });
 
   if (!res.ok) {
@@ -84,9 +127,9 @@ export const get = async <TSchema extends z.ZodArray<z.ZodTypeAny>>(
   let next = data.next;
 
   while (next) {
-    const res = await fetch(next, {
+    const res = await fetchWithToken(next, {
       method: "GET",
-      headers,
+      headers: jsonHeaders,
     });
 
     if (!res.ok) {

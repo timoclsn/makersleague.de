@@ -1,6 +1,7 @@
 import { isAuthorizedCronRequest } from "@/lib/cron";
 import {
   EDGE_CONFIG_TOKEN_KEY,
+  clearEasyvereinTokenCache,
   fetchEasyverein,
   getEasyvereinToken,
 } from "@/lib/easyverein";
@@ -75,6 +76,9 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Rotate from the token that is in the store right now, not a cached one
+    clearEasyvereinTokenCache();
+
     // easyVerein flags on every response whether the token should be renewed
     const checkRes = await fetchEasyverein("member?limit=1&query={id}");
 
@@ -126,6 +130,7 @@ export async function GET(request: NextRequest) {
     // The old token may already be invalid, so retry before giving up on the new one
     try {
       await withRetries(() => writeStoredToken(newToken));
+      clearEasyvereinTokenCache();
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       throw new Error(
