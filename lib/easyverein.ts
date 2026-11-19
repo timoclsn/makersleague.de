@@ -17,7 +17,7 @@ const edgeConfig = process.env.GLOBAL_CONFIG
 // Every Global Config read counts against the team's monthly quota (50,000 on
 // Hobby), so keep the token in memory per function instance instead of
 // reading it on every easyVerein request.
-const TOKEN_CACHE_TTL_MS = 10 * 60 * 1000;
+const TOKEN_CACHE_TTL_MS = 60 * 60 * 1000;
 
 let cachedToken: { value: Promise<string>; expiresAt: number } | null = null;
 
