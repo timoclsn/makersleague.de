@@ -1,4 +1,4 @@
-import { getAuthorizationHeader } from "lib/easyverein";
+import { fetchWithToken } from "lib/easyverein";
 
 const parseUrl = (value: string | null) => {
   if (!value) return null;
@@ -27,12 +27,7 @@ export async function GET(request: Request) {
 
   let response: Response;
   try {
-    response = await fetch(url, {
-      headers: {
-        Authorization: await getAuthorizationHeader(),
-      },
-      redirect: "manual",
-    });
+    response = await fetchWithToken(url, { redirect: "manual" });
   } catch (error) {
     console.error("Failed to fetch easyVerein image:", error);
     return new Response(null, {
