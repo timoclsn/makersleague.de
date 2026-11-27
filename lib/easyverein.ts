@@ -36,9 +36,11 @@ const readEasyvereinToken = async () => {
     }
   }
 
-  if (process.env.EASYVEREIN_TOKEN) return process.env.EASYVEREIN_TOKEN;
-
-  throw new Error("Easyverein token not configured");
+  throw new Error(
+    edgeConfig
+      ? `Easyverein token not found in Global Config (${EDGE_CONFIG_TOKEN_KEY})`
+      : "Easyverein token not configured: set GLOBAL_CONFIG",
+  );
 };
 
 export const clearEasyvereinTokenCache = () => {

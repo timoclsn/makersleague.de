@@ -13,9 +13,8 @@ const envSchema = z.object({
   VERCEL_URL: envVarSchema.optional(),
 
   // EasyVerein
-  // Fallback when the token is not in Edge Config (e.g. local dev)
-  EASYVEREIN_TOKEN: envVarSchema.optional(),
-  GLOBAL_CONFIG: envVarSchema.optional(),
+  // Global Config connection string, the token is stored there
+  GLOBAL_CONFIG: envVarSchema,
   EDGE_CONFIG_ID: envVarSchema.optional(),
   VERCEL_API_TOKEN: envVarSchema.optional(),
   VERCEL_TEAM_ID: envVarSchema.optional(),
@@ -41,13 +40,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_VERCEL_URL: envVarSchema.optional(),
 });
 
-const env = envSchema.parse(process.env);
-
-if (!env.GLOBAL_CONFIG && !env.EASYVEREIN_TOKEN) {
-  throw new Error(
-    "Set GLOBAL_CONFIG or EASYVEREIN_TOKEN for the easyVerein API",
-  );
-}
+envSchema.parse(process.env);
 
 declare global {
   namespace NodeJS {
