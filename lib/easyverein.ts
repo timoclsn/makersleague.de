@@ -27,18 +27,20 @@ let cachedToken: { value: Promise<string>; readAt: number } | null = null;
 let lastRereadAt = 0;
 
 const readEasyvereinToken = async () => {
-  if (edgeConfig) {
-    try {
-      const token = await edgeConfig.get(EDGE_CONFIG_TOKEN_KEY);
-      if (typeof token === "string" && token) return token;
-    } catch (error) {
-      console.error("Failed to read easyVerein token from Edge Config:", error);
-    }
+  if (!edgeConfig) {
+    throw new Error("Easyverein token not configured: set GLOBAL_CONFIG");
   }
 
-  if (process.env.EASYVEREIN_TOKEN) return process.env.EASYVEREIN_TOKEN;
+  try {
+    const token = await edgeConfig.get(EDGE_CONFIG_TOKEN_KEY);
+    if (typeof token === "string" && token) return token;
+  } catch (error) {
+    console.error("Failed to read easyVerein token from Edge Config:", error);
+  }
 
-  throw new Error("Easyverein token not configured");
+  throw new Error(
+    `Easyverein token not found in Global Config (${EDGE_CONFIG_TOKEN_KEY})`,
+  );
 };
 
 export const clearEasyvereinTokenCache = () => {
